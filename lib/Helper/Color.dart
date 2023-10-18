@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 
 extension colors on ColorScheme {
   static MaterialColor primary_app = const MaterialColor(
-    0xffa48c69,
+    0xFF4D5B3F,
     <int, Color>{
-      50: primary,
-      100: primary,
-      200: primary,
-      300: primary,
-      400: primary,
-      500: primary,
-      600: primary,
-      700: primary,
-      800: primary,
-      900: primary,
+      // 50: primary,
+      // 100: primary,
+      // 200: primary,
+      // 300: primary,
+      // 400: primary,
+      // 500: primary,
+      // 600: primary,
+      // 700: primary,
+      // 800: primary,
+      // 900: primary,
     },
   );
 
-  static const Color primary = Color(0xffa48c69);
+  static const Color primary = Color(0xFF4D5B3F);
   static const Color secondary = Color(0xffFDC994);
 
   Color get btnColor => brightness == Brightness.dark ? whiteTemp : primary;
 
   Color get changeablePrimary => brightness == Brightness.dark
-      ? const Color(0xffa48c69)
+      ? const Color.fromARGB(255, 77, 91, 63)
       : const Color(0xff4e5b40);
 
   Color get lightWhite =>
@@ -45,10 +45,10 @@ extension colors on ColorScheme {
   Color get simmerHigh =>
       brightness == Brightness.dark ? darkColor : Colors.grey[100]!;
 
-  static Color darkIcon = const Color(0xff9B9B9B);
+  static Color darkIcon = const Color.fromARGB(255, 77, 91, 63);
 
-  static const Color grad1Color = Color(0xffa48c69);
-  static const Color grad2Color = Color(0xffa48c69);
+  static const Color grad1Color = Color.fromARGB(255, 77, 91, 63);
+  static const Color grad2Color = Color.fromARGB(255, 77, 91, 63);
   static const Color lightWhite2 = Color(0xffEEF2F3);
 
   static const Color yellow = Color(0xfffdd901);
