@@ -2,6 +2,7 @@ import 'package:eshop_multivendor/Screen/IntroSlider/Widgets/SliderClass.dart';
 import 'package:flutter/material.dart';
 import '../../Helper/String.dart';
 import '../../widgets/systemChromeSettings.dart';
+import '../../widgets/background_image.dart';
 import '../Language/languageSettings.dart';
 import 'Widgets/AllBtn.dart';
 import 'Widgets/SetSlider.dart';
@@ -94,25 +95,31 @@ class _GettingStartedScreenState extends State<IntroSlider>
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            skipBtn(
-              context,
-              _currentPage,
-            ),
-            slider(
-              slideList,
-              _pageController,
-              context,
-              _onPageChanged,
-            ),
-            SliderBtn(
-              currentPage: _currentPage,
-              pageController: _pageController,
-              sliderList: slideList,
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            const BackgroundImage(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                skipBtn(
+                  context,
+                  _currentPage,
+                ),
+                slider(
+                  slideList,
+                  _pageController,
+                  context,
+                  _onPageChanged,
+                ),
+                SliderBtn(
+                  currentPage: _currentPage,
+                  pageController: _pageController,
+                  sliderList: slideList,
+                ),
+              ],
             ),
           ],
         ),

@@ -108,13 +108,14 @@ skipBtn(BuildContext context, int currentPage) {
                     Text(
                       getTranslated(context, 'SKIP')!,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Theme.of(context).colorScheme.fontColor,
+                            color: colors.primary,
+                            fontWeight: FontWeight.w500,
                             fontFamily: 'ubuntu',
                           ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios,
-                      color: Theme.of(context).colorScheme.fontColor,
+                      color: colors.primary,
                       size: 12.0,
                     ),
                   ],
@@ -143,10 +144,10 @@ List<Widget> getList(List slideList, BuildContext context, int currentPage) {
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
           color: currentPage == i
-              ? Theme.of(context).colorScheme.fontColor
-              : Theme.of(context).colorScheme.fontColor.withOpacity(
-                    (0.5),
-                  ),
+              ? colors.primary
+              : colors.primary.withOpacity(
+                  (0.5),
+                ),
         ),
       ),
     );

@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import '../../Helper/String.dart';
 import '../../widgets/desing.dart';
 import '../../widgets/systemChromeSettings.dart';
+import '../../widgets/background_image.dart';
 
 //splash screen of app
 class Splash extends StatefulWidget {
@@ -62,14 +63,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
         key: _scaffoldKey,
         body: Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 1,
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image.asset(
-                'assets/images/png/background.png',
-                fit: BoxFit.fill,
-              ),
-            ),
+          const  BackgroundImage(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 1,
               width: MediaQuery.of(context).size.width * 1,

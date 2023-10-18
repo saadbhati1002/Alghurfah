@@ -46,7 +46,7 @@ Widget getTitle(int index, List slideList, BuildContext context) {
           slideList[index].title,
           style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                 fontFamily: 'ubuntu',
-                color: Theme.of(context).colorScheme.fontColor,
+                color: colors.primary,
                 fontWeight: FontWeight.bold,
               ),
         ),
@@ -57,7 +57,7 @@ Widget getTitle(int index, List slideList, BuildContext context) {
         child: Text(
           slideList[index].description,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: colors.primary,
                 fontWeight: FontWeight.normal,
                 fontSize: textFontSize14,
                 fontFamily: 'ubuntu',
