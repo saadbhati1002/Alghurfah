@@ -18,7 +18,7 @@ import '../Screen/ReviewGallary/reviewGallary.dart';
 import '../Screen/ReviewPreview/review_Preview.dart';
 import '../Screen/Search/Search.dart';
 import '../Screen/SellerDetail/Seller_Details.dart';
-import '../Screen/SplashScreen/Splash.dart';
+import '../Screen/SplashScreen/splash.dart';
 import '../Screen/Transaction/userTransactionsScreen.dart';
 import '../Screen/Language/languageSettings.dart';
 
