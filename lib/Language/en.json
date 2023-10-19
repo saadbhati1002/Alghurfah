@@ -50,7 +50,7 @@
   "USER_REGISTER_DETAILS": "User Details",
   "SHOW_PASSWORD": "Show Password",
   "VERIFY_MOBILE_NUMBER": "Verify Mobile Number",
-  "ALREADY_A_CUSTOMER": "Already a customer? ",
+  "ALREADY_A_CUSTOMER": "Already a member? ",
   "LOG_IN_LBL": "Log In",
   "MOBILE_NUMBER_VARIFICATION": "Enter Verification Code",
   "MOBILEHINT_LBL": "Mobile number",
@@ -498,5 +498,7 @@
   "RETURN_REQUEST_PENDING_LBL": "Return Request Pending",
   "RETURN_REQUEST_APPROVED_LBL": "Return Request Approved",
   "RETURN_REQUEST_DECLINE_LBL": "Return Request Decline",
-  "OPEN_DOWNLOAD_FILE_LBL": "Open Downloaded File"
+  "OPEN_DOWNLOAD_FILE_LBL": "Open Downloaded File",
+  "sign_in_with_gmail": "Sign in with Email",
+  "sign_in_with_phoneNumber": "Sign in with Phone Number"
 }
