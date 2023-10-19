@@ -63,7 +63,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
         key: _scaffoldKey,
         body: Stack(
           children: [
-          const  BackgroundImage(),
+            const BackgroundImage(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 1,
               width: MediaQuery.of(context).size.width * 1,

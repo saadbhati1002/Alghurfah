@@ -498,5 +498,7 @@
   "RETURN_REQUEST_PENDING_LBL": "طلب الإرجاع معلق",
   "RETURN_REQUEST_APPROVED_LBL": "تمت الموافقة على طلب الإرجاع",
   "RETURN_REQUEST_DECLINE_LBL": "رفض طلب الإرجاع",
-  "OPEN_DOWNLOAD_FILE_LBL": "فتح الملف الذي تم تنزيله"
+  "OPEN_DOWNLOAD_FILE_LBL": "فتح الملف الذي تم تنزيله",
+  "sign_in_with_phoneNumber": "فون نمبر کے ساتھ سائن ان کریں۔",
+  "sign_in_with_gmail": "ای میل کے ساتھ سائن ان کریں۔"
 }

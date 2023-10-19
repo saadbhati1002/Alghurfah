@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:eshop_multivendor/AppScreen/app_tabbar_screen.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
@@ -12,7 +11,6 @@ import 'package:eshop_multivendor/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../../Helper/Constant.dart';
 import '../../Helper/String.dart';
