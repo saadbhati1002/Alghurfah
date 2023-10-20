@@ -97,23 +97,18 @@ class AppBtn extends StatelessWidget {
   Widget _buildBtnAnimation(BuildContext context, Widget? child) {
     return Padding(
       padding: const EdgeInsets.only(top: 25),
-      child: CupertinoButton(
+      child: GestureDetector(
+        onTap: () {
+          onBtnSelected!();
+        },
         child: Container(
-          width: btnAnim!.value,
-          height: 45,
+          width: MediaQuery.of(context).size.width,
+          height: 50,
           alignment: FractionalOffset.center,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [colors.grad1Color, colors.grad2Color],
-              stops: [0, 1],
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                circularBorderRadius10,
-              ),
-            ),
+            color: colors.primary,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(13), bottomLeft: Radius.circular(13)),
           ),
           child: btnAnim!.value > 75.0
               ? Text(
@@ -121,7 +116,7 @@ class AppBtn extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: colors.whiteTemp,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.w700,
                         fontFamily: 'ubuntu',
                       ),
                 )
@@ -131,9 +126,6 @@ class AppBtn extends StatelessWidget {
                   ),
                 ),
         ),
-        onPressed: () {
-          onBtnSelected!();
-        },
       ),
     );
   }
