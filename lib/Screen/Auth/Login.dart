@@ -1194,13 +1194,18 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15, left: 15),
-                    child: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: colors.primary,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, left: 15),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: colors.primary,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               )
             : NoInterNet(
