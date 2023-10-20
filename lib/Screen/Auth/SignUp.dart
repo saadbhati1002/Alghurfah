@@ -3,11 +3,13 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/authenticationProvider.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart' as service;
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +35,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
   bool? _showPassword = true;
+  bool? _showPasswordConfirm = true;
   bool visible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final fisrtNameController = TextEditingController();
@@ -41,6 +44,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
   final mobileController = TextEditingController();
   final ccodeController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final referController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String? name,
@@ -118,6 +122,12 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
   Future<void> checkNetwork() async {
     isNetworkAvail = await isNetworkAvailable();
     if (isNetworkAvail) {
+      if (passwordController.text.toString().trim() !=
+          confirmPasswordController.text.toString().trim()) {
+        setSnackbar(
+            getTranslated(context, 'password_confrimPassword')!, context);
+        return;
+      }
       Future.delayed(Duration.zero).then((value) {
         context
             .read<AuthenticationProvider>()
@@ -214,13 +224,13 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   Widget registerTxt() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 40.0),
+      padding: const EdgeInsetsDirectional.only(top: 30.0, bottom: 10),
       child: Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.center,
         child: Text(
           getTranslated(context, 'Create a new account')!,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: colors.primary,
                 fontWeight: FontWeight.bold,
                 fontSize: textFontSize23,
                 fontFamily: 'ubuntu',
@@ -249,20 +259,20 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   setFirstName() {
     return Padding(
-      padding: const EdgeInsets.only(top: 25),
+      padding: const EdgeInsets.only(top: 15),
       child: Container(
-        height: 53,
+        height: 50,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.text,
           textCapitalization: TextCapitalization.words,
           controller: fisrtNameController,
@@ -271,19 +281,24 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           inputFormatters: [
             FilteringTextInputFormatter.deny(RegExp('[ ]')),
           ],
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 13,
-                vertical: 5,
-              ),
-              hintText: "First Name",
-              hintStyle: TextStyle(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
-                  fontWeight: FontWeight.bold,
-                  fontSize: textFontSize13),
-              fillColor: Theme.of(context).colorScheme.lightWhite,
-              border: InputBorder.none),
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            hintText: "First Name",
+            hintStyle: TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
           validator: (val) =>
               StringValidation.validateUserName(val!, "First Name is Required"),
           onSaved: (String? value) {},
@@ -297,20 +312,20 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   setLastName() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 10),
       child: Container(
-        height: 53,
+        height: 50,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.text,
           textCapitalization: TextCapitalization.words,
           controller: lastNameController,
@@ -319,19 +334,24 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           inputFormatters: [
             FilteringTextInputFormatter.deny(RegExp('[ ]')),
           ],
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 13,
-                vertical: 5,
-              ),
-              hintText: "Last Name",
-              hintStyle: TextStyle(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
-                  fontWeight: FontWeight.bold,
-                  fontSize: textFontSize13),
-              fillColor: Theme.of(context).colorScheme.lightWhite,
-              border: InputBorder.none),
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            hintText: "Last Name",
+            hintStyle: TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
           validator: (val) =>
               StringValidation.validateUserName(val!, "Last Name is Required"),
           onSaved: (String? value) {
@@ -348,20 +368,20 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   setEmail() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 10),
       child: Container(
-        height: 53,
+        height: 50,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.emailAddress,
           focusNode: emailFocus,
           textInputAction: TextInputAction.next,
@@ -370,18 +390,23 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           ],
           controller: emailController,
           decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 13,
-                vertical: 5,
-              ),
-              hintText: getTranslated(context, 'EMAILHINT_LBL'),
-              hintStyle: TextStyle(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
-                  fontWeight: FontWeight.bold,
-                  fontSize: textFontSize13),
-              fillColor: Theme.of(context).colorScheme.lightWhite,
-              border: InputBorder.none),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            hintText: getTranslated(context, 'EMAILHINT_LBL'),
+            hintStyle: const TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
           validator: (val) => StringValidation.validateEmail(
             val!,
             getTranslated(context, 'EMAIL_REQUIRED'),
@@ -404,20 +429,20 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   setRefer() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 10),
       child: Container(
-        height: 53,
+        height: 50,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.text,
           focusNode: referFocus,
           controller: referController,
@@ -433,17 +458,21 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           },
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
-              horizontal: 13,
+              horizontal: 5,
               vertical: 5,
             ),
             hintText: getTranslated(context, 'REFER'),
-            hintStyle: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
-              fontWeight: FontWeight.bold,
-              fontSize: textFontSize13,
+            hintStyle: const TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
             ),
-            fillColor: Theme.of(context).colorScheme.lightWhite,
-            border: InputBorder.none,
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
           ),
         ),
       ),
@@ -452,20 +481,22 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   setPass() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(
+        top: 10,
+      ),
       child: Container(
-        height: 53,
+        height: 50,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.text,
           obscureText: _showPassword!,
           controller: passwordController,
@@ -487,7 +518,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           decoration: InputDecoration(
             errorMaxLines: 2,
             contentPadding: const EdgeInsets.symmetric(
-              horizontal: 13,
+              horizontal: 5,
               vertical: 5,
             ),
             suffixIcon: InkWell(
@@ -500,8 +531,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
                 padding: const EdgeInsetsDirectional.only(end: 10.0),
                 child: Icon(
                   !_showPassword! ? Icons.visibility : Icons.visibility_off,
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.4),
+                  color: colors.primary,
                   size: 22,
                 ),
               ),
@@ -509,11 +539,93 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
             suffixIconConstraints:
                 const BoxConstraints(minWidth: 40, maxHeight: 20),
             hintText: getTranslated(context, 'PASSHINT_LBL')!,
-            hintStyle: TextStyle(
-                color: Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
+            hintStyle: const TextStyle(
+                color: colors.black54,
                 fontWeight: FontWeight.bold,
-                fontSize: textFontSize13),
-            fillColor: Theme.of(context).colorScheme.lightWhite,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            border: InputBorder.none,
+          ),
+        ),
+      ),
+    );
+  }
+
+  confirmPassword() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 20),
+      child: Container(
+        height: 50,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(circularBorderRadius10),
+        ),
+        alignment: Alignment.center,
+        child: TextFormField(
+          style: const TextStyle(
+              color: colors.primary,
+              fontWeight: FontWeight.bold,
+              fontSize: textFontSize16),
+          keyboardType: TextInputType.text,
+          obscureText: _showPasswordConfirm!,
+          controller: confirmPasswordController,
+          focusNode: passFocus,
+          textInputAction: TextInputAction.next,
+          inputFormatters: [
+            FilteringTextInputFormatter.deny(RegExp('[ ]')),
+          ],
+          validator: (val) => StringValidation.validatePass(
+              val!,
+              getTranslated(context, 'confirm_password_reruired'),
+              getTranslated(context, 'PASSWORD_VALIDATION')),
+          onSaved: (String? value) {},
+          onFieldSubmitted: (v) {
+            _fieldFocusChange(context, passFocus!, referFocus);
+          },
+          decoration: InputDecoration(
+            errorMaxLines: 2,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            suffixIcon: InkWell(
+              onTap: () {
+                setState(() {
+                  _showPasswordConfirm = !_showPasswordConfirm!;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(end: 10.0),
+                child: Icon(
+                  !_showPasswordConfirm!
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: colors.primary,
+                  size: 22,
+                ),
+              ),
+            ),
+            suffixIconConstraints:
+                const BoxConstraints(minWidth: 40, maxHeight: 20),
+            hintText: getTranslated(context, 'confirm_password')!,
+            hintStyle: const TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
             border: InputBorder.none,
           ),
         ),
@@ -534,28 +646,25 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
     );
   }
 
-  loginTxt() {
+  alreadyHaveAccount() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 20.0, bottom: 15),
+      padding: const EdgeInsetsDirectional.only(top: 15.0, bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            getTranslated(context, 'ALREADY_A_CUSTOMER')!,
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Theme.of(context).colorScheme.fontColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'ubuntu',
-                ),
-          ),
           InkWell(
             onTap: () {
-              Routes.navigateToLoginScreen(context);
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (BuildContext context) => const Login(),
+                ),
+              );
             },
             child: Text(
-              getTranslated(context, 'LOG_IN_LBL')!,
+              getTranslated(context, 'or_login')!,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'ubuntu',
                   ),
@@ -597,53 +706,77 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Theme.of(context).colorScheme.white,
-      key: _scaffoldKey,
-      body: isNetworkAvail
-          ? SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  top: 23,
-                  left: 23,
-                  right: 23,
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Form(
-                key: _formkey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    getLogo(),
-                    registerTxt(),
-                    signUpSubTxt(),
-                    setFirstName(),
-                    setLastName(),
-                    setEmail(),
-                    setPass(),
-                    setRefer(),
-                    verifyBtn(),
-                    loginTxt(),
-                  ],
-                ),
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Theme.of(context).colorScheme.white,
+        key: _scaffoldKey,
+        body: isNetworkAvail
+            ? Stack(
+                children: [
+                  const BackgroundImage(),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                        top: 23,
+                        left: 23,
+                        right: 23,
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          getLogo(),
+                          registerTxt(),
+                          Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                ),
+                                color: colors.whiteTemp),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
+                                children: [
+                                  setFirstName(),
+                                  setLastName(),
+                                  setEmail(),
+                                  setPass(),
+                                  confirmPassword(),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          // setRefer(),
+                          verifyBtn(),
+                          alreadyHaveAccount(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : NoInterNet(
+                setStateNoInternate: setStateNoInternate,
+                buttonSqueezeanimation: buttonSqueezeanimation,
+                buttonController: buttonController,
               ),
-            )
-          : NoInterNet(
-              setStateNoInternate: setStateNoInternate,
-              buttonSqueezeanimation: buttonSqueezeanimation,
-              buttonController: buttonController,
-            ),
+      ),
     );
   }
 
   Widget getLogo() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 20),
       child: Image.asset(
-        DesignConfiguration.setPngPath('logo'),
+        'assets/images/png/logo1.png',
         alignment: Alignment.center,
-        height: 140,
-        width: 120,
+        height: 170,
+        width: MediaQuery.of(context).size.width * .5,
         fit: BoxFit.contain,
       ),
     );
