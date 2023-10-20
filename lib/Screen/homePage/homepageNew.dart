@@ -420,171 +420,171 @@ class _HomePageState extends State<HomePage>
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Consumer<HomePageProvider>(
-                                    builder: (context, categoryData, child) {
-                                  return categoryData.catLoading
-                                      ? SizedBox(
-                                          width: double.infinity,
-                                          child: Shimmer.fromColors(
-                                            baseColor: Theme.of(context)
-                                                .colorScheme
-                                                .simmerBase,
-                                            highlightColor: Theme.of(context)
-                                                .colorScheme
-                                                .simmerHigh,
-                                            child: const SizedBox(),
-                                          ),
-                                        )
-                                      : Container(
-                                          height: 40,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .45,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: showingCatgery == 0
-                                                  ? primaryColor
-                                                  : Colors.grey[200]),
-                                          alignment: Alignment.center,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 15, vertical: 3),
-                                            child: DropdownButtonHideUnderline(
-                                                child: DropdownButton<Product>(
-                                              dropdownColor: Colors.black,
-                                              icon: const Icon(
-                                                Icons.keyboard_arrow_down_sharp,
-                                                color: Colors.black,
-                                              ),
-                                              isExpanded: true,
-                                              items: categoryData.catList
-                                                  .map((Product value) {
-                                                return DropdownMenuItem<
-                                                    Product>(
-                                                  value: value,
-                                                  child: Text(
-                                                    value.name!,
-                                                  ),
-                                                );
-                                              }).toList(),
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontFamily: 'ntr',
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              hint: const Text(
-                                                'E-Commerce',
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 16,
-                                                  fontFamily: 'ntr',
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              onChanged: (value) async {
-                                                if (value!.subList == null ||
-                                                    value.subList!.isEmpty) {
-                                                  await Navigator.push(
-                                                    context,
-                                                    CupertinoPageRoute(
-                                                      builder: (context) =>
-                                                          ProductList(
-                                                        name: value.name,
-                                                        id: value.id,
-                                                        tag: false,
-                                                        fromSeller: false,
-                                                      ),
-                                                    ),
-                                                  );
-                                                } else {
-                                                  await Navigator.push(
-                                                    context,
-                                                    CupertinoPageRoute(
-                                                      builder: (context) =>
-                                                          SubCategory(
-                                                        title: value.name!,
-                                                        subList: value.subList,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                            )),
-                                          ),
-                                        );
-                                }),
-                                SnapHelperWidget<DashboardResponse>(
-                                  initialData: cachedDashboardResponse,
-                                  future: future,
-                                  onSuccess: (snap) {
-                                    return Container(
-                                      height: 40,
-                                      width: MediaQuery.of(context).size.width *
-                                          .45,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: showingCatgery == 0
-                                              ? primaryColor
-                                              : Colors.grey[200]),
-                                      alignment: Alignment.center,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 3),
-                                        child: DropdownButtonHideUnderline(
-                                            child: DropdownButton<CategoryData>(
-                                          dropdownColor: Colors.black,
-                                          icon: const Icon(
-                                            Icons.keyboard_arrow_down_sharp,
-                                            color: Colors.black,
-                                          ),
-                                          isExpanded: true,
-                                          items: snap.category!
-                                              .map((CategoryData value) {
-                                            return DropdownMenuItem<
-                                                CategoryData>(
-                                              value: value,
-                                              child: Text(
-                                                value.name!,
-                                              ),
-                                            );
-                                          }).toList(),
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontFamily: 'ntr',
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          hint: const Text(
-                                            'Service',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontFamily: 'ntr',
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          onChanged: (value) async {
-                                            ViewAllServiceScreen(
-                                                    categoryId:
-                                                        value!.id.validate(),
-                                                    categoryName: value.name,
-                                                    isFromCategory: true)
-                                                .launch(context);
-                                          },
-                                        )),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            //   children: [
+                            //     Consumer<HomePageProvider>(
+                            //         builder: (context, categoryData, child) {
+                            //       return categoryData.catLoading
+                            //           ? SizedBox(
+                            //               width: double.infinity,
+                            //               child: Shimmer.fromColors(
+                            //                 baseColor: Theme.of(context)
+                            //                     .colorScheme
+                            //                     .simmerBase,
+                            //                 highlightColor: Theme.of(context)
+                            //                     .colorScheme
+                            //                     .simmerHigh,
+                            //                 child: const SizedBox(),
+                            //               ),
+                            //             )
+                            //           : Container(
+                            //               height: 40,
+                            //               width: MediaQuery.of(context)
+                            //                       .size
+                            //                       .width *
+                            //                   .45,
+                            //               decoration: BoxDecoration(
+                            //                   borderRadius:
+                            //                       BorderRadius.circular(10),
+                            //                   color: showingCatgery == 0
+                            //                       ? primaryColor
+                            //                       : Colors.grey[200]),
+                            //               alignment: Alignment.center,
+                            //               child: Padding(
+                            //                 padding: const EdgeInsets.symmetric(
+                            //                     horizontal: 15, vertical: 3),
+                            //                 child: DropdownButtonHideUnderline(
+                            //                     child: DropdownButton<Product>(
+                            //                   dropdownColor: Colors.black,
+                            //                   icon: const Icon(
+                            //                     Icons.keyboard_arrow_down_sharp,
+                            //                     color: Colors.black,
+                            //                   ),
+                            //                   isExpanded: true,
+                            //                   items: categoryData.catList
+                            //                       .map((Product value) {
+                            //                     return DropdownMenuItem<
+                            //                         Product>(
+                            //                       value: value,
+                            //                       child: Text(
+                            //                         value.name!,
+                            //                       ),
+                            //                     );
+                            //                   }).toList(),
+                            //                   style: const TextStyle(
+                            //                     color: Colors.white,
+                            //                     fontSize: 16,
+                            //                     fontFamily: 'ntr',
+                            //                     fontWeight: FontWeight.w500,
+                            //                   ),
+                            //                   hint: const Text(
+                            //                     'E-Commerce',
+                            //                     style: TextStyle(
+                            //                       color: Colors.black,
+                            //                       fontSize: 16,
+                            //                       fontFamily: 'ntr',
+                            //                       fontWeight: FontWeight.w500,
+                            //                     ),
+                            //                   ),
+                            //                   onChanged: (value) async {
+                            //                     if (value!.subList == null ||
+                            //                         value.subList!.isEmpty) {
+                            //                       await Navigator.push(
+                            //                         context,
+                            //                         CupertinoPageRoute(
+                            //                           builder: (context) =>
+                            //                               ProductList(
+                            //                             name: value.name,
+                            //                             id: value.id,
+                            //                             tag: false,
+                            //                             fromSeller: false,
+                            //                           ),
+                            //                         ),
+                            //                       );
+                            //                     } else {
+                            //                       await Navigator.push(
+                            //                         context,
+                            //                         CupertinoPageRoute(
+                            //                           builder: (context) =>
+                            //                               SubCategory(
+                            //                             title: value.name!,
+                            //                             subList: value.subList,
+                            //                           ),
+                            //                         ),
+                            //                       );
+                            //                     }
+                            //                   },
+                            //                 )),
+                            //               ),
+                            //             );
+                            //     }),
+                            //     SnapHelperWidget<DashboardResponse>(
+                            //       initialData: cachedDashboardResponse,
+                            //       future: future,
+                            //       onSuccess: (snap) {
+                            //         return Container(
+                            //           height: 40,
+                            //           width: MediaQuery.of(context).size.width *
+                            //               .45,
+                            //           decoration: BoxDecoration(
+                            //               borderRadius:
+                            //                   BorderRadius.circular(10),
+                            //               color: showingCatgery == 0
+                            //                   ? primaryColor
+                            //                   : Colors.grey[200]),
+                            //           alignment: Alignment.center,
+                            //           child: Padding(
+                            //             padding: const EdgeInsets.symmetric(
+                            //                 horizontal: 10, vertical: 3),
+                            //             child: DropdownButtonHideUnderline(
+                            //                 child: DropdownButton<CategoryData>(
+                            //               dropdownColor: Colors.black,
+                            //               icon: const Icon(
+                            //                 Icons.keyboard_arrow_down_sharp,
+                            //                 color: Colors.black,
+                            //               ),
+                            //               isExpanded: true,
+                            //               items: snap.category!
+                            //                   .map((CategoryData value) {
+                            //                 return DropdownMenuItem<
+                            //                     CategoryData>(
+                            //                   value: value,
+                            //                   child: Text(
+                            //                     value.name!,
+                            //                   ),
+                            //                 );
+                            //               }).toList(),
+                            //               style: const TextStyle(
+                            //                 color: Colors.white,
+                            //                 fontSize: 16,
+                            //                 fontFamily: 'ntr',
+                            //                 fontWeight: FontWeight.w500,
+                            //               ),
+                            //               hint: const Text(
+                            //                 'Service',
+                            //                 style: TextStyle(
+                            //                   color: Colors.black,
+                            //                   fontSize: 16,
+                            //                   fontFamily: 'ntr',
+                            //                   fontWeight: FontWeight.w500,
+                            //                 ),
+                            //               ),
+                            //               onChanged: (value) async {
+                            //                 ViewAllServiceScreen(
+                            //                         categoryId:
+                            //                             value!.id.validate(),
+                            //                         categoryName: value.name,
+                            //                         isFromCategory: true)
+                            //                     .launch(context);
+                            //               },
+                            //             )),
+                            //           ),
+                            //         );
+                            //       },
+                            //     ),
+                            //   ],
+                            // ),
 
                             const Section(),
                             // MostLikeSection(),

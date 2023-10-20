@@ -35,6 +35,7 @@ import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
 import '../../widgets/security.dart';
 import '../../widgets/validation.dart';
+import '../../widgets/background_image.dart';
 import '../Dashboard/Dashboard.dart';
 import '../NoInterNetWidget/NoInterNet.dart';
 import '../PrivacyPolicy/Privacy_Policy.dart';
@@ -555,46 +556,33 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   signInTxt() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(
-        top: 40.0,
-      ),
-      child: Text(
-        getTranslated(context, 'WELCOME_ESHOP')!,
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor,
-              fontWeight: FontWeight.bold,
-              fontSize: textFontSize20,
-              letterSpacing: 0.8,
-              fontFamily: 'ubuntu',
-            ),
-      ),
-    );
-  }
-
-  signInSubTxt() {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(
-        top: 13.0,
-      ),
-      child: Text(
-        getTranslated(context, 'INFO_FOR_LOGIN')!,
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.38),
-              fontWeight: FontWeight.bold,
-              fontFamily: 'ubuntu',
-            ),
+      padding: const EdgeInsetsDirectional.only(top: 30.0, bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            getTranslated(context, 'SIGNIN_LBL')!,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: colors.primary,
+                  fontWeight: FontWeight.bold,
+                  fontSize: textFontSize23,
+                  letterSpacing: 0.8,
+                  fontFamily: 'ubuntu',
+                ),
+          ),
+        ],
       ),
     );
   }
 
   setMobileNo() {
     return Padding(
-      padding: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(top: 30),
       child: Container(
         height: 53,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
@@ -602,10 +590,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
           onFieldSubmitted: (v) {
             FocusScope.of(context).requestFocus(passFocus);
           },
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           keyboardType: TextInputType.number,
           controller: mobileController,
           focusNode: monoFocus,
@@ -613,22 +601,27 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
           maxLength: 15,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(
-              counter: const SizedBox(),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 13,
-                vertical: 5,
-              ),
-              hintText: getTranslated(
-                context,
-                'MOBILEHINT_LBL',
-              )!,
-              hintStyle: TextStyle(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
-                  fontWeight: FontWeight.bold,
-                  fontSize: textFontSize13),
-              fillColor: Theme.of(context).colorScheme.lightWhite,
-              border: InputBorder.none),
+            counter: const SizedBox(),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 0,
+              vertical: 5,
+            ),
+            hintText: getTranslated(
+              context,
+              'MOBILEHINT_LBL',
+            )!,
+            hintStyle: const TextStyle(
+                color: colors.black54,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize16),
+            fillColor: Colors.transparent,
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: colors.primary),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
           validator: (val) => StringValidation.validateMob(
               val!,
               getTranslated(context, 'MOB_REQUIRED'),
@@ -643,20 +636,20 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   setPass() {
     return Padding(
-      padding: const EdgeInsets.only(top: 18),
+      padding: const EdgeInsets.only(top: 18, bottom: 0),
       child: Container(
         height: 53,
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(circularBorderRadius10),
         ),
         alignment: Alignment.center,
         child: TextFormField(
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.7),
+          style: const TextStyle(
+              color: colors.primary,
               fontWeight: FontWeight.bold,
-              fontSize: textFontSize13),
+              fontSize: textFontSize16),
           onFieldSubmitted: (v) {
             passFocus!.unfocus();
           },
@@ -677,7 +670,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
           },
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
-                horizontal: 13,
+                horizontal: 0,
                 vertical: 5,
               ),
               suffixIcon: InkWell(
@@ -692,10 +685,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                   padding: const EdgeInsetsDirectional.only(end: 10.0),
                   child: Icon(
                     !isShowPass ? Icons.visibility : Icons.visibility_off,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .fontColor
-                        .withOpacity(0.4),
+                    color: colors.primary,
                     size: 22,
                   ),
                 ),
@@ -703,13 +693,17 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               suffixIconConstraints:
                   const BoxConstraints(minWidth: 40, maxHeight: 20),
               hintText: getTranslated(context, 'PASSHINT_LBL')!,
-              hintStyle: TextStyle(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.3),
+              hintStyle: const TextStyle(
+                  color: colors.black54,
                   fontWeight: FontWeight.bold,
-                  fontSize: textFontSize13),
-              fillColor: Theme.of(context).colorScheme.lightWhite,
-              border: InputBorder.none,
+                  fontSize: textFontSize16),
+              fillColor: Colors.transparent,
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: colors.primary),
+              ),
+              focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
               errorMaxLines: 2),
         ),
       ),
@@ -718,7 +712,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   forgetPass() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 30.0),
+      padding: const EdgeInsetsDirectional.only(top: 20.0, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -738,7 +732,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
-                    fontSize: textFontSize13,
+                    fontSize: textFontSize15,
                     fontFamily: 'ubuntu',
                   ),
             ),
@@ -945,7 +939,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   Widget socialLoginBtn() {
     return Padding(
-        padding: const EdgeInsets.only(top: 40, bottom: 30),
+        padding: const EdgeInsets.only(top: 25, bottom: 10),
         child: Center(
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.center,
@@ -953,36 +947,37 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               if (googleLogin == true)
                 InkWell(
                   child: Container(
-                    height: 45,
+                    height: 50,
                     alignment: Alignment.center,
-                    width: deviceWidth! * 0.7,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                          color: colors
-                              .primary), /* color: Theme.of(context).colorScheme.lightWhite*/
+                          color: Colors
+                              .white), /* color: Theme.of(context).colorScheme.lightWhite*/
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(
-                          DesignConfiguration.setSvgPath('google_button'),
-                          height: 22,
-                          width: 22,
-                        ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 15),
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 0, end: 15),
                           child: Text(
                               getTranslated(context, 'CONTINUE_WITH_GOOGLE')!,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
                                   .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .fontColor,
-                                      fontWeight: FontWeight.normal)),
-                        )
+                                      fontSize: 18,
+                                      color: colors.primary,
+                                      fontWeight: FontWeight.bold)),
+                        ),
+                        SvgPicture.asset(
+                          DesignConfiguration.setSvgPath('google_button'),
+                          height: 22,
+                          width: 22,
+                        ),
                       ],
                     ),
                   ),
@@ -1082,18 +1077,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   setDontHaveAcc() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(top: 20.0, bottom: 15),
+      padding: const EdgeInsetsDirectional.only(top: 10.0, bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            getTranslated(context, 'DONT_HAVE_AN_ACC')!,
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Theme.of(context).colorScheme.fontColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'ubuntu',
-                ),
-          ),
           InkWell(
             onTap: () {
               Navigator.of(context).push(
@@ -1105,9 +1092,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               );
             },
             child: Text(
-              getTranslated(context, 'SIGN_UP_LBL')!,
+              getTranslated(context, 'or_sign_up')!,
               style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'ubuntu',
                   ),
@@ -1120,7 +1108,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   loginBtn() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 0.0),
       child: Center(
         child: Consumer<AuthenticationProvider>(
           builder: (context, value, child) {
@@ -1146,54 +1134,81 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Theme.of(context).colorScheme.white,
-      key: _scaffoldKey,
-      body: isNetworkAvail
-          ? SingleChildScrollView(
-              padding: EdgeInsets.only(
-                top: 23,
-                left: 23,
-                right: 23,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: Form(
-                key: _formkey,
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        getLogo(),
-                        signInTxt(),
-                        signInSubTxt(),
-                        setMobileNo(),
-                        setPass(),
-                        forgetPass(),
-                        loginBtn(),
-                        orDivider(),
-                        socialLoginBtn(),
-                        termAndPolicyTxt(),
-                        bottomDivider(),
-                        setDontHaveAcc(),
-                      ],
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Theme.of(context).colorScheme.white,
+        key: _scaffoldKey,
+        body: isNetworkAvail
+            ? Stack(
+                children: [
+                  const BackgroundImage(),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                      top: 20,
+                      left: 30,
+                      right: 30,
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
-                    if (socialLoginLoading)
-                      Positioned.fill(
-                        child: Center(
-                            child: DesignConfiguration.showCircularProgress(
-                                socialLoginLoading, colors.primary)),
+                    child: Form(
+                      key: _formkey,
+                      child: Stack(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              getLogo(),
+                              signInTxt(),
+                              Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25),
+                                    ),
+                                    color: colors.whiteTemp),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Column(
+                                    children: [
+                                      setMobileNo(),
+                                      setPass(),
+                                      forgetPass(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              loginBtn(),
+                              socialLoginBtn(),
+                              setDontHaveAcc(),
+                            ],
+                          ),
+                          if (socialLoginLoading)
+                            Positioned.fill(
+                              child: Center(
+                                  child:
+                                      DesignConfiguration.showCircularProgress(
+                                          socialLoginLoading, colors.primary)),
+                            ),
+                        ],
                       ),
-                  ],
-                ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15, left: 15),
+                    child: Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      color: colors.primary,
+                    ),
+                  )
+                ],
+              )
+            : NoInterNet(
+                setStateNoInternate: setStateNoInternate,
+                buttonSqueezeanimation: buttonSqueezeanimation,
+                buttonController: buttonController,
               ),
-            )
-          : NoInterNet(
-              setStateNoInternate: setStateNoInternate,
-              buttonSqueezeanimation: buttonSqueezeanimation,
-              buttonController: buttonController,
-            ),
+      ),
     );
   }
 
@@ -1215,12 +1230,11 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
   Widget getLogo() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 30),
       child: Image.asset(
-        DesignConfiguration.setPngPath('logo'),
+        'assets/images/png/logo1.png',
         alignment: Alignment.center,
-        height: 140,
-        width: 120,
+        height: 170,
+        width: MediaQuery.of(context).size.width * .5,
         fit: BoxFit.contain,
       ),
     );

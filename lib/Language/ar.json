@@ -492,7 +492,7 @@
   "OKTFirst": "الرجاء الموافقة على سياسة الخصوصية أولاً !!",
   "RELOGIN_REQ": "إعادة تسجيل الدخول مطلوبة ...",
   "CONTINUE_WITH_APPLE": "متابعة مع Apple",
-  "CONTINUE_WITH_GOOGLE": "متابعة مع Google",
+  "CONTINUE_WITH_GOOGLE": "کے ساتھ سائن ان Google",
   "OR_LOGIN_WITH_LBL": "أو سجل الدخول باستخدام",
   "WOULD_RETURN_PRODUCT_LBL": "هل ترغب في إرجاع هذا المنتج؟",
   "RETURN_REQUEST_PENDING_LBL": "طلب الإرجاع معلق",
@@ -500,5 +500,6 @@
   "RETURN_REQUEST_DECLINE_LBL": "رفض طلب الإرجاع",
   "OPEN_DOWNLOAD_FILE_LBL": "فتح الملف الذي تم تنزيله",
   "sign_in_with_phoneNumber": "فون نمبر کے ساتھ سائن ان کریں۔",
-  "sign_in_with_gmail": "ای میل کے ساتھ سائن ان کریں۔"
+  "sign_in_with_gmail": "ای میل کے ساتھ سائن ان کریں۔",
+  "or_sign_up": "یا سائن اپ کریں۔"
 }

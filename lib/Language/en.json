@@ -492,7 +492,7 @@
   "agreeTCFirst": "Please Agree to our Privacy Policy first !!",
   "RELOGIN_REQ": "ReLogin Required...",
   "CONTINUE_WITH_APPLE": "Continue With Apple",
-  "CONTINUE_WITH_GOOGLE": "Continue With Google",
+  "CONTINUE_WITH_GOOGLE": "Sign in With Google",
   "OR_LOGIN_WITH_LBL": "Or Log In With",
   "WOULD_RETURN_PRODUCT_LBL": "Would you like to return this product?",
   "RETURN_REQUEST_PENDING_LBL": "Return Request Pending",
@@ -500,5 +500,6 @@
   "RETURN_REQUEST_DECLINE_LBL": "Return Request Decline",
   "OPEN_DOWNLOAD_FILE_LBL": "Open Downloaded File",
   "sign_in_with_gmail": "Sign in with Email",
-  "sign_in_with_phoneNumber": "Sign in with Phone Number"
+  "sign_in_with_phoneNumber": "Sign in with Phone Number",
+  "or_sign_up": "or Sign Up"
 }
