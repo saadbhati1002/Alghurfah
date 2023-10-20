@@ -502,5 +502,8 @@
   "sign_in_with_phoneNumber": "فون نمبر کے ساتھ سائن ان کریں۔",
   "sign_in_with_gmail": "ای میل کے ساتھ سائن ان کریں۔",
   "or_sign_up": "یا سائن اپ کریں۔",
-  "or_login": "یا لاگ ان کریں۔"
+  "or_login": "یا لاگ ان کریں۔",
+  "confirm_password": "پاس ورڈ کی تصدیق کریں۔",
+  "confirm_password_reruired": "پاس ورڈ کی تصدیق کی ضرورت ہے۔",
+  "password_confrimPassword": "پاس ورڈ اور تصدیقی پاس ورڈ مماثل نہیں۔"
 }

@@ -502,5 +502,8 @@
   "sign_in_with_gmail": "Sign in with Email",
   "sign_in_with_phoneNumber": "Sign in with Phone Number",
   "or_sign_up": "or Sign Up",
-  "or_login": "or Login In"
+  "or_login": "or Login In",
+  "confirm_password": "Confirm Password",
+  "confirm_password_reruired": "confirm password required",
+  "password_confrimPassword": "Password and confirm password not match"
 }
