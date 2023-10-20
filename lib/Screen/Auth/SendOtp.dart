@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/Screen/Auth/SignUp.dart';
 import 'package:eshop_multivendor/Screen/PrivacyPolicy/Privacy_Policy.dart';
 import 'package:eshop_multivendor/Screen/Auth/Verify_Otp.dart';
@@ -16,6 +17,7 @@ import '../../Provider/authenticationProvider.dart';
 import '../../widgets/ButtonDesing.dart';
 import '../../widgets/desing.dart';
 import '../../widgets/snackbar.dart';
+import '../../widgets/background_image.dart';
 import '../../widgets/systemChromeSettings.dart';
 import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
@@ -191,184 +193,58 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
 
   setCodeWithMono() {
     return Padding(
-        padding: const EdgeInsets.only(top: 45),
+        padding: const EdgeInsets.only(top: 30),
         child: IntlPhoneField(
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor,
-              fontWeight: FontWeight.normal),
+              color: colors.primary, fontWeight: FontWeight.w600, fontSize: 16),
           controller: mobileController,
           decoration: InputDecoration(
             hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Theme.of(context).colorScheme.fontColor,
-                fontWeight: FontWeight.normal),
+                color: colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 16),
             hintText: getTranslated(context, 'MOBILEHINT_LBL'),
-            border: OutlineInputBorder(
-                borderSide: BorderSide.none,
+            enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: colors.primary,
+                  width: 1,
+                  style: BorderStyle.solid,
+                ),
                 borderRadius: BorderRadius.circular(circularBorderRadius7)),
-            fillColor: Theme.of(context).colorScheme.lightWhite,
+            border: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: colors.primary, width: 1, style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(circularBorderRadius7)),
+            fillColor: Colors.white,
             filled: true,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           ),
-          /* validator: (val) => StringValidation.validateMob(val!.number, context),*/
           initialCountryCode: defaultCountryCode,
           onTap: () {},
           onSaved: (phoneNumber) {
             setState(() {
               countrycode =
                   phoneNumber!.countryCode.toString().replaceFirst('+', '');
-              /* context
-                  .read<AuthenticationProvider>()
-                  .setMobileNumber(phoneNumber.number);*/
+
               mobile = phoneNumber.number;
             });
-
-            print('phone number2222****${phoneNumber!.countryCode}');
           },
           onCountryChanged: (country) {
             setState(() {
               countrycode = country.dialCode;
             });
-            print(
-                'phone number111*****${country.name}****${country.code}*****${country.dialCode}');
           },
-          onChanged: (phone) {
-            /* setState(() {
-              mobile = phone.number;
-            });*/
-            print(
-                'phone number*****${phone.completeNumber}****${phone.countryCode}*****${phone.number}****');
-          },
+          onChanged: (phone) {},
           showDropdownIcon: false,
           invalidNumberMessage: getTranslated(context, 'VALID_MOB'),
           keyboardType: TextInputType.number,
-          flagsButtonMargin: const EdgeInsets.only(left: 20, right: 20),
+          flagsButtonMargin: const EdgeInsets.only(left: 20, right: 0),
           pickerDialogStyle: PickerDialogStyle(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.only(left: 0, right: 0),
           ),
         ));
-    /*   SizedBox(
-      width: width * 0.7,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(circularBorderRadius7),
-          color: lightWhite,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: setContryCode(),
-            ),
-            Expanded(
-              flex: 4,
-              child: setMono(),
-            )
-          ],
-        ),
-      ),
-    );*/
   }
-
-/*  Widget setCodeWithMono() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 45),
-      child: Container(
-        height: 53,
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.lightWhite,
-          borderRadius: BorderRadius.circular(circularBorderRadius10),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: setCountryCode(),
-            ),
-            Expanded(
-              flex: 4,
-              child: setMono(),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget setCountryCode() {
-    double width = deviceWidth!;
-    double height = deviceHeight! * 0.9;
-    return CountryCodePicker(
-      showCountryOnly: false,
-      searchStyle: TextStyle(
-        color: Theme.of(context).colorScheme.fontColor,
-      ),
-      flagWidth: 20,
-      boxDecoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.white,
-      ),
-      searchDecoration: InputDecoration(
-        hintText: getTranslated(context, 'COUNTRY_CODE_LBL'),
-        hintStyle: TextStyle(color: Theme.of(context).colorScheme.fontColor),
-        fillColor: Theme.of(context).colorScheme.fontColor,
-      ),
-      showOnlyCountryWhenClosed: false,
-      initialSelection: defaultCountryCode,
-      dialogSize: Size(width, height),
-      alignLeft: true,
-      textStyle: TextStyle(
-          color: Theme.of(context).colorScheme.fontColor,
-          fontWeight: FontWeight.bold),
-      onChanged: (CountryCode countryCode) {
-        countrycode = countryCode.toString().replaceFirst('+', '');
-        countryName = countryCode.name;
-      },
-      onInit: (code) {
-        countrycode = code.toString().replaceFirst('+', '');
-      },
-    );
-  }*/
-
-/*  Widget setMono() {
-    return TextFormField(
-      keyboardType: TextInputType.number,
-      controller: mobileController,
-      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          color: Theme.of(context).colorScheme.fontColor,
-          fontWeight: FontWeight.normal),
-      maxLength: 15,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      validator: (val) => StringValidation.validateMob(
-          val!,
-          getTranslated(context, 'MOB_REQUIRED'),
-          getTranslated(context, 'VALID_MOB')),
-      onSaved: (String? value) {
-        context.read<AuthenticationProvider>().setMobileNumber(value);
-        mobile = value;
-      },
-      decoration: InputDecoration(
-        counter: SizedBox(),
-        hintText: getTranslated(context, 'MOBILEHINT_LBL'),
-        hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-            color: Theme.of(context).colorScheme.fontColor,
-            fontWeight: FontWeight.normal),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: const BorderSide(color: colors.primary),
-          borderRadius: BorderRadius.circular(circularBorderRadius7),
-        ),
-        border: InputBorder.none,
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.lightWhite,
-          ),
-        ),
-      ),
-    );
-  }*/
 
   Widget verifyBtn() {
     return Padding(
@@ -506,54 +382,83 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    deviceHeight = MediaQuery.of(context).size.height;
-    deviceWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      key: _scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.white,
-      bottomNavigationBar: termAndPolicyTxt(),
-      body: isNetworkAvail
-          ? Center(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(
-                  top: 23,
-                  left: 23,
-                  right: 23,
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                ),
-                child: Form(
-                  key: _formkey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      getLogo(),
-                      signUpTxt(),
-                      verifyCodeTxt(),
-                      setCodeWithMono(),
-                      verifyBtn(),
-                    ],
+    // deviceHeight = MediaQuery.of(context).size.height;
+    // deviceWidth = MediaQuery.of(context).size.width;
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        key: _scaffoldKey,
+        body: isNetworkAvail
+            ? Stack(
+                children: [
+                  const BackgroundImage(),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                      top: 60,
+                      left: 30,
+                      right: 30,
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          getLogo(),
+                          signUpTxt(),
+                          Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                ),
+                                color: colors.whiteTemp),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 5),
+                              child: setCodeWithMono(),
+                            ),
+                          ),
+                          verifyBtn(),
+                          alreadyHaveAccount(),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, left: 15),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: colors.primary,
+                      ),
+                    ),
+                  )
+                ],
+              )
+            : NoInterNet(
+                setStateNoInternate: setStateNoInternate,
+                buttonSqueezeanimation: buttonSqueezeanimation,
+                buttonController: buttonController,
               ),
-            )
-          : NoInterNet(
-              setStateNoInternate: setStateNoInternate,
-              buttonSqueezeanimation: buttonSqueezeanimation,
-              buttonController: buttonController,
-            ),
+      ),
     );
   }
 
   Widget getLogo() {
     return Container(
+      height: 180,
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 30),
       child: Image.asset(
-        DesignConfiguration.setPngPath('logo'),
+        'assets/images/png/logo1.png',
         alignment: Alignment.center,
         height: 170,
-        width: 150,
+        width: MediaQuery.of(context).size.width * .5,
         fit: BoxFit.contain,
       ),
     );
@@ -561,20 +466,47 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
 
   Widget signUpTxt() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(
-        top: 40.0,
-      ),
+      padding: const EdgeInsetsDirectional.only(top: 45.0, bottom: 20),
       child: Text(
         widget.title == getTranslated(context, 'SEND_OTP_TITLE')
             ? getTranslated(context, 'SIGN_UP_LBL')!
             : getTranslated(context, 'FORGOT_PASSWORDTITILE')!,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor,
+              color: colors.primary,
               fontWeight: FontWeight.bold,
               fontSize: textFontSize23,
               fontFamily: 'ubuntu',
               letterSpacing: 0.8,
             ),
+      ),
+    );
+  }
+
+  alreadyHaveAccount() {
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(top: 15.0, bottom: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (BuildContext context) => const Login(),
+                ),
+              );
+            },
+            child: Text(
+              getTranslated(context, 'or_login')!,
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'ubuntu',
+                  ),
+            ),
+          )
+        ],
       ),
     );
   }
