@@ -46,11 +46,11 @@ class _CustomSliderState extends State<CustomSlider> {
             : homeProvider.homeSliderList.isEmpty
                 ? Container()
                 : Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 160,
+                          height: 180,
                           width: double.infinity,
                           child: PageView.builder(
                             itemCount: homeProvider.homeSliderList.length,
@@ -69,7 +69,7 @@ class _CustomSliderState extends State<CustomSlider> {
                             },
                           ),
                         ),
-                        _showSliderPosition()
+                        // _showSliderPosition()
                       ],
                     ),
                   );
@@ -84,7 +84,7 @@ class _CustomSliderState extends State<CustomSlider> {
       baseColor: Theme.of(context).colorScheme.simmerBase,
       highlightColor: Theme.of(context).colorScheme.simmerHigh,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 0),
         width: double.infinity,
         height: height,
         color: Theme.of(context).colorScheme.white,
@@ -121,41 +121,15 @@ class _CustomSliderState extends State<CustomSlider> {
   }
 
   Widget buildImagePageItem(Model slider) {
-    double height = MediaQuery.of(context).size.width / 0.5;
+    double height = MediaQuery.of(context).size.width / 0.4;
     return GestureDetector(
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(circularBorderRadius5),
-          child: DesignConfiguration.getCacheNotworkImage(
-              imageurlString: slider.image!,
-              boxFit: BoxFit.fill,
-              context: context,
-              heightvalue: height,
-              placeHolderSize: 50,
-              widthvalue: double
-                  .maxFinite) /*FadeInImage.assetNetwork(
-          image: slider.image!,
-          placeholder: DesignConfiguration.setSvgPath('sliderph'),
-          imageErrorBuilder: (context, error, stackTrace) {
-            print('in error');
-            return SvgPicture.asset(
-              DesignConfiguration.setSvgPath('sliderph'),
-              height: height,
-              colorFilter:
-                  const ColorFilter.mode(colors.primary, BlendMode.srcIn),
-            );
-          },
-          fadeInCurve: Curves.linear,
-          fadeOutCurve: Curves.linear,
-          fadeInDuration: const Duration(
-            milliseconds: 150,
-          ),
-          fadeOutDuration: const Duration(
-            milliseconds: 150,
-          ),
-          fit: BoxFit.fill,
-          height: height,
-        ),*/
-          ),
+      child: DesignConfiguration.getCacheNotworkImage(
+          imageurlString: slider.image!,
+          boxFit: BoxFit.fill,
+          context: context,
+          heightvalue: height,
+          placeHolderSize: 50,
+          widthvalue: double.maxFinite),
       onTap: () async {
         int curSlider = context.read<HomePageProvider>().curSlider;
 

@@ -505,5 +505,11 @@
   "or_login": "or Login In",
   "confirm_password": "Confirm Password",
   "confirm_password_reruired": "confirm password required",
-  "password_confrimPassword": "Password and confirm password not match"
+  "password_confrimPassword": "Password and confirm password not match",
+  "explore_more": "Explore More",
+  "Ecom": "Ecom",
+  "service": "Service",
+  "high_quality_emirate_brand": "High Quality Emirati Brand",
+  "customized_order": "Customized Order",
+  "fast_global_deliver": "Fast Global Delivery"
 }
