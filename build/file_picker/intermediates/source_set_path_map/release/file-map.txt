@@ -1,0 +1,13 @@
+com.mr.flutter.plugin.filepicker.file_picker-jetified-annotation-experimental-1.1.0-0 C:\Users\saadb\.gradle\caches\transforms-3\0a5730a889cc3538fd38e6bdaf26058d\transformed\jetified-annotation-experimental-1.1.0\res
+com.mr.flutter.plugin.filepicker.file_picker-jetified-window-1.0.0-beta04-1 C:\Users\saadb\.gradle\caches\transforms-3\6f8db9f68ddaba73d2c90296866aa7b4\transformed\jetified-window-1.0.0-beta04\res
+com.mr.flutter.plugin.filepicker.file_picker-core-1.6.0-2 C:\Users\saadb\.gradle\caches\transforms-3\de190e38ff77cbebd7a508d40d833a4e\transformed\core-1.6.0\res
+com.mr.flutter.plugin.filepicker.file_picker-jetified-window-java-1.0.0-beta04-3 C:\Users\saadb\.gradle\caches\transforms-3\f4fb108fd9260a8e746a9cc3073c5207\transformed\jetified-window-java-1.0.0-beta04\res
+com.mr.flutter.plugin.filepicker.file_picker-main-4 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker-5.2.10\android\src\main\res
+com.mr.flutter.plugin.filepicker.file_picker-release-5 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker-5.2.10\android\src\release\res
+com.mr.flutter.plugin.filepicker.file_picker-pngs-6 D:\Detils\Alghurfah\build\file_picker\generated\res\pngs\release
+com.mr.flutter.plugin.filepicker.file_picker-resValues-7 D:\Detils\Alghurfah\build\file_picker\generated\res\resValues\release
+com.mr.flutter.plugin.filepicker.file_picker-rs-8 D:\Detils\Alghurfah\build\file_picker\generated\res\rs\release
+com.mr.flutter.plugin.filepicker.file_picker-mergeReleaseResources-9 D:\Detils\Alghurfah\build\file_picker\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.mr.flutter.plugin.filepicker.file_picker-mergeReleaseResources-10 D:\Detils\Alghurfah\build\file_picker\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.mr.flutter.plugin.filepicker.file_picker-merged_res-11 D:\Detils\Alghurfah\build\file_picker\intermediates\merged_res\release
+com.mr.flutter.plugin.filepicker.file_picker-packaged_res-12 D:\Detils\Alghurfah\build\flutter_plugin_android_lifecycle\intermediates\packaged_res\release

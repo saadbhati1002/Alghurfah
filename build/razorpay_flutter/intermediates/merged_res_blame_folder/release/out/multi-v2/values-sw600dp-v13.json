@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.razorpay.razorpay_flutter-mergeReleaseResources-15:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\155e256af9130919e3ba985a74580b05\\transformed\\jetified-checkout-1.6.19\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,93",
+                        "endLines": "2,13",
+                        "endColumns": "37,12",
+                        "endOffsets": "88,745"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.razorpay.razorpay_flutter-merged_res-17:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\155e256af9130919e3ba985a74580b05\\transformed\\jetified-checkout-1.6.19\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,93",
+                        "endLines": "2,13",
+                        "endColumns": "37,12",
+                        "endOffsets": "88,745"
+                    }
+                }
+            ]
+        }
+    ]
+}

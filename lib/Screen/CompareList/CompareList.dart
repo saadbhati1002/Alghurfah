@@ -48,7 +48,9 @@ class _CompareListState extends State<CompareList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(
-          getTranslated(context, 'COMPARE_PRO')!, context, setStateNow),
+          title: getTranslated(context, 'COMPARE_PRO')!,
+          context: context,
+          setState: setStateNow),
       body: Selector<ProductDetailProvider, List<Product>>(
         builder: (context, data, child) {
           return data.isEmpty

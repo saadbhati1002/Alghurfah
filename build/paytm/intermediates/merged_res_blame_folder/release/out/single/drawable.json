@@ -1,0 +1,394 @@
+[
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_seekbar_tick_mark_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_dialog_material_background.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/action_gray_button.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/action_gray_button.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_item_background_holo_dark.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/baseline_remove_red_eye_black_18dp.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/baseline_remove_red_eye_black_18dp.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ratingbar_small_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/button_brown_disabled.9.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/button_brown_disabled.9.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_checkbox_selected.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/ic_checkbox_selected.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_clear_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_go_search_api_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_arrow_up_24px.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_arrow_up_24px.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_list_divider_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_list_divider_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/notification_icon_background.xml",
+        "source": "in.appyflow.paytm-core-1.6.0-17:/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/tooltip_frame_light.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/tooltip_frame_light.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/custom_checkbox.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/custom_checkbox.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_submit_otp.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/btn_submit_otp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_hide_passcode.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/ic_hide_passcode.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_slide_down_copy.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_slide_down_copy.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_radio_material_anim.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_radio_material_anim.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_copy_mtrl_am_alpha.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ratingbar_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ratingbar_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_checkbox_unselected.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/ic_checkbox_unselected.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/top_round_corner.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/top_round_corner.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/layout_shadow.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/layout_shadow.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/checkmark_selected.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/checkmark_selected.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/paytm_assist_icon.jpg",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/paytm_assist_icon.jpg"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_share_mtrl_alpha.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_share_mtrl_alpha.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_check_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_collapse_copy_2.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_collapse_copy_2.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_radio_on_mtrl.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_radio_on_mtrl.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_paytm_assist_revamp.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_paytm_assist_revamp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/drop_shadow.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/drop_shadow.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_voice_search_api_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/action_button_bg.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/action_button_bg.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/notification_bg_low.xml",
+        "source": "in.appyflow.paytm-core-1.6.0-17:/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/paytm_assist_logo.jpg",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/paytm_assist_logo.jpg"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_cab_background_top_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_list_selector_holo_light.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_checkbox_checked_mtrl.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_checkbox_checked_mtrl.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_radio_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_switch_thumb_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_star_half_black_48dp.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_star_half_black_48dp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_textfield_search_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_ab_back_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_checkbox_unchecked_mtrl.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_checkbox_unchecked_mtrl.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_edit_text_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_tab_indicator_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_paytm_logo.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_paytm_logo.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_radio_off_mtrl.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_radio_off_mtrl.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_radio_off_to_on_mtrl_animation.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_radio_off_to_on_mtrl_animation.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_radio_on_to_off_mtrl_animation.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_radio_on_to_off_mtrl_animation.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_overflow_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_seekbar_thumb_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/checked.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/checked.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_checkbox_checked_to_unchecked_mtrl_animation.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_checkbox_checked_to_unchecked_mtrl_animation.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_seekbar_track_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_colored_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/passcode_background.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/passcode_background.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_check_material_anim.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_check_material_anim.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/bg_btn_saved_id.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/bg_btn_saved_id.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_vector_test.xml",
+        "source": "in.appyflow.paytm-jetified-appcompat-resources-1.3.1-13:/drawable/abc_vector_test.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/down_arrow_hide.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/down_arrow_hide.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_search_api_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_cab_background_internal_bg.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_star_black_48dp.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_star_black_48dp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_cut_mtrl_alpha.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_cut_mtrl_alpha.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_close_otp.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_close_otp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_borderless_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_selectall_mtrl_alpha.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_selectall_mtrl_alpha.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/assist_background.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/assist_background.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/notification_tile_bg.xml",
+        "source": "in.appyflow.paytm-core-1.6.0-17:/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_show_passcode.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/ic_show_passcode.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/progress_bar_states.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/progress_bar_states.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_arrow_down_24px.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_arrow_down_24px.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/notification_bg.xml",
+        "source": "in.appyflow.paytm-core-1.6.0-17:/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/tooltip_frame_dark.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/tooltip_frame_dark.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/button_grey.9.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/button_grey.9.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_assist_banner.png",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_assist_banner.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/up_arrow_show.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/up_arrow_show.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/button_brown.9.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/button_brown.9.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_item_background_holo_light.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_ic_menu_paste_mtrl_am_alpha.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_ic_menu_paste_mtrl_am_alpha.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_pause_black_24dp.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_pause_black_24dp.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/layout_progress_bg.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/layout_progress_bg.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_text_cursor_material.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_slide_up_copy.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_slide_up_copy.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/abc_list_selector_holo_dark.xml",
+        "source": "in.appyflow.paytm-appcompat-1.3.1-8:/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/ic_collapse_copy_3.xml",
+        "source": "in.appyflow.paytm-jetified-easypay-appinvoke-1.7.3-15:/drawable/ic_collapse_copy_3.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/bg_btn_blue.xml",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/bg_btn_blue.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/unchecked.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/unchecked.png"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/drawable/paytm_assist.png",
+        "source": "in.appyflow.paytm-jetified-appinvokesdk-1.6.4-11:/drawable/paytm_assist.png"
+    }
+]

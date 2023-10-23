@@ -1,0 +1,12 @@
+com.afur.flutter_html_to_pdf-jetified-annotation-experimental-1.1.0-0 C:\Users\saadb\.gradle\caches\transforms-3\0a5730a889cc3538fd38e6bdaf26058d\transformed\jetified-annotation-experimental-1.1.0\res
+com.afur.flutter_html_to_pdf-jetified-window-1.0.0-beta04-1 C:\Users\saadb\.gradle\caches\transforms-3\6f8db9f68ddaba73d2c90296866aa7b4\transformed\jetified-window-1.0.0-beta04\res
+com.afur.flutter_html_to_pdf-core-1.6.0-2 C:\Users\saadb\.gradle\caches\transforms-3\de190e38ff77cbebd7a508d40d833a4e\transformed\core-1.6.0\res
+com.afur.flutter_html_to_pdf-jetified-window-java-1.0.0-beta04-3 C:\Users\saadb\.gradle\caches\transforms-3\f4fb108fd9260a8e746a9cc3073c5207\transformed\jetified-window-java-1.0.0-beta04\res
+com.afur.flutter_html_to_pdf-main-4 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_html_to_pdf-0.7.0\android\src\main\res
+com.afur.flutter_html_to_pdf-release-5 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_html_to_pdf-0.7.0\android\src\release\res
+com.afur.flutter_html_to_pdf-pngs-6 D:\Detils\Alghurfah\build\flutter_html_to_pdf\generated\res\pngs\release
+com.afur.flutter_html_to_pdf-resValues-7 D:\Detils\Alghurfah\build\flutter_html_to_pdf\generated\res\resValues\release
+com.afur.flutter_html_to_pdf-rs-8 D:\Detils\Alghurfah\build\flutter_html_to_pdf\generated\res\rs\release
+com.afur.flutter_html_to_pdf-mergeReleaseResources-9 D:\Detils\Alghurfah\build\flutter_html_to_pdf\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.afur.flutter_html_to_pdf-mergeReleaseResources-10 D:\Detils\Alghurfah\build\flutter_html_to_pdf\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.afur.flutter_html_to_pdf-merged_res-11 D:\Detils\Alghurfah\build\flutter_html_to_pdf\intermediates\merged_res\release
