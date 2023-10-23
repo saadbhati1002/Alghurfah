@@ -201,9 +201,9 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
       appBar: widget.fromSeller!
           ? null
           : getAppBar(
-              widget.name!,
-              context,
-              setStateNow,
+             title:  widget.name!,
+             context:  context,
+            setState:   setStateNow,
             ),
       key: _scaffoldKey,
       body: isNetworkAvail

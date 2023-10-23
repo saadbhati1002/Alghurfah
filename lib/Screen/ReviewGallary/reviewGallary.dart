@@ -26,7 +26,9 @@ class _ReviewImageState extends State<ReviewGallary> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(
-          getTranslated(context, 'REVIEW_BY_CUST')!, context, setStateNow),
+          title: getTranslated(context, 'REVIEW_BY_CUST')!,
+          context: context,
+          setState: setStateNow),
       body: Selector<ReviewGallaryProvider, Product?>(
         builder: (context, model, child) {
           return GridView.count(

@@ -1,0 +1,15 @@
+com.ryanheise.audio_session-jetified-annotation-experimental-1.1.0-0 C:\Users\saadb\.gradle\caches\transforms-3\0a5730a889cc3538fd38e6bdaf26058d\transformed\jetified-annotation-experimental-1.1.0\res
+com.ryanheise.audio_session-jetified-media2-common-1.2.0-1 C:\Users\saadb\.gradle\caches\transforms-3\636d5172faf2a4aaf755accf6b939aa5\transformed\jetified-media2-common-1.2.0\res
+com.ryanheise.audio_session-jetified-window-1.0.0-beta04-2 C:\Users\saadb\.gradle\caches\transforms-3\6f8db9f68ddaba73d2c90296866aa7b4\transformed\jetified-window-1.0.0-beta04\res
+com.ryanheise.audio_session-jetified-media2-session-1.2.0-3 C:\Users\saadb\.gradle\caches\transforms-3\d14f7611460d8068e46c88acf6cbcc17\transformed\jetified-media2-session-1.2.0\res
+com.ryanheise.audio_session-media-1.4.1-4 C:\Users\saadb\.gradle\caches\transforms-3\d7b49bef6aee1238a03666c81ffbd157\transformed\media-1.4.1\res
+com.ryanheise.audio_session-core-1.6.0-5 C:\Users\saadb\.gradle\caches\transforms-3\de190e38ff77cbebd7a508d40d833a4e\transformed\core-1.6.0\res
+com.ryanheise.audio_session-jetified-window-java-1.0.0-beta04-6 C:\Users\saadb\.gradle\caches\transforms-3\f4fb108fd9260a8e746a9cc3073c5207\transformed\jetified-window-java-1.0.0-beta04\res
+com.ryanheise.audio_session-main-7 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\audio_session-0.1.13\android\src\main\res
+com.ryanheise.audio_session-release-8 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\audio_session-0.1.13\android\src\release\res
+com.ryanheise.audio_session-pngs-9 D:\Detils\Alghurfah\build\audio_session\generated\res\pngs\release
+com.ryanheise.audio_session-resValues-10 D:\Detils\Alghurfah\build\audio_session\generated\res\resValues\release
+com.ryanheise.audio_session-rs-11 D:\Detils\Alghurfah\build\audio_session\generated\res\rs\release
+com.ryanheise.audio_session-mergeReleaseResources-12 D:\Detils\Alghurfah\build\audio_session\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.ryanheise.audio_session-mergeReleaseResources-13 D:\Detils\Alghurfah\build\audio_session\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.ryanheise.audio_session-merged_res-14 D:\Detils\Alghurfah\build\audio_session\intermediates\merged_res\release

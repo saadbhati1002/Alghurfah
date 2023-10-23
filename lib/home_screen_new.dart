@@ -4,6 +4,7 @@ import 'package:eshop_multivendor/Screen/homePage/widgets/slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
 
 class HomeScreenNew extends StatefulWidget {
   const HomeScreenNew({Key? key}) : super(key: key);
@@ -23,11 +24,19 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
     context.read<HomePageProvider>().getSliderImages();
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         top: true,
         child: Scaffold(
+          appBar: getAppBar(
+              title: getTranslated(context, 'HOME_LBL')!,
+              context: context,
+              setState: setStateNow),
           backgroundColor: colors.backgroundColor,
           body: SingleChildScrollView(
             child: Column(

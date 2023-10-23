@@ -1,24 +1,22 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/routes.dart';
-import '../Provider/UserProvider.dart';
-import '../Screen/Cart/Cart.dart';
-import '../Screen/Cart/Widget/clearTotalCart.dart';
-import 'desing.dart';
 import '../Screen/Language/languageSettings.dart';
 
-getAppBar(
-  String title,
-  BuildContext context,
-  Function setState,
-) {
+getAppBar({
+  String? title,
+  BuildContext? context,
+  Function? setState,
+}) {
   return AppBar(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        bottomRight: Radius.circular(30.0),
+      ),
+    ),
     titleSpacing: 0,
-    backgroundColor: Theme.of(context).colorScheme.white,
+    backgroundColor: Colors.white,
     leading: Builder(
       builder: (BuildContext context) {
         return Container(
@@ -28,7 +26,8 @@ getAppBar(
             onTap: () => Navigator.of(context).pop(),
             child: const Center(
               child: Icon(
-                Icons.arrow_back_ios_rounded,
+                Icons.search,
+                size: 30,
                 color: colors.primary,
               ),
             ),
@@ -36,87 +35,38 @@ getAppBar(
         );
       },
     ),
-    title: Text(
-      title,
-      style: const TextStyle(
-        color: colors.primary,
-        fontWeight: FontWeight.normal,
-        fontFamily: 'ubuntu',
+    title: Center(
+      child: Text(
+        title!,
+        style: const TextStyle(
+          color: colors.primary,
+          fontWeight: FontWeight.w700,
+          fontSize: 20,
+          fontFamily: 'ubuntu',
+        ),
       ),
     ),
     actions: <Widget>[
-      title == getTranslated(context, 'FAVORITE')
+      title == getTranslated(context!, 'FAVORITE')
           ? Container()
           : IconButton(
               padding: const EdgeInsets.all(0),
-              icon: SvgPicture.asset(
-                DesignConfiguration.setSvgPath('desel_fav'),
-                colorFilter:
-                    const ColorFilter.mode(colors.primary, BlendMode.srcIn),
+              icon: const Icon(
+                Icons.bookmark,
+                size: 30,
+                color: colors.primary,
               ),
               onPressed: () {
                 Routes.navigateToFavoriteScreen(context);
               },
             ),
-      Selector<UserProvider, String>(
-        builder: (context, data, child) {
-          return IconButton(
-            icon: Stack(
-              children: [
-                Center(
-                  child: SvgPicture.asset(
-                    DesignConfiguration.setSvgPath('appbarCart'),
-                    colorFilter:
-                        const ColorFilter.mode(colors.primary, BlendMode.srcIn),
-                  ),
-                ),
-                (data.isNotEmpty && data != '0')
-                    ? Positioned(
-                        bottom: 20,
-                        right: 0,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: colors.primary,
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(3),
-                              child: Text(
-                                data,
-                                style: const TextStyle(
-                                  fontSize: textFontSize7,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'ubuntu',
-                                  color: colors.whiteTemp,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container()
-              ],
-            ),
-            onPressed: () {
-              cartTotalClear(context);
-              Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => const Cart(
-                    fromBottom: false,
-                  ),
-                ),
-              ).then(
-                (value) {
-                  setState;
-                },
-              );
-            },
-          );
-        },
-        selector: (_, HomePageProvider) => HomePageProvider.curCartCount,
-      )
+      IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.menu,
+            size: 35,
+            color: colors.primary,
+          ))
     ],
   );
 }
