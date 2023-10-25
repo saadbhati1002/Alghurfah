@@ -19,7 +19,7 @@ extension colors on ColorScheme {
 
   static const Color primary = Color(0xFF4D5B3F);
   static const Color backgroundColor = Color(0xFFF5DFD3);
-  static const Color ecommerceColor = Color(0xFFBC8069);
+  static const Color eCommerceColor = Color(0xFFBC8069);
   static const Color serviceColor = Color(0xFF3D7081);
   static const Color secondary = Color(0xffFDC994);
 
