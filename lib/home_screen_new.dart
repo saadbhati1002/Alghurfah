@@ -1,5 +1,6 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/Screen/homePage/widgets/slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
 
   callApi() async {
     context.read<HomePageProvider>().getSliderImages();
+    context.read<HomePageProvider>().getCategories(context);
   }
 
   setStateNow() {
@@ -85,21 +87,32 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                   ),
                                   Align(
                                     alignment: Alignment.topRight,
-                                    child: Container(
-                                        decoration: const BoxDecoration(
-                                            color: colors.ecommerceColor,
-                                            borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(20),
-                                                bottomLeft:
-                                                    Radius.circular(20))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 3, horizontal: 12),
-                                          child: Text(
-                                            getTranslated(
-                                                context, 'explore_more')!,
-                                          ),
-                                        )),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Dashboard(
+                                                      pageIndex: 0,
+                                                    )));
+                                      },
+                                      child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: colors.eCommerceColor,
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(20),
+                                                  bottomLeft:
+                                                      Radius.circular(20))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 3, horizontal: 12),
+                                            child: Text(
+                                              getTranslated(
+                                                  context, 'explore_more')!,
+                                            ),
+                                          )),
+                                    ),
                                   )
                                 ],
                               ),
@@ -298,6 +311,9 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                               ),
                             )
                           ],
+                        ),
+                        const SizedBox(
+                          height: 40,
                         )
                       ],
                     ),
