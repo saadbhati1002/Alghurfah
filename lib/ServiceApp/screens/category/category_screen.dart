@@ -1,20 +1,17 @@
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
-import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/category_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/category/shimmer/category_shimmer.dart';
-import 'package:eshop_multivendor/ServiceApp/screens/dashboard/component/category_widget.dart';
-import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import '../../component/empty_error_state_widget.dart';
 import '../service/view_all_service_screen.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 class CategoryScreen extends StatefulWidget {
   @override
@@ -24,6 +21,7 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   late Future<List<CategoryData>> future;
   List<CategoryData> categoryList = [];
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   int page = 1;
   bool isLastPage = false;
@@ -63,9 +61,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        endDrawer: drawerWidget(context),
+      key: _key,
       backgroundColor: colors.backgroundColor,
-      appBar: getAppBar(
-          title: getTranslated(context, 'Ecom')!,
+      appBar: getAppBar(_key,
+          title: getTranslated(context, 'service')!,
           context: context,
           setState: setStateNow),
       body: Stack(

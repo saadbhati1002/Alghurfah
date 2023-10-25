@@ -200,13 +200,13 @@ class StateSection extends State<SectionList> with TickerProviderStateMixin {
 
     return Scaffold(
       key: scaffoldKey,
-      appBar: getAppBar(
-        title: widget.from == 1
-            ? widget.section_model!.title!
-            : getTranslated(context, 'You might also like')!,
-        context: context,
-        setState: setStateNow,
-      ),
+      // appBar: getAppBar(
+      //   title: widget.from == 1
+      //       ? widget.section_model!.title!
+      //       : getTranslated(context, 'You might also like')!,
+      //   context: context,
+      //   setState: setStateNow,
+      // ),
       body: isNetworkAvail
           ? RefreshIndicator(
               key: _refreshIndicatorKey,

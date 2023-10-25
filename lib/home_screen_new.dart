@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 class HomeScreenNew extends StatefulWidget {
   const HomeScreenNew({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class HomeScreenNew extends StatefulWidget {
 }
 
 class _HomeScreenNewState extends State<HomeScreenNew> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
   @override
   void initState() {
     callApi();
@@ -36,7 +39,9 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
     return SafeArea(
         top: true,
         child: Scaffold(
-          appBar: getAppBar(
+          endDrawer: drawerWidget(context),
+          key: _key,
+          appBar: getAppBar(_key,
               title: getTranslated(context, 'HOME_LBL')!,
               context: context,
               setState: setStateNow),

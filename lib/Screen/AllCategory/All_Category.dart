@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Helper/String.dart';
 import '../ProductList&SectionView/ProductList.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 class AllCategory extends StatefulWidget {
   const AllCategory({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _AllCategoryState extends State<AllCategory>
     with TickerProviderStateMixin {
   late AnimationController buttonController;
   late Animation buttonSqueezeanimation;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   void initState() {
@@ -82,8 +84,10 @@ class _AllCategoryState extends State<AllCategory>
       top: true,
       bottom: true,
       child: Scaffold(
+          endDrawer: drawerWidget(context),
+          key: _key,
           backgroundColor: colors.backgroundColor,
-          appBar: getAppBar(
+          appBar: getAppBar(_key,
               title: getTranslated(context, 'Ecom')!,
               context: context,
               setState: setStateNow),
