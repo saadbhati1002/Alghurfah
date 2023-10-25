@@ -1,18 +1,14 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
-import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Provider/CategoryProvider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
-import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:eshop_multivendor/widgets/networkAvailablity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../Helper/String.dart';
-import '../../widgets/desing.dart';
 import '../ProductList&SectionView/ProductList.dart';
 
 class AllCategory extends StatefulWidget {
@@ -197,35 +193,30 @@ class _AllCategoryState extends State<AllCategory>
                                                                       .image!))),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 20),
-                                                    child: SizedBox(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              .52,
-                                                      child: Text(
-                                                        '${context.read<HomePageProvider>().catList[index].name!}\n',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headlineSmall!
-                                                            .copyWith(
-                                                                fontFamily:
-                                                                    'ubuntu',
-                                                                color: colors
-                                                                    .eCommerceColor,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                      ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .52,
+                                                    child: Text(
+                                                      '${context.read<HomePageProvider>().catList[index].name!}',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headlineSmall!
+                                                          .copyWith(
+                                                              fontFamily:
+                                                                  'ubuntu',
+                                                              color: colors
+                                                                  .eCommerceColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
                                                     ),
                                                   )
                                                 ],

@@ -2,6 +2,7 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/Screen/homePage/widgets/slider.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
@@ -222,21 +223,30 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                   ),
                                   Align(
                                     alignment: Alignment.topLeft,
-                                    child: Container(
-                                        decoration: const BoxDecoration(
-                                            color: colors.serviceColor,
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 3, horizontal: 12),
-                                          child: Text(
-                                            getTranslated(
-                                                context, 'explore_more')!,
-                                          ),
-                                        )),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DashboardScreen()));
+                                      },
+                                      child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: colors.serviceColor,
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  bottomRight:
+                                                      Radius.circular(20))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 3, horizontal: 12),
+                                            child: Text(
+                                              getTranslated(
+                                                  context, 'explore_more')!,
+                                            ),
+                                          )),
+                                    ),
                                   )
                                 ],
                               ),
