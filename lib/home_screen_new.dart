@@ -39,7 +39,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
     return SafeArea(
         top: true,
         child: Scaffold(
-          endDrawer: drawerWidget(context),
+          endDrawer: const MyDrawer(),
           key: _key,
           appBar: getAppBar(_key,
               title: getTranslated(context, 'HOME_LBL')!,
