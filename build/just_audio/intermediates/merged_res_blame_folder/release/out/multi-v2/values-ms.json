@@ -4,24 +4,7 @@
             "outputFile": "com.ryanheise.just_audio-mergeReleaseResources-14:/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-ms\\values-ms.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1277",
-                        "endColumns": "100",
-                        "endOffsets": "1373"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5c12aca4c902d9850d565b6387c9c21b\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\7b64d293034dff5c5a299f71054fe93c\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -52,6 +35,23 @@
                         "startOffsets": "164,234,298,364,429,507,573,663,746",
                         "endColumns": "69,63,65,64,77,65,89,82,76",
                         "endOffsets": "229,293,359,424,502,568,658,741,818"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-ms\\values-ms.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1277",
+                        "endColumns": "100",
+                        "endOffsets": "1373"
                     }
                 }
             ]
@@ -60,24 +60,7 @@
             "outputFile": "com.ryanheise.just_audio-merged_res-16:/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-ms\\values-ms.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1277",
-                        "endColumns": "100",
-                        "endOffsets": "1373"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -94,7 +77,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5c12aca4c902d9850d565b6387c9c21b\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ms\\values-ms.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\7b64d293034dff5c5a299f71054fe93c\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ms\\values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -108,6 +91,23 @@
                         "startOffsets": "164,234,298,364,429,507,573,663,746",
                         "endColumns": "69,63,65,64,77,65,89,82,76",
                         "endOffsets": "229,293,359,424,502,568,658,741,818"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-ms\\values-ms.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1277",
+                        "endColumns": "100",
+                        "endOffsets": "1373"
                     }
                 }
             ]

@@ -4,7 +4,7 @@
             "outputFile": "com.flutter.stripe.stripe_android-mergeReleaseResources-82:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\6c604cfede70d925bc10dbb2f30a41b3\\transformed\\appcompat-1.6.1\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\8485f18a4e74b36ca26053bb57d72018\\transformed\\appcompat-1.6.1\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -19,7 +19,7 @@
             "outputFile": "com.flutter.stripe.stripe_android-merged_res-84:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\6c604cfede70d925bc10dbb2f30a41b3\\transformed\\appcompat-1.6.1\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\8485f18a4e74b36ca26053bb57d72018\\transformed\\appcompat-1.6.1\\res\\values-xlarge-v4\\values-xlarge-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

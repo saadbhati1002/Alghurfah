@@ -4,7 +4,7 @@
             "outputFile": "com.jaumard.smsautofill.sms_autofill-merged_res-13:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d524a5dd5ab8c2dbd6ff697aa78090ee\\transformed\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\8b5da6e00b1eb3bd5a115defe261d746\\transformed\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -26,7 +26,7 @@
             "outputFile": "com.jaumard.smsautofill.sms_autofill-mergeReleaseResources-11:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d524a5dd5ab8c2dbd6ff697aa78090ee\\transformed\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\8b5da6e00b1eb3bd5a115defe261d746\\transformed\\jetified-play-services-auth-19.2.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

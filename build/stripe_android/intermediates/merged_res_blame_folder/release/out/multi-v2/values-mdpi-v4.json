@@ -4,7 +4,7 @@
             "outputFile": "com.flutter.stripe.stripe_android-mergeReleaseResources-82:/values-mdpi-v4/values-mdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\961e85c0a620fc00642a9eb0dfef509c\\transformed\\jetified-payments-core-20.19.5\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5e6fe63559742f93b92eaedd5cc189f0\\transformed\\jetified-payments-core-20.19.5\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -19,7 +19,7 @@
             "outputFile": "com.flutter.stripe.stripe_android-merged_res-84:/values-mdpi-v4/values-mdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\961e85c0a620fc00642a9eb0dfef509c\\transformed\\jetified-payments-core-20.19.5\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5e6fe63559742f93b92eaedd5cc189f0\\transformed\\jetified-payments-core-20.19.5\\res\\values-mdpi-v4\\values-mdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

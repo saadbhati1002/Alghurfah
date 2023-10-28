@@ -1,38 +1,38 @@
 [
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/mtrl_bottom_sheet_slide_out.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/mtrl_bottom_sheet_slide_out.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/mtrl_bottom_sheet_slide_out.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/fragment_fast_out_extra_slow_in.xml",
-        "source": "com.flutter.stripe.stripe_android-fragment-1.5.5-0:/anim-v21/fragment_fast_out_extra_slow_in.xml"
+        "source": "com.flutter.stripe.stripe_android-fragment-1.5.5-57:/anim-v21/fragment_fast_out_extra_slow_in.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/design_bottom_sheet_slide_in.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/design_bottom_sheet_slide_in.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/m3_side_sheet_slide_in.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/m3_side_sheet_slide_in.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/m3_side_sheet_slide_in.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/m3_side_sheet_slide_out.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/m3_side_sheet_slide_out.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/m3_side_sheet_slide_out.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/mtrl_bottom_sheet_slide_in.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/mtrl_bottom_sheet_slide_in.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/mtrl_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/m3_bottom_sheet_slide_out.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/m3_bottom_sheet_slide_out.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/m3_bottom_sheet_slide_out.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/m3_bottom_sheet_slide_in.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/m3_bottom_sheet_slide_in.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/m3_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/anim-v21/design_bottom_sheet_slide_out.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/anim-v21/design_bottom_sheet_slide_out.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/anim-v21/design_bottom_sheet_slide_out.xml"
     }
 ]

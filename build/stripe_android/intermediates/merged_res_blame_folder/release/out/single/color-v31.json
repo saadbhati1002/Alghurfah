@@ -1,42 +1,42 @@
 [
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_primary_text_disable_only.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_primary_text_disable_only.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_primary_text_disable_only.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_hint_foreground.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_hint_foreground.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_hint_foreground.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_highlighted_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_highlighted_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_highlighted_text.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_dark_hint_foreground.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_dark_hint_foreground.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_dark_hint_foreground.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_dark_primary_text_disable_only.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_dark_primary_text_disable_only.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_dark_primary_text_disable_only.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_dark_default_color_primary_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_dark_default_color_primary_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_dark_default_color_primary_text.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_default_color_primary_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_default_color_primary_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_default_color_primary_text.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_default_color_secondary_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_default_color_secondary_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_default_color_secondary_text.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_dark_highlighted_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_dark_highlighted_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_dark_highlighted_text.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/color-v31/m3_dynamic_dark_default_color_secondary_text.xml",
-        "source": "com.flutter.stripe.stripe_android-material-1.8.0-31:/color-v31/m3_dynamic_dark_default_color_secondary_text.xml"
+        "source": "com.flutter.stripe.stripe_android-material-1.8.0-62:/color-v31/m3_dynamic_dark_default_color_secondary_text.xml"
     }
 ]

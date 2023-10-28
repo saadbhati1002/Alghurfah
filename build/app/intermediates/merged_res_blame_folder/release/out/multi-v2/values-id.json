@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.thecol.customer.app-mergeReleaseResources-108:/values-id/values-id.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\89a5f29154fff6bc0d5e25057c0c8e9d\\transformed\\jetified-play-services-wallet-19.1.0\\res\\values-id\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "202",
+                        "endColumns": "73",
+                        "endOffsets": "275"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "77",
+                        "endOffsets": "128"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 [
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/rzp_logo.png",
-        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-1:/drawable-xhdpi-v4/rzp_logo.png"
+        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-3:/drawable-xhdpi-v4/rzp_logo.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png",
@@ -9,15 +9,15 @@
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
-        "source": "com.razorpay.razorpay_flutter-core-1.6.0-6:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "com.razorpay.razorpay_flutter-core-1.6.0-9:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/notification_bg_normal.9.png",
-        "source": "com.razorpay.razorpay_flutter-core-1.6.0-6:/drawable-xhdpi-v4/notification_bg_normal.9.png"
+        "source": "com.razorpay.razorpay_flutter-core-1.6.0-9:/drawable-xhdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
-        "source": "com.razorpay.razorpay_flutter-core-1.6.0-6:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "com.razorpay.razorpay_flutter-core-1.6.0-9:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/googleg_standard_color_18.png",
@@ -37,7 +37,7 @@
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
-        "source": "com.razorpay.razorpay_flutter-core-1.6.0-6:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "com.razorpay.razorpay_flutter-core-1.6.0-9:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/googleg_disabled_color_18.png",
@@ -49,6 +49,6 @@
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
-        "source": "com.razorpay.razorpay_flutter-core-1.6.0-6:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+        "source": "com.razorpay.razorpay_flutter-core-1.6.0-9:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     }
 ]

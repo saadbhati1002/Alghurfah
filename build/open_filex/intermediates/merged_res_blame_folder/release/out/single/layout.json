@@ -1,11 +1,11 @@
 [
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_action.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/notification_action.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/notification_action.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_part_time.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/notification_template_part_time.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/notification_template_part_time.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_media_custom.xml",
@@ -13,7 +13,7 @@
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_action_tombstone.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/notification_action_tombstone.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/notification_action_tombstone.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_big_media_narrow_custom.xml",
@@ -37,11 +37,11 @@
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_part_chronometer.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/notification_template_part_chronometer.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/custom_dialog.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/custom_dialog.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/custom_dialog.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_big_media_custom.xml",
@@ -49,7 +49,7 @@
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_icon_group.xml",
-        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-4:/layout/notification_template_icon_group.xml"
+        "source": "com.crazecoder.openfile.open_filex-core-1.6.0-5:/layout/notification_template_icon_group.xml"
     },
     {
         "merged": "com.crazecoder.openfile.open_filex-merged_res-12:/layout/notification_template_media.xml",

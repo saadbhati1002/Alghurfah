@@ -17,7 +17,7 @@
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xxhdpi-v4/rzp_name_logo.png",
-        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-1:/drawable-xxhdpi-v4/rzp_name_logo.png"
+        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-3:/drawable-xxhdpi-v4/rzp_name_logo.png"
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png",
@@ -29,6 +29,6 @@
     },
     {
         "merged": "com.razorpay.razorpay_flutter-merged_res-17:/drawable-xxhdpi-v4/rzp_logo.png",
-        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-1:/drawable-xxhdpi-v4/rzp_logo.png"
+        "source": "com.razorpay.razorpay_flutter-jetified-checkout-1.6.19-3:/drawable-xxhdpi-v4/rzp_logo.png"
     }
 ]

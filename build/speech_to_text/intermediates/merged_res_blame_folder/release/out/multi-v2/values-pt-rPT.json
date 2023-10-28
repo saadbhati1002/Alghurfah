@@ -4,7 +4,7 @@
             "outputFile": "com.csdcorp.speech_to_text-mergeReleaseResources-8:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\de190e38ff77cbebd7a508d40d833a4e\\transformed\\core-1.6.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -19,7 +19,7 @@
             "outputFile": "com.csdcorp.speech_to_text-merged_res-10:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\de190e38ff77cbebd7a508d40d833a4e\\transformed\\core-1.6.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

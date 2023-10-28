@@ -13,7 +13,7 @@
     },
     {
         "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-14:/layout/browser_actions_context_menu_row.xml",
-        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-3:/layout/browser_actions_context_menu_row.xml"
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-0:/layout/browser_actions_context_menu_row.xml"
     },
     {
         "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-14:/layout/custom_dialog.xml",
@@ -29,6 +29,6 @@
     },
     {
         "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-14:/layout/browser_actions_context_menu_page.xml",
-        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-3:/layout/browser_actions_context_menu_page.xml"
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-0:/layout/browser_actions_context_menu_page.xml"
     }
 ]

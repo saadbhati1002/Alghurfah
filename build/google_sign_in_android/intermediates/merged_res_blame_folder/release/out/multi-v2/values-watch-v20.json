@@ -4,7 +4,7 @@
             "outputFile": "io.flutter.plugins.googlesignin.google_sign_in_android-merged_res-13:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\085d639339305f1f44ca4c704a01c82e\\transformed\\jetified-play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\6b7abb0468d8adee1cfacad26692f60d\\transformed\\jetified-play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
@@ -26,7 +26,7 @@
             "outputFile": "io.flutter.plugins.googlesignin.google_sign_in_android-mergeReleaseResources-11:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\085d639339305f1f44ca4c704a01c82e\\transformed\\jetified-play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\6b7abb0468d8adee1cfacad26692f60d\\transformed\\jetified-play-services-auth-20.5.0\\res\\values-watch-v20\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",
