@@ -1,35 +1,7 @@
-import 'dart:async';
-import 'dart:convert';
-import 'package:eshop_multivendor/Provider/homePageProvider.dart';
-import 'package:eshop_multivendor/Screen/Product%20Detail/productDetail.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
-import 'package:eshop_multivendor/Helper/Constant.dart';
-import 'package:eshop_multivendor/Model/Section_Model.dart';
-import 'package:eshop_multivendor/Provider/Theme.dart';
-import 'package:eshop_multivendor/Screen/Profile/MyProfile.dart';
-import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart';
-import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
-import '../../Helper/String.dart';
-import '../../widgets/security.dart';
-import '../../widgets/systemChromeSettings.dart';
-import '../PushNotification/PushNotificationService.dart';
 import '../SQLiteData/SqliteData.dart';
-import '../../Helper/routes.dart';
-import '../../widgets/desing.dart';
-import '../Language/languageSettings.dart';
-import '../../widgets/networkAvailablity.dart';
-import '../../widgets/snackbar.dart';
 import '../AllCategory/All_Category.dart';
-import '../Cart/Cart.dart';
-import '../Cart/Widget/clearTotalCart.dart';
-import '../Notification/NotificationLIst.dart';
-import '../homePage/homepageNew.dart';
 
 class Dashboard extends StatefulWidget {
   final int? pageIndex;

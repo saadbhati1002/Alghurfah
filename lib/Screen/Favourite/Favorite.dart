@@ -149,10 +149,10 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
-      appBar: getAppBar(
-          title: getTranslated(context, 'FAVORITE')!,
-          context: context,
-          setState: setStateNow),
+      // appBar: getAppBar(
+      //     title: getTranslated(context, 'FAVORITE')!,
+      //     context: context,
+      //     setState: setStateNow),
       body: isNetworkAvail
           ? _showContent(context)
           : NoInterNet(

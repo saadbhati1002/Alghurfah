@@ -27,10 +27,10 @@ class StateSuccess extends State<OrderSuccess> {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: getAppBar(
-          title: getTranslated(context, 'ORDER_PLACED')!,
-          context: context,
-          setState: setStateNow),
+      // appBar: getAppBar(
+      //     title: getTranslated(context, 'ORDER_PLACED')!,
+      //     context: context,
+      //     setState: setStateNow),
       body: Center(
         child: SingleChildScrollView(
             child: Column(

@@ -94,10 +94,10 @@ class StateNoti extends State<NotificationList> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar(
-          title: getTranslated(context, 'NOTIFICATION')!,
-          context: context,
-          setState: setStateNow),
+      // appBar: getAppBar(
+      //     title: getTranslated(context, 'NOTIFICATION')!,
+      //     context: context,
+      //     setState: setStateNow),
       key: _scaffoldKey,
       body: isNetworkAvail
           ? Consumer<NotificationProvider>(

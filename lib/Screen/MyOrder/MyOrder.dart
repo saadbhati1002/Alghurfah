@@ -154,10 +154,10 @@ class StateMyOrder extends State<MyOrder> with TickerProviderStateMixin {
       bottomNavigationBar: allAppBottomSheet(context),
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.lightWhite,
-      appBar: getAppBar(
-          title: getTranslated(context, 'MY_ORDERS_LBL')!,
-          context: context,
-          setState: setStateNow),
+      // appBar: getAppBar(
+      //     title: getTranslated(context, 'MY_ORDERS_LBL')!,
+      //     context: context,
+      //     setState: setStateNow),
       body: isNetworkAvail
           ? Padding(
               padding: const EdgeInsets.all(10.0),

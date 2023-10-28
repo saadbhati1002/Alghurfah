@@ -4,7 +4,8 @@ import '../Helper/Constant.dart';
 import '../Helper/routes.dart';
 import '../Screen/Language/languageSettings.dart';
 
-getAppBar({
+getAppBar(
+  key, {
   String? title,
   BuildContext? context,
   Function? setState,
@@ -61,7 +62,9 @@ getAppBar({
               },
             ),
       IconButton(
-          onPressed: () {},
+          onPressed: () {
+            key.currentState!.openEndDrawer();
+          },
           icon: const Icon(
             Icons.menu,
             size: 35,

@@ -198,13 +198,13 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
-      appBar: widget.fromSeller!
-          ? null
-          : getAppBar(
-             title:  widget.name!,
-             context:  context,
-            setState:   setStateNow,
-            ),
+      // appBar: widget.fromSeller!
+      //     ? null
+      //     : getAppBar(
+      //        title:  widget.name!,
+      //        context:  context,
+      //       setState:   setStateNow,
+      //       ),
       key: _scaffoldKey,
       body: isNetworkAvail
           ? Stack(

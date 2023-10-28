@@ -136,11 +136,11 @@ class StateFaqsProduct extends State<FaqsProduct>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: getAppBar(
-        title: getTranslated(context, 'Questions and Answers')!,
-        context: context,
-        setState: update,
-      ),
+      // appBar: getAppBar(
+      //   title: getTranslated(context, 'Questions and Answers')!,
+      //   context: context,
+      //   setState: update,
+      // ),
       bottomNavigationBar: BorromBtnWidget(id: widget.id, update: update),
       body: isNetworkAvail
           ? Stack(

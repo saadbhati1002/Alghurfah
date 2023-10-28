@@ -255,10 +255,10 @@ class _SellerProfileState extends State<SellerProfile>
       bottomNavigationBar: allAppBottomSheet(context),
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.white,
-      appBar: getAppBar(
-          title: getTranslated(context, 'SELLER_DETAILS')!,
-          context: context,
-          setState: setStateNow),
+      // appBar: getAppBar(
+      //     // title: getTranslated(context, 'SELLER_DETAILS')!,
+      //     context: context,
+      //     setState: setStateNow),
       body: isNetworkAvail
           ? Consumer<SellerDetailProvider>(
               builder: (context, value, child) {

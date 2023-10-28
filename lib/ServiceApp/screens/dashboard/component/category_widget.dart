@@ -1,6 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/Constant.dart';
-import 'package:eshop_multivendor/ServiceApp/component/cached_image_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/category_model.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
