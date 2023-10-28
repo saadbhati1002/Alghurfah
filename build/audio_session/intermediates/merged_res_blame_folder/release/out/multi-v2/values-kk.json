@@ -4,7 +4,7 @@
             "outputFile": "com.ryanheise.audio_session-merged_res-13:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\de190e38ff77cbebd7a508d40d833a4e\\transformed\\core-1.6.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -36,7 +36,7 @@
             "outputFile": "com.ryanheise.audio_session-mergeReleaseResources-11:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6",
                         "startColumns": "4,4,4,4,4",
@@ -46,7 +46,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\de190e38ff77cbebd7a508d40d833a4e\\transformed\\core-1.6.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

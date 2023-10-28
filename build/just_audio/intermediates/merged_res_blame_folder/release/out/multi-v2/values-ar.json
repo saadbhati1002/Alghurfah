@@ -4,24 +4,24 @@
             "outputFile": "com.ryanheise.just_audio-mergeReleaseResources-14:/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-ar\\values-ar.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,175,277,372,500",
+                        "endColumns": "119,101,94,127,131",
+                        "endOffsets": "170,272,367,495,627"
                     },
                     "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1328",
-                        "endColumns": "100",
-                        "endOffsets": "1424"
+                        "startLines": "2,12,13,14,15",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,871,973,1068,1196",
+                        "endColumns": "119,101,94,127,131",
+                        "endOffsets": "170,968,1063,1191,1323"
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5c12aca4c902d9850d565b6387c9c21b\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\7b64d293034dff5c5a299f71054fe93c\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,175,277,372,500",
-                        "endColumns": "119,101,94,127,131",
-                        "endOffsets": "170,272,367,495,627"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "2,12,13,14,15",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,871,973,1068,1196",
-                        "endColumns": "119,101,94,127,131",
-                        "endOffsets": "170,968,1063,1191,1323"
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1328",
+                        "endColumns": "100",
+                        "endOffsets": "1424"
                     }
                 }
             ]
@@ -60,24 +60,24 @@
             "outputFile": "com.ryanheise.just_audio-merged_res-16:/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4aa860d1b226914fd11344183d2105f7\\transformed\\jetified-media2-session-1.2.0\\res\\values-ar\\values-ar.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,175,277,372,500",
+                        "endColumns": "119,101,94,127,131",
+                        "endOffsets": "170,272,367,495,627"
                     },
                     "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "1328",
-                        "endColumns": "100",
-                        "endOffsets": "1424"
+                        "startLines": "2,12,13,14,15",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,871,973,1068,1196",
+                        "endColumns": "119,101,94,127,131",
+                        "endOffsets": "170,968,1063,1191,1323"
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5c12aca4c902d9850d565b6387c9c21b\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\7b64d293034dff5c5a299f71054fe93c\\transformed\\jetified-exoplayer-core-2.18.1\\res\\values-ar\\values-ar.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -94,20 +94,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\d14f7611460d8068e46c88acf6cbcc17\\transformed\\jetified-media2-session-1.2.0\\res\\values-ar\\values-ar.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-ar\\values-ar.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,175,277,372,500",
-                        "endColumns": "119,101,94,127,131",
-                        "endOffsets": "170,272,367,495,627"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "2,12,13,14,15",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,871,973,1068,1196",
-                        "endColumns": "119,101,94,127,131",
-                        "endOffsets": "170,968,1063,1191,1323"
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "1328",
+                        "endColumns": "100",
+                        "endOffsets": "1424"
                     }
                 }
             ]

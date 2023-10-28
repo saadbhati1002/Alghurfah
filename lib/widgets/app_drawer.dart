@@ -2,18 +2,18 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/MyOrder.dart';
+import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
+import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
 import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/view_all_service_screen.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../Helper/String.dart';
-
-Widget drawerWidget(BuildContext context) {
-  return Drawer();
-}
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -317,14 +317,69 @@ class _MyDrawerState extends State<MyDrawer> {
                                       padding:
                                           const EdgeInsets.only(bottom: 20),
                                       itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 20),
-                                          child: Text(
-                                            categoryData.catList[index].name!,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white),
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            if (context
+                                                        .read<
+                                                            HomePageProvider>()
+                                                        .catList[index]
+                                                        .subList ==
+                                                    null ||
+                                                context
+                                                    .read<HomePageProvider>()
+                                                    .catList[index]
+                                                    .subList!
+                                                    .isEmpty) {
+                                              // await Navigator.push(
+                                              //   context,
+                                              //   CupertinoPageRoute(
+                                              //     builder: (context) =>
+                                              //         ProductList(
+                                              //       name: context
+                                              //           .read<
+                                              //               HomePageProvider>()
+                                              //           .catList[index]
+                                              //           .name,
+                                              //       id: context
+                                              //           .read<
+                                              //               HomePageProvider>()
+                                              //           .catList[index]
+                                              //           .id,
+                                              //       tag: false,
+                                              //       fromSeller: false,
+                                              //     ),
+                                              //   ),
+                                              // );
+                                            } else {
+                                              await Navigator.push(
+                                                context,
+                                                CupertinoPageRoute(
+                                                  builder: (context) =>
+                                                      SubCategory(
+                                                    title: context
+                                                        .read<
+                                                            HomePageProvider>()
+                                                        .catList[index]
+                                                        .name!,
+                                                    subList: context
+                                                        .read<
+                                                            HomePageProvider>()
+                                                        .catList[index]
+                                                        .subList,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 20),
+                                            child: Text(
+                                              categoryData.catList[index].name!,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                         );
                                       });
@@ -401,14 +456,26 @@ class _MyDrawerState extends State<MyDrawer> {
                                       padding:
                                           const EdgeInsets.only(bottom: 20),
                                       itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 20),
-                                          child: Text(
-                                            snap.category![index].name!,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.white),
+                                        return GestureDetector(
+                                          onTap: () {
+                                            ViewAllServiceScreen(
+                                                    categoryId: snap
+                                                        .category![index].id
+                                                        .validate(),
+                                                    categoryName: snap
+                                                        .category![index].name,
+                                                    isFromCategory: true)
+                                                .launch(context);
+                                          },
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 20),
+                                            child: Text(
+                                              snap.category![index].name!,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white),
+                                            ),
                                           ),
                                         );
                                       });

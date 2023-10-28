@@ -4,7 +4,7 @@
             "outputFile": "io.flutter.plugins.videoplayer.video_player_android-merged_res-12:/values-eu/values-eu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-eu\\values-eu.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5eb2b200738f3b848d9311614824d48f\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-eu\\values-eu.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\a861062d25906d530c5d6a4f5f1b54c2\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -36,7 +36,7 @@
             "outputFile": "io.flutter.plugins.videoplayer.video_player_android-mergeReleaseResources-10:/values-eu/values-eu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\4d292b5b8ececb422bc5fa695ca1021c\\transformed\\core-1.7.0\\res\\values-eu\\values-eu.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\e7921e2863046ca060b6311b857f9ba9\\transformed\\core-1.7.0\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -53,7 +53,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\5eb2b200738f3b848d9311614824d48f\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-eu\\values-eu.xml",
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\a861062d25906d530c5d6a4f5f1b54c2\\transformed\\jetified-exoplayer-core-2.18.5\\res\\values-eu\\values-eu.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

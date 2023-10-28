@@ -1,18 +1,18 @@
 [
     {
         "merged": "dev.britannio.in_app_review-merged_res-12:/drawable/notification_icon_background.xml",
-        "source": "dev.britannio.in_app_review-core-1.6.0-4:/drawable/notification_icon_background.xml"
+        "source": "dev.britannio.in_app_review-core-1.6.0-5:/drawable/notification_icon_background.xml"
     },
     {
         "merged": "dev.britannio.in_app_review-merged_res-12:/drawable/notification_bg_low.xml",
-        "source": "dev.britannio.in_app_review-core-1.6.0-4:/drawable/notification_bg_low.xml"
+        "source": "dev.britannio.in_app_review-core-1.6.0-5:/drawable/notification_bg_low.xml"
     },
     {
         "merged": "dev.britannio.in_app_review-merged_res-12:/drawable/notification_bg.xml",
-        "source": "dev.britannio.in_app_review-core-1.6.0-4:/drawable/notification_bg.xml"
+        "source": "dev.britannio.in_app_review-core-1.6.0-5:/drawable/notification_bg.xml"
     },
     {
         "merged": "dev.britannio.in_app_review-merged_res-12:/drawable/notification_tile_bg.xml",
-        "source": "dev.britannio.in_app_review-core-1.6.0-4:/drawable/notification_tile_bg.xml"
+        "source": "dev.britannio.in_app_review-core-1.6.0-5:/drawable/notification_tile_bg.xml"
     }
 ]

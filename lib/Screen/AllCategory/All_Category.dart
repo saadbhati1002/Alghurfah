@@ -3,6 +3,7 @@ import 'package:eshop_multivendor/Provider/CategoryProvider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
+import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/networkAvailablity.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,7 +85,7 @@ class _AllCategoryState extends State<AllCategory>
       top: true,
       bottom: true,
       child: Scaffold(
-          endDrawer: drawerWidget(context),
+          endDrawer: const MyDrawer(),
           key: _key,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_key,
@@ -116,6 +117,52 @@ class _AllCategoryState extends State<AllCategory>
                               padding: const EdgeInsets.only(
                                   top: 5, left: 25, right: 25),
                               child: GestureDetector(
+                                onTap: () async {
+                                  if (context
+                                              .read<HomePageProvider>()
+                                              .catList[index]
+                                              .subList ==
+                                          null ||
+                                      context
+                                          .read<HomePageProvider>()
+                                          .catList[index]
+                                          .subList!
+                                          .isEmpty) {
+                                    await Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                        builder: (context) => ProductList(
+                                          name: context
+                                              .read<HomePageProvider>()
+                                              .catList[index]
+                                              .name,
+                                          id: context
+                                              .read<HomePageProvider>()
+                                              .catList[index]
+                                              .id,
+                                          tag: false,
+                                          fromSeller: false,
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    await Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                        builder: (context) => SubCategory(
+                                          title: context
+                                              .read<HomePageProvider>()
+                                              .catList[index]
+                                              .name!,
+                                          subList: context
+                                              .read<HomePageProvider>()
+                                              .catList[index]
+                                              .subList,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                                 child: SizedBox(
                                   height: 130,
                                   width: MediaQuery.of(context).size.width,
@@ -232,49 +279,6 @@ class _AllCategoryState extends State<AllCategory>
                                     ],
                                   ),
                                 ),
-                                onTap: () {
-                                  context
-                                      .read<CategoryProvider>()
-                                      .setCurSelected(index);
-                                  if (context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .subList ==
-                                          null ||
-                                      context
-                                          .read<HomePageProvider>()
-                                          .catList[index]
-                                          .subList!
-                                          .isEmpty) {
-                                    context
-                                        .read<CategoryProvider>()
-                                        .setSubList([]);
-                                    Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                        builder: (context) => ProductList(
-                                          name: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .name,
-                                          id: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .id,
-                                          tag: false,
-                                          fromSeller: false,
-                                        ),
-                                      ),
-                                    );
-                                  } else {
-                                    context.read<CategoryProvider>().setSubList(
-                                          context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .subList,
-                                        );
-                                  }
-                                },
                               ),
                             );
                           });

@@ -598,10 +598,10 @@ Future<List<CategoryData>> getSubCategoryListAPI({required int catId}) async {
 
     appStore.setLoading(false);
 
-    CategoryData allValue = CategoryData(id: -1, name: language.lblAll);
-    if (!res.categoryList!.any((element) => element.id == allValue.id)) {
-      res.categoryList!.insert(0, allValue);
-    }
+    // CategoryData allValue = CategoryData(id: -1, name: language.lblAll);
+    // if (!res.categoryList!.any((element) => element.id == allValue.id)) {
+    //   res.categoryList!.insert(0, allValue);
+    // }
 
     return res.categoryList.validate();
   } catch (e) {

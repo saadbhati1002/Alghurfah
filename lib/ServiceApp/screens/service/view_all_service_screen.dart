@@ -1,11 +1,17 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/base_scaffold_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/background_image_service.dart';
+import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 
 import '../../component/cached_image_widget.dart';
 import '../../component/empty_error_state_widget.dart';
@@ -254,159 +260,288 @@ class _ViewAllServiceScreenState extends State<ViewAllServiceScreen> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AppScaffold(
-      appBarTitle: setSearchString,
-      child: SizedBox(
-        height: context.height(),
-        width: context.width(),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  AppTextField(
-                    textFieldType: TextFieldType.OTHER,
-                    focus: myFocusNode,
-                    controller: searchCont,
-                    suffix: CloseButton(
-                      onPressed: () {
-                        page = 1;
-                        searchCont.clear();
-                        filterStore.setSearch('');
+  setStateNow() {
+    setState(() {});
+  }
 
-                        appStore.setLoading(true);
-                        fetchAllServiceData();
-                        setState(() {});
-                      },
-                    ).visible(searchCont.text.isNotEmpty),
-                    onFieldSubmitted: (s) {
-                      page = 1;
-
-                      filterStore.setSearch(s);
-                      appStore.setLoading(true);
-
-                      fetchAllServiceData();
-                      setState(() {});
-                    },
-                    decoration: inputDecoration(context).copyWith(
-                      hintText: "${language.lblSearchFor} $setSearchString",
-                      prefixIcon: ic_search.iconImage(size: 10).paddingAll(14),
-                      hintStyle: secondaryTextStyle(),
-                    ),
-                  ).expand(),
-                  16.width,
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration:
-                        boxDecorationDefault(color: context.primaryColor),
-                    child: CachedImageWidget(
-                      url: ic_filter,
-                      height: 26,
-                      width: 26,
-                      color: Colors.white,
-                    ),
-                  ).onTap(() {
-                    hideKeyboard(context);
-
-                    FilterScreen(
-                            isFromProvider: widget.isFromProvider,
-                            isFromCategory: widget.isFromCategory)
-                        .launch(context)
-                        .then((value) {
-                      if (value != null) {
-                        page = 1;
-                        appStore.setLoading(true);
-
-                        fetchAllServiceData();
-                        setState(() {});
-                      }
-                    });
-                  }, borderRadius: radius())
-                ],
+  subCatItem(CategoryData? data) {
+    return GestureDetector(
+      child: Column(
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25)),
+                child: Container(
+                  color: Colors.white,
+                  child: DesignConfiguration.getCacheNotworkImage(
+                    boxFit: BoxFit.cover,
+                    context: context,
+                    heightvalue: null,
+                    widthvalue: MediaQuery.of(context).size.width,
+                    placeHolderSize: 50,
+                    imageurlString: data!.categoryImage ?? '',
+                  ),
+                ),
               ),
             ),
-            AnimatedScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              onSwipeRefresh: () {
-                page = 1;
-
-                appStore.setLoading(true);
-                fetchAllServiceData();
-                setState(() {});
-
-                return Future.value(false);
-              },
-              onNextPage: () {
-                if (!isLastPage) {
-                  page++;
-
-                  appStore.setLoading(true);
-                  fetchAllServiceData();
-                  setState(() {});
-                }
-              },
-              children: [
-                if (widget.categoryId != null) subCategoryWidget(),
-                16.height,
-                SnapHelperWidget(
-                  future: futureService,
-                  loadingWidget: LoaderWidget(),
-                  errorBuilder: (p0) {
-                    return NoDataWidget(
-                      title: p0,
-                      retryText: language.reload,
-                      imageWidget: ErrorStateWidget(),
-                      onRetry: () {
-                        page = 1;
-                        appStore.setLoading(true);
-
-                        fetchAllServiceData();
-                        setState(() {});
-                      },
-                    );
-                  },
-                  onSuccess: (data) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(language.service,
-                                style: boldTextStyle(size: LABEL_TEXT_SIZE))
-                            .paddingSymmetric(horizontal: 16),
-                        AnimatedListView(
-                          itemCount: serviceList.length,
-                          listAnimationType: ListAnimationType.FadeIn,
-                          fadeInConfiguration:
-                              FadeInConfiguration(duration: 2.seconds),
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          emptyWidget: NoDataWidget(
-                            title: language.lblNoServicesFound,
-                            subTitle: (searchCont.text.isNotEmpty ||
-                                    filterStore.providerId.isNotEmpty ||
-                                    filterStore.categoryId.isNotEmpty)
-                                ? language.noDataFoundInFilter
-                                : null,
-                            imageWidget: EmptyStateWidget(),
-                          ),
-                          itemBuilder: (_, index) {
-                            return ServiceComponent(
-                                    serviceData: serviceList[index])
-                                .paddingAll(8);
-                          },
-                        ).paddingAll(8),
-                      ],
-                    );
-                  },
+          ),
+          Text(
+            data.name!,
+            textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'ubuntu',
                 ),
-              ],
-            ).expand(),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: Container(
+              height: 25,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: colors.serviceColor,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10)),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                getTranslated(context, 'View')!,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
+      onTap: () {
+        // if (widget.subList![index].subList == null ||
+        //     widget.subList![index].subList!.isEmpty) {
+        //   // Navigator.push(
+        //   //   context,
+        //   //   CupertinoPageRoute(
+        //   //     builder: (context) => ProductList(
+        //   //       name: widget.subList![index].name,
+        //   //       id: widget.subList![index].id,
+        //   //       tag: false,
+        //   //       fromSeller: false,
+        //   //     ),
+        //   //   ),
+        //   // );
+        // } else {
+        //   Navigator.push(
+        //     context,
+        //     CupertinoPageRoute(
+        //       builder: (context) => SubCategory(
+        //         subList: widget.subList![index].subList,
+        //         title: widget.subList![index].name ?? '',
+        //       ),
+        //     ),
+        //   );
+        // }
+      },
+    );
+  }
+
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: widget.categoryName, context: context, setState: setStateNow),
+      body: Stack(
+        children: [
+          const BackgroundImageService(),
+          SnapHelperWidget<List<CategoryData>>(
+              future: futureCategory,
+              loadingWidget: Offstage(),
+              onSuccess: (list) {
+                return GridView.count(
+                    padding: const EdgeInsets.all(20),
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    childAspectRatio: .68,
+                    children: List.generate(
+                      list.length,
+                      (index) {
+                        return subCatItem(list[index]);
+                      },
+                    ));
+              }),
+        ],
       ),
     );
+    // AppScaffold(
+    //   appBarTitle: setSearchString,
+    //   child: SizedBox(
+    //     height: context.height(),
+    //     width: context.width(),
+    //     child: Column(
+    //       children: [
+    //         Container(
+    //           padding: const EdgeInsets.all(16),
+    //           child: Row(
+    //             children: [
+    //               AppTextField(
+    //                 textFieldType: TextFieldType.OTHER,
+    //                 focus: myFocusNode,
+    //                 controller: searchCont,
+    //                 suffix: CloseButton(
+    //                   onPressed: () {
+    //                     page = 1;
+    //                     searchCont.clear();
+    //                     filterStore.setSearch('');
+
+    //                     appStore.setLoading(true);
+    //                     fetchAllServiceData();
+    //                     setState(() {});
+    //                   },
+    //                 ).visible(searchCont.text.isNotEmpty),
+    //                 onFieldSubmitted: (s) {
+    //                   page = 1;
+
+    //                   filterStore.setSearch(s);
+    //                   appStore.setLoading(true);
+
+    //                   fetchAllServiceData();
+    //                   setState(() {});
+    //                 },
+    //                 decoration: inputDecoration(context).copyWith(
+    //                   hintText: "${language.lblSearchFor} $setSearchString",
+    //                   prefixIcon: ic_search.iconImage(size: 10).paddingAll(14),
+    //                   hintStyle: secondaryTextStyle(),
+    //                 ),
+    //               ).expand(),
+    //               16.width,
+    //               Container(
+    //                 padding: EdgeInsets.all(10),
+    //                 decoration:
+    //                     boxDecorationDefault(color: context.primaryColor),
+    //                 child: CachedImageWidget(
+    //                   url: ic_filter,
+    //                   height: 26,
+    //                   width: 26,
+    //                   color: Colors.white,
+    //                 ),
+    //               ).onTap(() {
+    //                 hideKeyboard(context);
+
+    //                 FilterScreen(
+    //                         isFromProvider: widget.isFromProvider,
+    //                         isFromCategory: widget.isFromCategory)
+    //                     .launch(context)
+    //                     .then((value) {
+    //                   if (value != null) {
+    //                     page = 1;
+    //                     appStore.setLoading(true);
+
+    //                     fetchAllServiceData();
+    //                     setState(() {});
+    //                   }
+    //                 });
+    //               }, borderRadius: radius())
+    //             ],
+    //           ),
+    //         ),
+    //         AnimatedScrollView(
+    //           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+    //           onSwipeRefresh: () {
+    //             page = 1;
+
+    //             appStore.setLoading(true);
+    //             fetchAllServiceData();
+    //             setState(() {});
+
+    //             return Future.value(false);
+    //           },
+    //           onNextPage: () {
+    //             if (!isLastPage) {
+    //               page++;
+
+    //               appStore.setLoading(true);
+    //               fetchAllServiceData();
+    //               setState(() {});
+    //             }
+    //           },
+    //           children: [
+    //             if (widget.categoryId != null) subCategoryWidget(),
+    //             16.height,
+    //             SnapHelperWidget(
+    //               future: futureService,
+    //               loadingWidget: LoaderWidget(),
+    //               errorBuilder: (p0) {
+    //                 return NoDataWidget(
+    //                   title: p0,
+    //                   retryText: language.reload,
+    //                   imageWidget: ErrorStateWidget(),
+    //                   onRetry: () {
+    //                     page = 1;
+    //                     appStore.setLoading(true);
+
+    //                     fetchAllServiceData();
+    //                     setState(() {});
+    //                   },
+    //                 );
+    //               },
+    //               onSuccess: (data) {
+    //                 return Column(
+    //                   mainAxisSize: MainAxisSize.min,
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: [
+    //                     Text(language.service,
+    //                             style: boldTextStyle(size: LABEL_TEXT_SIZE))
+    //                         .paddingSymmetric(horizontal: 16),
+    //                     AnimatedListView(
+    //                       itemCount: serviceList.length,
+    //                       listAnimationType: ListAnimationType.FadeIn,
+    //                       fadeInConfiguration:
+    //                           FadeInConfiguration(duration: 2.seconds),
+    //                       physics: NeverScrollableScrollPhysics(),
+    //                       shrinkWrap: true,
+    //                       emptyWidget: NoDataWidget(
+    //                         title: language.lblNoServicesFound,
+    //                         subTitle: (searchCont.text.isNotEmpty ||
+    //                                 filterStore.providerId.isNotEmpty ||
+    //                                 filterStore.categoryId.isNotEmpty)
+    //                             ? language.noDataFoundInFilter
+    //                             : null,
+    //                         imageWidget: EmptyStateWidget(),
+    //                       ),
+    //                       itemBuilder: (_, index) {
+    //                         return ServiceComponent(
+    //                                 serviceData: serviceList[index])
+    //                             .paddingAll(8);
+    //                       },
+    //                     ).paddingAll(8),
+    //                   ],
+    //                 );
+    //               },
+    //             ),
+    //           ],
+    //         ).expand(),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }

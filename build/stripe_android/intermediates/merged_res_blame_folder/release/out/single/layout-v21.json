@@ -1,18 +1,18 @@
 [
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/layout-v21/notification_action.xml",
-        "source": "com.flutter.stripe.stripe_android-core-1.9.0-63:/layout-v21/notification_action.xml"
+        "source": "com.flutter.stripe.stripe_android-core-1.9.0-15:/layout-v21/notification_action.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/layout-v21/notification_template_icon_group.xml",
-        "source": "com.flutter.stripe.stripe_android-core-1.9.0-63:/layout-v21/notification_template_icon_group.xml"
+        "source": "com.flutter.stripe.stripe_android-core-1.9.0-15:/layout-v21/notification_template_icon_group.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/layout-v21/notification_action_tombstone.xml",
-        "source": "com.flutter.stripe.stripe_android-core-1.9.0-63:/layout-v21/notification_action_tombstone.xml"
+        "source": "com.flutter.stripe.stripe_android-core-1.9.0-15:/layout-v21/notification_action_tombstone.xml"
     },
     {
         "merged": "com.flutter.stripe.stripe_android-merged_res-84:/layout-v21/notification_template_custom_big.xml",
-        "source": "com.flutter.stripe.stripe_android-core-1.9.0-63:/layout-v21/notification_template_custom_big.xml"
+        "source": "com.flutter.stripe.stripe_android-core-1.9.0-15:/layout-v21/notification_template_custom_big.xml"
     }
 ]

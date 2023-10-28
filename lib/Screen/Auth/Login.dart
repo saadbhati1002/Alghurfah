@@ -9,6 +9,7 @@ import 'package:eshop_multivendor/Screen/Auth/SendOtp.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart'
     as service_app;
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -1117,13 +1118,19 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               btnAnim: buttonSqueezeanimation,
               btnCntrl: buttonController,
               onBtnSelected: () async {
-                if (passFocus != null) {
-                  passFocus!.unfocus();
-                }
-                if (monoFocus != null) {
-                  monoFocus!.unfocus();
-                }
-                validateAndSubmit();
+                Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => const HomeScreenNew(),
+                  ),
+                );
+                //   if (passFocus != null) {
+                //     passFocus!.unfocus();
+                //   }
+                //   if (monoFocus != null) {
+                //     monoFocus!.unfocus();
+                //   }
+                //   validateAndSubmit();
               },
             );
           },
