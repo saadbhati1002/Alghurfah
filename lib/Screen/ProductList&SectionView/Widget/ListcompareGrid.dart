@@ -461,26 +461,23 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
 
       return Selector<CartProvider, List<SectionModel>>(
           builder: (context, data, child) {
-
             SectionModel? tempId = data.firstWhereOrNull((cp) =>
-            cp.id == model.id &&
+                cp.id == model.id &&
                 cp.varientId == model.prVarientList![model.selVarient!].id!);
             if (tempId != null) {
               controllerText[widget.index!].text = tempId.qty!.toString();
             } else {
               if (CUR_USERID != null) {
                 controllerText[widget.index!].text =
-                model.prVarientList![model.selVarient!].cartCount!;
+                    model.prVarientList![model.selVarient!].cartCount!;
               } else {
                 controllerText[widget.index!].text = '0';
               }
             }
 
-            return InkWell(
-              child: Card(
-                elevation: 0.2,
-                margin: EdgeInsetsDirectional.only(
-                    bottom: 10, end: 10, start: widget.pad ? 10 : 0),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+              child: InkWell(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,14 +489,14 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                         children: [
                           ClipRRect(
                             borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(circularBorderRadius5),
-                              topRight: Radius.circular(circularBorderRadius5),
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
                             ),
                             child: Hero(
                               tag:
                                   '$heroTagUniqueString${widget.index}${model.id}',
                               child: DesignConfiguration.getCacheNotworkImage(
-                                boxFit: BoxFit.cover,
+                                boxFit: BoxFit.contain,
                                 context: context,
                                 heightvalue: double.maxFinite,
                                 widthvalue: double.maxFinite,
@@ -532,330 +529,24 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                                   )
                                 : Container(),
                           ),
-                          off != 0
-                              ? Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: colors.red,
-                                    ),
-                                    margin: const EdgeInsets.all(5),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Text(
-                                        '${off.round().toStringAsFixed(2)}%',
-                                        style: const TextStyle(
-                                          color: colors.whiteTemp,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'ubuntu',
-                                          fontSize: textFontSize9,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
-                          const Divider(
-                            height: 1,
-                          ),
-                          Positioned.directional(
-                            textDirection: Directionality.of(context),
-                            end: 0,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                model.availability == '0' && !cartBtnList
-                                    ? Container()
-                                    : controllerText[widget.index!].text == '0'
-                                        ? InkWell(
-                                            onTap: () {
-                                              if (isProgress == false) {
-                                                addToCart(
-                                                  widget.index!,
-                                                  (int.parse(controllerText[
-                                                                  widget.index!]
-                                                              .text) +
-                                                          int.parse(
-                                                            model.qtyStepSize!,
-                                                          ))
-                                                      .toString(),
-                                                  1,
-                                                );
-                                              }
-                                            },
-                                            child: Card(
-                                              elevation: 1,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        circularBorderRadius50),
-                                              ),
-                                              child: const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Icon(
-                                                  Icons.shopping_cart_outlined,
-                                                  size: 15,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .only(
-                                              start: 3.0,
-                                              bottom: 5,
-                                              top: 3,
-                                            ),
-                                            child: Row(
-                                              children: <Widget>[
-                                                InkWell(
-                                                  child: Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              circularBorderRadius50),
-                                                    ),
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
-                                                      child: Icon(
-                                                        Icons.remove,
-                                                        size: 15,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onTap: () {
-                                                    if (isProgress == false &&
-                                                        (int.parse(controllerText[
-                                                                    widget
-                                                                        .index!]
-                                                                .text) >
-                                                            0)) {
-                                                      removeFromCart(
-                                                          widget.index!);
-                                                    }
-                                                  },
-                                                ),
-                                                Container(
-                                                  width: 37,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: colors.white70,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            circularBorderRadius5),
-                                                  ),
-                                                  child: Stack(
-                                                    children: [
-                                                      TextField(
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        readOnly: true,
-                                                        style: TextStyle(
-                                                            fontSize:
-                                                                textFontSize12,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .colorScheme
-                                                                .fontColor),
-                                                        controller:
-                                                            controllerText[
-                                                                widget.index!],
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          border:
-                                                              InputBorder.none,
-                                                        ),
-                                                      ),
-                                                      PopupMenuButton<String>(
-                                                        tooltip: '',
-                                                        icon: const Icon(
-                                                          Icons.arrow_drop_down,
-                                                          size: 0,
-                                                        ),
-                                                        onSelected:
-                                                            (String value) {
-                                                          if (isProgress ==
-                                                              false) {
-                                                            addToCart(
-                                                                widget.index!,
-                                                                value,
-                                                                2);
-                                                          }
-                                                        },
-                                                        itemBuilder:
-                                                            (BuildContext
-                                                                context) {
-                                                          return model
-                                                              .itemsCounter!
-                                                              .map<
-                                                                  PopupMenuItem<
-                                                                      String>>(
-                                                            (String value) {
-                                                              return PopupMenuItem(
-                                                                value: value,
-                                                                child: Text(
-                                                                  value,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .colorScheme
-                                                                        .fontColor,
-                                                                    fontFamily:
-                                                                        'ubuntu',
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          ).toList();
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                InkWell(
-                                                  child: Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              circularBorderRadius50),
-                                                    ),
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
-                                                      child: Icon(
-                                                        Icons.add,
-                                                        size: 15,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onTap: () {
-                                                    if (isProgress == false) {
-                                                      addToCart(
-                                                          widget.index!,
-                                                          (int.parse(controllerText[
-                                                                          widget
-                                                                              .index!]
-                                                                      .text) +
-                                                                  int.parse(model
-                                                                      .qtyStepSize!))
-                                                              .toString(),
-                                                          2);
-                                                    }
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                              ],
-                            ),
-                          ),
-                          Positioned.directional(
-                            textDirection: Directionality.of(context),
-                            top: 0,
-                            end: 0,
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.white,
-                                  borderRadius:
-                                      const BorderRadiusDirectional.only(
-                                    bottomStart:
-                                        Radius.circular(circularBorderRadius10),
-                                    topEnd: Radius.circular(
-                                      circularBorderRadius5,
-                                    ),
-                                  ),
-                                ),
-                                child: model.isFavLoading!
-                                    ? const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: SizedBox(
-                                          height: 15,
-                                          width: 15,
-                                          child: CircularProgressIndicator(
-                                            color: colors.primary,
-                                            strokeWidth: 0.7,
-                                          ),
-                                        ),
-                                      )
-                                    : Selector<FavoriteProvider, List<String?>>(
-                                        builder: (context, data, child) {
-                                          return InkWell(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                !data.contains(model.id)
-                                                    ? Icons.favorite_border
-                                                    : Icons.favorite,
-                                                size: 15,
-                                              ),
-                                            ),
-                                            onTap: () {
-                                              if (CUR_USERID != null) {
-                                                !data.contains(model.id)
-                                                    ? _setFav(-1, model)
-                                                    : _removeFav(-1, model);
-                                              } else {
-                                                if (!data.contains(model.id)) {
-                                                  model.isFavLoading = true;
-                                                  model.isFav = '1';
-                                                  context
-                                                      .read<FavoriteProvider>()
-                                                      .addFavItem(model);
-                                                  db.addAndRemoveFav(
-                                                      model.id!, true);
-                                                  model.isFavLoading = false;
-                                                  setSnackbar(
-                                                      getTranslated(context,
-                                                          'Added to favorite')!,
-                                                      context);
-                                                } else {
-                                                  model.isFavLoading = true;
-                                                  model.isFav = '0';
-                                                  context
-                                                      .read<FavoriteProvider>()
-                                                      .removeFavItem(model
-                                                          .prVarientList![0]
-                                                          .id!);
-                                                  db.addAndRemoveFav(
-                                                      model.id!, false);
-                                                  model.isFavLoading = false;
-                                                  setSnackbar(
-                                                      getTranslated(context,
-                                                          'Removed from favorite')!,
-                                                      context);
-                                                }
-                                                widget.setState();
-                                              }
-                                            },
-                                          );
-                                        },
-                                        selector: (_, provider) =>
-                                            provider.favIdList,
-                                      )),
-                          )
                         ],
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(
                         start: 10.0,
-                        top: 15,
+                        top: 10,
                       ),
                       child: Text(
                         widget.productList![widget.index!].name!,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              color: Theme.of(context).colorScheme.lightBlack,
-                              fontSize: textFontSize12,
-                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              fontSize: textFontSize15,
+                              fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
-                              fontFamily: 'ubuntu',
+                              // fontFamily: 'ubuntu',
                             ),
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
                       ),
@@ -898,15 +589,16 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                                         .labelSmall!
                                         .copyWith(
                                           fontFamily: 'ubuntu',
+                                          color: Colors.black,
                                           decoration:
                                               TextDecoration.lineThrough,
-                                          decorationColor: colors.darkColor3,
+                                          decorationColor: Colors.black,
                                           decorationStyle:
                                               TextDecorationStyle.solid,
                                           decorationThickness: 2,
                                           letterSpacing: 0,
                                           fontSize: textFontSize10,
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w600,
                                           fontStyle: FontStyle.normal,
                                         ),
                                   ),
@@ -917,33 +609,57 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                          start: 10.0, top: 10, bottom: 5),
-                      child: StarRating(
-                        totalRating: widget.productList![widget.index!].rating!,
-                        noOfRatings:
-                            widget.productList![widget.index!].noOfRating!,
-                        needToShowNoOfRatings: true,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        addToCart(
+                          widget.index!,
+                          (1 +
+                                  int.parse(
+                                    model.qtyStepSize!,
+                                  ))
+                              .toString(),
+                          1,
+                        );
+                      },
+                      child: Container(
+                        height: 25,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                          color: colors.serviceColor,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20)),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          getTranslated(context, 'ADD_CART')!,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              onTap: () {
-                Product model = widget.productList![widget.index!];
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (_, __, ___) => ProductDetail(
-                      model: model,
-                      index: widget.index,
-                      secPos: 0,
-                      list: true,
+                onTap: () {
+                  Product model = widget.productList![widget.index!];
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ProductDetail(
+                        model: model,
+                        index: widget.index,
+                        secPos: 0,
+                        list: true,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           },
           selector: (_, provider) => provider.cartList);
