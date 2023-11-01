@@ -85,10 +85,9 @@ class DesignConfiguration {
     return Center(
       child: Text(
         getTranslated(context, 'noItem')!,
-        style:  TextStyle(
-          fontFamily: 'ubuntu',
-          color: Theme.of(context).colorScheme.fontColor
-        ),
+        style: TextStyle(
+            fontFamily: 'ubuntu',
+            color: Theme.of(context).colorScheme.fontColor),
       ),
     );
   }
@@ -147,10 +146,10 @@ class DesignConfiguration {
       fadeOutDuration: const Duration(
         milliseconds: 150,
       ),
-     // imageCacheHeight: 50,
+      // imageCacheHeight: 50,
       //imageCacheWidth: 50,
-      fadeInCurve: Curves.linear,
-      fadeOutCurve: Curves.linear,
+      // fadeInCurve: Curves.linear,
+      // fadeOutCurve: Curves.linear,
       imageErrorBuilder: (context, error, stackTrace) {
         return Container(
           child: DesignConfiguration.erroWidget(placeHolderSize ?? 50),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/Widget/ListcompareGrid.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -194,18 +195,15 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
     setState(() {});
   }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: allAppBottomSheet(context),
-      // appBar: widget.fromSeller!
-      //     ? null
-      //     : getAppBar(
-      //        title:  widget.name!,
-      //        context:  context,
-      //       setState:   setStateNow,
-      //       ),
-      key: _scaffoldKey,
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: widget.name, context: context, setState: setStateNow),
       body: isNetworkAvail
           ? Stack(
               children: <Widget>[
@@ -363,6 +361,16 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
         ),
       );
     }
+  }
+
+  Widget textWidget(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: Colors.white.withOpacity(0.6)),
+    );
   }
 
   void getAvailVarient(List<Product> tempList) {
@@ -606,177 +614,327 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
   }
 
   _showForm() {
-    return Column(
-      children: [
-        Container(
-          color: Theme.of(context).colorScheme.white,
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Column(
+    return SingleChildScrollView(
+      controller: controller,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Container(
-                  color: Theme.of(context).colorScheme.white,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(circularBorderRadius25),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                color: Colors.white,
+                width: MediaQuery.of(context).size.width * .87,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 15,
                       ),
-                      height: 44,
-                      child: TextField(
+                      Text(
+                        getTranslated(context, 'story')!,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            color: colors.eCommerceColor,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.',
+                        textAlign: TextAlign.justify,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.fontColor,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        controller: searchController,
-                        autofocus: false,
-                        focusNode: searchFocusNode,
-                        enabled: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.gray),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(circularBorderRadius10),
-                            ),
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(circularBorderRadius10),
-                            ),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(15.0, 5.0, 0, 5.0),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(circularBorderRadius10),
-                            ),
-                          ),
-                          fillColor: Theme.of(context).colorScheme.lightWhite,
-                          filled: true,
-                          isDense: true,
-                          hintText: getTranslated(context, 'searchHint'),
-                          hintStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.fontColor,
-                                fontSize: textFontSize15,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              ),
-                          prefixIcon: const Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: Icon(Icons.search),
-                          ),
-                          suffixIcon: searchController.text != ''
-                              ? IconButton(
-                                  onPressed: () {
-                                    FocusScope.of(context).unfocus();
-                                    searchController.text = '';
-                                    query = '';
-                                    offset = 0;
-                                    isLoadingmore = true;
-                                    setState(() {});
-                                  },
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: colors.primary,
-                                  ),
-                                )
-                              : InkWell(
-                                  child: const Icon(
-                                    Icons.mic,
-                                    color: colors.primary,
-                                  ),
-                                  onTap: () {
-                                    lastWords = '';
-                                    if (!_hasSpeech) {
-                                      initSpeechState();
-                                    } else {
-                                      showSpeechDialog();
-                                    }
-                                  },
-                                ),
-                        ),
+                            fontSize: 12,
+                            color: colors.eCommerceColor,
+                            fontWeight: FontWeight.w400),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              if (widget.fromSeller!) Container() else _tags(),
-              sortAndFilterOption(),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height * .15,
+                      width: MediaQuery.of(context).size.width * .25,
+                      decoration: const BoxDecoration(
+                          color: colors.eCommerceColor,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20))),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            textWidget(getTranslated(context, 'new_in')!),
+                            textWidget(getTranslated(context, 'new_in')!),
+                            Text(
+                              getTranslated(context, 'new_in')!,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            textWidget(getTranslated(context, 'new_in')!),
+                            textWidget(getTranslated(context, 'new_in')!),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height * .15,
+                      width: MediaQuery.of(context).size.width * .25,
+                      decoration: const BoxDecoration(
+                        color: colors.eCommerceColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: Colors.white),
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                            ),
+                          ),
+                          child: Text(
+                            getTranslated(context, 'best_seller')!,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height * .15,
+                      width: MediaQuery.of(context).size.width * .25,
+                      decoration: const BoxDecoration(
+                        color: colors.eCommerceColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            textWidget(getTranslated(context, 'sale')!),
+                            textWidget(getTranslated(context, 'sale')!),
+                            Text(
+                              getTranslated(context, 'sale')!,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            textWidget(getTranslated(context, 'sale')!),
+                            textWidget(getTranslated(context, 'sale')!),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+              //   child: Container(
+              //     color: Theme.of(context).colorScheme.white,
+              //     child: Padding(
+              //       padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              //       child: Container(
+              //         decoration: BoxDecoration(
+              //           borderRadius:
+              //               BorderRadius.circular(circularBorderRadius25),
+              //         ),
+              //         height: 44,
+              //         child: TextField(
+              //           style: TextStyle(
+              //             color: Theme.of(context).colorScheme.fontColor,
+              //             fontWeight: FontWeight.normal,
+              //           ),
+              //           controller: searchController,
+              //           autofocus: false,
+              //           focusNode: searchFocusNode,
+              //           enabled: true,
+              //           textAlign: TextAlign.left,
+              //           decoration: InputDecoration(
+              //             focusedBorder: OutlineInputBorder(
+              //               borderSide: BorderSide(
+              //                   color: Theme.of(context).colorScheme.gray),
+              //               borderRadius: const BorderRadius.all(
+              //                 Radius.circular(circularBorderRadius10),
+              //               ),
+              //             ),
+              //             enabledBorder: const OutlineInputBorder(
+              //               borderSide: BorderSide(color: Colors.transparent),
+              //               borderRadius: BorderRadius.all(
+              //                 Radius.circular(circularBorderRadius10),
+              //               ),
+              //             ),
+              //             contentPadding:
+              //                 const EdgeInsets.fromLTRB(15.0, 5.0, 0, 5.0),
+              //             border: const OutlineInputBorder(
+              //               borderSide: BorderSide(color: Colors.transparent),
+              //               borderRadius: BorderRadius.all(
+              //                 Radius.circular(circularBorderRadius10),
+              //               ),
+              //             ),
+              //             fillColor: Theme.of(context).colorScheme.lightWhite,
+              //             filled: true,
+              //             isDense: true,
+              //             hintText: getTranslated(context, 'searchHint'),
+              //             hintStyle: Theme.of(context)
+              //                 .textTheme
+              //                 .bodyMedium!
+              //                 .copyWith(
+              //                   color: Theme.of(context).colorScheme.fontColor,
+              //                   fontSize: textFontSize15,
+              //                   fontWeight: FontWeight.w400,
+              //                   fontStyle: FontStyle.normal,
+              //                 ),
+              //             prefixIcon: const Padding(
+              //               padding: EdgeInsets.all(15.0),
+              //               child: Icon(Icons.search),
+              //             ),
+              //             suffixIcon: searchController.text != ''
+              //                 ? IconButton(
+              //                     onPressed: () {
+              //                       FocusScope.of(context).unfocus();
+              //                       searchController.text = '';
+              //                       query = '';
+              //                       offset = 0;
+              //                       isLoadingmore = true;
+              //                       setState(() {});
+              //                     },
+              //                     icon: const Icon(
+              //                       Icons.close,
+              //                       color: colors.primary,
+              //                     ),
+              //                   )
+              //                 : InkWell(
+              //                     child: const Icon(
+              //                       Icons.mic,
+              //                       color: colors.primary,
+              //                     ),
+              //                     onTap: () {
+              //                       lastWords = '';
+              //                       if (!_hasSpeech) {
+              //                         initSpeechState();
+              //                       } else {
+              //                         showSpeechDialog();
+              //                       }
+              //                     },
+              //                   ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // if (widget.fromSeller!) Container() else _tags(),
+              // sortAndFilterOption(),
             ],
           ),
-        ),
-        Expanded(
-          child: _isLoading
-              ? const ShimmerEffect()
-              : productList.isEmpty || notificationisnodata
-                  ? DesignConfiguration.getNoItem(context)
-                  : context.watch<ExploreProvider>().getCurrentView !=
-                          'GridView'
-                      ? NotificationListener<OverscrollIndicatorNotification>(
-                          onNotification: (overscroll) {
-                            overscroll.disallowIndicator();
-                            return true;
-                          },
-                          child: ListView.builder(
-                            controller: controller,
-                            shrinkWrap: true,
-                            itemCount: (offset < total)
-                                ? productList.length + 1
-                                : productList.length,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return (index == productList.length &&
-                                      isLoadingmore)
-                                  ? const SingleItemSimmer()
-                                  : ListIteamListWidget(
-                                      index: index,
-                                      productList: productList,
-                                      length: productList.length,
-                                      setState: setStateNow,
-                                    );
+          Container(
+            child: _isLoading
+                ? const ShimmerEffect()
+                : productList.isEmpty || notificationisnodata
+                    ? DesignConfiguration.getNoItem(context)
+                    : context.watch<ExploreProvider>().getCurrentView !=
+                            'GridView'
+                        ? NotificationListener<OverscrollIndicatorNotification>(
+                            onNotification: (overscroll) {
+                              overscroll.disallowIndicator();
+                              return true;
                             },
-                          ),
-                        )
-                      : NotificationListener<OverscrollIndicatorNotification>(
-                          onNotification: (overscroll) {
-                            overscroll.disallowIndicator();
-                            return true;
-                          },
-                          child: GridView.count(
-                            padding: const EdgeInsetsDirectional.only(top: 5),
-                            crossAxisCount: 2,
-                            controller: controller,
-                            childAspectRatio: 0.6,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            children: List.generate(
-                              (offset < total)
+                            child: ListView.builder(
+                              controller: controller,
+                              shrinkWrap: true,
+                              itemCount: (offset < total)
                                   ? productList.length + 1
                                   : productList.length,
-                              (index) {
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
                                 return (index == productList.length &&
                                         isLoadingmore)
-                                    ? const SimmerSingleProduct()
-                                    : GridViewProductListWidget(
-                                        pad: index % 2 == 0 ? true : false,
+                                    ? const SingleItemSimmer()
+                                    : ListIteamListWidget(
                                         index: index,
                                         productList: productList,
+                                        length: productList.length,
                                         setState: setStateNow,
                                       );
                               },
                             ),
+                          )
+                        : NotificationListener<OverscrollIndicatorNotification>(
+                            onNotification: (overscroll) {
+                              overscroll.disallowIndicator();
+                              return true;
+                            },
+                            child: GridView.count(
+                              padding: const EdgeInsetsDirectional.only(
+                                  top: 5, ),
+                              crossAxisCount: 2,
+                              shrinkWrap: true,
+                              // controller: controller,
+                              childAspectRatio: 0.6,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: List.generate(
+                                (offset < total)
+                                    ? productList.length + 1
+                                    : productList.length,
+                                (index) {
+                                  return (index == productList.length &&
+                                          isLoadingmore)
+                                      ? const SimmerSingleProduct()
+                                      : GridViewProductListWidget(
+                                          pad: index % 2 == 0 ? true : false,
+                                          index: index,
+                                          productList: productList,
+                                          setState: setStateNow,
+                                        );
+                                },
+                              ),
+                            ),
                           ),
-                        ),
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 

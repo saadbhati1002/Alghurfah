@@ -164,12 +164,12 @@ class HomePageProvider extends ChangeNotifier {
             popularList =
                 (data as List).map((data) => Product.fromCat(data)).toList();
 
-            if (popularList.isNotEmpty) {
-              Product pop = Product.popular(
-                  'Popular', DesignConfiguration.setSvgPath('popular'));
-              catList.insert(0, pop);
-              context.read<CategoryProvider>().setSubList(popularList);
-            }
+            // if (popularList.isNotEmpty) {
+            //   Product pop = Product.popular(
+            //       'Popular', DesignConfiguration.setSvgPath('popular'));
+            //   catList.insert(0, pop);
+            //   context.read<CategoryProvider>().setSubList(popularList);
+            // }
           }
           catLoading = false;
           notifyListeners();

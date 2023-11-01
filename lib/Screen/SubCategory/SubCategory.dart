@@ -71,7 +71,7 @@ class _SubCategoryState extends State<SubCategory> {
                 child: Container(
                   color: Colors.white,
                   child: DesignConfiguration.getCacheNotworkImage(
-                    boxFit: BoxFit.cover,
+                    boxFit: BoxFit.fill,
                     context: context,
                     heightvalue: null,
                     widthvalue: null,
@@ -105,8 +105,8 @@ class _SubCategoryState extends State<SubCategory> {
               decoration: const BoxDecoration(
                 color: colors.eCommerceColor,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10)),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20)),
               ),
               alignment: Alignment.center,
               child: Text(
@@ -126,17 +126,17 @@ class _SubCategoryState extends State<SubCategory> {
       onTap: () {
         if (widget.subList![index].subList == null ||
             widget.subList![index].subList!.isEmpty) {
-          // Navigator.push(
-          //   context,
-          //   CupertinoPageRoute(
-          //     builder: (context) => ProductList(
-          //       name: widget.subList![index].name,
-          //       id: widget.subList![index].id,
-          //       tag: false,
-          //       fromSeller: false,
-          //     ),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => ProductList(
+                name: widget.subList![index].name,
+                id: widget.subList![index].id,
+                tag: false,
+                fromSeller: false,
+              ),
+            ),
+          );
         } else {
           Navigator.push(
             context,

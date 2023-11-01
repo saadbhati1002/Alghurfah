@@ -330,26 +330,26 @@ class _MyDrawerState extends State<MyDrawer> {
                                                     .catList[index]
                                                     .subList!
                                                     .isEmpty) {
-                                              // await Navigator.push(
-                                              //   context,
-                                              //   CupertinoPageRoute(
-                                              //     builder: (context) =>
-                                              //         ProductList(
-                                              //       name: context
-                                              //           .read<
-                                              //               HomePageProvider>()
-                                              //           .catList[index]
-                                              //           .name,
-                                              //       id: context
-                                              //           .read<
-                                              //               HomePageProvider>()
-                                              //           .catList[index]
-                                              //           .id,
-                                              //       tag: false,
-                                              //       fromSeller: false,
-                                              //     ),
-                                              //   ),
-                                              // );
+                                              await Navigator.push(
+                                                context,
+                                                CupertinoPageRoute(
+                                                  builder: (context) =>
+                                                      ProductList(
+                                                    name: context
+                                                        .read<
+                                                            HomePageProvider>()
+                                                        .catList[index]
+                                                        .name,
+                                                    id: context
+                                                        .read<
+                                                            HomePageProvider>()
+                                                        .catList[index]
+                                                        .id,
+                                                    tag: false,
+                                                    fromSeller: false,
+                                                  ),
+                                                ),
+                                              );
                                             } else {
                                               await Navigator.push(
                                                 context,
