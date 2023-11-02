@@ -23,7 +23,6 @@ class GridViewLayOut extends StatefulWidget {
     Key? key,
     required this.index,
     required this.update,
-
   }) : super(key: key);
 
   @override
@@ -119,272 +118,187 @@ class _GridViewLayOutState extends State<GridViewLayOut> {
 
       double width = deviceWidth! * 0.5;
       Product model = context.read<ExploreProvider>().productList[index];
-      return Card(
-        elevation: 0.2,
-        margin: const EdgeInsetsDirectional.only(bottom: 2, end: 2),
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         child: InkWell(
-          borderRadius: BorderRadius.circular(circularBorderRadius10),
-          child: Stack(
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: ClipRRect(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: Stack(
+                  alignment: Alignment.bottomRight,
+                  clipBehavior: Clip.none,
+                  children: [
+                    ClipRRect(
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(circularBorderRadius5),
-                        topRight: Radius.circular(circularBorderRadius5),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
                       ),
                       child: Hero(
-                        transitionOnUserGestures: true,
-                        tag:
-                            '$heroTagUniqueString${context.read<ExploreProvider>().productList[index].id}$index',
+                        tag: '$heroTagUniqueString${widget.index}${model.id}',
                         child: DesignConfiguration.getCacheNotworkImage(
-                          boxFit: BoxFit.cover,
+                          boxFit: BoxFit.contain,
                           context: context,
                           heightvalue: double.maxFinite,
-                          imageurlString: context
-                              .read<ExploreProvider>()
-                              .productList[index]
-                              .image!,
-                          placeHolderSize: width,
                           widthvalue: double.maxFinite,
+                          placeHolderSize: width,
+                          imageurlString: model.image!,
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      start: 10.0,
-                      top: 15,
-                    ),
-                    child: Text(
-                      context.read<ExploreProvider>().productList[index].name!,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Theme.of(context).colorScheme.lightBlack,
-                            fontSize: textFontSize10,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'ubuntu',
-                            fontStyle: FontStyle.normal,
-                          ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      start: 10.0,
-                      top: 5,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          ' ${DesignConfiguration.getPriceFormat(context, price)!}',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.blue,
-                            fontSize: textFontSize14,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontFamily: 'ubuntu',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  double.parse(context
-                              .read<ExploreProvider>()
-                              .productList[index]
-                              .prVarientList![0]
-                              .disPrice!) !=
-                          0
-                      ? Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                            start: 10.0,
-                            top: 5,
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                double.parse(context
-                                            .read<ExploreProvider>()
-                                            .productList[index]
-                                            .prVarientList![0]
-                                            .disPrice!) !=
-                                        0
-                                    ? '${DesignConfiguration.getPriceFormat(context, double.parse(context.read<ExploreProvider>().productList[index].prVarientList![0].price!))}'
-                                    : '',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall!
-                                    .copyWith(
-                                      fontFamily: 'ubuntu',
-                                      decoration: TextDecoration.lineThrough,
-                                      decorationColor: colors.darkColor3,
-                                      decorationStyle:
-                                          TextDecorationStyle.solid,
-                                      decorationThickness: 2,
-                                      letterSpacing: 0,
-                                      fontSize: textFontSize10,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    ),
-                              ),
-                              Flexible(
+                    Positioned.fill(
+                      child: model.availability == '0'
+                          ? Container(
+                              height: 55,
+                              color: colors.white70,
+                              padding: const EdgeInsets.all(2),
+                              child: Center(
                                 child: Text(
-                                  '   ${double.parse(offPer!).round().toStringAsFixed(2)}%',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                                  getTranslated(context, 'OUT_OF_STOCK_LBL')!,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .labelSmall!
+                                      .bodySmall!
                                       .copyWith(
+                                        color: colors.red,
+                                        fontWeight: FontWeight.bold,
                                         fontFamily: 'ubuntu',
-                                        color: colors.primary,
-                                        letterSpacing: 0,
-                                        fontSize: textFontSize10,
-                                        fontWeight: FontWeight.w400,
-                                        fontStyle: FontStyle.normal,
                                       ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                            ],
-                          ),
-                        )
-                      : Container(),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                      start: 10.0,
-                      top: 10,
-                      bottom: 5.0,
+                            )
+                          : Container(),
                     ),
-                    child: StarRating(
-                      totalRating: context
-                          .read<ExploreProvider>()
-                          .productList[index]
-                          .rating!,
-                      noOfRatings: context
-                          .read<ExploreProvider>()
-                          .productList[index]
-                          .noOfRating!,
-                      needToShowNoOfRatings: true,
-                    ),
-                  ),
-                ],
-              ),
-              Positioned.directional(
-                textDirection: Directionality.of(context),
-                top: 0,
-                end: 0,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.white,
-                      borderRadius: const BorderRadiusDirectional.only(
-                          bottomStart: Radius.circular(circularBorderRadius10),
-                          topEnd: Radius.circular(circularBorderRadius5))),
-                  child: model.isFavLoading!
-                      ? const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 0.7,
-                            ),
-                          ),
-                        )
-                      : Selector<FavoriteProvider, List<String?>>(
-                          builder: (context, data, child) {
-                            return InkWell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  !data.contains(model.id)
-                                      ? Icons.favorite_border
-                                      : Icons.favorite,
-                                  size: 20,
-                                ),
-                              ),
-                              onTap: () {
-                                if (CUR_USERID != null) {
-                                  !data.contains(model.id)
-                                      ? context
-                                          .read<ExploreProvider>()
-                                          .setFavorateNow(
-                                            index: index,
-                                            model: model,
-                                            context: context,
-                                            update: widget.update,
-                                            showSanckBarNow:
-                                                showSanckBarNowForAdd,
-                                          )
-                                      : context
-                                          .read<ExploreProvider>()
-                                          .removeFav(
-                                              index,
-                                              model,
-                                              context,
-                                              widget.update,
-                                              context
-                                                  .read<ExploreProvider>()
-                                                  .productList,
-                                              showSanckBarNowForRemove);
-                                } else {
-                                  if (!data.contains(model.id)) {
-                                    model.isFavLoading = true;
-                                    model.isFav = '1';
-                                    context
-                                        .read<FavoriteProvider>()
-                                        .addFavItem(model);
-                                    db.addAndRemoveFav(model.id!, true);
-                                    model.isFavLoading = false;
-                                    setSnackbar(
-                                        getTranslated(
-                                            context, 'Added to favorite')!,
-                                        context);
-                                  } else {
-                                    model.isFavLoading = true;
-                                    model.isFav = '0';
-                                    context
-                                        .read<FavoriteProvider>()
-                                        .removeFavItem(
-                                            model.prVarientList![0].id!);
-                                    db.addAndRemoveFav(model.id!, false);
-                                    model.isFavLoading = false;
-                                    setSnackbar(
-                                        getTranslated(
-                                            context, 'Removed from favorite')!,
-                                        context);
-                                  }
-                                  setState(
-                                    () {},
-                                  );
-                                }
-                              },
-                            );
-                          },
-                          selector: (_, provider) => provider.favIdList,
-                        ),
+                  ],
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 10.0,
+                  top: 10,
+                ),
+                child: Text(
+                  model.name!,
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Colors.black,
+                        fontSize: textFontSize15,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal,
+                        // fontFamily: 'ubuntu',
+                      ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 8.0,
+                  top: 5,
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      ' ${DesignConfiguration.getPriceFormat(context, price)!}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.blue,
+                        fontSize: textFontSize14,
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.normal,
+                        fontFamily: 'ubuntu',
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                          start: 10.0,
+                          top: 5,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              double.parse(model.prVarientList![0].disPrice!) !=
+                                      0
+                                  ? '${DesignConfiguration.getPriceFormat(context, double.parse(model.prVarientList![0].price!))}'
+                                  : '',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(
+                                    fontFamily: 'ubuntu',
+                                    color: Colors.black,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor: Colors.black,
+                                    decorationStyle: TextDecorationStyle.solid,
+                                    decorationThickness: 2,
+                                    letterSpacing: 0,
+                                    fontSize: textFontSize10,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FontStyle.normal,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => ProductDetail(
+                        model: model,
+                        index: widget.index,
+                        secPos: 0,
+                        list: true,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 25,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                    color: colors.serviceColor,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20)),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    getTranslated(context, 'VIEW')!,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
             ],
           ),
           onTap: () {
-            Product model = context.read<ExploreProvider>().productList[index];
             Navigator.push(
               context,
               PageRouteBuilder(
                 pageBuilder: (_, __, ___) => ProductDetail(
                   model: model,
+                  index: widget.index,
                   secPos: 0,
-                  index: index,
-                  list: false,
+                  list: true,
                 ),
               ),
             );
           },
         ),
       );
+      ;
     } else {
       return Container();
     }
