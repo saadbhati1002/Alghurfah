@@ -24,6 +24,8 @@ extension colors on ColorScheme {
   static const Color eCommerceColor = Color(0xFFBC8069);
   static const Color serviceColor = Color(0xFF3D7081);
   static const Color secondary = Color(0xffFDC994);
+  static const Color categoryDiscretion = Color(0xFFDDCEBC);
+  static const Color categoryNewIn = Color(0xFFD8B678);
 
   Color get btnColor => brightness == Brightness.dark ? whiteTemp : primary;
 

@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:eshop_multivendor/Helper/ApiBaseHelper.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Product%20Detail/Widget/productExtraDetail.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:eshop_multivendor/widgets/star_rating.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/Constant.dart';
@@ -42,6 +44,7 @@ import 'Widget/reviewUI.dart';
 import 'Widget/sellerDetail.dart';
 import 'Widget/specialExtraOfferBtn.dart';
 import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 class ProductDetail extends StatefulWidget {
   final Product? model;
@@ -553,19 +556,24 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
     );
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      endDrawer: const MyDrawer(),
       key: _scaffoldKey,
-      bottomNavigationBar: allAppBottomSheet(context),
-      backgroundColor: isBottom
-          ? Colors.transparent.withOpacity(0.5)
-          : Theme.of(context).canvasColor,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: widget.model!.name!, context: context, setState: setStateNow),
       body: isNetworkAvail
           ? Stack(
               children: <Widget>[
+                const BackgroundImage(),
                 _showContent(),
                 Selector<CartProvider, bool>(
                   builder: (context, data, child) {
@@ -639,13 +647,18 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                     return Stack(
                       children: [
                         sliderList[index] != 'youtube'
-                            ? DesignConfiguration.getCacheNotworkImage(
-                                boxFit: BoxFit.cover,
-                                context: context,
-                                heightvalue: constraints.maxHeight,
-                                widthvalue: constraints.maxWidth,
-                                placeHolderSize: deviceWidth! * 1,
-                                imageurlString: sliderList[index]!,
+                            ? ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(45),
+                                    bottomRight: Radius.circular(45)),
+                                child: DesignConfiguration.getCacheNotworkImage(
+                                  boxFit: BoxFit.cover,
+                                  context: context,
+                                  heightvalue: constraints.maxHeight,
+                                  widthvalue: constraints.maxWidth,
+                                  placeHolderSize: deviceWidth! * 1,
+                                  imageurlString: sliderList[index]!,
+                                ),
                               )
                             : playIcon()
                       ],
@@ -1485,31 +1498,17 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
       expandedHeight: MediaQuery.of(context).size.height * 0.40,
       floating: false,
       pinned: true,
-      backgroundColor: Theme.of(context).colorScheme.white,
+      elevation: 2,
+      backgroundColor: Colors.transparent,
       stretch: true,
       leading: Material(
         color: Colors.transparent,
         child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x1a0400ff),
-                  offset: Offset(0, 0),
-                  blurRadius: 30,
-                )
-              ],
-              color: Theme.of(context).colorScheme.white,
-              borderRadius: BorderRadius.circular(circularBorderRadius7),
-            ),
-            width: 33,
-            height: 33,
-            child: InkWell(
-              onTap: () => Navigator.of(context).pop(),
-              child: const Icon(
-                Icons.arrow_back_ios_rounded,
-                color: colors.primary,
-              ),
+          child: InkWell(
+            onTap: () => Navigator.of(context).pop(),
+            child: const Icon(
+              Icons.arrow_back_ios_rounded,
+              color: colors.primary,
             ),
           ),
         ),
@@ -1521,155 +1520,145 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
             bottom: 10.0,
             top: 10.0,
           ),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                circularBorderRadius7,
+          child: Center(
+            child: IconButton(
+              icon: const Icon(
+                Icons.share,
+                size: 25.0,
+                color: colors.primary,
               ),
-              color: Theme.of(context).colorScheme.white,
-            ),
-            width: 33,
-            height: 33,
-            child: Center(
-              child: IconButton(
-                icon: const Icon(
-                  Icons.share,
-                  size: 20.0,
-                  color: colors.primary,
-                ),
-                onPressed: createDynamicLink,
-              ),
+              onPressed: createDynamicLink,
             ),
           ),
         ),
-        Selector<UserProvider, String>(
-          builder: (context, data, child) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                right: 10.0,
-                bottom: 10.0,
-                top: 10.0,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(circularBorderRadius7),
-                  color: Theme.of(context).colorScheme.white,
-                ),
-                width: 33,
-                height: 33,
-                child: IconButton(
-                  icon: Stack(
-                    children: [
-                      Center(
-                        child: SvgPicture.asset(
-                          DesignConfiguration.setSvgPath('appbarCart'),
-                          colorFilter: const ColorFilter.mode(
-                              colors.primary, BlendMode.srcIn),
-                        ),
-                      ),
-                      (data != '' && data.isNotEmpty && data != '0')
-                          ? Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: Container(
-                                height: 20,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: colors.primary,
-                                ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      data,
-                                      style: TextStyle(
-                                        fontSize: textFontSize8,
-                                        fontFamily: 'ubuntu',
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Theme.of(context).colorScheme.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : Container()
-                    ],
-                  ),
-                  onPressed: () {
-                    cartTotalClear();
-                    Routes.navigateToCartScreen(context, false);
-                  },
-                ),
-              ),
-            );
-          },
-          selector: (_, HomePageProvider) => HomePageProvider.curCartCount,
-        ),
-        Selector<FavoriteProvider, List<String?>>(
-          builder: (context, data, child) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                right: 10.0,
-                bottom: 10.0,
-                top: 10.0,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(circularBorderRadius7),
-                  color: Theme.of(context).colorScheme.white,
-                ),
-                width: 33,
-                height: 33,
-                child: InkWell(
-                  onTap: () {
-                    if (CUR_USERID != null) {
-                      !data.contains(widget.model!.id)
-                          ? _setFav(-1, -1)
-                          : _removeFav(-1, -1);
-                    } else {
-                      if (!data.contains(widget.model!.id)) {
-                        widget.model!.isFavLoading = true;
-                        widget.model!.isFav = '1';
-                        context
-                            .read<FavoriteProvider>()
-                            .addFavItem(widget.model);
-                        db.addAndRemoveFav(widget.model!.id!, true);
-                        widget.model!.isFavLoading = false;
-                        setSnackbar(
-                            getTranslated(context, 'Added to favorite')!,
-                            context);
-                      } else {
-                        widget.model!.isFavLoading = true;
-                        widget.model!.isFav = '0';
-                        context
-                            .read<FavoriteProvider>()
-                            .removeFavItem(widget.model!.prVarientList![0].id!);
-                        db.addAndRemoveFav(widget.model!.id!, false);
-                        widget.model!.isFavLoading = false;
-                        setSnackbar(
-                            getTranslated(context, 'Removed from favorite')!,
-                            context);
-                      }
-                      setState(
-                        () {},
-                      );
-                    }
-                  },
-                  child: Icon(
-                    !data.contains(widget.model!.id)
-                        ? Icons.favorite_border
-                        : Icons.favorite,
-                    size: 20,
-                    color: colors.primary,
-                  ),
-                ),
-              ),
-            );
-          },
-          selector: (_, provider) => provider.favIdList,
-        ),
+        // Selector<UserProvider, String>(
+        //   builder: (context, data, child) {
+        //     return Padding(
+        //       padding: const EdgeInsets.only(
+        //         right: 10.0,
+        //         bottom: 10.0,
+        //         top: 10.0,
+        //       ),
+        //       child: Container(
+        //         decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(circularBorderRadius7),
+        //           color: Theme.of(context).colorScheme.white,
+        //         ),
+        //         width: 33,
+        //         height: 33,
+        //         child: IconButton(
+        //           icon: Stack(
+        //             children: [
+        //               Center(
+        //                 child: SvgPicture.asset(
+        //                   DesignConfiguration.setSvgPath('appbarCart'),
+        //                   colorFilter: const ColorFilter.mode(
+        //                       colors.primary, BlendMode.srcIn),
+        //                 ),
+        //               ),
+        //               (data != '' && data.isNotEmpty && data != '0')
+        //                   ? Positioned(
+        //                       bottom: 5,
+        //                       right: 5,
+        //                       child: Container(
+        //                         height: 20,
+        //                         decoration: const BoxDecoration(
+        //                           shape: BoxShape.circle,
+        //                           color: colors.primary,
+        //                         ),
+        //                         child: Center(
+        //                           child: Padding(
+        //                             padding: const EdgeInsets.all(3),
+        //                             child: Text(
+        //                               data,
+        //                               style: TextStyle(
+        //                                 fontSize: textFontSize8,
+        //                                 fontFamily: 'ubuntu',
+        //                                 fontWeight: FontWeight.bold,
+        //                                 color:
+        //                                     Theme.of(context).colorScheme.white,
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                       ),
+        //                     )
+        //                   : Container()
+        //             ],
+        //           ),
+        //           onPressed: () {
+        //             cartTotalClear();
+        //             Routes.navigateToCartScreen(context, false);
+        //           },
+        //         ),
+        //       ),
+        //     );
+        //   },
+        //   selector: (_, HomePageProvider) => HomePageProvider.curCartCount,
+        // ),
+        // Selector<FavoriteProvider, List<String?>>(
+        //   builder: (context, data, child) {
+        //     return Padding(
+        //       padding: const EdgeInsets.only(
+        //         right: 10.0,
+        //         bottom: 10.0,
+        //         top: 10.0,
+        //       ),
+        //       child: Container(
+        //         decoration: BoxDecoration(
+        //           borderRadius: BorderRadius.circular(circularBorderRadius7),
+        //           color: Theme.of(context).colorScheme.white,
+        //         ),
+        //         width: 33,
+        //         height: 33,
+        //         child: InkWell(
+        //           onTap: () {
+        //             if (CUR_USERID != null) {
+        //               !data.contains(widget.model!.id)
+        //                   ? _setFav(-1, -1)
+        //                   : _removeFav(-1, -1);
+        //             } else {
+        //               if (!data.contains(widget.model!.id)) {
+        //                 widget.model!.isFavLoading = true;
+        //                 widget.model!.isFav = '1';
+        //                 context
+        //                     .read<FavoriteProvider>()
+        //                     .addFavItem(widget.model);
+        //                 db.addAndRemoveFav(widget.model!.id!, true);
+        //                 widget.model!.isFavLoading = false;
+        //                 setSnackbar(
+        //                     getTranslated(context, 'Added to favorite')!,
+        //                     context);
+        //               } else {
+        //                 widget.model!.isFavLoading = true;
+        //                 widget.model!.isFav = '0';
+        //                 context
+        //                     .read<FavoriteProvider>()
+        //                     .removeFavItem(widget.model!.prVarientList![0].id!);
+        //                 db.addAndRemoveFav(widget.model!.id!, false);
+        //                 widget.model!.isFavLoading = false;
+        //                 setSnackbar(
+        //                     getTranslated(context, 'Removed from favorite')!,
+        //                     context);
+        //               }
+        //               setState(
+        //                 () {},
+        //               );
+        //             }
+        //           },
+        //           child: Icon(
+        //             !data.contains(widget.model!.id)
+        //                 ? Icons.favorite_border
+        //                 : Icons.favorite,
+        //             size: 20,
+        //             color: colors.primary,
+        //           ),
+        //         ),
+        //       ),
+        //     );
+        //   },
+        //   selector: (_, provider) => provider.favIdList,
+        // ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         background: _slider(),
@@ -1715,7 +1704,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                color: Theme.of(context).colorScheme.white,
+                                color: Colors.transparent,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
@@ -1746,104 +1735,348 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                   ],
                                 ),
                               ),
-                              getDivider(2, context),
-                              ProductHighLightsDetail(
-                                model: widget.model,
-                                update: update,
-                              ),
-                              widget.model!.attributeList!.isNotEmpty
-                                  ? getDivider(2, context)
-                                  : Container(),
-                              getvariantPart(),
-                              getDivider(2, context),
-                              context.read<CartProvider>().promoList.isNotEmpty
-                                  ? SaveExtraWithOffers(
-                                      update: update,
+                              widget.model!.availability != '0'
+                                  ? Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () async {
+                                              if (widget.model!.attributeList!
+                                                  .isEmpty) {
+                                                String qty;
+                                                qty = qtyController.text;
+                                                addToCart(
+                                                  qty,
+                                                  true,
+                                                  true,
+                                                  widget.model!,
+                                                );
+                                              } else {
+                                                String qty;
+                                                qty = qtyController.text;
+                                                addToCart(
+                                                  qty,
+                                                  true,
+                                                  true,
+                                                  widget.model!,
+                                                );
+                                              }
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              height: 45,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .55,
+                                              decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(25),
+                                                    bottomLeft:
+                                                        Radius.circular(25),
+                                                  ),
+                                                  color: colors.serviceColor),
+                                              child: Text(
+                                                getTranslated(
+                                                    context, 'BUYNOW')!,
+                                                textAlign: TextAlign.center,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium!
+                                                    .copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .black,
+                                                      fontSize: textFontSize16,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontFamily: 'ubuntu',
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Selector<FavoriteProvider,
+                                              List<String?>>(
+                                            builder: (context, data, child) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  if (CUR_USERID != null) {
+                                                    !data.contains(
+                                                            widget.model!.id)
+                                                        ? _setFav(-1, -1)
+                                                        : _removeFav(-1, -1);
+                                                  } else {
+                                                    if (!data.contains(
+                                                        widget.model!.id)) {
+                                                      widget.model!
+                                                          .isFavLoading = true;
+                                                      widget.model!.isFav = '1';
+                                                      context
+                                                          .read<
+                                                              FavoriteProvider>()
+                                                          .addFavItem(
+                                                              widget.model);
+                                                      db.addAndRemoveFav(
+                                                          widget.model!.id!,
+                                                          true);
+                                                      widget.model!
+                                                          .isFavLoading = false;
+                                                      setSnackbar(
+                                                          getTranslated(context,
+                                                              'Added to favorite')!,
+                                                          context);
+                                                    } else {
+                                                      widget.model!
+                                                          .isFavLoading = true;
+                                                      widget.model!.isFav = '0';
+                                                      context
+                                                          .read<
+                                                              FavoriteProvider>()
+                                                          .removeFavItem(widget
+                                                              .model!
+                                                              .prVarientList![0]
+                                                              .id!);
+                                                      db.addAndRemoveFav(
+                                                          widget.model!.id!,
+                                                          false);
+                                                      widget.model!
+                                                          .isFavLoading = false;
+                                                      setSnackbar(
+                                                          getTranslated(context,
+                                                              'Removed from favorite')!,
+                                                          context);
+                                                    }
+                                                    setState(
+                                                      () {},
+                                                    );
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: 45,
+                                                  width: 55,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    20),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    20),
+                                                          ),
+                                                          color: colors
+                                                              .serviceColor),
+                                                  child: const Icon(
+                                                    Icons.favorite,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            selector: (_, provider) =>
+                                                provider.favIdList,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () async {
+                                              addToCart(
+                                                qtyController.text,
+                                                false,
+                                                true,
+                                                widget.model!,
+                                              );
+                                              if (widget.model!.attributeList!
+                                                  .isEmpty) {
+                                                addToCart(
+                                                  qtyController.text,
+                                                  false,
+                                                  true,
+                                                  widget.model!,
+                                                );
+                                              } else {
+                                                addToCart(
+                                                  qtyController.text,
+                                                  false,
+                                                  true,
+                                                  widget.model!,
+                                                );
+                                              }
+                                            },
+                                            child: Container(
+                                                height: 45,
+                                                width: 55,
+                                                decoration: const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(20),
+                                                      bottomLeft:
+                                                          Radius.circular(20),
+                                                    ),
+                                                    color: colors.serviceColor),
+                                                child: const Icon(
+                                                  Icons.card_travel_outlined,
+                                                  color: Colors.white,
+                                                )),
+                                          )
+                                        ],
+                                      ),
                                     )
-                                  : const SizedBox.shrink(),
-                              context.read<CartProvider>().promoList.isNotEmpty
-                                  ? getDivider(2, context)
-                                  : Container(),
-                              ProductMoreDetail(
-                                model: widget.model,
-                                update: update,
+                                  : AnimatedBuilder(
+                                      animation: buttonAnimationController,
+                                      builder: (context, child) {
+                                        return Container(
+                                          height: heightAnimation.value,
+                                          decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .black26,
+                                                blurRadius: 10,
+                                              )
+                                            ],
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              getTranslated(
+                                                  context, 'OUT_OF_STOCK_LBL')!,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge!
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: colors.red,
+                                                    fontFamily: 'ubuntu',
+                                                  ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                              const SizedBox(
+                                height: 20,
                               ),
-                              getDivider(2, context),
-                              _deliverPincode(),
-                              getDivider(2, context),
-                              CompareProduct(model: widget.model),
-                              getDivider(2, context),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      )),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      ProductHighLightsDetail(
+                                        model: widget.model,
+                                        update: update,
+                                      ),
+                                      getvariantPart(),
+                                      // context
+                                      //         .read<CartProvider>()
+                                      //         .promoList
+                                      //         .isNotEmpty
+                                      //     ? SaveExtraWithOffers(
+                                      //         update: update,
+                                      //       )
+                                      //     : const SizedBox.shrink(),
+                                      ProductMoreDetail(
+                                        model: widget.model,
+                                        update: update,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              // getDivider(2, context),
+                              // _deliverPincode(),
+                              // getDivider(2, context),
+                              // CompareProduct(model: widget.model),
+                              // getDivider(2, context),
                               SellerDetail(model: widget.model),
-                              getDivider(2, context),
-                              SpeciExtraBtnDetails(model: widget.model),
-                              extraDesc(widget.model!)
+                              // getDivider(2, context),
+                              // SpeciExtraBtnDetails(model: widget.model),
+                              // extraDesc(widget.model!)
                             ],
                           ),
-                          context
-                                  .read<ProductDetailProvider>()
-                                  .reviewList
-                                  .isNotEmpty
-                              ? getDivider(2, context)
-                              : Container(),
-                          ReviewWidget(
-                            secPos: widget.secPos,
-                            widgetindex: widget.index,
-                            model: widget.model,
-                          ),
-                          faqsQuesAndAns(),
-                          productList.isNotEmpty
-                              ? Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    getTranslated(context, 'MORE_PRODUCT')!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .fontColor,
-                                          fontFamily: 'ubuntu',
-                                        ),
-                                  ),
-                                )
-                              : Container(),
-                          productList.isNotEmpty
-                              ? Container(
-                                  height: 230,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child:
-                                      NotificationListener<ScrollNotification>(
-                                    onNotification:
-                                        (ScrollNotification scrollInfo) {
-                                      if (scrollInfo.metrics.pixels ==
-                                          scrollInfo.metrics.maxScrollExtent) {
-                                        getProduct();
-                                      }
-                                      return true;
-                                    },
-                                    child: ListView.builder(
-                                      physics:
-                                          const AlwaysScrollableScrollPhysics(),
-                                      scrollDirection: Axis.horizontal,
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          (notificationoffset < totalProduct)
-                                              ? productList.length + 1
-                                              : productList.length,
-                                      itemBuilder: (context, index) {
-                                        return (index == productList.length &&
-                                                !notificationisloadmore)
-                                            ? const SimmerSingle()
-                                            : productItem(index, 1);
-                                      },
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  height: 0,
-                                ),
+                          // context
+                          //         .read<ProductDetailProvider>()
+                          //         .reviewList
+                          //         .isNotEmpty
+                          //     ? getDivider(2, context)
+                          //     : Container(),
+                          // ReviewWidget(
+                          //   secPos: widget.secPos,
+                          //   widgetindex: widget.index,
+                          //   model: widget.model,
+                          // ),
+                          // faqsQuesAndAns(),
+                          // productList.isNotEmpty
+                          //     ? Padding(
+                          //         padding: const EdgeInsets.all(8.0),
+                          //         child: Text(
+                          //           getTranslated(context, 'MORE_PRODUCT')!,
+                          //           style: Theme.of(context)
+                          //               .textTheme
+                          //               .titleMedium!
+                          //               .copyWith(
+                          //                 color: Theme.of(context)
+                          //                     .colorScheme
+                          //                     .fontColor,
+                          //                 fontFamily: 'ubuntu',
+                          //               ),
+                          //         ),
+                          //       )
+                          //     : Container(),
+                          // productList.isNotEmpty
+                          //     ? Container(
+                          //         height: 230,
+                          //         padding: const EdgeInsets.symmetric(
+                          //             horizontal: 10),
+                          //         child:
+                          //             NotificationListener<ScrollNotification>(
+                          //           onNotification:
+                          //               (ScrollNotification scrollInfo) {
+                          //             if (scrollInfo.metrics.pixels ==
+                          //                 scrollInfo.metrics.maxScrollExtent) {
+                          //               getProduct();
+                          //             }
+                          //             return true;
+                          //           },
+                          //           child: ListView.builder(
+                          //             physics:
+                          //                 const AlwaysScrollableScrollPhysics(),
+                          //             scrollDirection: Axis.horizontal,
+                          //             shrinkWrap: true,
+                          //             itemCount:
+                          //                 (notificationoffset < totalProduct)
+                          //                     ? productList.length + 1
+                          //                     : productList.length,
+                          //             itemBuilder: (context, index) {
+                          //               return (index == productList.length &&
+                          //                       !notificationisloadmore)
+                          //                   ? const SimmerSingle()
+                          //                   : productItem(index, 1);
+                          //             },
+                          //           ),
+                          //         ),
+                          //       )
+                          //     : Container(
+                          //         height: 0,
+                          //       ),
                           _mostFav()
                         ],
                       )
@@ -1854,288 +2087,288 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
             ),
           ),
         ),
-        widget.model!.attributeList!.isEmpty
-            ? widget.model!.availability != '0'
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Theme.of(context).colorScheme.black26,
-                          blurRadius: 10,
-                        )
-                      ],
-                    ),
-                    child: AnimatedBuilder(
-                        animation: buttonAnimationController,
-                        builder: (context, child) {
-                          return Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    addToCart(
-                                      qtyController.text,
-                                      false,
-                                      true,
-                                      widget.model!,
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    height: heightAnimation.value,
-                                    child: Center(
-                                      child: Text(
-                                        getTranslated(context, 'ADD_CART')!,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: colors.primary,
-                                              fontWeight: FontWeight.normal,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    String qty;
-                                    qty = qtyController.text;
-                                    addToCart(
-                                      qty,
-                                      true,
-                                      true,
-                                      widget.model!,
-                                    );
-                                  },
-                                  child: Container(
-                                    height: heightAnimation.value,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            colors.grad1Color,
-                                            colors.grad2Color
-                                          ],
-                                          stops: [
-                                            0,
-                                            1
-                                          ]),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        getTranslated(context, 'BUYNOW')!,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .white,
-                                              fontSize: textFontSize16,
-                                              fontWeight: FontWeight.normal,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }),
-                  )
-                : AnimatedBuilder(
-                    animation: buttonAnimationController,
-                    builder: (context, child) {
-                      return Container(
-                        height: heightAnimation.value,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).colorScheme.black26,
-                              blurRadius: 10,
-                            )
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            getTranslated(context, 'OUT_OF_STOCK_LBL')!,
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: colors.red,
-                                  fontFamily: 'ubuntu',
-                                ),
-                          ),
-                        ),
-                      );
-                    })
-            : available!
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Theme.of(context).colorScheme.black26,
-                            blurRadius: 10)
-                      ],
-                    ),
-                    child: AnimatedBuilder(
-                        animation: buttonAnimationController,
-                        builder: (context, child) {
-                          return Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    addToCart(
-                                      qtyController.text,
-                                      false,
-                                      true,
-                                      widget.model!,
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    height: heightAnimation.value,
-                                    child: Center(
-                                      child: Text(
-                                        getTranslated(context, 'ADD_CART')!,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: colors.primary,
-                                              fontWeight: FontWeight.normal,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: InkWell(
-                                  onTap: () async {
-                                    String qty;
-                                    qty = qtyController.text;
-                                    addToCart(
-                                      qty,
-                                      true,
-                                      true,
-                                      widget.model!,
-                                    );
-                                  },
-                                  child: Container(
-                                    height: heightAnimation.value,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            colors.grad1Color,
-                                            colors.grad2Color
-                                          ],
-                                          stops: [
-                                            0,
-                                            1
-                                          ]),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        getTranslated(context, 'BUYNOW')!,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .white,
-                                              fontSize: textFontSize16,
-                                              fontWeight: FontWeight.normal,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }),
-                  )
-                : available == false || outOfStock == true
-                    ? outOfStock == true
-                        ? AnimatedBuilder(
-                            animation: buttonAnimationController,
-                            builder: (context, child) {
-                              return Container(
-                                height: heightAnimation.value,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Theme.of(context).colorScheme.black26,
-                                      blurRadius: 10,
-                                    )
-                                  ],
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    getTranslated(context, 'OUT_OF_STOCK_LBL')!,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.red,
-                                          fontFamily: 'ubuntu',
-                                        ),
-                                  ),
-                                ),
-                              );
-                            })
-                        : Container(
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).colorScheme.black26,
-                                  blurRadius: 10,
-                                )
-                              ],
-                            ),
-                            child: Center(
-                              child: Text(
-                                getTranslated(
-                                    context, 'Varient not available')!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge!
-                                    .copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red,
-                                      fontFamily: 'ubuntu',
-                                    ),
-                              ),
-                            ),
-                          )
-                    : Container()
+        // widget.model!.attributeList!.isEmpty
+        //     ? widget.model!.availability != '0'
+        //         ? Container(
+        //             decoration: BoxDecoration(
+        //               color: Theme.of(context).colorScheme.white,
+        //               boxShadow: [
+        //                 BoxShadow(
+        //                   color: Theme.of(context).colorScheme.black26,
+        //                   blurRadius: 10,
+        //                 )
+        //               ],
+        //             ),
+        //             child: AnimatedBuilder(
+        //                 animation: buttonAnimationController,
+        //                 builder: (context, child) {
+        //                   return Row(
+        //                     mainAxisSize: MainAxisSize.min,
+        //                     children: [
+        //                       Expanded(
+        //                         child: InkWell(
+        //                           onTap: () async {
+        //                             addToCart(
+        //                               qtyController.text,
+        //                               false,
+        //                               true,
+        //                               widget.model!,
+        //                             );
+        //                           },
+        //                           child: SizedBox(
+        //                             height: heightAnimation.value,
+        //                             child: Center(
+        //                               child: Text(
+        //                                 getTranslated(context, 'ADD_CART')!,
+        //                                 textAlign: TextAlign.center,
+        //                                 style: Theme.of(context)
+        //                                     .textTheme
+        //                                     .titleMedium!
+        //                                     .copyWith(
+        //                                       color: colors.primary,
+        //                                       fontWeight: FontWeight.normal,
+        //                                       fontFamily: 'ubuntu',
+        //                                     ),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                       ),
+        //                       Expanded(
+        //                         child: InkWell(
+        //                           onTap: () async {
+        //                             String qty;
+        //                             qty = qtyController.text;
+        //                             addToCart(
+        //                               qty,
+        //                               true,
+        //                               true,
+        //                               widget.model!,
+        //                             );
+        //                           },
+        //                           child: Container(
+        //                             height: heightAnimation.value,
+        //                             decoration: const BoxDecoration(
+        //                               gradient: LinearGradient(
+        //                                   begin: Alignment.topLeft,
+        //                                   end: Alignment.bottomRight,
+        //                                   colors: [
+        //                                     colors.grad1Color,
+        //                                     colors.grad2Color
+        //                                   ],
+        //                                   stops: [
+        //                                     0,
+        //                                     1
+        //                                   ]),
+        //                             ),
+        //                             child: Center(
+        //                               child: Text(
+        //                                 getTranslated(context, 'BUYNOW')!,
+        //                                 textAlign: TextAlign.center,
+        //                                 style: Theme.of(context)
+        //                                     .textTheme
+        //                                     .titleMedium!
+        //                                     .copyWith(
+        //                                       color: Theme.of(context)
+        //                                           .colorScheme
+        //                                           .white,
+        //                                       fontSize: textFontSize16,
+        //                                       fontWeight: FontWeight.normal,
+        //                                       fontFamily: 'ubuntu',
+        //                                     ),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                       ),
+        //                     ],
+        //                   );
+        //                 }),
+        //           )
+        //         : AnimatedBuilder(
+        //             animation: buttonAnimationController,
+        //             builder: (context, child) {
+        //               return Container(
+        //                 height: heightAnimation.value,
+        //                 decoration: BoxDecoration(
+        //                   color: Theme.of(context).colorScheme.white,
+        //                   boxShadow: [
+        //                     BoxShadow(
+        //                       color: Theme.of(context).colorScheme.black26,
+        //                       blurRadius: 10,
+        //                     )
+        //                   ],
+        //                 ),
+        //                 child: Center(
+        //                   child: Text(
+        //                     getTranslated(context, 'OUT_OF_STOCK_LBL')!,
+        //                     style: Theme.of(context)
+        //                         .textTheme
+        //                         .labelLarge!
+        //                         .copyWith(
+        //                           fontWeight: FontWeight.bold,
+        //                           color: colors.red,
+        //                           fontFamily: 'ubuntu',
+        //                         ),
+        //                   ),
+        //                 ),
+        //               );
+        //             })
+        //     : available!
+        //         ? Container(
+        //             decoration: BoxDecoration(
+        //               color: Theme.of(context).colorScheme.white,
+        //               boxShadow: [
+        //                 BoxShadow(
+        //                     color: Theme.of(context).colorScheme.black26,
+        //                     blurRadius: 10)
+        //               ],
+        //             ),
+        //             child: AnimatedBuilder(
+        //                 animation: buttonAnimationController,
+        //                 builder: (context, child) {
+        //                   return Row(
+        //                     mainAxisSize: MainAxisSize.min,
+        //                     children: [
+        //                       Expanded(
+        //                         child: InkWell(
+        //                           onTap: () async {
+        //                             addToCart(
+        //                               qtyController.text,
+        //                               false,
+        //                               true,
+        //                               widget.model!,
+        //                             );
+        //                           },
+        //                           child: SizedBox(
+        //                             height: heightAnimation.value,
+        //                             child: Center(
+        //                               child: Text(
+        //                                 getTranslated(context, 'ADD_CART')!,
+        //                                 textAlign: TextAlign.center,
+        //                                 style: Theme.of(context)
+        //                                     .textTheme
+        //                                     .titleMedium!
+        //                                     .copyWith(
+        //                                       color: colors.primary,
+        //                                       fontWeight: FontWeight.normal,
+        //                                       fontFamily: 'ubuntu',
+        //                                     ),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                       ),
+        //                       Expanded(
+        //                         child: InkWell(
+        //                           onTap: () async {
+        //                             String qty;
+        //                             qty = qtyController.text;
+        //                             addToCart(
+        //                               qty,
+        //                               true,
+        //                               true,
+        //                               widget.model!,
+        //                             );
+        //                           },
+        //                           child: Container(
+        //                             height: heightAnimation.value,
+        //                             decoration: const BoxDecoration(
+        //                               gradient: LinearGradient(
+        //                                   begin: Alignment.topLeft,
+        //                                   end: Alignment.bottomRight,
+        //                                   colors: [
+        //                                     colors.grad1Color,
+        //                                     colors.grad2Color
+        //                                   ],
+        //                                   stops: [
+        //                                     0,
+        //                                     1
+        //                                   ]),
+        //                             ),
+        //                             child: Center(
+        //                               child: Text(
+        //                                 getTranslated(context, 'BUYNOW')!,
+        //                                 textAlign: TextAlign.center,
+        //                                 style: Theme.of(context)
+        //                                     .textTheme
+        //                                     .titleMedium!
+        //                                     .copyWith(
+        //                                       color: Theme.of(context)
+        //                                           .colorScheme
+        //                                           .white,
+        //                                       fontSize: textFontSize16,
+        //                                       fontWeight: FontWeight.normal,
+        //                                       fontFamily: 'ubuntu',
+        //                                     ),
+        //                               ),
+        //                             ),
+        //                           ),
+        //                         ),
+        //                       ),
+        //                     ],
+        //                   );
+        //                 }),
+        //           )
+        //         : available == false || outOfStock == true
+        //             ? outOfStock == true
+        //                 ? AnimatedBuilder(
+        //                     animation: buttonAnimationController,
+        //                     builder: (context, child) {
+        //                       return Container(
+        //                         height: heightAnimation.value,
+        //                         decoration: BoxDecoration(
+        //                           color: Theme.of(context).colorScheme.white,
+        //                           boxShadow: [
+        //                             BoxShadow(
+        //                               color:
+        //                                   Theme.of(context).colorScheme.black26,
+        //                               blurRadius: 10,
+        //                             )
+        //                           ],
+        //                         ),
+        //                         child: Center(
+        //                           child: Text(
+        //                             getTranslated(context, 'OUT_OF_STOCK_LBL')!,
+        //                             style: Theme.of(context)
+        //                                 .textTheme
+        //                                 .labelLarge!
+        //                                 .copyWith(
+        //                                   fontWeight: FontWeight.bold,
+        //                                   color: Colors.red,
+        //                                   fontFamily: 'ubuntu',
+        //                                 ),
+        //                           ),
+        //                         ),
+        //                       );
+        //                     })
+        //                 : Container(
+        //                     height: 55,
+        //                     decoration: BoxDecoration(
+        //                       color: Theme.of(context).colorScheme.white,
+        //                       boxShadow: [
+        //                         BoxShadow(
+        //                           color: Theme.of(context).colorScheme.black26,
+        //                           blurRadius: 10,
+        //                         )
+        //                       ],
+        //                     ),
+        //                     child: Center(
+        //                       child: Text(
+        //                         getTranslated(
+        //                             context, 'Varient not available')!,
+        //                         style: Theme.of(context)
+        //                             .textTheme
+        //                             .labelLarge!
+        //                             .copyWith(
+        //                               fontWeight: FontWeight.bold,
+        //                               color: Colors.red,
+        //                               fontFamily: 'ubuntu',
+        //                             ),
+        //                       ),
+        //                     ),
+        //                   )
+        //             : Container()
       ],
     );
   }
@@ -2143,7 +2376,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
   _mostFav() {
     return mostFavProList.isNotEmpty
         ? Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -2154,7 +2387,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                   child: Text(
                     getTranslated(context, 'You are looking for')!,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.fontColor,
+                          color: Theme.of(context).colorScheme.white,
                           fontFamily: 'ubuntu',
                         ),
                   ),
@@ -2313,8 +2546,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
 
   getvariantPart() {
     return widget.model!.attributeList!.isNotEmpty
-        ? Container(
-            color: Theme.of(context).colorScheme.white,
+        ? SizedBox(
             child: Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: ListView.builder(
@@ -2626,7 +2858,6 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                           2, getTranslated(context, 'VAR_SEL')!.length);
                   return chips.isNotEmpty
                       ? Container(
-                          color: Theme.of(context).colorScheme.white,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.only(
                               start: 10.0,
@@ -2639,9 +2870,12 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                   padding: const EdgeInsets.only(bottom: 15.0),
                                   child: Text(
                                     '${widget.model!.attributeList![index].name!} : $value',
-                                    style: const TextStyle(
-                                      fontFamily: 'ubuntu',
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: textFontSize16,
+                                      color:
+                                          Theme.of(context).colorScheme.white,
                                     ),
                                   ),
                                 ),

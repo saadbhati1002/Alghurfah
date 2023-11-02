@@ -17,9 +17,10 @@ class ProductMoreDetail extends StatelessWidget {
   _desc(Product? model) {
     return model!.shortDescription != '' && model.shortDescription != null
         ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
             child: HtmlWidget(
               model.desc ?? '',
+              textStyle: const TextStyle(color: Colors.black),
             )
             //  Html(
             //   data: model.shortDescription,
@@ -49,11 +50,11 @@ class ProductMoreDetail extends StatelessWidget {
             itemBuilder: (context, i) {
               return Padding(
                 padding: EdgeInsetsDirectional.only(
-                    start: 25.0,
-                    top: 10.0,
+                    start: 10.0,
+                    top: 0.0,
                     bottom: model.madein != '' && model.madein!.isNotEmpty
                         ? 0.0
-                        : 7.0),
+                        : 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,12 +63,7 @@ class ProductMoreDetail extends StatelessWidget {
                       flex: 1,
                       child: Text(
                         model.attributeList![i].name!,
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .fontColor
-                                  .withOpacity(0.7),
-                            ),
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                     Expanded(
@@ -77,12 +73,7 @@ class ProductMoreDetail extends StatelessWidget {
                         child: Text(
                           model.attributeList![i].value!,
                           textAlign: TextAlign.start,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.fontColor,
-                              ),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ),
                     ),
@@ -105,7 +96,7 @@ class ProductMoreDetail extends StatelessWidget {
               dense: true,
               title: Text(
                 getTranslated(context, 'MADE_IN')!,
-                style: Theme.of(context).textTheme.titleSmall,
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           )
@@ -118,7 +109,6 @@ class ProductMoreDetail extends StatelessWidget {
             (model!.desc != '' && model!.desc != null) ||
             model!.madein != '' && model!.madein!.isNotEmpty
         ? Container(
-            color: Theme.of(context).colorScheme.white,
             padding: const EdgeInsets.only(top: 10.0),
             child: InkWell(
               child: Column(
@@ -127,7 +117,7 @@ class ProductMoreDetail extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.only(
                       start: 15.0,
                       end: 15.0,
-                      bottom: 15,
+                      bottom: 0,
                     ),
                     child: Row(
                       children: [
@@ -139,7 +129,7 @@ class ProductMoreDetail extends StatelessWidget {
                               fontFamily: 'Ubuntu',
                               fontStyle: FontStyle.normal,
                               fontSize: textFontSize16,
-                              color: Theme.of(context).colorScheme.lightBlack,
+                              color: Theme.of(context).colorScheme.white,
                             ),
                           ),
                         ),
