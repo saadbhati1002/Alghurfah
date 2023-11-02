@@ -3,6 +3,9 @@ import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -288,254 +291,255 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
     );
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       key: _scaffoldKey,
+      endDrawer: const MyDrawer(),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: getTranslated(context, 'ALL_SELLERS')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
-          ? Consumer<SellerDetailProvider>(
-              builder: (context, value, child) {
-                if (value.getCurrentStatus ==
-                    SellerDetailProviderStatus.isSuccsess) {
-                  return Column(
-                    children: [
-                      // Container(
-                      //   color: Theme.of(context).colorScheme.white,
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-                      //     child: Container(
-                      //       decoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(
-                      //           circularBorderRadius10,
-                      //         ),
-                      //       ),
-                      //       height: 44,
-                      //       child: TextField(
-                      //         style: TextStyle(
-                      //           color: Theme.of(context).colorScheme.fontColor,
-                      //           fontWeight: FontWeight.normal,
-                      //         ),
-                      //         controller: _controller,
-                      //         autofocus: false,
-                      //         enabled: true,
-                      //         textAlign: TextAlign.left,
-                      //         decoration: InputDecoration(
-                      //           focusedBorder: OutlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //                 color: Theme.of(context)
-                      //                     .colorScheme
-                      //                     .lightWhite),
-                      //             borderRadius: const BorderRadius.all(
-                      //               Radius.circular(circularBorderRadius10),
-                      //             ),
-                      //           ),
-                      //           enabledBorder: const OutlineInputBorder(
-                      //             borderSide:
-                      //                 BorderSide(color: Colors.transparent),
-                      //             borderRadius: BorderRadius.all(
-                      //               Radius.circular(circularBorderRadius10),
-                      //             ),
-                      //           ),
-                      //           contentPadding: const EdgeInsets.fromLTRB(
-                      //               15.0, 5.0, 0, 5.0),
-                      //           border: const OutlineInputBorder(
-                      //             borderSide:
-                      //                 BorderSide(color: Colors.transparent),
-                      //             borderRadius: BorderRadius.all(
-                      //               Radius.circular(circularBorderRadius10),
-                      //             ),
-                      //           ),
-                      //           fillColor:
-                      //               Theme.of(context).colorScheme.lightWhite,
-                      //           filled: true,
-                      //           isDense: true,
-                      //           hintText: getTranslated(context, 'searchHint'),
-                      //           hintStyle: Theme.of(context)
-                      //               .textTheme
-                      //               .bodyMedium!
-                      //               .copyWith(
-                      //                 color: Theme.of(context)
-                      //                     .colorScheme
-                      //                     .fontColor,
-                      //                 fontSize: textFontSize12,
-                      //                 fontWeight: FontWeight.w400,
-                      //                 fontStyle: FontStyle.normal,
-                      //               ),
-                      //           prefixIcon: const Padding(
-                      //               padding: EdgeInsets.all(15.0),
-                      //               child: Icon(Icons.search)),
-                      //           suffixIcon: _controller.text != ''
-                      //               ? IconButton(
-                      //                   onPressed: () {
-                      //                     FocusScope.of(context).unfocus();
-                      //                     _controller.text = '';
-                      //                     notificationoffset = 0;
-                      //                   },
-                      //                   icon: const Icon(
-                      //                     Icons.close,
-                      //                     color: colors.primary,
-                      //                   ),
-                      //                 )
-                      //               : Padding(
-                      //                   padding: const EdgeInsets.all(10.0),
-                      //                   child: GestureDetector(
-                      //                     onTap: () {
-                      //                       lastWords = '';
-                      //                       if (!_hasSpeech) {
-                      //                         initSpeechState();
-                      //                       } else {
-                      //                         showSpeechDialog();
-                      //                       }
-                      //                     },
-                      //                     child: Selector<ThemeNotifier,
-                      //                         ThemeMode>(
-                      //                       selector: (_, themeProvider) =>
-                      //                           themeProvider.getThemeMode(),
-                      //                       builder: (context, data, child) {
-                      //                         return (data ==
-                      //                                         ThemeMode
-                      //                                             .system &&
-                      //                                     MediaQuery.of(context)
-                      //                                             .platformBrightness ==
-                      //                                         Brightness
-                      //                                             .light) ||
-                      //                                 data == ThemeMode.light
-                      //                             ? SvgPicture.asset(
-                      //                                 DesignConfiguration
-                      //                                     .setSvgPath(
-                      //                                         'voice_search'),
-                      //                                 height: 15,
-                      //                                 width: 15,
-                      //                               )
-                      //                             : SvgPicture.asset(
-                      //                                 DesignConfiguration
-                      //                                     .setSvgPath(
-                      //                                         'voice_search_white'),
-                      //                                 height: 15,
-                      //                                 width: 15,
-                      //                               );
-                      //                       },
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+          ? Stack(
+              children: [
+                const BackgroundImage(),
+                Consumer<SellerDetailProvider>(
+                  builder: (context, value, child) {
+                    if (value.getCurrentStatus ==
+                        SellerDetailProviderStatus.isSuccsess) {
+                      return Column(
                         children: [
-                          Text(
-                            getTranslated(context, 'ALL_SELLERS')!,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(
-                                    fontFamily: 'ubuntu',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                      // Container(
-                      //   color: Theme.of(context).colorScheme.white,
-                      //   child: TabBar(
-                      //     controller: _tabController,
-                      //     tabs: [
-                      //       Tab(
-                      //         child: Text(
-                      //           getTranslated(context, 'ALL_PRODUCTS')!,
-                      //           style: Theme.of(context)
-                      //               .textTheme
-                      //               .bodyMedium!
-                      //               .copyWith(
-                      //                 fontFamily: 'ubuntu',
-                      //               ),
-                      //         ),
-                      //       ),
-                      //       // Tab(
-                      //       //   child: Text(
-                      //       //     getTranslated(context, 'ALL_SELLERS')!,
-                      //       //     style: const TextStyle(
-                      //       //       fontFamily: 'ubuntu',
-                      //       //     ),
-                      //       //   ),
-                      //       // ),
-                      //     ],
-                      //     indicatorColor: colors.primary,
-                      //     labelColor: Theme.of(context).colorScheme.fontColor,
-                      //     indicatorSize: TabBarIndicatorSize.tab,
-                      //     unselectedLabelColor:
-                      //         Theme.of(context).colorScheme.lightBlack,
-                      //     labelStyle: const TextStyle(
-                      //       fontSize: textFontSize16,
-                      //       fontWeight: FontWeight.w500,
-                      //       fontStyle: FontStyle.normal,
-                      //     ),
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: ShowContentOfSellers(
-                          sellerList: value.sellerList,
-                        ),
-                      ),
+                          // Container(
+                          //   color: Theme.of(context).colorScheme.white,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                          //     child: Container(
+                          //       decoration: BoxDecoration(
+                          //         borderRadius: BorderRadius.circular(
+                          //           circularBorderRadius10,
+                          //         ),
+                          //       ),
+                          //       height: 44,
+                          //       child: TextField(
+                          //         style: TextStyle(
+                          //           color: Theme.of(context).colorScheme.fontColor,
+                          //           fontWeight: FontWeight.normal,
+                          //         ),
+                          //         controller: _controller,
+                          //         autofocus: false,
+                          //         enabled: true,
+                          //         textAlign: TextAlign.left,
+                          //         decoration: InputDecoration(
+                          //           focusedBorder: OutlineInputBorder(
+                          //             borderSide: BorderSide(
+                          //                 color: Theme.of(context)
+                          //                     .colorScheme
+                          //                     .lightWhite),
+                          //             borderRadius: const BorderRadius.all(
+                          //               Radius.circular(circularBorderRadius10),
+                          //             ),
+                          //           ),
+                          //           enabledBorder: const OutlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.transparent),
+                          //             borderRadius: BorderRadius.all(
+                          //               Radius.circular(circularBorderRadius10),
+                          //             ),
+                          //           ),
+                          //           contentPadding: const EdgeInsets.fromLTRB(
+                          //               15.0, 5.0, 0, 5.0),
+                          //           border: const OutlineInputBorder(
+                          //             borderSide:
+                          //                 BorderSide(color: Colors.transparent),
+                          //             borderRadius: BorderRadius.all(
+                          //               Radius.circular(circularBorderRadius10),
+                          //             ),
+                          //           ),
+                          //           fillColor:
+                          //               Theme.of(context).colorScheme.lightWhite,
+                          //           filled: true,
+                          //           isDense: true,
+                          //           hintText: getTranslated(context, 'searchHint'),
+                          //           hintStyle: Theme.of(context)
+                          //               .textTheme
+                          //               .bodyMedium!
+                          //               .copyWith(
+                          //                 color: Theme.of(context)
+                          //                     .colorScheme
+                          //                     .fontColor,
+                          //                 fontSize: textFontSize12,
+                          //                 fontWeight: FontWeight.w400,
+                          //                 fontStyle: FontStyle.normal,
+                          //               ),
+                          //           prefixIcon: const Padding(
+                          //               padding: EdgeInsets.all(15.0),
+                          //               child: Icon(Icons.search)),
+                          //           suffixIcon: _controller.text != ''
+                          //               ? IconButton(
+                          //                   onPressed: () {
+                          //                     FocusScope.of(context).unfocus();
+                          //                     _controller.text = '';
+                          //                     notificationoffset = 0;
+                          //                   },
+                          //                   icon: const Icon(
+                          //                     Icons.close,
+                          //                     color: colors.primary,
+                          //                   ),
+                          //                 )
+                          //               : Padding(
+                          //                   padding: const EdgeInsets.all(10.0),
+                          //                   child: GestureDetector(
+                          //                     onTap: () {
+                          //                       lastWords = '';
+                          //                       if (!_hasSpeech) {
+                          //                         initSpeechState();
+                          //                       } else {
+                          //                         showSpeechDialog();
+                          //                       }
+                          //                     },
+                          //                     child: Selector<ThemeNotifier,
+                          //                         ThemeMode>(
+                          //                       selector: (_, themeProvider) =>
+                          //                           themeProvider.getThemeMode(),
+                          //                       builder: (context, data, child) {
+                          //                         return (data ==
+                          //                                         ThemeMode
+                          //                                             .system &&
+                          //                                     MediaQuery.of(context)
+                          //                                             .platformBrightness ==
+                          //                                         Brightness
+                          //                                             .light) ||
+                          //                                 data == ThemeMode.light
+                          //                             ? SvgPicture.asset(
+                          //                                 DesignConfiguration
+                          //                                     .setSvgPath(
+                          //                                         'voice_search'),
+                          //                                 height: 15,
+                          //                                 width: 15,
+                          //                               )
+                          //                             : SvgPicture.asset(
+                          //                                 DesignConfiguration
+                          //                                     .setSvgPath(
+                          //                                         'voice_search_white'),
+                          //                                 height: 15,
+                          //                                 width: 15,
+                          //                               );
+                          //                       },
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
 
-                      // Expanded(
-                      //   child: TabBarView(
-                      //     controller: _tabController,
-                      //     physics: const NeverScrollableScrollPhysics(),
-                      //     children: [
-                      //       Stack(
-                      //         children: <Widget>[
-                      //           _showContentOfProducts(),
-                      //           Center(
-                      //             child:
-                      //                 DesignConfiguration.showCircularProgress(
-                      //               _isProgress,
-                      //               colors.primary,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //       Stack(
-                      //         children: <Widget>[
-                      //           ShowContentOfSellers(
-                      //             sellerList: value.sellerList,
-                      //           ),
-                      //           Center(
-                      //             child:
-                      //                 DesignConfiguration.showCircularProgress(
-                      //               _isProgress,
-                      //               colors.primary,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  );
-                } else if (value.getCurrentStatus ==
-                    SellerDetailProviderStatus.isFailure) {
-                  return Center(
-                    child: Text(
-                      value.geterrormessage,
-                      style: const TextStyle(
-                        fontFamily: 'ubuntu',
-                      ),
-                    ),
-                  );
-                }
-                return const ShimmerEffect();
-              },
+                          // Container(
+                          //   color: Theme.of(context).colorScheme.white,
+                          //   child: TabBar(
+                          //     controller: _tabController,
+                          //     tabs: [
+                          //       Tab(
+                          //         child: Text(
+                          //           getTranslated(context, 'ALL_PRODUCTS')!,
+                          //           style: Theme.of(context)
+                          //               .textTheme
+                          //               .bodyMedium!
+                          //               .copyWith(
+                          //                 fontFamily: 'ubuntu',
+                          //               ),
+                          //         ),
+                          //       ),
+                          //       // Tab(
+                          //       //   child: Text(
+                          //       //     getTranslated(context, 'ALL_SELLERS')!,
+                          //       //     style: const TextStyle(
+                          //       //       fontFamily: 'ubuntu',
+                          //       //     ),
+                          //       //   ),
+                          //       // ),
+                          //     ],
+                          //     indicatorColor: colors.primary,
+                          //     labelColor: Theme.of(context).colorScheme.fontColor,
+                          //     indicatorSize: TabBarIndicatorSize.tab,
+                          //     unselectedLabelColor:
+                          //         Theme.of(context).colorScheme.lightBlack,
+                          //     labelStyle: const TextStyle(
+                          //       fontSize: textFontSize16,
+                          //       fontWeight: FontWeight.w500,
+                          //       fontStyle: FontStyle.normal,
+                          //     ),
+                          //   ),
+                          // ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: ShowContentOfSellers(
+                              sellerList: value.sellerList,
+                            ),
+                          ),
+
+                          // Expanded(
+                          //   child: TabBarView(
+                          //     controller: _tabController,
+                          //     physics: const NeverScrollableScrollPhysics(),
+                          //     children: [
+                          //       Stack(
+                          //         children: <Widget>[
+                          //           _showContentOfProducts(),
+                          //           Center(
+                          //             child:
+                          //                 DesignConfiguration.showCircularProgress(
+                          //               _isProgress,
+                          //               colors.primary,
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       Stack(
+                          //         children: <Widget>[
+                          //           ShowContentOfSellers(
+                          //             sellerList: value.sellerList,
+                          //           ),
+                          //           Center(
+                          //             child:
+                          //                 DesignConfiguration.showCircularProgress(
+                          //               _isProgress,
+                          //               colors.primary,
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                        ],
+                      );
+                    } else if (value.getCurrentStatus ==
+                        SellerDetailProviderStatus.isFailure) {
+                      return Center(
+                        child: Text(
+                          value.geterrormessage,
+                          style: const TextStyle(
+                            fontFamily: 'ubuntu',
+                          ),
+                        ),
+                      );
+                    }
+                    return const ShimmerEffect();
+                  },
+                ),
+              ],
             )
           : NoInterNet(
               setStateNoInternate: setStateNoInternate,

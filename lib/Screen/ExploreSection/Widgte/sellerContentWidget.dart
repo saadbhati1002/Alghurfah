@@ -35,8 +35,8 @@ class ShowContentOfSellers extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(top: 0),
                   child: Card(
-                    elevation: 0,
-                    color: Theme.of(context).colorScheme.white,
+                    elevation: 1,
+                    color: Theme.of(context).colorScheme.black,
                     child: ListTile(
                       title: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,8 +72,7 @@ class ShowContentOfSellers extends StatelessWidget {
                                 .textTheme
                                 .titleSmall!
                                 .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.lightBlack,
+                                  color: Theme.of(context).colorScheme.white,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'ubuntu',
                                 ),
