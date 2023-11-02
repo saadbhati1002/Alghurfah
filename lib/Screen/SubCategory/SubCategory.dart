@@ -25,10 +25,9 @@ class _SubCategoryState extends State<SubCategory> {
     setState(() {});
   }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _key = GlobalKey();
-
     return Scaffold(
       endDrawer: const MyDrawer(),
       key: _key,
