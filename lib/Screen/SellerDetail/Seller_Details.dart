@@ -6,6 +6,7 @@ import 'package:eshop_multivendor/Model/Section_Model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -263,375 +264,389 @@ class _SellerProfileState extends State<SellerProfile>
               builder: (context, value, child) {
                 if (value.getCurrentStatus ==
                     SellerDetailProviderStatus.isSuccsess) {
-                  return SingleChildScrollView(
-                    controller: productsController,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Container(
-                        //   color: Theme.of(context).colorScheme.white,
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-                        //     child: Container(
-                        //       decoration: BoxDecoration(
-                        //         borderRadius: BorderRadius.circular(
-                        //           circularBorderRadius10,
-                        //         ),
-                        //       ),
-                        //       height: 44,
-                        //       child: TextField(
-                        //         style: TextStyle(
-                        //           color: Theme.of(context).colorScheme.fontColor,
-                        //           fontWeight: FontWeight.normal,
-                        //         ),
-                        //         controller: _controller,
-                        //         autofocus: false,
-                        //         focusNode: searchFocusNode,
-                        //         enabled: true,
-                        //         textAlign: TextAlign.left,
-                        //         decoration: InputDecoration(
-                        //           focusedBorder: OutlineInputBorder(
-                        //             borderSide: BorderSide(
-                        //                 color: Theme.of(context)
-                        //                     .colorScheme
-                        //                     .lightWhite),
-                        //             borderRadius: const BorderRadius.all(
-                        //               Radius.circular(circularBorderRadius10),
-                        //             ),
-                        //           ),
-                        //           enabledBorder: const OutlineInputBorder(
-                        //             borderSide:
-                        //                 BorderSide(color: Colors.transparent),
-                        //             borderRadius: BorderRadius.all(
-                        //               Radius.circular(circularBorderRadius10),
-                        //             ),
-                        //           ),
-                        //           contentPadding: const EdgeInsets.fromLTRB(
-                        //               15.0, 5.0, 0, 5.0),
-                        //           border: const OutlineInputBorder(
-                        //             borderSide:
-                        //                 BorderSide(color: Colors.transparent),
-                        //             borderRadius: BorderRadius.all(
-                        //               Radius.circular(circularBorderRadius10),
-                        //             ),
-                        //           ),
-                        //           fillColor:
-                        //               Theme.of(context).colorScheme.lightWhite,
-                        //           filled: true,
-                        //           isDense: true,
-                        //           hintText: getTranslated(context, 'searchHint'),
-                        //           hintStyle: Theme.of(context)
-                        //               .textTheme
-                        //               .bodyMedium!
-                        //               .copyWith(
-                        //                 color: Theme.of(context)
-                        //                     .colorScheme
-                        //                     .fontColor,
-                        //                 fontSize: textFontSize12,
-                        //                 fontWeight: FontWeight.w400,
-                        //                 fontStyle: FontStyle.normal,
-                        //               ),
-                        //           prefixIcon: const Padding(
-                        //               padding: EdgeInsets.all(15.0),
-                        //               child: Icon(Icons.search)),
-                        //           suffixIcon: _controller.text != ''
-                        //               ? IconButton(
-                        //                   onPressed: () {
-                        //                     FocusScope.of(context).unfocus();
-                        //                     _controller.text = '';
-                        //                     notificationoffset = 0;
-                        //                     getProduct('0');
-                        //                   },
-                        //                   icon: const Icon(
-                        //                     Icons.close,
-                        //                     color: colors.primary,
-                        //                   ),
-                        //                 )
-                        //               : GestureDetector(
-                        //                   child: Selector<ThemeNotifier,
-                        //                           ThemeMode>(
-                        //                       selector: (_, themeProvider) =>
-                        //                           themeProvider.getThemeMode(),
-                        //                       builder: (context, data, child) {
-                        //                         return Padding(
-                        //                           padding:
-                        //                               const EdgeInsets.all(10.0),
-                        //                           child: (data ==
-                        //                                           ThemeMode
-                        //                                               .system &&
-                        //                                       MediaQuery.of(
-                        //                                                   context)
-                        //                                               .platformBrightness ==
-                        //                                           Brightness
-                        //                                               .light) ||
-                        //                                   data == ThemeMode.light
-                        //                               ? SvgPicture.asset(
-                        //                                   DesignConfiguration
-                        //                                       .setSvgPath(
-                        //                                           'voice_search'),
-                        //                                   height: 15,
-                        //                                   width: 15,
-                        //                                 )
-                        //                               : SvgPicture.asset(
-                        //                                   DesignConfiguration
-                        //                                       .setSvgPath(
-                        //                                           'voice_search_white'),
-                        //                                   height: 15,
-                        //                                   width: 15,
-                        //                                 ),
-                        //                         );
-                        //                       }),
-                        //                   onTap: () {
-                        //                     lastWords = '';
-                        //                     if (!_hasSpeech) {
-                        //                       initSpeechState();
-                        //                     } else {
-                        //                       showSpeechDialog();
-                        //                     }
-                        //                   },
-                        //                 ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          color: colors.categoryDiscretion,
-                          width: MediaQuery.of(context).size.width * .87,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  getTranslated(context, 'story')!,
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      color: colors.eCommerceColor,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  widget.storeDesc.toString(),
-                                  textAlign: TextAlign.justify,
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: colors.eCommerceColor,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                              ],
+                  return Stack(
+                    children: [
+                      const BackgroundImage(),
+                      SingleChildScrollView(
+                        controller: productsController,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Container(
+                            //   color: Theme.of(context).colorScheme.white,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                            //     child: Container(
+                            //       decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(
+                            //           circularBorderRadius10,
+                            //         ),
+                            //       ),
+                            //       height: 44,
+                            //       child: TextField(
+                            //         style: TextStyle(
+                            //           color: Theme.of(context).colorScheme.fontColor,
+                            //           fontWeight: FontWeight.normal,
+                            //         ),
+                            //         controller: _controller,
+                            //         autofocus: false,
+                            //         focusNode: searchFocusNode,
+                            //         enabled: true,
+                            //         textAlign: TextAlign.left,
+                            //         decoration: InputDecoration(
+                            //           focusedBorder: OutlineInputBorder(
+                            //             borderSide: BorderSide(
+                            //                 color: Theme.of(context)
+                            //                     .colorScheme
+                            //                     .lightWhite),
+                            //             borderRadius: const BorderRadius.all(
+                            //               Radius.circular(circularBorderRadius10),
+                            //             ),
+                            //           ),
+                            //           enabledBorder: const OutlineInputBorder(
+                            //             borderSide:
+                            //                 BorderSide(color: Colors.transparent),
+                            //             borderRadius: BorderRadius.all(
+                            //               Radius.circular(circularBorderRadius10),
+                            //             ),
+                            //           ),
+                            //           contentPadding: const EdgeInsets.fromLTRB(
+                            //               15.0, 5.0, 0, 5.0),
+                            //           border: const OutlineInputBorder(
+                            //             borderSide:
+                            //                 BorderSide(color: Colors.transparent),
+                            //             borderRadius: BorderRadius.all(
+                            //               Radius.circular(circularBorderRadius10),
+                            //             ),
+                            //           ),
+                            //           fillColor:
+                            //               Theme.of(context).colorScheme.lightWhite,
+                            //           filled: true,
+                            //           isDense: true,
+                            //           hintText: getTranslated(context, 'searchHint'),
+                            //           hintStyle: Theme.of(context)
+                            //               .textTheme
+                            //               .bodyMedium!
+                            //               .copyWith(
+                            //                 color: Theme.of(context)
+                            //                     .colorScheme
+                            //                     .fontColor,
+                            //                 fontSize: textFontSize12,
+                            //                 fontWeight: FontWeight.w400,
+                            //                 fontStyle: FontStyle.normal,
+                            //               ),
+                            //           prefixIcon: const Padding(
+                            //               padding: EdgeInsets.all(15.0),
+                            //               child: Icon(Icons.search)),
+                            //           suffixIcon: _controller.text != ''
+                            //               ? IconButton(
+                            //                   onPressed: () {
+                            //                     FocusScope.of(context).unfocus();
+                            //                     _controller.text = '';
+                            //                     notificationoffset = 0;
+                            //                     getProduct('0');
+                            //                   },
+                            //                   icon: const Icon(
+                            //                     Icons.close,
+                            //                     color: colors.primary,
+                            //                   ),
+                            //                 )
+                            //               : GestureDetector(
+                            //                   child: Selector<ThemeNotifier,
+                            //                           ThemeMode>(
+                            //                       selector: (_, themeProvider) =>
+                            //                           themeProvider.getThemeMode(),
+                            //                       builder: (context, data, child) {
+                            //                         return Padding(
+                            //                           padding:
+                            //                               const EdgeInsets.all(10.0),
+                            //                           child: (data ==
+                            //                                           ThemeMode
+                            //                                               .system &&
+                            //                                       MediaQuery.of(
+                            //                                                   context)
+                            //                                               .platformBrightness ==
+                            //                                           Brightness
+                            //                                               .light) ||
+                            //                                   data == ThemeMode.light
+                            //                               ? SvgPicture.asset(
+                            //                                   DesignConfiguration
+                            //                                       .setSvgPath(
+                            //                                           'voice_search'),
+                            //                                   height: 15,
+                            //                                   width: 15,
+                            //                                 )
+                            //                               : SvgPicture.asset(
+                            //                                   DesignConfiguration
+                            //                                       .setSvgPath(
+                            //                                           'voice_search_white'),
+                            //                                   height: 15,
+                            //                                   width: 15,
+                            //                                 ),
+                            //                         );
+                            //                       }),
+                            //                   onTap: () {
+                            //                     lastWords = '';
+                            //                     if (!_hasSpeech) {
+                            //                       initSpeechState();
+                            //                     } else {
+                            //                       showSpeechDialog();
+                            //                     }
+                            //                   },
+                            //                 ),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            const SizedBox(
+                              height: 30,
                             ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  sortBy = 'p.date_added';
-                                  orderBy = 'DESC';
-                                  if (mounted) {
-                                    setState(
-                                      () {
-                                        notificationoffset = 0;
-                                        context
-                                            .read<ExploreProvider>()
-                                            .productList
-                                            .clear();
-                                      },
-                                    );
-                                  }
-                                  getProduct('0');
-                                  // Navigator.pop(context, 'option 1');
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.height * .15,
-                                  width:
-                                      MediaQuery.of(context).size.width * .27,
-                                  decoration: const BoxDecoration(
-                                      color: colors.categoryNewIn,
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20))),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        textWidget(
-                                            getTranslated(context, 'new_in')!),
-                                        textWidget(
-                                            getTranslated(context, 'new_in')!),
-                                        Text(
-                                          getTranslated(context, 'new_in')!,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                        textWidget(
-                                            getTranslated(context, 'new_in')!),
-                                        textWidget(
-                                            getTranslated(context, 'new_in')!),
-                                      ],
+                            Container(
+                              alignment: Alignment.topLeft,
+                              color: colors.categoryDiscretion,
+                              width: MediaQuery.of(context).size.width * .87,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 15,
                                     ),
-                                  ),
+                                    Text(
+                                      getTranslated(context, 'story')!,
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          color: colors.eCommerceColor,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      widget.storeDesc.toString(),
+                                      textAlign: TextAlign.justify,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: colors.eCommerceColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  sortBy = '';
-                                  orderBy = 'DESC';
-                                  if (mounted) {
-                                    setState(() {
-                                      notificationoffset = 0;
-                                      context
-                                          .read<ExploreProvider>()
-                                          .productList
-                                          .clear();
-                                    });
-                                  }
-                                  getProduct('1');
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.height * .15,
-                                  width:
-                                      MediaQuery.of(context).size.width * .27,
-                                  decoration: const BoxDecoration(
-                                    color: colors.serviceColor,
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 10),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      sortBy = 'p.date_added';
+                                      orderBy = 'DESC';
+                                      if (mounted) {
+                                        setState(
+                                          () {
+                                            notificationoffset = 0;
+                                            context
+                                                .read<ExploreProvider>()
+                                                .productList
+                                                .clear();
+                                          },
+                                        );
+                                      }
+                                      getProduct('0');
+                                      // Navigator.pop(context, 'option 1');
+                                    },
                                     child: Container(
                                       alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 1, color: Colors.white),
-                                        borderRadius: const BorderRadius.only(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .15,
+                                      width: MediaQuery.of(context).size.width *
+                                          .27,
+                                      decoration: const BoxDecoration(
+                                          color: colors.categoryNewIn,
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20))),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            textWidget(getTranslated(
+                                                context, 'new_in')!),
+                                            textWidget(getTranslated(
+                                                context, 'new_in')!),
+                                            Text(
+                                              getTranslated(context, 'new_in')!,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                            textWidget(getTranslated(
+                                                context, 'new_in')!),
+                                            textWidget(getTranslated(
+                                                context, 'new_in')!),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      sortBy = '';
+                                      orderBy = 'DESC';
+                                      if (mounted) {
+                                        setState(() {
+                                          notificationoffset = 0;
+                                          context
+                                              .read<ExploreProvider>()
+                                              .productList
+                                              .clear();
+                                        });
+                                      }
+                                      getProduct('1');
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .15,
+                                      width: MediaQuery.of(context).size.width *
+                                          .27,
+                                      decoration: const BoxDecoration(
+                                        color: colors.serviceColor,
+                                        borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(20),
                                           bottomLeft: Radius.circular(20),
                                         ),
                                       ),
-                                      child: Text(
-                                        getTranslated(context, 'best_seller')!,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 10),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 1, color: Colors.white),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topRight: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            getTranslated(
+                                                context, 'best_seller')!,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  sortBy = 'pv.price';
-                                  orderBy = 'ASC';
-                                  if (mounted) {
-                                    setState(
-                                      () {
-                                        notificationoffset = 0;
-                                        context
-                                            .read<ExploreProvider>()
-                                            .productList
-                                            .clear();
-                                      },
-                                    );
-                                  }
-                                  getProduct('0');
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.height * .15,
-                                  width:
-                                      MediaQuery.of(context).size.width * .27,
-                                  decoration: const BoxDecoration(
-                                    color: colors.eCommerceColor,
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20),
-                                    ),
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        textWidget(
-                                            getTranslated(context, 'sale')!),
-                                        textWidget(
-                                            getTranslated(context, 'sale')!),
-                                        Text(
-                                          getTranslated(context, 'sale')!,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
+                                  GestureDetector(
+                                    onTap: () {
+                                      sortBy = 'pv.price';
+                                      orderBy = 'ASC';
+                                      if (mounted) {
+                                        setState(
+                                          () {
+                                            notificationoffset = 0;
+                                            context
+                                                .read<ExploreProvider>()
+                                                .productList
+                                                .clear();
+                                          },
+                                        );
+                                      }
+                                      getProduct('0');
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .15,
+                                      width: MediaQuery.of(context).size.width *
+                                          .27,
+                                      decoration: const BoxDecoration(
+                                        color: colors.eCommerceColor,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
                                         ),
-                                        textWidget(
-                                            getTranslated(context, 'sale')!),
-                                        textWidget(
-                                            getTranslated(context, 'sale')!),
-                                      ],
+                                      ),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            textWidget(getTranslated(
+                                                context, 'sale')!),
+                                            textWidget(getTranslated(
+                                                context, 'sale')!),
+                                            Text(
+                                              getTranslated(context, 'sale')!,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                            textWidget(getTranslated(
+                                                context, 'sale')!),
+                                            textWidget(getTranslated(
+                                                context, 'sale')!),
+                                          ],
+                                        ),
+                                      ),
                                     ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            // GetSellerProfile(
+                            //   sellerImage: widget.sellerImage!,
+                            //   sellerStoreName: widget.sellerStoreName!,
+                            //   sellerRating: widget.sellerRating,
+                            //   storeDesc: widget.storeDesc,
+                            //   totalProductsOfSeller: widget.totalProductsOfSeller!,
+                            // ),
+                            Stack(
+                              children: <Widget>[
+                                _showContentOfProducts(),
+                                Center(
+                                  child:
+                                      DesignConfiguration.showCircularProgress(
+                                    _isProgress,
+                                    colors.primary,
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
-                        // GetSellerProfile(
-                        //   sellerImage: widget.sellerImage!,
-                        //   sellerStoreName: widget.sellerStoreName!,
-                        //   sellerRating: widget.sellerRating,
-                        //   storeDesc: widget.storeDesc,
-                        //   totalProductsOfSeller: widget.totalProductsOfSeller!,
-                        // ),
-                        Stack(
-                          children: <Widget>[
-                            _showContentOfProducts(),
-                            Center(
-                              child: DesignConfiguration.showCircularProgress(
-                                _isProgress,
-                                colors.primary,
-                              ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   );
                 } else if (value.getCurrentStatus ==
                     SellerDetailProviderStatus.isFailure) {
