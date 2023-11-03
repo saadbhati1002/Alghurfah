@@ -14,25 +14,11 @@ class ProductHighLightsDetail extends StatelessWidget {
   _desc(Product? model) {
     return model!.desc != '' && model.desc != null
         ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
             child: HtmlWidget(
               model.shortDescription ?? '',
-            )
-            //  Html(
-            //   data: model.desc,
-            //   onLinkTap: (String? url, RenderContext context,
-            //       Map<String, String> attributes, dom.Element? element) async {
-            //     if (await canLaunchUrl(Uri.parse(url!))) {
-            //       await launchUrl(
-            //         Uri.parse(url),
-            //         mode: LaunchMode.platformDefault,
-            //       );
-            //     } else {
-            //       throw 'Could not launch $url';
-            //     }
-            //   },
-            // ),
-            )
+              textStyle: const TextStyle(color: Colors.black),
+            ))
         : Container();
   }
 
@@ -42,7 +28,6 @@ class ProductHighLightsDetail extends StatelessWidget {
             (model!.desc != '' && model!.desc != null) ||
             model!.madein != '' && model!.madein!.isNotEmpty
         ? Container(
-            color: Theme.of(context).colorScheme.white,
             padding: const EdgeInsets.only(top: 10.0),
             child: InkWell(
               child: Column(
@@ -51,7 +36,7 @@ class ProductHighLightsDetail extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.only(
                       start: 15.0,
                       end: 15.0,
-                      bottom: 15,
+                      bottom: 0,
                     ),
                     child: Row(
                       children: [
@@ -60,10 +45,9 @@ class ProductHighLightsDetail extends StatelessWidget {
                             getTranslated(context, 'Product Highlights')!,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontFamily: 'Ubuntu',
                               fontStyle: FontStyle.normal,
                               fontSize: textFontSize16,
-                              color: Theme.of(context).colorScheme.lightBlack,
+                              color: Theme.of(context).colorScheme.white,
                             ),
                           ),
                         ),

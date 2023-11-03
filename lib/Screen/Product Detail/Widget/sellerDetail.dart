@@ -15,8 +15,7 @@ class SellerDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 5.0),
-      color: Theme.of(context).colorScheme.white,
+      padding: const EdgeInsets.only(top: 15.0),
       child: InkWell(
         onTap: () async {
           context
@@ -48,24 +47,23 @@ class SellerDetail extends StatelessWidget {
                     Text(
                       getTranslated(context, 'Seller Details')!,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.black,
+                        color: Theme.of(context).colorScheme.white,
                         fontWeight: FontWeight.w500,
-                        fontFamily: 'Ubuntu',
                         fontStyle: FontStyle.normal,
-                        fontSize: textFontSize16,
+                        fontSize: textFontSize18,
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Expanded(child:Text(
+                    Expanded(
+                        child: Text(
                       model!.store_name ?? '',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: const TextStyle(
                         color: Color(0xfffc6a57),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Ubuntu',
+                        fontWeight: FontWeight.w500,
                         fontStyle: FontStyle.normal,
-                        fontSize: textFontSize16,
+                        fontSize: textFontSize18,
                       ),
                     )),
                   ],
@@ -74,7 +72,7 @@ class SellerDetail extends StatelessWidget {
               Icon(
                 Icons.keyboard_arrow_right,
                 size: 30,
-                color: Theme.of(context).colorScheme.black,
+                color: Theme.of(context).colorScheme.white,
               ),
             ],
           ),

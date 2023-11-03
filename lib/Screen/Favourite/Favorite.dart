@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:eshop_multivendor/Screen/SQLiteData/SqliteData.dart';
 import 'package:eshop_multivendor/Provider/Favourite/FavoriteProvider.dart';
 import 'package:eshop_multivendor/Screen/Favourite/Widget/FavProductData.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Helper/Color.dart';
@@ -22,6 +23,7 @@ class Favorite extends StatefulWidget {
 
 class StateFav extends State<Favorite> with TickerProviderStateMixin {
   Animation? buttonSqueezeanimation;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   AnimationController? buttonController;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -148,11 +150,13 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: allAppBottomSheet(context),
-      // appBar: getAppBar(
-      //     title: getTranslated(context, 'FAVORITE')!,
-      //     context: context,
-      //     setState: setStateNow),
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: getTranslated(context, 'FAVORITE')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? _showContent(context)
           : NoInterNet(
@@ -199,21 +203,28 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
                       overscroll.disallowIndicator();
                       return true;
                     },
-                    child: ListView.builder(
+                    child: GridView.count(
+                      padding: const EdgeInsetsDirectional.only(
+                        top: 5,
+                      ),
+                      crossAxisCount: 2,
                       shrinkWrap: true,
-                      controller: controller,
-                      itemCount: value.favoriteList.length,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return (index == value.favoriteList.length &&
-                                isLoadingMore)
-                            ? const SingleItemSimmer()
-                            : FavProductData(
-                                index: index,
-                                favList: value.favoriteList,
-                                updateNow: setStateNow,
-                              );
-                      },
+                      // controller: controller,
+                      childAspectRatio: 0.6,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: List.generate(
+                        value.favoriteList.length,
+                        (index) {
+                          return (index == value.favoriteList.length &&
+                                  isLoadingMore)
+                              ? const SimmerSingleProduct()
+                              : FavProductData(
+                                  index: index,
+                                  favList: value.favoriteList,
+                                  updateNow: setStateNow,
+                                );
+                        },
+                      ),
                     ),
                   ),
                 );

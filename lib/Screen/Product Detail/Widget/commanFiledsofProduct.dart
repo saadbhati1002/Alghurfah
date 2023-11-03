@@ -55,10 +55,10 @@ class GetTitleWidget extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: TextStyle(
-          fontWeight: FontWeight.w400,
-          color: Theme.of(context).colorScheme.black,
-          fontSize: textFontSize16,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontSize: textFontSize20,
         ),
       ),
     );
@@ -116,10 +116,7 @@ class GetPrice extends StatelessWidget {
                           decorationStyle: TextDecorationStyle.solid,
                           decorationThickness: 2,
                           letterSpacing: 0,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .fontColor
-                              .withOpacity(0.7),
+                          color: Colors.black,
                           fontStyle: FontStyle.normal,
                           fontSize: textFontSize18,
                           fontWeight: FontWeight.w300,
@@ -250,41 +247,41 @@ class SaveExtraWithOffers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 5.0),
-      color: Theme.of(context).colorScheme.white,
-      child: InkWell(
-        onTap: () async {
-          Routes.navigateToPromoCodeScreen(context, 'Profile', update);
-        },
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(
-            bottom: 8.0,
-            top: 8.0,
-            start: 8.0,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                getTranslated(context, 'Save extra with offers')!,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.black,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Ubuntu',
-                  fontStyle: FontStyle.normal,
-                  fontSize: textFontSize16,
+        padding: const EdgeInsets.only(top: 5.0),
+        color: Theme.of(context).colorScheme.white,
+        child: InkWell(
+          onTap: () async {
+            Routes.navigateToPromoCodeScreen(context, 'Profile', update);
+          },
+          child: Padding(
+            padding: const EdgeInsetsDirectional.only(
+              bottom: 8.0,
+              top: 8.0,
+              start: 8.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  getTranslated(context, 'Save extra with offers')!,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.black,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Ubuntu',
+                    fontStyle: FontStyle.normal,
+                    fontSize: textFontSize16,
+                  ),
                 ),
-              ),
-              Icon(
-                Icons.keyboard_arrow_right,
-                size: 30,
-                color: Theme.of(context).colorScheme.black,
-              ),
-            ],
+                Icon(
+                  Icons.keyboard_arrow_right,
+                  size: 30,
+                  color: Theme.of(context).colorScheme.black,
+                ),
+              ],
+            ),
           ),
-        ),
-      )
-     /* InkWell(
+        )
+        /* InkWell(
         onTap: () async {
           Routes.navigateToPromoCodeScreen(context, 'Profile', update);
         },
@@ -311,7 +308,7 @@ class SaveExtraWithOffers extends StatelessWidget {
           ),
         ),
       ),*/
-    );
+        );
   }
 }
 

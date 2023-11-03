@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/Widget/ListcompareGrid.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -207,6 +208,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
       body: isNetworkAvail
           ? Stack(
               children: <Widget>[
+                const BackgroundImage(),
                 _showForm(),
                 DesignConfiguration.showCircularProgress(
                   isProgress,
@@ -626,7 +628,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                 height: 30,
               ),
               Container(
-                color: Colors.white,
+                color: colors.categoryDiscretion,
                 width: MediaQuery.of(context).size.width * .87,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -641,7 +643,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                         style: const TextStyle(
                             fontSize: 14,
                             color: colors.eCommerceColor,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(
                         height: 5,
@@ -652,7 +654,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                         style: TextStyle(
                             fontSize: 12,
                             color: colors.eCommerceColor,
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w500),
                       ),
                       const SizedBox(
                         height: 15,
@@ -674,7 +676,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                       height: MediaQuery.of(context).size.height * .15,
                       width: MediaQuery.of(context).size.width * .25,
                       decoration: const BoxDecoration(
-                          color: colors.eCommerceColor,
+                          color: colors.categoryNewIn,
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomLeft: Radius.circular(20))),
@@ -703,7 +705,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                       height: MediaQuery.of(context).size.height * .15,
                       width: MediaQuery.of(context).size.width * .25,
                       decoration: const BoxDecoration(
-                        color: colors.eCommerceColor,
+                        color: colors.serviceColor,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomLeft: Radius.circular(20),
@@ -766,9 +768,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+
               // Padding(
               //   padding: const EdgeInsets.symmetric(vertical: 8.0),
               //   child: Container(
@@ -908,7 +908,8 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                             },
                             child: GridView.count(
                               padding: const EdgeInsetsDirectional.only(
-                                  top: 5, ),
+                                top: 5,
+                              ),
                               crossAxisCount: 2,
                               shrinkWrap: true,
                               // controller: controller,

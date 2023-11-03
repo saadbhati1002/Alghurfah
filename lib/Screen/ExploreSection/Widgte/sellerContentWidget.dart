@@ -21,81 +21,95 @@ class ShowContentOfSellers extends StatelessWidget {
             // height: 100,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.all(20),
               physics: const AlwaysScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
+                  crossAxisCount: 2,
                   mainAxisSpacing: 8,
-                  childAspectRatio: 1.03,
+                  childAspectRatio: .68,
                   crossAxisSpacing: 8),
               shrinkWrap: true,
               controller: sellerListController,
               itemCount: sellerList.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 0),
-                  child: Card(
-                    elevation: 0,
-                    color: Theme.of(context).colorScheme.white,
-                    child: ListTile(
-                      title: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(circularBorderRadius7),
-                            child: sellerList[index].seller_profile == ''
-                                ? Image.asset(
-                                    DesignConfiguration.setPngPath(
-                                        'placeholder'),
-                                    width: 65,
-                                    height: 65,
-                                    fit: BoxFit.cover,
-                                  )
-                                : DesignConfiguration.getCacheNotworkImage(
-                                    context: context,
-                                    boxFit: BoxFit.cover,
-                                    heightvalue: 60,
-                                    widthvalue: 60,
-                                    placeHolderSize: 65,
-                                    imageurlString:
-                                        sellerList[index].seller_profile!,
-                                  ),
+                return GestureDetector(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(25),
+                                bottomLeft: Radius.circular(25)),
+                            child: Container(
+                              color: Colors.white,
+                              child: DesignConfiguration.getCacheNotworkImage(
+                                boxFit: BoxFit.fill,
+                                context: context,
+                                heightvalue: null,
+                                widthvalue: null,
+                                placeHolderSize: 50,
+                                imageurlString:
+                                    sellerList[index].seller_profile!,
+                              ),
+                            ),
                           ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            sellerList[index].store_name!,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.lightBlack,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'ubuntu',
-                                ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                        ),
                       ),
-                      onTap: () async {
-                        Routes.navigateToSellerProfileScreen(
-                          context,
-                          sellerList[index].seller_id!,
-                          sellerList[index].seller_profile!,
-                          sellerList[index].seller_name!,
-                          sellerList[index].seller_rating!,
-                          sellerList[index].store_name!,
-                          sellerList[index].store_description!,
-                          sellerList[index].totalProductsOfSeller,
-                        );
-                      },
-                    ),
+                      Text(
+                        sellerList[index].store_name!,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'ubuntu',
+                            ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: Container(
+                          height: 25,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: const BoxDecoration(
+                            color: colors.eCommerceColor,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20)),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            getTranslated(context, 'View')!,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
+                  onTap: () async {
+                    Routes.navigateToSellerProfileScreen(
+                      context,
+                      sellerList[index].seller_id!,
+                      sellerList[index].seller_profile!,
+                      sellerList[index].seller_name!,
+                      sellerList[index].seller_rating!,
+                      sellerList[index].store_name!,
+                      sellerList[index].store_description!,
+                      sellerList[index].totalProductsOfSeller,
+                    );
+                  },
                 );
               },
             ),

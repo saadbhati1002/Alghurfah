@@ -1,4 +1,6 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Screen/Cart/Cart.dart';
+import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
 import 'package:flutter/material.dart';
 import '../SQLiteData/SqliteData.dart';
 import '../AllCategory/All_Category.dart';
@@ -83,8 +85,8 @@ class _DashboardPageState extends State<Dashboard> {
 
   List<Widget> screens() => [
         const AllCategory(),
-        const AllCategory(),
-        const AllCategory(),
+        const Cart(fromBottom: true),
+        const Explore(),
         const AllCategory(),
       ];
 }

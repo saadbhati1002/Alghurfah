@@ -21,22 +21,19 @@ class SubCategory extends StatefulWidget {
 }
 
 class _SubCategoryState extends State<SubCategory> {
-  setStateNow() {}
+  setStateNow() {
+    setState(() {});
+  }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _key = GlobalKey();
-    setStateNow() {
-      setState(() {});
-    }
-
     return Scaffold(
       endDrawer: const MyDrawer(),
       key: _key,
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_key,
           title: widget.title, context: context, setState: setStateNow),
-      // appBar: getAppBar(title: title, context: context, setState: setStateNow),
       body: Stack(
         children: [
           const BackgroundImage(),

@@ -78,8 +78,8 @@ class StarRatingProductDetailPage extends StatelessWidget {
         Flexible(
           child: Text(
             '$totalRating/5',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.black,
+            style: const TextStyle(
+              color: Colors.black,
               fontWeight: FontWeight.w500,
               fontStyle: FontStyle.normal,
               fontSize: textFontSize14,
@@ -95,8 +95,8 @@ class StarRatingProductDetailPage extends StatelessWidget {
             ? Flexible(
                 child: Text(
                   '($noOfRatings ${getTranslated(context, 'Rattings')!})',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.lightBlack,
+                  style: const TextStyle(
+                    color: Colors.black,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: textFontSize14,
