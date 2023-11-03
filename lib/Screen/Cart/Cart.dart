@@ -6,6 +6,7 @@ import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Provider/CartProvider.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
@@ -329,16 +330,19 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     );
   }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      bottomNavigationBar:
-          widget.fromBottom ? null : allAppBottomSheet(context),
-      appBar: widget.fromBottom
-          ? null
-          : getSimpleAppBar(getTranslated(context, 'CART')!, context),
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: getTranslated(context, 'CART')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? CUR_USERID != null
               ? Stack(
@@ -704,48 +708,119 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         ? const ShimmerEffect()
         : cartList.isEmpty && context.read<CartProvider>().saveLaterList.isEmpty
             ? const EmptyCart()
-            : Container(
-                color: Theme.of(context).colorScheme.lightWhite,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RefreshIndicator(
-                          color: colors.primary,
-                          key: _refreshIndicatorKey,
-                          onRefresh: _refresh,
-                          child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            controller: _scrollControllerOnCartItems,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: RefreshIndicator(
+                        color: colors.primary,
+                        key: _refreshIndicatorKey,
+                        onRefresh: _refresh,
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          controller: _scrollControllerOnCartItems,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: cartList.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return CartListViewLayOut(
+                                    index: index,
+                                    setState: setStateNow,
+                                    saveForLatter: saveForLaterFun,
+                                  );
+                                },
+                              ),
+                              context
+                                      .read<CartProvider>()
+                                      .saveLaterList
+                                      .isNotEmpty
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        getTranslated(
+                                            context, 'SAVEFORLATER_BTN')!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .fontColor,
+                                              fontFamily: 'ubuntu',
+                                            ),
+                                      ),
+                                    )
+                                  : Container(
+                                      height: 0,
+                                    ),
+                              if (context
+                                  .read<CartProvider>()
+                                  .saveLaterList
+                                  .isNotEmpty)
                                 ListView.builder(
                                   shrinkWrap: true,
-                                  itemCount: cartList.length,
+                                  itemCount: context
+                                      .read<CartProvider>()
+                                      .saveLaterList
+                                      .length,
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return CartListViewLayOut(
+                                    return SaveLatterIteam(
                                       index: index,
                                       setState: setStateNow,
-                                      saveForLatter: saveForLaterFun,
+                                      cartFunc: cartFun,
                                     );
                                   },
                                 ),
-                                context
-                                        .read<CartProvider>()
-                                        .saveLaterList
-                                        .isNotEmpty
-                                    ? Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      context.read<CartProvider>().cartList.length != 0
+                          ? Padding(
+                              padding: const EdgeInsetsDirectional.only(
+                                top: 5.0,
+                                end: 10.0,
+                                start: 10.0,
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: colors.primary,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(circularBorderRadius5),
+                                  ),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 10,
+                                  horizontal: 5,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
                                           getTranslated(
-                                              context, 'SAVEFORLATER_BTN')!,
+                                              context, 'TOTAL_PRICE')!,
+                                        ),
+                                        Text(
+                                          '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().oriPrice)!} ',
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium!
@@ -756,106 +831,31 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                 fontFamily: 'ubuntu',
                                               ),
                                         ),
-                                      )
-                                    : Container(
-                                        height: 0,
-                                      ),
-                                if (context
-                                    .read<CartProvider>()
-                                    .saveLaterList
-                                    .isNotEmpty)
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: context
-                                        .read<CartProvider>()
-                                        .saveLaterList
-                                        .length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return SaveLatterIteam(
-                                        index: index,
-                                        setState: setStateNow,
-                                        cartFunc: cartFun,
-                                      );
-                                    },
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        context.read<CartProvider>().cartList.length != 0
-                            ? Padding(
-                                padding: const EdgeInsetsDirectional.only(
-                                  top: 5.0,
-                                  end: 10.0,
-                                  start: 10.0,
+                                      ],
+                                    )
+                                  ],
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.white,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(circularBorderRadius5),
-                                    ),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 10,
-                                    horizontal: 5,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            getTranslated(
-                                                context, 'TOTAL_PRICE')!,
-                                          ),
-                                          Text(
-                                            '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().oriPrice)!} ',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .copyWith(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .fontColor,
-                                                  fontFamily: 'ubuntu',
-                                                ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                height: 0,
                               ),
-                      ],
-                    ),
-                    cartList.isNotEmpty
-                        ? SimBtn(
-                            size: 0.9,
-                            height: 40,
-                            borderRadius: circularBorderRadius5,
-                            title: getTranslated(context, 'PROCEED_CHECKOUT'),
-                            onBtnSelected: () async {
-                              Routes.navigateToLoginScreen(context);
-                            },
-                          )
-                        : Container(
-                            height: 0,
-                          ),
-                  ],
-                ),
+                            )
+                          : Container(
+                              height: 0,
+                            ),
+                    ],
+                  ),
+                  cartList.isNotEmpty
+                      ? SimBtn(
+                          size: 0.9,
+                          height: 40,
+                          borderRadius: circularBorderRadius5,
+                          title: getTranslated(context, 'PROCEED_CHECKOUT'),
+                          onBtnSelected: () async {
+                            Routes.navigateToLoginScreen(context);
+                          },
+                        )
+                      : Container(
+                          height: 0,
+                        ),
+                ],
               );
   }
 

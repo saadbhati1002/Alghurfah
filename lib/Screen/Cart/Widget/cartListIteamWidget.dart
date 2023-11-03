@@ -114,7 +114,8 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
         clipBehavior: Clip.none,
         children: [
           Card(
-            elevation: 0.1,
+            color: colors.primary,
+            elevation: 0.6,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -235,18 +236,17 @@ class _CartListViewLayOutState extends State<CartListViewLayOut> {
                                     false) {
                                   if (CUR_USERID != null) {
                                     context.read<CartProvider>().deleteFromCart(
-                                          index: index,
-                                          cartList: cartList,
-                                          move: false,
-                                          selPos: selectedPos,
-                                          context: context,
-                                          update: widget.setState,
-                                          promoCode: context
-                                              .read<CartProvider>()
-                                              .promoC
-                                              .text,
-                                      from: 1
-                                        );
+                                        index: index,
+                                        cartList: cartList,
+                                        move: false,
+                                        selPos: selectedPos,
+                                        context: context,
+                                        update: widget.setState,
+                                        promoCode: context
+                                            .read<CartProvider>()
+                                            .promoC
+                                            .text,
+                                        from: 1);
                                   } else {
                                     if (singleSellerOrderSystem) {
                                       if (cartList.length == 1) {

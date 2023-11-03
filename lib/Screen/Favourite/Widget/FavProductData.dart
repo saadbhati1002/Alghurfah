@@ -408,490 +408,232 @@ class _FavProductDataState extends State<FavProductData> {
                     .text = '0';
               }
             }
+            double width = deviceWidth! * 0.5;
             return Padding(
-              padding: const EdgeInsetsDirectional.only(
-                end: 10,
-                start: 10,
-                top: 5.0,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
               child: Stack(
-                clipBehavior: Clip.none,
                 children: [
-                  Card(
-                    elevation: 0.1,
-                    child: InkWell(
-                      borderRadius:
-                          BorderRadius.circular(circularBorderRadius10),
-                      splashColor: colors.primary.withOpacity(0.2),
-                      onTap: () {
-                        Product model = widget.favList[widget.index!];
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => ProductDetail(
-                              model: model,
-                              secPos: 0,
-                              index: widget.index!,
-                              list: true,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Hero(
-                            tag:
-                                '$heroTagUniqueString${widget.index}!${widget.favList[widget.index!].id}${widget.index} ${widget.favList[widget.index!].name}',
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(circularBorderRadius4),
-                                bottomLeft:
-                                    Radius.circular(circularBorderRadius4),
-                              ),
-                              child: Stack(
-                                children: [
-                                  DesignConfiguration.getCacheNotworkImage(
+                  InkWell(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: Stack(
+                            alignment: Alignment.bottomRight,
+                            clipBehavior: Clip.none,
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
+                                ),
+                                child: Hero(
+                                  tag:
+                                      '$heroTagUniqueString${widget.index}${widget.favList[widget.index!].id}',
+                                  child:
+                                      DesignConfiguration.getCacheNotworkImage(
+                                    boxFit: BoxFit.fill,
                                     context: context,
-                                    boxFit: BoxFit.cover,
-                                    heightvalue: 100.0,
-                                    widthvalue: 100.0,
-                                    placeHolderSize: 125,
+                                    heightvalue: double.maxFinite,
+                                    widthvalue: double.maxFinite,
+                                    placeHolderSize: width,
                                     imageurlString:
                                         widget.favList[widget.index!].image!,
                                   ),
-                                  Positioned.fill(
-                                    child: widget.favList[widget.index!]
-                                                .availability ==
-                                            '0'
-                                        ? Container(
-                                            height: 55,
-                                            color: colors.white70,
-                                            padding: const EdgeInsets.all(2),
-                                            child: Center(
-                                              child: Text(
-                                                getTranslated(context,
-                                                    'OUT_OF_STOCK_LBL')!,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall!
-                                                    .copyWith(
-                                                      fontFamily: 'ubuntu',
-                                                      color: colors.red,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          )
-                                        : Container(),
-                                  ),
-                                  off != 0
-                                      ? GetDicountLabel(discount: off)
-                                      : Container(),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Stack(
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        top: 15.0,
-                                        start: 15.0,
-                                      ),
-                                      child: Text(
-                                        widget.favList[widget.index!].name!,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightBlack,
-                                              fontFamily: 'ubuntu',
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.normal,
-                                              fontSize: textFontSize12,
-                                            ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        start: 15.0,
-                                        top: 8.0,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            DesignConfiguration.getPriceFormat(
-                                                context, price)!,
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .blue,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 3,
-                                          ),
-                                          Text(
-                                            double.parse(widget
-                                                        .favList[widget.index!]
-                                                        .prVarientList![0]
-                                                        .disPrice!) !=
-                                                    0
-                                                ? DesignConfiguration
-                                                    .getPriceFormat(
-                                                    context,
-                                                    double.parse(
-                                                      widget
-                                                          .favList[
-                                                              widget.index!]
-                                                          .prVarientList![0]
-                                                          .price!,
-                                                    ),
-                                                  )!
-                                                : '',
+                              Positioned.fill(
+                                child: widget.favList[widget.index!]
+                                            .availability ==
+                                        '0'
+                                    ? Container(
+                                        height: 55,
+                                        color: colors.white70,
+                                        padding: const EdgeInsets.all(2),
+                                        child: Center(
+                                          child: Text(
+                                            getTranslated(
+                                                context, 'OUT_OF_STOCK_LBL')!,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .labelSmall!
+                                                .bodySmall!
                                                 .copyWith(
+                                                  color: colors.red,
+                                                  fontWeight: FontWeight.bold,
                                                   fontFamily: 'ubuntu',
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                  decorationColor:
-                                                      colors.darkColor3,
-                                                  decorationStyle:
-                                                      TextDecorationStyle.solid,
-                                                  decorationThickness: 2,
-                                                  letterSpacing: 0,
                                                 ),
+                                            textAlign: TextAlign.center,
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    widget.favList[widget.index!].rating! !=
-                                            '0.00'
-                                        ? Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .only(
-                                              top: 8.0,
-                                              start: 15.0,
-                                            ),
-                                            child: StarRating(
-                                              noOfRatings: widget
-                                                  .favList[widget.index!]
-                                                  .noOfRating!,
-                                              totalRating: widget
-                                                  .favList[widget.index!]
-                                                  .rating!,
-                                              needToShowNoOfRatings: true,
-                                            ),
-                                          )
-                                        : Container(),
-                                    context
-                                                .read<FavoriteProvider>()
-                                                .controllerText[widget.index!]
-                                                .text !=
-                                            '0'
-                                        ? Row(
-                                            children: [
-                                              widget.favList[widget.index!]
-                                                          .availability ==
-                                                      '0'
-                                                  ? Container()
-                                                  : cartBtnList
-                                                      ? Row(
-                                                          children: <Widget>[
-                                                            Row(
-                                                              children: <
-                                                                  Widget>[
-                                                                InkWell(
-                                                                  child: Card(
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                        circularBorderRadius50,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .all(
-                                                                        8.0,
-                                                                      ),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .remove,
-                                                                        size:
-                                                                            15,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onTap: () {
-                                                                    if (int.parse(context
-                                                                            .read<FavoriteProvider>()
-                                                                            .controllerText[widget.index!]
-                                                                            .text) >
-                                                                        0) {
-                                                                      removeFromCart(
-                                                                        widget
-                                                                            .index!,
-                                                                        widget
-                                                                            .favList,
-                                                                        context,
-                                                                      );
-                                                                    }
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  width: 26,
-                                                                  height: 20,
-                                                                  child: Stack(
-                                                                    children: [
-                                                                      TextField(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        readOnly:
-                                                                            true,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              textFontSize12,
-                                                                          color: Theme.of(context)
-                                                                              .colorScheme
-                                                                              .fontColor,
-                                                                        ),
-                                                                        controller: context
-                                                                            .read<FavoriteProvider>()
-                                                                            .controllerText[widget.index!],
-                                                                        decoration:
-                                                                            const InputDecoration(
-                                                                          border:
-                                                                              InputBorder.none,
-                                                                        ),
-                                                                      ),
-                                                                      PopupMenuButton<
-                                                                          String>(
-                                                                        tooltip:
-                                                                            '',
-                                                                        icon:
-                                                                            const Icon(
-                                                                          Icons
-                                                                              .arrow_drop_down,
-                                                                          size:
-                                                                              1,
-                                                                        ),
-                                                                        onSelected:
-                                                                            (String
-                                                                                value) {
-                                                                          addToCart(
-                                                                            value,
-                                                                            2,
-                                                                            widget.favList,
-                                                                          );
-                                                                        },
-                                                                        itemBuilder:
-                                                                            (BuildContext
-                                                                                context) {
-                                                                          return widget
-                                                                              .favList[widget.index!]
-                                                                              .itemsCounter!
-                                                                              .map<PopupMenuItem<String>>(
-                                                                            (String
-                                                                                value) {
-                                                                              return PopupMenuItem(
-                                                                                value: value,
-                                                                                child: Text(
-                                                                                  value,
-                                                                                  style: TextStyle(
-                                                                                    fontFamily: 'ubuntu',
-                                                                                    color: Theme.of(context).colorScheme.fontColor,
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ).toList();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                InkWell(
-                                                                  child: Card(
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              circularBorderRadius50),
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .add,
-                                                                        size:
-                                                                            15,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onTap:
-                                                                      () async {
-                                                                    await addToCart(
-                                                                      (int.parse(context.read<FavoriteProvider>().controllerText[widget.index!].text) +
-                                                                              int.parse(widget.favList[widget.index!].qtyStepSize!))
-                                                                          .toString(),
-                                                                      2,
-                                                                      widget
-                                                                          .favList,
-                                                                    );
-                                                                  },
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        )
-                                                      : Container(),
-                                            ],
-                                          )
-                                        : Container(),
-                                  ],
-                                ),
-                                Positioned.directional(
-                                  textDirection: Directionality.of(context),
-                                  end: 0,
-                                  top: 0,
-                                  child: Container(
-                                    padding: const EdgeInsets.only(
-                                      right: 5,
-                                      top: 5.0,
-                                    ),
-                                    alignment: Alignment.topRight,
-                                    child: InkWell(
-                                      child: const Icon(
-                                        Icons.close,
-                                      ),
-                                      onTap: () {
-                                        if (CUR_USERID != null) {
-                                          Future.delayed(Duration.zero).then(
-                                            (value) => context
-                                                .read<UpdateFavProvider>()
-                                                .removeFav(
-                                                    widget
-                                                        .favList[widget.index!]
-                                                        .id!,
-                                                    widget
-                                                        .favList[widget.index!]
-                                                        .prVarientList![0]
-                                                        .id!,
-                                                    context),
-                                          );
-                                        } else {
-                                          db.addAndRemoveFav(
-                                              widget.favList[widget.index!].id!,
-                                              false);
-                                          context
-                                              .read<FavoriteProvider>()
-                                              .removeFavItem(widget
-                                                  .favList[widget.index!]
-                                                  .prVarientList![0]
-                                                  .id!);
-
-                                          setSnackbar(
-                                              getTranslated(context,
-                                                  'Removed from favorite')!,
-                                              context);
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  widget.favList[widget.index!].availability == '0'
-                      ? Container()
-                      : context
-                                  .read<FavoriteProvider>()
-                                  .controllerText[widget.index!]
-                                  .text ==
-                              '0'
-                          ? Positioned.directional(
-                              textDirection: Directionality.of(context),
-                              bottom: 4,
-                              end: 4,
-                              child: InkWell(
-                                child: Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        circularBorderRadius40),
-                                    color: Theme.of(context).colorScheme.white,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        offset: Offset(2, 2),
-                                        blurRadius: 12,
-                                        color: Color.fromRGBO(0, 0, 0, 0.13),
-                                        spreadRadius: 0.4,
+                                        ),
                                       )
+                                    : Container(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(
+                            start: 10.0,
+                            top: 10,
+                          ),
+                          child: Text(
+                            widget.favList[widget.index!].name!,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: Colors.black,
+                                      fontSize: textFontSize15,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FontStyle.normal,
+                                      // fontFamily: 'ubuntu',
+                                    ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(
+                            start: 8.0,
+                            top: 5,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                ' ${DesignConfiguration.getPriceFormat(context, price)!}',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.blue,
+                                  fontSize: textFontSize14,
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontFamily: 'ubuntu',
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    start: 10.0,
+                                    top: 5,
+                                  ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        double.parse(widget
+                                                    .favList[widget.index!]
+                                                    .prVarientList![0]
+                                                    .disPrice!) !=
+                                                0
+                                            ? '${DesignConfiguration.getPriceFormat(context, double.parse(widget.favList[widget.index!].prVarientList![0].price!))}'
+                                            : '',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelSmall!
+                                            .copyWith(
+                                              fontFamily: 'ubuntu',
+                                              color: Colors.black,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              decorationColor: Colors.black,
+                                              decorationStyle:
+                                                  TextDecorationStyle.solid,
+                                              decorationThickness: 2,
+                                              letterSpacing: 0,
+                                              fontSize: textFontSize10,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle: FontStyle.normal,
+                                            ),
+                                      ),
                                     ],
                                   ),
-                                  child: const Icon(
-                                    Icons.shopping_cart_outlined,
-                                    size: 20,
-                                  ),
                                 ),
-                                onTap: () async {
-                                  await addToCart(
-                                    '1',
-                                    1,
-                                    widget.favList,
-                                  ).then(
-                                    (value) {
-                                      Future.delayed(const Duration(seconds: 3))
-                                          .then(
-                                        (_) async {
-                                         /* context
-                                              .read<UserProvider>()
-                                              .setCartCount(context
-                                                      .read<UpdateFavProvider>()
-                                                      .cartCount ??
-                                                  '0');*/
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            await addToCart(
+                              (int.parse(context
+                                          .read<FavoriteProvider>()
+                                          .controllerText[widget.index!]
+                                          .text) +
+                                      int.parse(widget
+                                          .favList[widget.index!].qtyStepSize!))
+                                  .toString(),
+                              2,
+                              widget.favList,
+                            );
+                          },
+                          child: Container(
+                            height: 25,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: const BoxDecoration(
+                              color: colors.serviceColor,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20)),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              getTranslated(context, 'ADD_CART')!,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      Product model = widget.favList[widget.index!];
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => ProductDetail(
+                            model: model,
+                            index: widget.index,
+                            secPos: 0,
+                            list: true,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (CUR_USERID != null) {
+                          Future.delayed(Duration.zero).then(
+                            (value) => context
+                                .read<UpdateFavProvider>()
+                                .removeFav(
+                                    widget.favList[widget.index!].id!,
+                                    widget.favList[widget.index!]
+                                        .prVarientList![0].id!,
+                                    context),
+                          );
+                        } else {
+                          db.addAndRemoveFav(
+                              widget.favList[widget.index!].id!, false);
+                          context.read<FavoriteProvider>().removeFavItem(widget
+                              .favList[widget.index!].prVarientList![0].id!);
 
-                                          widget.updateNow();
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            )
-                          : Container()
+                          setSnackbar(
+                              getTranslated(context, 'Removed from favorite')!,
+                              context);
+                        }
+                      },
+                      child: const Icon(
+                        Icons.cancel,
+                        color: colors.primary,
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
