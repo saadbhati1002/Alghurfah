@@ -38,17 +38,18 @@ class SellerProfile extends StatefulWidget {
       totalProductsOfSeller,
       storeDesc,
       sellerStoreName;
-
-  const SellerProfile({
-    Key? key,
-    this.sellerID,
-    this.sellerName,
-    this.sellerImage,
-    this.sellerRating,
-    required this.totalProductsOfSeller,
-    this.storeDesc,
-    this.sellerStoreName,
-  }) : super(key: key);
+  final List<Product>? subList;
+  const SellerProfile(
+      {Key? key,
+      this.sellerID,
+      this.sellerName,
+      this.sellerImage,
+      this.sellerRating,
+      required this.totalProductsOfSeller,
+      this.storeDesc,
+      this.sellerStoreName,
+      this.subList})
+      : super(key: key);
 
   @override
   State<SellerProfile> createState() => _SellerProfileState();

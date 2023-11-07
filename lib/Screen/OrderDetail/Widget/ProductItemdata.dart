@@ -434,15 +434,14 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                         ),
                         onTap: () {
                           Routes.navigateToSellerProfileScreen(
-                            context,
-                            widget.orderItem.seller_id,
-                            widget.orderItem.seller_profile,
-                            widget.orderItem.seller_name,
-                            widget.orderItem.seller_rating,
-                            widget.orderItem.seller_name,
-                            widget.orderItem.store_description,
-                            '0',
-                          );
+                              context,
+                              widget.orderItem.seller_id,
+                              widget.orderItem.seller_profile,
+                              widget.orderItem.seller_name,
+                              widget.orderItem.seller_rating,
+                              widget.orderItem.seller_name,
+                              widget.orderItem.store_description,
+                              '0', []);
                         },
                       ),
                       Text(
@@ -696,8 +695,8 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                   )
                 else
                   (widget.orderItem.listStatus!.contains(DELIVERD) &&
-                              widget.orderItem.isReturn == '1' &&
-                              widget.orderItem.isAlrReturned == '0' &&
+                          widget.orderItem.isReturn == '1' &&
+                          widget.orderItem.isAlrReturned == '0' &&
                           (!widget.orderItem.listStatus!
                                   .contains(RETURN_REQ_DECLINE) &&
                               !widget.orderItem.listStatus!

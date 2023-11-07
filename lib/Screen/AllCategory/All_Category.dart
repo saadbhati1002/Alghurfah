@@ -1,6 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/CategoryProvider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
@@ -118,50 +119,70 @@ class _AllCategoryState extends State<AllCategory>
                                   top: 5, left: 25, right: 25),
                               child: GestureDetector(
                                 onTap: () async {
-                                  if (context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .subList ==
-                                          null ||
-                                      context
-                                          .read<HomePageProvider>()
-                                          .catList[index]
-                                          .subList!
-                                          .isEmpty) {
-                                    await Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                        builder: (context) => ProductList(
-                                          name: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .name,
-                                          id: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .id,
-                                          tag: false,
-                                          fromSeller: false,
-                                        ),
+                                  await Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) => Explore(
+                                        title: context
+                                            .read<HomePageProvider>()
+                                            .catList[index]
+                                            .name!,
+                                        subList: context
+                                            .read<HomePageProvider>()
+                                            .catList[index]
+                                            .subList,
+                                        categoryID: context
+                                            .read<HomePageProvider>()
+                                            .catList[index]
+                                            .id
+                                            .toString(),
                                       ),
-                                    );
-                                  } else {
-                                    await Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                        builder: (context) => SubCategory(
-                                          title: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .name!,
-                                          subList: context
-                                              .read<HomePageProvider>()
-                                              .catList[index]
-                                              .subList,
-                                        ),
-                                      ),
-                                    );
-                                  }
+                                    ),
+                                  );
+                                  // if (context
+                                  //             .read<HomePageProvider>()
+                                  //             .catList[index]
+                                  //             .subList ==
+                                  //         null ||
+                                  //     context
+                                  //         .read<HomePageProvider>()
+                                  //         .catList[index]
+                                  //         .subList!
+                                  //         .isEmpty) {
+                                  //   await Navigator.push(
+                                  //     context,
+                                  //     CupertinoPageRoute(
+                                  //       builder: (context) => ProductList(
+                                  //         name: context
+                                  //             .read<HomePageProvider>()
+                                  //             .catList[index]
+                                  //             .name,
+                                  //         id: context
+                                  //             .read<HomePageProvider>()
+                                  //             .catList[index]
+                                  //             .id,
+                                  //         tag: false,
+                                  //         fromSeller: false,
+                                  //       ),
+                                  //     ),
+                                  //   );
+                                  // } else {
+                                  //   // await Navigator.push(
+                                  //   //   context,
+                                  //   //   CupertinoPageRoute(
+                                  //   //     builder: (context) => SubCategory(
+                                  //   //       title: context
+                                  //   //           .read<HomePageProvider>()
+                                  //   //           .catList[index]
+                                  //   //           .name!,
+                                  //   //       subList: context
+                                  //   //           .read<HomePageProvider>()
+                                  //   //           .catList[index]
+                                  //   //           .subList,
+                                  //   //     ),
+                                  //   //   ),
+                                  //   // );
+                                  // }
                                 },
                                 child: SizedBox(
                                   height: 130,

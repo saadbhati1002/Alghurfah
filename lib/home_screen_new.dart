@@ -265,25 +265,33 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                                width: MediaQuery.of(context).size.width * .24,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                        height: 60,
-                                        child: Image.asset(
-                                            'assets/images/png/home_brand.png')),
-                                    const SizedBox(
-                                      height: 7,
-                                    ),
-                                    Text(
-                                      getTranslated(context,
-                                          'high_quality_emirate_brand')!,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          fontSize: 12, color: Colors.black),
-                                    ),
-                                  ],
-                                )),
+                              width: MediaQuery.of(context).size.width * .24,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      height: 60,
+                                      child: Image.asset(
+                                        'assets/images/png/home_brand.png',
+                                        color: colors.eCommerceColor,
+                                      )),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  Text(
+                                    getTranslated(
+                                        context, 'high_quality_emirate_brand')!,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontSize: 12, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              color: colors.eCommerceColor,
+                              width: 3,
+                              height: 100,
+                            ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * .24,
                               child: Column(
@@ -291,7 +299,9 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                   SizedBox(
                                       height: 60,
                                       child: Image.asset(
-                                          'assets/images/png/home_order.png')),
+                                        'assets/images/png/home_order.png',
+                                        color: colors.eCommerceColor,
+                                      )),
                                   const SizedBox(
                                     height: 7,
                                   ),
@@ -304,6 +314,11 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                 ],
                               ),
                             ),
+                            Container(
+                              color: colors.eCommerceColor,
+                              width: 3,
+                              height: 100,
+                            ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * .24,
                               child: Column(
@@ -311,7 +326,9 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                   SizedBox(
                                       height: 60,
                                       child: Image.asset(
-                                          'assets/images/png/home_world.png')),
+                                        'assets/images/png/home_world.png',
+                                        color: colors.eCommerceColor,
+                                      )),
                                   const SizedBox(
                                     height: 7,
                                   ),
