@@ -3,6 +3,8 @@ import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/repository/productListRespository.dart';
+import 'package:eshop_multivendor/repository/sellerDetailRepositry.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
@@ -32,7 +34,11 @@ import 'Widgte/listViewLayOut.dart';
 import 'Widgte/sellerContentWidget.dart';
 
 class Explore extends StatefulWidget {
-  const Explore({Key? key}) : super(key: key);
+  final List<Product>? subList;
+  final String? title;
+  final String? categoryID;
+  const Explore({Key? key, this.subList, this.title, this.categoryID})
+      : super(key: key);
 
   @override
   _SearchState createState() => _SearchState();
@@ -93,6 +99,10 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    if (widget.categoryID != null) {
+      getSeller();
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SellerDetailProvider>().doSellerListEmpty();
       context.read<SellerDetailProvider>().setOffsetvalue(0);
@@ -206,6 +216,45 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
     super.initState();
   }
 
+  bool isCategorySellerSearching = false;
+  List sellerCategory = [];
+  getSeller() async {
+    setState(() {
+      isCategorySellerSearching = true;
+    });
+    var parameterSeller = {
+      LIMIT: "100",
+    };
+    Map<String, dynamic> result =
+        await SellerDetailRepository.fetchSeller(parameter: parameterSeller);
+    var data = result['data'];
+    bool error = result['error'];
+    print(data);
+    for (int sellerCount = 0; sellerCount < data.length; sellerCount++) {
+      sellerCategory.add(0);
+      var parameter = {SELLER_ID: data[sellerCount]["seller_id"].toString()};
+      context.read<ProductListProvider>().setProductListParameter(parameter);
+      await Future.delayed(Duration.zero).then(
+          (value) => context.read<ProductListProvider>().getProductList().then((
+                value,
+              ) async {
+                bool error = value['error'];
+                String? search = value['search'];
+                print(value["data"]);
+                for (int i = 0; i < value["data"].length; i++) {
+                  if (value["data"][i]["category_id"].toString() ==
+                      widget.categoryID.toString()) {
+                    sellerCategory[sellerCount] = 1;
+                    break;
+                  }
+                }
+              }));
+    }
+    setState(() {
+      isCategorySellerSearching = false;
+    });
+  }
+
   _productsListScrollListener() {
     if (productsController!.offset >=
             productsController!.position.maxScrollExtent &&
@@ -315,170 +364,12 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
                   builder: (context, value, child) {
                     if (value.getCurrentStatus ==
                         SellerDetailProviderStatus.isSuccsess) {
+                      if (isCategorySellerSearching) {
+                        return const ShimmerEffect();
+                      }
+
                       return Column(
                         children: [
-                          // Container(
-                          //   color: Theme.of(context).colorScheme.white,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-                          //     child: Container(
-                          //       decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(
-                          //           circularBorderRadius10,
-                          //         ),
-                          //       ),
-                          //       height: 44,
-                          //       child: TextField(
-                          //         style: TextStyle(
-                          //           color: Theme.of(context).colorScheme.fontColor,
-                          //           fontWeight: FontWeight.normal,
-                          //         ),
-                          //         controller: _controller,
-                          //         autofocus: false,
-                          //         enabled: true,
-                          //         textAlign: TextAlign.left,
-                          //         decoration: InputDecoration(
-                          //           focusedBorder: OutlineInputBorder(
-                          //             borderSide: BorderSide(
-                          //                 color: Theme.of(context)
-                          //                     .colorScheme
-                          //                     .lightWhite),
-                          //             borderRadius: const BorderRadius.all(
-                          //               Radius.circular(circularBorderRadius10),
-                          //             ),
-                          //           ),
-                          //           enabledBorder: const OutlineInputBorder(
-                          //             borderSide:
-                          //                 BorderSide(color: Colors.transparent),
-                          //             borderRadius: BorderRadius.all(
-                          //               Radius.circular(circularBorderRadius10),
-                          //             ),
-                          //           ),
-                          //           contentPadding: const EdgeInsets.fromLTRB(
-                          //               15.0, 5.0, 0, 5.0),
-                          //           border: const OutlineInputBorder(
-                          //             borderSide:
-                          //                 BorderSide(color: Colors.transparent),
-                          //             borderRadius: BorderRadius.all(
-                          //               Radius.circular(circularBorderRadius10),
-                          //             ),
-                          //           ),
-                          //           fillColor:
-                          //               Theme.of(context).colorScheme.lightWhite,
-                          //           filled: true,
-                          //           isDense: true,
-                          //           hintText: getTranslated(context, 'searchHint'),
-                          //           hintStyle: Theme.of(context)
-                          //               .textTheme
-                          //               .bodyMedium!
-                          //               .copyWith(
-                          //                 color: Theme.of(context)
-                          //                     .colorScheme
-                          //                     .fontColor,
-                          //                 fontSize: textFontSize12,
-                          //                 fontWeight: FontWeight.w400,
-                          //                 fontStyle: FontStyle.normal,
-                          //               ),
-                          //           prefixIcon: const Padding(
-                          //               padding: EdgeInsets.all(15.0),
-                          //               child: Icon(Icons.search)),
-                          //           suffixIcon: _controller.text != ''
-                          //               ? IconButton(
-                          //                   onPressed: () {
-                          //                     FocusScope.of(context).unfocus();
-                          //                     _controller.text = '';
-                          //                     notificationoffset = 0;
-                          //                   },
-                          //                   icon: const Icon(
-                          //                     Icons.close,
-                          //                     color: colors.primary,
-                          //                   ),
-                          //                 )
-                          //               : Padding(
-                          //                   padding: const EdgeInsets.all(10.0),
-                          //                   child: GestureDetector(
-                          //                     onTap: () {
-                          //                       lastWords = '';
-                          //                       if (!_hasSpeech) {
-                          //                         initSpeechState();
-                          //                       } else {
-                          //                         showSpeechDialog();
-                          //                       }
-                          //                     },
-                          //                     child: Selector<ThemeNotifier,
-                          //                         ThemeMode>(
-                          //                       selector: (_, themeProvider) =>
-                          //                           themeProvider.getThemeMode(),
-                          //                       builder: (context, data, child) {
-                          //                         return (data ==
-                          //                                         ThemeMode
-                          //                                             .system &&
-                          //                                     MediaQuery.of(context)
-                          //                                             .platformBrightness ==
-                          //                                         Brightness
-                          //                                             .light) ||
-                          //                                 data == ThemeMode.light
-                          //                             ? SvgPicture.asset(
-                          //                                 DesignConfiguration
-                          //                                     .setSvgPath(
-                          //                                         'voice_search'),
-                          //                                 height: 15,
-                          //                                 width: 15,
-                          //                               )
-                          //                             : SvgPicture.asset(
-                          //                                 DesignConfiguration
-                          //                                     .setSvgPath(
-                          //                                         'voice_search_white'),
-                          //                                 height: 15,
-                          //                                 width: 15,
-                          //                               );
-                          //                       },
-                          //                     ),
-                          //                   ),
-                          //                 ),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-
-                          // Container(
-                          //   color: Theme.of(context).colorScheme.white,
-                          //   child: TabBar(
-                          //     controller: _tabController,
-                          //     tabs: [
-                          //       Tab(
-                          //         child: Text(
-                          //           getTranslated(context, 'ALL_PRODUCTS')!,
-                          //           style: Theme.of(context)
-                          //               .textTheme
-                          //               .bodyMedium!
-                          //               .copyWith(
-                          //                 fontFamily: 'ubuntu',
-                          //               ),
-                          //         ),
-                          //       ),
-                          //       // Tab(
-                          //       //   child: Text(
-                          //       //     getTranslated(context, 'ALL_SELLERS')!,
-                          //       //     style: const TextStyle(
-                          //       //       fontFamily: 'ubuntu',
-                          //       //     ),
-                          //       //   ),
-                          //       // ),
-                          //     ],
-                          //     indicatorColor: colors.primary,
-                          //     labelColor: Theme.of(context).colorScheme.fontColor,
-                          //     indicatorSize: TabBarIndicatorSize.tab,
-                          //     unselectedLabelColor:
-                          //         Theme.of(context).colorScheme.lightBlack,
-                          //     labelStyle: const TextStyle(
-                          //       fontSize: textFontSize16,
-                          //       fontWeight: FontWeight.w500,
-                          //       fontStyle: FontStyle.normal,
-                          //     ),
-                          //   ),
-                          // ),
                           const SizedBox(
                             height: 20,
                           ),
@@ -486,43 +377,10 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
                             flex: 4,
                             child: ShowContentOfSellers(
                               sellerList: value.sellerList,
+                              subList: widget.subList,
+                              sellerCategory: sellerCategory,
                             ),
                           ),
-
-                          // Expanded(
-                          //   child: TabBarView(
-                          //     controller: _tabController,
-                          //     physics: const NeverScrollableScrollPhysics(),
-                          //     children: [
-                          //       Stack(
-                          //         children: <Widget>[
-                          //           _showContentOfProducts(),
-                          //           Center(
-                          //             child:
-                          //                 DesignConfiguration.showCircularProgress(
-                          //               _isProgress,
-                          //               colors.primary,
-                          //             ),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //       Stack(
-                          //         children: <Widget>[
-                          //           ShowContentOfSellers(
-                          //             sellerList: value.sellerList,
-                          //           ),
-                          //           Center(
-                          //             child:
-                          //                 DesignConfiguration.showCircularProgress(
-                          //               _isProgress,
-                          //               colors.primary,
-                          //             ),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       );
                     } else if (value.getCurrentStatus ==
@@ -680,35 +538,6 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
         notificationisloadmore = true;
         context.read<ExploreProvider>().productList.clear();
       },
-    );
-  }
-
-  _showContentOfProducts() {
-    return Column(
-      children: <Widget>[
-        // sortAndFilterOption(),
-        // searchResult(),
-        Expanded(
-          child: notificationisnodata
-              ? DesignConfiguration.getNoItem(context)
-              : Stack(
-                  children: [
-                    context.watch<ExploreProvider>().getCurrentView !=
-                            'GridView'
-                        ? ListViewLayOut(
-                            fromExplore: true,
-                            update: update,
-                          )
-                        : getGridviewLayoutOfProducts(),
-                    notificationisgettingdata
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : Container(),
-                  ],
-                ),
-        ),
-      ],
     );
   }
 

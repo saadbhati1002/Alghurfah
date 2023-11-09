@@ -415,7 +415,7 @@
   "Removed from favorite": "تم ازالته من التفضيلات ",
   "Real images and videos from customers": "صور حقيقية ومقاطع فيديو من العملاء ",
   "Varient not available": "التباين غير متاح ",
-  "You are looking for": "أنت تبحث عن ",
+  "You are looking for": "حال ہی میں دیکھا",
   "Customer Questions": "أسئلة العميل ",
   "Have a question? Search for answers": "هل لديك سؤال ؟  البحث عن اجابات ",
   "Write Question": "سؤال كتابة ",
@@ -523,5 +523,6 @@
   "story": "کہانی",
   "new_in": "نیا اندر",
   "sale": "SALE",
-  "best_seller": "بہترین بیچنے والے"
+  "best_seller": "بہترین بیچنے والے",
+  "Book Now": "احجز الآن"
 }

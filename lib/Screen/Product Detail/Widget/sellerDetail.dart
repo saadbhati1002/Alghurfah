@@ -22,15 +22,14 @@ class SellerDetail extends StatelessWidget {
               .read<SellerDetailProvider>()
               .changeStatus(SellerDetailProviderStatus.isSuccsess);
           Routes.navigateToSellerProfileScreen(
-            context,
-            model!.seller_id!,
-            model!.seller_profile!,
-            model!.seller_name!,
-            model!.seller_rating!,
-            model!.store_name!,
-            model!.store_description!,
-            model!.totalProductsOfSeller,
-          );
+              context,
+              model!.seller_id!,
+              model!.seller_profile!,
+              model!.seller_name!,
+              model!.seller_rating!,
+              model!.store_name!,
+              model!.store_description!,
+              model!.totalProductsOfSeller, []);
         },
         child: Padding(
           padding: const EdgeInsetsDirectional.only(

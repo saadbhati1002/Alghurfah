@@ -12,6 +12,7 @@ import '../../../Model/Section_Model.dart';
 import '../../../widgets/desing.dart';
 import '../../Product Detail/productDetail.dart';
 import '../../SubCategory/SubCategory.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 class CustomSlider extends StatefulWidget {
   const CustomSlider({
@@ -52,22 +53,125 @@ class _CustomSliderState extends State<CustomSlider> {
                         SizedBox(
                           height: 180,
                           width: double.infinity,
-                          child: PageView.builder(
-                            itemCount: homeProvider.homeSliderList.length,
-                            scrollDirection: Axis.horizontal,
-                            controller: _controller,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            onPageChanged: (index) {
-                              context
-                                  .read<HomePageProvider>()
-                                  .setCurSlider(index);
-                            },
-                            itemBuilder: (BuildContext context, int index) {
-                              return buildImagePageItem(
-                                homeProvider.homeSliderList[index],
+                          child: Swiper(
+                            itemBuilder: (context, index) {
+                              final slider = homeProvider.homeSliderList[index];
+                              return GestureDetector(
+                                child: DesignConfiguration.getCacheNotworkImage(
+                                    imageurlString: slider.image!,
+                                    boxFit: BoxFit.fill,
+                                    context: context,
+                                    heightvalue: 180,
+                                    placeHolderSize: 50,
+                                    widthvalue: double.maxFinite),
+                                onTap: () async {
+                                  int curSlider = context
+                                      .read<HomePageProvider>()
+                                      .curSlider;
+
+                                  if (context
+                                          .read<HomePageProvider>()
+                                          .homeSliderList[curSlider]
+                                          .type ==
+                                      'products') {
+                                    Product? item = context
+                                        .read<HomePageProvider>()
+                                        .homeSliderList[curSlider]
+                                        .list;
+
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            ProductDetail(
+                                          model: item,
+                                          secPos: 0,
+                                          index: 0,
+                                          list: true,
+                                        ),
+                                      ),
+                                    );
+                                  } else if (context
+                                          .read<HomePageProvider>()
+                                          .homeSliderList[curSlider]
+                                          .type ==
+                                      'categories') {
+                                    Product item = context
+                                        .read<HomePageProvider>()
+                                        .homeSliderList[curSlider]
+                                        .list as Product;
+                                    if (item.subList == null ||
+                                        item.subList!.isEmpty) {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => ProductList(
+                                            name: item.name,
+                                            id: item.id,
+                                            tag: false,
+                                            fromSeller: false,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => SubCategory(
+                                            title: item.name!,
+                                            subList: item.subList,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  } else if (context
+                                          .read<HomePageProvider>()
+                                          .homeSliderList[curSlider]
+                                          .type ==
+                                      'slider_url') {
+                                    String url = context
+                                        .read<HomePageProvider>()
+                                        .homeSliderList[curSlider]
+                                        .urlLink
+                                        .toString();
+                                    try {
+                                      if (await canLaunchUrl(Uri.parse(url))) {
+                                        await launchUrl(Uri.parse(url),
+                                            mode:
+                                                LaunchMode.externalApplication);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    } catch (e) {
+                                      throw 'Something went wrong';
+                                    }
+                                  }
+                                },
                               );
                             },
+                            indicatorLayout: PageIndicatorLayout.COLOR,
+                            autoplay: false,
+                            itemCount: homeProvider.homeSliderList.length,
+                            pagination: const SwiperPagination(),
+                            control: const SwiperControl(
+                                color: colors.primary, size: 30),
                           ),
+                          // ) PageView.builder(
+                          //                         itemCount: homeProvider.homeSliderList.length,
+                          //                         scrollDirection: Axis.horizontal,
+                          //                         controller: _controller,
+                          //                         physics: const AlwaysScrollableScrollPhysics(),
+                          //                         onPageChanged: (index) {
+                          //                           context
+                          //                               .read<HomePageProvider>()
+                          //                               .setCurSlider(index);
+                          //                         },
+                          //                         itemBuilder: (BuildContext context, int index) {
+                          //                           return buildImagePageItem(
+                          //                             homeProvider.homeSliderList[index],
+                          //                           );
+                          //                         },
+                          //                       ),
                         ),
                         // _showSliderPosition()
                       ],

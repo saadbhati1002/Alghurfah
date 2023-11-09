@@ -62,6 +62,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "card_swiper",
+      "rootUri": "file:///C:/Users/saadb/AppData/Local/Pub/Cache/hosted/pub.dev/card_swiper-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///C:/Users/saadb/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.2.1",
       "packageUri": "lib/",
@@ -1442,7 +1448,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2023-10-24T14:04:37.305390Z",
+  "generated": "2023-11-06T09:06:56.177888Z",
   "generator": "pub",
   "generatorVersion": "2.19.0"
 }

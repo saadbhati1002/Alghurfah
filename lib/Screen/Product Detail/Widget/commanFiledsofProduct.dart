@@ -23,16 +23,16 @@ class GetNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 15.0,
+        left: 0.0,
         right: 15.0,
-        top: 16.0,
+        top: 0.0,
       ),
       child: Text(
         name,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: Theme.of(context).colorScheme.lightBlack,
-          fontSize: textFontSize14,
+          color: Colors.black,
+          fontSize: textFontSize18,
         ),
       ),
     );
@@ -49,8 +49,8 @@ class GetTitleWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         top: 10.0,
-        left: 15.0,
-        right: 15.0,
+        left: 10.0,
+        right: 10.0,
         bottom: 15.0,
       ),
       child: Text(
@@ -215,9 +215,9 @@ class GetRatttingWidget extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsetsDirectional.only(
-              start: 15.0,
+              start: 10.0,
               end: 5.0,
-              top: 15.0,
+              top: 10.0,
               bottom: 15.0,
             ),
             child: StarRatingProductDetailPage(

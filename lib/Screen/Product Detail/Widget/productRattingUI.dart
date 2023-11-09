@@ -92,17 +92,19 @@ class StarRatingProductDetailPage extends StatelessWidget {
               )
             : Container(),
         needToShowNoOfRatings
-            ? Flexible(
-                child: Text(
-                  '($noOfRatings ${getTranslated(context, 'Rattings')!})',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: textFontSize14,
-                  ),
-                ),
-              )
+            ? noOfRatings != ''
+                ? Flexible(
+                    child: Text(
+                      '($noOfRatings ${getTranslated(context, 'Rattings')!})',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: textFontSize14,
+                      ),
+                    ),
+                  )
+                : const SizedBox()
             : Container(),
       ],
     );

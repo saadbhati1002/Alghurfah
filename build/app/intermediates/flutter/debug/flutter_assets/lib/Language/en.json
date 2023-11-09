@@ -415,7 +415,7 @@
   "Removed from favorite": "Removed from favorite",
   "Real images and videos from customers": "Real images and videos from customers",
   "Varient not available": "Varient not available",
-  "You are looking for": "You are looking for",
+  "You are looking for": "Recently Viewed",
   "Customer Questions": "Customer Questions",
   "Have a question? Search for answers": "Have a question? Search for answers",
   "Write Question": "Write Question",
@@ -520,5 +520,9 @@
   "sign_out": "Sign Out",
   "Language": "Language",
   "View": "View",
-  "story": "Story"
+  "story": "Story",
+  "new_in": "NEW IN",
+  "sale": "SALE",
+  "best_seller": "BEST SELLER",
+  "Book Now":"Book Now"
 }

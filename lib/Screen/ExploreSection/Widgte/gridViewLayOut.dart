@@ -138,7 +138,7 @@ class _GridViewLayOutState extends State<GridViewLayOut> {
                       child: Hero(
                         tag: '$heroTagUniqueString${widget.index}${model.id}',
                         child: DesignConfiguration.getCacheNotworkImage(
-                          boxFit: BoxFit.contain,
+                          boxFit: BoxFit.fill,
                           context: context,
                           heightvalue: double.maxFinite,
                           widthvalue: double.maxFinite,
@@ -266,7 +266,7 @@ class _GridViewLayOutState extends State<GridViewLayOut> {
                   height: 25,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
-                    color: colors.serviceColor,
+                    color: colors.eCommerceColor,
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20),
                         bottomLeft: Radius.circular(20)),

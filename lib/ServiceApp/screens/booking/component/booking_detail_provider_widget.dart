@@ -63,7 +63,7 @@ class BookingDetailProviderWidgetState
                   Row(
                     children: [
                       Text(widget.providerData.displayName.validate(),
-                              style: boldTextStyle())
+                              style: boldTextStyle(color: Colors.white))
                           .flexible(),
                       16.width,
                       ic_info.iconImage(size: 20),

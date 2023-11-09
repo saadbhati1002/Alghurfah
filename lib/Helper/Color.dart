@@ -20,12 +20,13 @@ extension colors on ColorScheme {
   static const Color primary = Color(0xFF4D5B3F);
   static const Color backgroundColor = Color(0xFFF5DFD3);
   static const Color drawerColor = Color(0xFFD4AE6A);
-  static const Color drawerColorVisibility = Color(0xFFC49A6A);
+  static const Color drawerColorVisibility = Color.fromRGBO(196, 145, 64, 1);
   static const Color eCommerceColor = Color(0xFFBC8069);
   static const Color serviceColor = Color(0xFF3D7081);
   static const Color secondary = Color(0xffFDC994);
   static const Color categoryDiscretion = Color(0xFFDDCEBC);
   static const Color categoryNewIn = Color(0xFFD8B678);
+  static const Color newGoldColor = Color.fromRGBO(84, 71, 65, 1);
 
   Color get btnColor => brightness == Brightness.dark ? whiteTemp : primary;
 

@@ -10,13 +10,45 @@ import '../../Language/languageSettings.dart';
 import '../../../widgets/star_rating.dart';
 import '../explore.dart';
 
-class ShowContentOfSellers extends StatelessWidget {
+class ShowContentOfSellers extends StatefulWidget {
   List<Product> sellerList;
-  ShowContentOfSellers({Key? key, required this.sellerList}) : super(key: key);
+  List? sellerCategory;
+  final List<Product>? subList;
+  ShowContentOfSellers(
+      {Key? key, required this.sellerList, this.sellerCategory, this.subList})
+      : super(key: key);
+
+  @override
+  State<ShowContentOfSellers> createState() => _ShowContentOfSellersState();
+}
+
+class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
+  List<Product> newList = [];
+  @override
+  void initState() {
+    if (widget.sellerCategory!.isNotEmpty) {
+      checkData();
+    } else {
+      newList.addAll(widget.sellerList);
+      setState(() {});
+    }
+    super.initState();
+  }
+
+  checkData() {
+    for (int i = 0; i < widget.sellerList.length; i++) {
+      if (widget.sellerCategory![i] == 1) {
+        newList.add(widget.sellerList[i]);
+      }
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    return sellerList.isNotEmpty
+    print(widget.sellerList);
+
+    return newList.isNotEmpty
         ? SizedBox(
             // height: 100,
             width: MediaQuery.of(context).size.width,
@@ -30,7 +62,7 @@ class ShowContentOfSellers extends StatelessWidget {
                   crossAxisSpacing: 8),
               shrinkWrap: true,
               controller: sellerListController,
-              itemCount: sellerList.length,
+              itemCount: newList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   child: Column(
@@ -50,15 +82,14 @@ class ShowContentOfSellers extends StatelessWidget {
                                 heightvalue: null,
                                 widthvalue: null,
                                 placeHolderSize: 50,
-                                imageurlString:
-                                    sellerList[index].seller_profile!,
+                                imageurlString: newList[index].seller_profile!,
                               ),
                             ),
                           ),
                         ),
                       ),
                       Text(
-                        sellerList[index].store_name!,
+                        newList[index].store_name!,
                         textAlign: TextAlign.center,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -100,34 +131,29 @@ class ShowContentOfSellers extends StatelessWidget {
                   ),
                   onTap: () async {
                     Routes.navigateToSellerProfileScreen(
-                      context,
-                      sellerList[index].seller_id!,
-                      sellerList[index].seller_profile!,
-                      sellerList[index].seller_name!,
-                      sellerList[index].seller_rating!,
-                      sellerList[index].store_name!,
-                      sellerList[index].store_description!,
-                      sellerList[index].totalProductsOfSeller,
-                    );
+                        context,
+                        newList[index].seller_id!,
+                        newList[index].seller_profile!,
+                        newList[index].seller_name!,
+                        newList[index].seller_rating!,
+                        newList[index].store_name!,
+                        newList[index].store_description!,
+                        newList[index].totalProductsOfSeller,
+                        widget.subList);
                   },
                 );
               },
             ),
           )
-        : Selector<HomePageProvider, bool>(
-            builder: (context, data, child) {
-              return !data
-                  ? Center(
-                      child: Text(
-                        getTranslated(context, 'No Seller/Store Found')!,
-                        style: const TextStyle(
-                          fontFamily: 'ubuntu',
-                        ),
-                      ),
-                    )
-                  : Container();
-            },
-            selector: (_, provider) => provider.sellerLoading,
+        : Center(
+            child: Text(
+              getTranslated(context, 'No Seller/Store Found')!,
+              style: const TextStyle(
+                  fontFamily: 'ubuntu',
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
           );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/base_scaffold_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/sub_category_product.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
@@ -331,30 +332,11 @@ class _ViewAllServiceScreenState extends State<ViewAllServiceScreen> {
         ],
       ),
       onTap: () {
-        // if (widget.subList![index].subList == null ||
-        //     widget.subList![index].subList!.isEmpty) {
-        //   // Navigator.push(
-        //   //   context,
-        //   //   CupertinoPageRoute(
-        //   //     builder: (context) => ProductList(
-        //   //       name: widget.subList![index].name,
-        //   //       id: widget.subList![index].id,
-        //   //       tag: false,
-        //   //       fromSeller: false,
-        //   //     ),
-        //   //   ),
-        //   // );
-        // } else {
-        //   Navigator.push(
-        //     context,
-        //     CupertinoPageRoute(
-        //       builder: (context) => SubCategory(
-        //         subList: widget.subList![index].subList,
-        //         title: widget.subList![index].name ?? '',
-        //       ),
-        //     ),
-        //   );
-        // }
+        SubCategoryProductScreen(
+                categoryId: widget.categoryId,
+                categoryName: widget.categoryName,
+                isFromCategory: true)
+            .launch(context);
       },
     );
   }
@@ -374,7 +356,7 @@ class _ViewAllServiceScreenState extends State<ViewAllServiceScreen> {
           const BackgroundImageService(),
           SnapHelperWidget<List<CategoryData>>(
               future: futureCategory,
-              loadingWidget: Offstage(),
+              loadingWidget: const Offstage(),
               onSuccess: (list) {
                 return GridView.count(
                     padding: const EdgeInsets.all(20),
