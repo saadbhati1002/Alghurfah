@@ -298,7 +298,6 @@ class _GridViewLayOutState extends State<GridViewLayOut> {
           },
         ),
       );
-      ;
     } else {
       return Container();
     }

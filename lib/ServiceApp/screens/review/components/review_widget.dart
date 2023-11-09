@@ -16,8 +16,8 @@ class ReviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 8),
-      padding: EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(16),
       width: context.width(),
       decoration: boxDecorationDefault(color: context.cardColor),
       child: Column(
@@ -40,7 +40,8 @@ class ReviewWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(data.customerName.validate(),
-                              style: boldTextStyle(size: 14),
+                              style:
+                                  boldTextStyle(size: 14, color: Colors.white),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis)
                           .flexible(),

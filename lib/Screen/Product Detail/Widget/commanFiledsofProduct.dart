@@ -210,6 +210,7 @@ class GetRatttingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(ratting);
     return Row(
       children: [
         Expanded(

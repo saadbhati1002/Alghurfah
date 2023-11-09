@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Constant.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -136,7 +137,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
             style: boldTextStyle(size: LABEL_TEXT_SIZE, color: Colors.black)),
         16.height,
         BookingDetailProviderWidget(providerData: data).onTap(() async {
-          await ProviderInfoScreen(providerId: data.id).launch(context);
+          await ProviderInfoScreen(
+            providerId: data.id,
+            sellerName: data.displayName,
+          ).launch(context);
           setStatusBarColor(Colors.transparent);
         }),
       ],
@@ -269,18 +273,20 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
         setStatusBarColor(transparentColor);
       });
     } else {
-      SignInScreen(isFromServiceBooking: true).launch(context).then((value) {
-        if (appStore.isLoggedIn) {
-          serviceDetailResponse.serviceDetail!.bookingAddressId =
-              selectedBookingAddressId;
-          BookServiceScreen(
-                  data: serviceDetailResponse, selectedPackage: selectedPackage)
-              .launch(context)
-              .then((value) {
-            setStatusBarColor(transparentColor);
-          });
-        }
-      });
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Login()));
+      // SignInScreen(isFromServiceBooking: true).launch(context).then((value) {
+      //   if (appStore.isLoggedIn) {
+      //     serviceDetailResponse.serviceDetail!.bookingAddressId =
+      //         selectedBookingAddressId;
+      //     BookServiceScreen(
+      //             data: serviceDetailResponse, selectedPackage: selectedPackage)
+      //         .launch(context)
+      //         .then((value) {
+      //       setStatusBarColor(transparentColor);
+      //     });
+      //   }
+      // });
     }
   }
 
@@ -361,10 +367,13 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                         ],
                       ),
                     ),
-                    GetRatttingWidget(
-                      ratting:
-                          snap.data!.serviceDetail!.totalRating!.toString(),
-                      noOfRatting: '',
+                    // GetRatttingWidget(
+                    //   ratting:
+                    //       snap.data!.serviceDetail!.totalRating!.toString(),
+                    //   noOfRatting: '',
+                    // ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -427,7 +436,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                   ],
                 ).paddingAll(16),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -498,9 +507,9 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 //   },
                 // ),
                 // serviceFaqWidget(data: snap.data!.serviceFaq.validate()),
-                // reviewWidget(
-                //     data: snap.data!.ratingData!,
-                //     serviceDetailResponse: snap.data!),
+                reviewWidget(
+                    data: snap.data!.ratingData!,
+                    serviceDetailResponse: snap.data!),
                 // 24.height,
                 // relatedServiceWidget(
                 //     serviceList: snap.data!.relatedService.validate(),
@@ -522,7 +531,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
           key: _scaffoldKey,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_scaffoldKey,
-              title: snap.data?.serviceDetail?.name,
+              title: snap.data?.serviceDetail?.name ?? "",
               context: context,
               setState: setStateNow),
           body: buildBodyWidget(snap),
