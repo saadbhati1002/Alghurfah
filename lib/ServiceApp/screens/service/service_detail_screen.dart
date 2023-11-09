@@ -1,4 +1,6 @@
+import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
+import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/package_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/model/service_data_model.dart';
@@ -20,11 +22,21 @@ import 'package:eshop_multivendor/ServiceApp/screens/service/shimmer/service_det
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/desing.dart';
+import 'package:eshop_multivendor/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/ProductHighLight.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/allQuestionButton.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/brandNameWidget.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/commanFiledsofProduct.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/productItemList.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/productExtraDetail.dart';
+import 'package:eshop_multivendor/Screen/Product Detail/Widget/commanFiledsofProduct.dart';
+import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 
 class ServiceDetailScreen extends StatefulWidget {
   final int serviceId;
@@ -98,13 +110,13 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: boxDecorationDefault(
-                        color: isSelected ? primaryColor : context.cardColor),
+                        color: isSelected
+                            ? colors.serviceColor
+                            : context.cardColor),
                     child: Text(
                       '${value.providerAddressMapping!.address.validate()}',
                       style: boldTextStyle(
-                          color: isSelected
-                              ? Colors.white
-                              : textPrimaryColorGlobal),
+                          color: isSelected ? Colors.white : Colors.grey),
                     ),
                   ),
                 );
@@ -121,7 +133,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(language.lblAboutProvider,
-            style: boldTextStyle(size: LABEL_TEXT_SIZE)),
+            style: boldTextStyle(size: LABEL_TEXT_SIZE, color: Colors.black)),
         16.height,
         BookingDetailProviderWidget(providerData: data).onTap(() async {
           await ProviderInfoScreen(providerId: data.id).launch(context);
@@ -277,6 +289,33 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
     if (mounted) super.setState(fn);
   }
 
+  Future<void> onTapFavorites(serviceDetail) async {
+    if (serviceDetail.isFavourite == 1) {
+      serviceDetail.isFavourite = 0;
+      setState(() {});
+
+      await removeToWishList(serviceId: serviceDetail.id).then((value) {
+        if (!value) {
+          serviceDetail.isFavourite = 1;
+          setSnackbar(
+              getTranslated(context, 'Removed from favorite')!, context);
+        }
+      });
+    } else {
+      serviceDetail.isFavourite = 1;
+      setState(() {});
+
+      await addToWishList(serviceId: serviceDetail.id).then((value) {
+        if (!value) {
+          serviceDetail.isFavourite = 0;
+          setSnackbar(getTranslated(context, 'Added to favorite')!, context);
+
+          setState(() {});
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget buildBodyWidget(AsyncSnapshot<ServiceDetailResponse> snap) {
@@ -286,7 +325,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
         return Stack(
           children: [
             AnimatedScrollView(
-              padding: const EdgeInsets.only(bottom: 120),
+              padding: const EdgeInsets.only(bottom: 40),
               listAnimationType: ListAnimationType.FadeIn,
               fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
               children: [
@@ -295,62 +334,179 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    8.height,
-                    Text(language.hintDescription,
-                        style: boldTextStyle(size: LABEL_TEXT_SIZE)),
-                    8.height,
-                    snap.data!.serviceDetail!.description.validate().isNotEmpty
-                        ? ReadMoreText(
-                            snap.data!.serviceDetail!.description.validate(),
-                            style: secondaryTextStyle(),
-                            textAlign: TextAlign.justify,
+                    snap.data!.serviceDetail!.name != '' &&
+                            snap.data!.serviceDetail!.name != null
+                        ? GetTitleWidget(
+                            title: snap.data!.serviceDetail!.name!,
                           )
-                        : Text(language.lblNotDescription,
-                            style: secondaryTextStyle()),
+                        : Container(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${DesignConfiguration.getPriceFormat(context, double.parse(snap.data!.serviceDetail!.price!.toString()))!} AED',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: Theme.of(context).colorScheme.blue,
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: textFontSize20,
+                                ),
+                          ),
+                          const SizedBox(width: 10),
+                        ],
+                      ),
+                    ),
+                    GetRatttingWidget(
+                      ratting:
+                          snap.data!.serviceDetail!.totalRating!.toString(),
+                      noOfRatting: '',
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              bookNow(snap.data!);
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 45,
+                              width: MediaQuery.of(context).size.width * .7,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25),
+                                  ),
+                                  color: colors.serviceColor),
+                              child: Text(
+                                getTranslated(context, 'Book Now')!,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.black,
+                                      fontSize: textFontSize16,
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'ubuntu',
+                                    ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              onTapFavorites(snap.data!.serviceDetail!);
+                            },
+                            child: Container(
+                              height: 45,
+                              width: 55,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20),
+                                  ),
+                                  color: colors.serviceColor),
+                              child: const Icon(
+                                Icons.favorite,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    8.height,
                   ],
                 ).paddingAll(16),
-                slotsAvailable(
-                    data: snap.data!.serviceDetail!.bookingSlots.validate(),
-                    isSlotAvailable: snap.data!.serviceDetail!.isSlotAvailable),
-                availableWidget(data: snap.data!.serviceDetail!),
-                providerWidget(data: snap.data!.provider!),
-                PackageComponent(
-                  servicePackage:
-                      snap.data!.serviceDetail!.servicePackage.validate(),
-                  callBack: (v) {
-                    if (v != null) {
-                      selectedPackage = v;
-                    } else {
-                      selectedPackage = null;
-                    }
-                    bookNow(snap.data!);
-                  },
+                const SizedBox(
+                  height: 20,
                 ),
-                serviceFaqWidget(data: snap.data!.serviceFaq.validate()),
-                reviewWidget(
-                    data: snap.data!.ratingData!,
-                    serviceDetailResponse: snap.data!),
-                24.height,
-                relatedServiceWidget(
-                    serviceList: snap.data!.relatedService.validate(),
-                    serviceId: snap.data!.serviceDetail!.id.validate()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            getTranslated(context, 'Product Highlights')!,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal,
+                              fontSize: textFontSize16,
+                              color: Theme.of(context).colorScheme.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 7,
+                          ),
+                          snap.data!.serviceDetail!.description
+                                  .validate()
+                                  .isNotEmpty
+                              ? ReadMoreText(
+                                  snap.data!.serviceDetail!.description
+                                      .validate(),
+                                  style: secondaryTextStyle(),
+                                  textAlign: TextAlign.justify,
+                                )
+                              : Text(language.lblNotDescription,
+                                  style: secondaryTextStyle()),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          availableWidget(data: snap.data!.serviceDetail!),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                // slotsAvailable(
+                //     data: snap.data!.serviceDetail!.bookingSlots.validate(),
+                //     isSlotAvailable: snap.data!.serviceDetail!.isSlotAvailable),
+                providerWidget(data: snap.data!.provider!),
+                // PackageComponent(
+                //   servicePackage:
+                //       snap.data!.serviceDetail!.servicePackage.validate(),
+                //   callBack: (v) {
+                //     if (v != null) {
+                //       selectedPackage = v;
+                //     } else {
+                //       selectedPackage = null;
+                //     }
+                //     bookNow(snap.data!);
+                //   },
+                // ),
+                // serviceFaqWidget(data: snap.data!.serviceFaq.validate()),
+                // reviewWidget(
+                //     data: snap.data!.ratingData!,
+                //     serviceDetailResponse: snap.data!),
+                // 24.height,
+                // relatedServiceWidget(
+                //     serviceList: snap.data!.relatedService.validate(),
+                //     serviceId: snap.data!.serviceDetail!.id.validate()),
               ],
             ),
-            Positioned(
-              bottom: 16,
-              left: 16,
-              right: 16,
-              child: AppButton(
-                onTap: () {
-                  bookNow(snap.data!);
-                },
-                color: context.primaryColor,
-                child: Text(language.lblBookNow,
-                    style: boldTextStyle(color: white)),
-                width: context.width(),
-                textColor: Colors.white,
-              ),
-            )
           ],
         );
       }

@@ -37,32 +37,6 @@ class ServiceDetailHeaderComponent extends StatefulWidget {
 
 class _ServiceDetailHeaderComponentState
     extends State<ServiceDetailHeaderComponent> {
-  Future<void> onTapFavourite() async {
-    if (widget.serviceDetail.isFavourite == 1) {
-      widget.serviceDetail.isFavourite = 0;
-      setState(() {});
-
-      await removeToWishList(serviceId: widget.serviceDetail.id.validate())
-          .then((value) {
-        if (!value) {
-          widget.serviceDetail.isFavourite = 1;
-          setState(() {});
-        }
-      });
-    } else {
-      widget.serviceDetail.isFavourite = 1;
-      setState(() {});
-
-      await addToWishList(serviceId: widget.serviceDetail.id.validate())
-          .then((value) {
-        if (!value) {
-          widget.serviceDetail.isFavourite = 0;
-          setState(() {});
-        }
-      });
-    }
-  }
-
   late ShortDynamicLink shortenedLink;
   Future<void> createDynamicLink() async {
     String documentDirectory;
@@ -92,7 +66,7 @@ class _ServiceDetailHeaderComponentState
   Widget build(BuildContext context) {
     return SizedBox(
       height: 270,
-      width: context.width(),
+      width: MediaQuery.of(context).size.width * 1,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -129,7 +103,7 @@ class _ServiceDetailHeaderComponentState
               ),
             ),
           Padding(
-            padding: const EdgeInsets.only(top: 5, left: 10),
+            padding: const EdgeInsets.only(top: 5, left: 0),
             child: Align(
               alignment: Alignment.topLeft,
               child: IconButton(
@@ -141,21 +115,21 @@ class _ServiceDetailHeaderComponentState
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.share,
-                    size: 25.0,
-                    color: colors.primary,
-                  ),
-                  onPressed: createDynamicLink,
-                ),
-              ],
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Row(
+          //     children: [
+          //       IconButton(
+          //         icon: const Icon(
+          //           Icons.share,
+          //           size: 25.0,
+          //           color: colors.primary,
+          //         ),
+          //         onPressed: createDynamicLink,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
