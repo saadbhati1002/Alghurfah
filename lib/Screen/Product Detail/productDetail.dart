@@ -565,6 +565,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      bottomNavigationBar: allAppBottomSheet(context),
       endDrawer: const MyDrawer(),
       key: _scaffoldKey,
       backgroundColor: colors.backgroundColor,
@@ -1531,134 +1532,6 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
             ),
           ),
         ),
-        // Selector<UserProvider, String>(
-        //   builder: (context, data, child) {
-        //     return Padding(
-        //       padding: const EdgeInsets.only(
-        //         right: 10.0,
-        //         bottom: 10.0,
-        //         top: 10.0,
-        //       ),
-        //       child: Container(
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(circularBorderRadius7),
-        //           color: Theme.of(context).colorScheme.white,
-        //         ),
-        //         width: 33,
-        //         height: 33,
-        //         child: IconButton(
-        //           icon: Stack(
-        //             children: [
-        //               Center(
-        //                 child: SvgPicture.asset(
-        //                   DesignConfiguration.setSvgPath('appbarCart'),
-        //                   colorFilter: const ColorFilter.mode(
-        //                       colors.primary, BlendMode.srcIn),
-        //                 ),
-        //               ),
-        //               (data != '' && data.isNotEmpty && data != '0')
-        //                   ? Positioned(
-        //                       bottom: 5,
-        //                       right: 5,
-        //                       child: Container(
-        //                         height: 20,
-        //                         decoration: const BoxDecoration(
-        //                           shape: BoxShape.circle,
-        //                           color: colors.primary,
-        //                         ),
-        //                         child: Center(
-        //                           child: Padding(
-        //                             padding: const EdgeInsets.all(3),
-        //                             child: Text(
-        //                               data,
-        //                               style: TextStyle(
-        //                                 fontSize: textFontSize8,
-        //                                 fontFamily: 'ubuntu',
-        //                                 fontWeight: FontWeight.bold,
-        //                                 color:
-        //                                     Theme.of(context).colorScheme.white,
-        //                               ),
-        //                             ),
-        //                           ),
-        //                         ),
-        //                       ),
-        //                     )
-        //                   : Container()
-        //             ],
-        //           ),
-        //           onPressed: () {
-        //             cartTotalClear();
-        //             Routes.navigateToCartScreen(context, false);
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        //   selector: (_, HomePageProvider) => HomePageProvider.curCartCount,
-        // ),
-        // Selector<FavoriteProvider, List<String?>>(
-        //   builder: (context, data, child) {
-        //     return Padding(
-        //       padding: const EdgeInsets.only(
-        //         right: 10.0,
-        //         bottom: 10.0,
-        //         top: 10.0,
-        //       ),
-        //       child: Container(
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(circularBorderRadius7),
-        //           color: Theme.of(context).colorScheme.white,
-        //         ),
-        //         width: 33,
-        //         height: 33,
-        //         child: InkWell(
-        //           onTap: () {
-        //             if (CUR_USERID != null) {
-        //               !data.contains(widget.model!.id)
-        //                   ? _setFav(-1, -1)
-        //                   : _removeFav(-1, -1);
-        //             } else {
-        //               if (!data.contains(widget.model!.id)) {
-        //                 widget.model!.isFavLoading = true;
-        //                 widget.model!.isFav = '1';
-        //                 context
-        //                     .read<FavoriteProvider>()
-        //                     .addFavItem(widget.model);
-        //                 db.addAndRemoveFav(widget.model!.id!, true);
-        //                 widget.model!.isFavLoading = false;
-        //                 setSnackbar(
-        //                     getTranslated(context, 'Added to favorite')!,
-        //                     context);
-        //               } else {
-        //                 widget.model!.isFavLoading = true;
-        //                 widget.model!.isFav = '0';
-        //                 context
-        //                     .read<FavoriteProvider>()
-        //                     .removeFavItem(widget.model!.prVarientList![0].id!);
-        //                 db.addAndRemoveFav(widget.model!.id!, false);
-        //                 widget.model!.isFavLoading = false;
-        //                 setSnackbar(
-        //                     getTranslated(context, 'Removed from favorite')!,
-        //                     context);
-        //               }
-        //               setState(
-        //                 () {},
-        //               );
-        //             }
-        //           },
-        //           child: Icon(
-        //             !data.contains(widget.model!.id)
-        //                 ? Icons.favorite_border
-        //                 : Icons.favorite,
-        //             size: 20,
-        //             color: colors.primary,
-        //           ),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        //   selector: (_, provider) => provider.favIdList,
-        // ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         background: _slider(),
@@ -1781,7 +1654,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                                     bottomLeft:
                                                         Radius.circular(25),
                                                   ),
-                                                  color: colors.serviceColor),
+                                                  color: colors.eCommerceColor),
                                               child: Text(
                                                 getTranslated(
                                                     context, 'BUYNOW')!,
@@ -1872,7 +1745,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                                                     20),
                                                           ),
                                                           color: colors
-                                                              .serviceColor),
+                                                              .eCommerceColor),
                                                   child: const Icon(
                                                     Icons.favorite,
                                                     color: Colors.white,
@@ -1919,10 +1792,15 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                                       bottomLeft:
                                                           Radius.circular(20),
                                                     ),
-                                                    color: colors.serviceColor),
-                                                child: const Icon(
-                                                  Icons.card_travel_outlined,
-                                                  color: Colors.white,
+                                                    color:
+                                                        colors.eCommerceColor),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Image.asset(
+                                                    'assets/images/png/4.png',
+                                                    color: Colors.white,
+                                                  ),
                                                 )),
                                           )
                                         ],

@@ -273,133 +273,6 @@ class _SellerProfileState extends State<SellerProfile>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Container(
-                            //   color: Theme.of(context).colorScheme.white,
-                            //   child: Padding(
-                            //     padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-                            //     child: Container(
-                            //       decoration: BoxDecoration(
-                            //         borderRadius: BorderRadius.circular(
-                            //           circularBorderRadius10,
-                            //         ),
-                            //       ),
-                            //       height: 44,
-                            //       child: TextField(
-                            //         style: TextStyle(
-                            //           color: Theme.of(context).colorScheme.fontColor,
-                            //           fontWeight: FontWeight.normal,
-                            //         ),
-                            //         controller: _controller,
-                            //         autofocus: false,
-                            //         focusNode: searchFocusNode,
-                            //         enabled: true,
-                            //         textAlign: TextAlign.left,
-                            //         decoration: InputDecoration(
-                            //           focusedBorder: OutlineInputBorder(
-                            //             borderSide: BorderSide(
-                            //                 color: Theme.of(context)
-                            //                     .colorScheme
-                            //                     .lightWhite),
-                            //             borderRadius: const BorderRadius.all(
-                            //               Radius.circular(circularBorderRadius10),
-                            //             ),
-                            //           ),
-                            //           enabledBorder: const OutlineInputBorder(
-                            //             borderSide:
-                            //                 BorderSide(color: Colors.transparent),
-                            //             borderRadius: BorderRadius.all(
-                            //               Radius.circular(circularBorderRadius10),
-                            //             ),
-                            //           ),
-                            //           contentPadding: const EdgeInsets.fromLTRB(
-                            //               15.0, 5.0, 0, 5.0),
-                            //           border: const OutlineInputBorder(
-                            //             borderSide:
-                            //                 BorderSide(color: Colors.transparent),
-                            //             borderRadius: BorderRadius.all(
-                            //               Radius.circular(circularBorderRadius10),
-                            //             ),
-                            //           ),
-                            //           fillColor:
-                            //               Theme.of(context).colorScheme.lightWhite,
-                            //           filled: true,
-                            //           isDense: true,
-                            //           hintText: getTranslated(context, 'searchHint'),
-                            //           hintStyle: Theme.of(context)
-                            //               .textTheme
-                            //               .bodyMedium!
-                            //               .copyWith(
-                            //                 color: Theme.of(context)
-                            //                     .colorScheme
-                            //                     .fontColor,
-                            //                 fontSize: textFontSize12,
-                            //                 fontWeight: FontWeight.w400,
-                            //                 fontStyle: FontStyle.normal,
-                            //               ),
-                            //           prefixIcon: const Padding(
-                            //               padding: EdgeInsets.all(15.0),
-                            //               child: Icon(Icons.search)),
-                            //           suffixIcon: _controller.text != ''
-                            //               ? IconButton(
-                            //                   onPressed: () {
-                            //                     FocusScope.of(context).unfocus();
-                            //                     _controller.text = '';
-                            //                     notificationoffset = 0;
-                            //                     getProduct('0');
-                            //                   },
-                            //                   icon: const Icon(
-                            //                     Icons.close,
-                            //                     color: colors.primary,
-                            //                   ),
-                            //                 )
-                            //               : GestureDetector(
-                            //                   child: Selector<ThemeNotifier,
-                            //                           ThemeMode>(
-                            //                       selector: (_, themeProvider) =>
-                            //                           themeProvider.getThemeMode(),
-                            //                       builder: (context, data, child) {
-                            //                         return Padding(
-                            //                           padding:
-                            //                               const EdgeInsets.all(10.0),
-                            //                           child: (data ==
-                            //                                           ThemeMode
-                            //                                               .system &&
-                            //                                       MediaQuery.of(
-                            //                                                   context)
-                            //                                               .platformBrightness ==
-                            //                                           Brightness
-                            //                                               .light) ||
-                            //                                   data == ThemeMode.light
-                            //                               ? SvgPicture.asset(
-                            //                                   DesignConfiguration
-                            //                                       .setSvgPath(
-                            //                                           'voice_search'),
-                            //                                   height: 15,
-                            //                                   width: 15,
-                            //                                 )
-                            //                               : SvgPicture.asset(
-                            //                                   DesignConfiguration
-                            //                                       .setSvgPath(
-                            //                                           'voice_search_white'),
-                            //                                   height: 15,
-                            //                                   width: 15,
-                            //                                 ),
-                            //                         );
-                            //                       }),
-                            //                   onTap: () {
-                            //                     lastWords = '';
-                            //                     if (!_hasSpeech) {
-                            //                       initSpeechState();
-                            //                     } else {
-                            //                       showSpeechDialog();
-                            //                     }
-                            //                   },
-                            //                 ),
-                            //         ),
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                             const SizedBox(
                               height: 30,
                             ),
@@ -625,13 +498,51 @@ class _SellerProfileState extends State<SellerProfile>
                                 ],
                               ),
                             ),
-                            // GetSellerProfile(
-                            //   sellerImage: widget.sellerImage!,
-                            //   sellerStoreName: widget.sellerStoreName!,
-                            //   sellerRating: widget.sellerRating,
-                            //   storeDesc: widget.storeDesc,
-                            //   totalProductsOfSeller: widget.totalProductsOfSeller!,
-                            // ),
+                            widget.subList!.isEmpty
+                                ? const SizedBox()
+                                : SizedBox(
+                                    child: GridView.builder(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, left: 20, right: 10),
+                                        itemCount: widget.subList!.length,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          childAspectRatio: 3,
+                                          crossAxisCount: 3,
+                                          mainAxisSpacing: 10,
+                                          crossAxisSpacing: 10,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            alignment: Alignment.center,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(15),
+                                                    bottomLeft:
+                                                        Radius.circular(15))),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 5),
+                                              child: Text(
+                                                widget.subList![index].name!,
+                                                textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
                             Stack(
                               children: <Widget>[
                                 _showContentOfProducts(),
@@ -647,6 +558,66 @@ class _SellerProfileState extends State<SellerProfile>
                           ],
                         ),
                       ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15, right: 15),
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25)),
+                                  child: Container(
+                                    color: Colors.white,
+                                    child: DesignConfiguration
+                                        .getCacheNotworkImage(
+                                      boxFit: BoxFit.fill,
+                                      context: context,
+                                      heightvalue: null,
+                                      widthvalue: null,
+                                      placeHolderSize: 50,
+                                      imageurlString: widget.sellerImage!,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, right: 10),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            height: 25,
+                            width: 25,
+                            decoration: const BoxDecoration(
+                                color: Color.fromRGBO(179, 127, 70, 1),
+                                shape: BoxShape.circle),
+                            child: Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border:
+                                      Border.all(width: 1, color: Colors.white),
+                                ),
+                                child: const Icon(
+                                  Icons.star_border_outlined,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   );
                 } else if (value.getCurrentStatus ==
@@ -1461,12 +1432,12 @@ class _SellerProfileState extends State<SellerProfile>
 
   getGridviewLayoutOfProducts() {
     return Padding(
-      padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
+      padding: const EdgeInsets.only(right: 10, left: 10, top: 5),
       child: GridView.count(
         padding: const EdgeInsetsDirectional.only(top: 5),
         crossAxisCount: 2,
         shrinkWrap: true,
-        childAspectRatio: 0.6,
+        childAspectRatio: 0.55,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
         physics: const NeverScrollableScrollPhysics(),

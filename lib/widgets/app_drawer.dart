@@ -452,6 +452,7 @@ class _MyDrawerState extends State<MyDrawer> {
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
+                                     
                                       itemCount: snap.category!.length,
                                       padding:
                                           const EdgeInsets.only(bottom: 20),

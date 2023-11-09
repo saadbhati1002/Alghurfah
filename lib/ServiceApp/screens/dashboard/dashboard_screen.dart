@@ -41,7 +41,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               type: BottomNavigationBarType.fixed,
               currentIndex: _currentIndex,
               backgroundColor: colors.primary,
-              selectedItemColor: colors.serviceColor,
+              selectedItemColor: colors.categoryNewIn,
               unselectedItemColor: Colors.white,
               unselectedFontSize: 0,
               selectedFontSize: 0,

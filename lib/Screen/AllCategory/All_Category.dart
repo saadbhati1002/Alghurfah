@@ -242,29 +242,29 @@ class _AllCategoryState extends State<AllCategory>
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 15),
-                                                    child: Container(
-                                                      height: 65,
-                                                      width: 65,
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color: Colors.white,
-                                                          image: DecorationImage(
-                                                              image: NetworkImage(
-                                                                  context
-                                                                      .read<
-                                                                          HomePageProvider>()
-                                                                      .catList[
-                                                                          index]
-                                                                      .image!))),
-                                                    ),
-                                                  ),
+                                                  // Padding(
+                                                  //   padding: const EdgeInsets
+                                                  //           .symmetric(
+                                                  //       horizontal: 15),
+                                                  //   child: Container(
+                                                  //     height: 65,
+                                                  //     width: 65,
+                                                  //     decoration: BoxDecoration(
+                                                  //         shape:
+                                                  //             BoxShape.circle,
+                                                  //         color: Colors.white,
+                                                  //         image: DecorationImage(
+                                                  //             image: NetworkImage(
+                                                  //                 context
+                                                  //                     .read<
+                                                  //                         HomePageProvider>()
+                                                  //                     .catList[
+                                                  //                         index]
+                                                  //                     .image!))),
+                                                  //   ),
+                                                  // ),
                                                   SizedBox(
                                                     width:
                                                         MediaQuery.of(context)
@@ -309,264 +309,3 @@ class _AllCategoryState extends State<AllCategory>
     );
   }
 }
- // Expanded(
-                      //   flex: 3,
-                      //   child: context.read<HomePageProvider>().catList.isNotEmpty
-                      //       ? Column(
-                      //           children: [
-                      //             Selector<CategoryProvider, int>(
-                      //               builder: (context, data, child) {
-                      //                 return Padding(
-                      //                   padding: const EdgeInsets.all(8.0),
-                      //                   child: Column(
-                      //                     crossAxisAlignment:
-                      //                         CrossAxisAlignment.start,
-                      //                     mainAxisSize: MainAxisSize.min,
-                      //                     children: [
-                      //                       Row(
-                      //                         children: [
-                      //                           Text(
-                      //                             '${context.read<HomePageProvider>().catList[data].name!} ',
-                      //                             style: const TextStyle(
-                      //                               fontFamily: 'ubuntu',
-                      //                             ),
-                      //                           ),
-                      //                           const Expanded(
-                      //                             child: Divider(
-                      //                               thickness: 2,
-                      //                             ),
-                      //                           ),
-                      //                         ],
-                      //                       ),
-                      //                       Padding(
-                      //                         padding: const EdgeInsets.symmetric(
-                      //                             vertical: 8.0),
-                      //                         child: Text(
-                      //                           '${getTranslated(context, 'All')!} ${context.read<HomePageProvider>().catList[data].name!} ',
-                      //                           style: TextStyle(
-                      //                             fontFamily: 'ubuntu',
-                      //                             color: Theme.of(context)
-                      //                                 .colorScheme
-                      //                                 .fontColor,
-                      //                             fontWeight: FontWeight.bold,
-                      //                             fontSize: textFontSize16,
-                      //                           ),
-                      //                         ),
-                      //                       )
-                      //                     ],
-                      //                   ),
-                      //                 );
-                      //               },
-                      //               selector: (_, cat) => cat.curCat,
-                      //             ),
-                      //             Expanded(
-                      //               child:
-                      //                   Selector<CategoryProvider, List<Product>>(
-                      //                 builder: (context, data, child) {
-                      //                   return data.isNotEmpty
-                      //                       ? NotificationListener<
-                      //                           OverscrollIndicatorNotification>(
-                      //                           onNotification: (overscroll) {
-                      //                             overscroll.disallowIndicator();
-                      //                             return true;
-                      //                           },
-                      //                           child: GridView.count(
-                      //                             padding:
-                      //                                 const EdgeInsets.symmetric(
-                      //                                     horizontal: 20),
-                      //                             crossAxisCount: 3,
-                      //                             shrinkWrap: true,
-                      //                             childAspectRatio: .6,
-                      //                             children: List.generate(
-                      //                               data.length,
-                      //                               (index) {
-                      //                                 return GestureDetector(
-                      //                                   child: Column(
-                      //                                     children: <Widget>[
-                      //                                       Padding(
-                      //                                         padding:
-                      //                                             const EdgeInsets
-                      //                                                 .all(8.0),
-                      //                                         child: ClipRRect(
-                      //                                           borderRadius:
-                      //                                               BorderRadius
-                      //                                                   .circular(
-                      //                                                       circularBorderRadius10),
-                      //                                           child: DesignConfiguration
-                      //                                               .getCacheNotworkImage(
-                      //                                             boxFit:
-                      //                                                 BoxFit.fill,
-                      //                                             context:
-                      //                                                 context,
-                      //                                             heightvalue:
-                      //                                                 null,
-                      //                                             widthvalue:
-                      //                                                 null,
-                      //                                             imageurlString:
-                      //                                                 data[index]
-                      //                                                     .image!,
-                      //                                             placeHolderSize:
-                      //                                                 null,
-                      //                                           ),
-                      //                                         ),
-                      //                                       ),
-                      //                                       Text(
-                      //                                         '${data[index].name!}\n',
-                      //                                         textAlign: TextAlign
-                      //                                             .center,
-                      //                                         maxLines: 2,
-                      //                                         overflow:
-                      //                                             TextOverflow
-                      //                                                 .ellipsis,
-                      //                                         style: Theme.of(
-                      //                                                 context)
-                      //                                             .textTheme
-                      //                                             .bodySmall!
-                      //                                             .copyWith(
-                      //                                               fontFamily:
-                      //                                                   'ubuntu',
-                      //                                               color: Theme.of(
-                      //                                                       context)
-                      //                                                   .colorScheme
-                      //                                                   .fontColor,
-                      //                                             ),
-                      //                                       )
-                      //                                     ],
-                      //                                   ),
-                      //                                   onTap: () {
-                      //                                     if (context
-                      //                                                 .read<
-                      //                                                     CategoryProvider>()
-                      //                                                 .curCat ==
-                      //                                             0 &&
-                      //                                         context
-                      //                                             .read<
-                      //                                                 HomePageProvider>()
-                      //                                             .popularList
-                      //                                             .isNotEmpty) {
-                      //                                       if (context
-                      //                                                   .read<
-                      //                                                       HomePageProvider>()
-                      //                                                   .popularList[
-                      //                                                       index]
-                      //                                                   .subList ==
-                      //                                               null ||
-                      //                                           context
-                      //                                               .read<
-                      //                                                   HomePageProvider>()
-                      //                                               .popularList[
-                      //                                                   index]
-                      //                                               .subList!
-                      //                                               .isEmpty) {
-                      //                                         Navigator.push(
-                      //                                           context,
-                      //                                           CupertinoPageRoute(
-                      //                                             builder:
-                      //                                                 (context) =>
-                      //                                                     ProductList(
-                      //                                               name: context
-                      //                                                   .read<
-                      //                                                       HomePageProvider>()
-                      //                                                   .popularList[
-                      //                                                       index]
-                      //                                                   .name,
-                      //                                               id: context
-                      //                                                   .read<
-                      //                                                       HomePageProvider>()
-                      //                                                   .popularList[
-                      //                                                       index]
-                      //                                                   .id,
-                      //                                               tag: false,
-                      //                                               fromSeller:
-                      //                                                   false,
-                      //                                             ),
-                      //                                           ),
-                      //                                         );
-                      //                                       } else {
-                      //                                         Navigator.push(
-                      //                                           context,
-                      //                                           CupertinoPageRoute(
-                      //                                             builder:
-                      //                                                 (context) =>
-                      //                                                     SubCategory(
-                      //                                               subList: context
-                      //                                                   .read<
-                      //                                                       HomePageProvider>()
-                      //                                                   .popularList[
-                      //                                                       index]
-                      //                                                   .subList,
-                      //                                               title: context
-                      //                                                       .read<
-                      //                                                           HomePageProvider>()
-                      //                                                       .popularList[
-                      //                                                           index]
-                      //                                                       .name ??
-                      //                                                   '',
-                      //                                             ),
-                      //                                           ),
-                      //                                         );
-                      //                                       }
-                      //                                     } else if (data[index]
-                      //                                                 .subList ==
-                      //                                             null ||
-                      //                                         data[index]
-                      //                                             .subList!
-                      //                                             .isEmpty) {
-                      //                                       Navigator.push(
-                      //                                         context,
-                      //                                         CupertinoPageRoute(
-                      //                                           builder:
-                      //                                               (context) =>
-                      //                                                   ProductList(
-                      //                                             name:
-                      //                                                 data[index]
-                      //                                                     .name,
-                      //                                             id: data[index]
-                      //                                                 .id,
-                      //                                             tag: false,
-                      //                                             fromSeller:
-                      //                                                 false,
-                      //                                           ),
-                      //                                         ),
-                      //                                       );
-                      //                                     } else {
-                      //                                       Navigator.push(
-                      //                                         context,
-                      //                                         CupertinoPageRoute(
-                      //                                           builder:
-                      //                                               (context) =>
-                      //                                                   SubCategory(
-                      //                                             subList: data[
-                      //                                                     index]
-                      //                                                 .subList,
-                      //                                             title: data[index]
-                      //                                                     .name ??
-                      //                                                 '',
-                      //                                           ),
-                      //                                         ),
-                      //                                       );
-                      //                                     }
-                      //                                   },
-                      //                                 );
-                      //                               },
-                      //                             ),
-                      //                           ),
-                      //                         )
-                      //                       : Center(
-                      //                           child: Text(
-                      //                             getTranslated(
-                      //                                 context, 'noItem')!,
-                      //                             style: const TextStyle(
-                      //                               fontFamily: 'ubuntu',
-                      //                             ),
-                      //                           ),
-                      //                         );
-                      //                 },
-                      //                 selector: (_, categoryProvider) =>
-                      //                     categoryProvider.subList,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         )
-                      //       : Container(),
-                      // ),

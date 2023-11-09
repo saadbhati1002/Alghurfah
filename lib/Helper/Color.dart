@@ -26,6 +26,7 @@ extension colors on ColorScheme {
   static const Color secondary = Color(0xffFDC994);
   static const Color categoryDiscretion = Color(0xFFDDCEBC);
   static const Color categoryNewIn = Color(0xFFD8B678);
+  static const Color newGoldColor = Color.fromRGBO(84, 71, 65, 1);
 
   Color get btnColor => brightness == Brightness.dark ? whiteTemp : primary;
 

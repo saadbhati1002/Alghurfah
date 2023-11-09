@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/widgets/desing.dart';
@@ -5,79 +6,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 Widget allAppBottomSheet(BuildContext context) {
-  return BottomNavigationBar(
-    selectedItemColor: Colors.grey,
-    unselectedItemColor: Colors.grey,
-    showUnselectedLabels: true,
-    selectedFontSize: 12,
-    unselectedFontSize: 12,
-    currentIndex: 0,
-    type: BottomNavigationBarType.fixed,
-    items: [
-      BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            DesignConfiguration.setSvgPath('brands'),
-            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-            height: 20,
-          ),
+  return ClipRRect(
+    borderRadius: const BorderRadius.only(topLeft: Radius.circular(45)),
+    child: BottomNavigationBar(
+      backgroundColor: colors.primary,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
+      showUnselectedLabels: true,
+      selectedFontSize: 0,
+      unselectedFontSize: 0,
+      currentIndex: 0,
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          label: '',
+          icon: ImageIcon(AssetImage('assets/images/png/1.png')),
+          tooltip: '',
         ),
-        label: 'EXPLORE',
-      ),
-      BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            DesignConfiguration.setSvgPath('category'),
-            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-            height: 20,
-          ),
+        BottomNavigationBarItem(
+          label: '',
+          tooltip: '',
+          icon: ImageIcon(AssetImage('assets/images/png/2.png')),
         ),
-        label: 'CATEGORY',
-      ),
-      BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            DesignConfiguration.setSvgPath('home'),
-            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-            height: 20,
-          ),
-        ),
-        label: 'HOME',
-      ),
-      BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            DesignConfiguration.setSvgPath('home'),
-            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-            height: 20,
-          ),
-        ),
-        label: 'CART',
-      ),
-      BottomNavigationBarItem(
-        icon: Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: SvgPicture.asset(
-            DesignConfiguration.setSvgPath('profile'),
-            colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-            height: 20,
-          ),
-        ),
-        label: 'PROFILE',
-      ),
-    ],
-    onTap: (int index) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Dashboard(
-                  pageIndex: index,
-                )),
-      );
-    },
+        BottomNavigationBarItem(
+            label: '',
+            tooltip: '',
+            icon: ImageIcon(AssetImage('assets/images/png/3.png'))),
+        BottomNavigationBarItem(
+            label: '',
+            icon: ImageIcon(AssetImage('assets/images/png/4.png')),
+            tooltip: '')
+      ],
+      onTap: (int index) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Dashboard(
+                    pageIndex: index,
+                  )),
+        );
+      },
+    ),
   );
 }

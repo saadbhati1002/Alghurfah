@@ -19,8 +19,12 @@ import 'package:eshop_multivendor/ServiceApp/screens/service/package/package_com
 import 'package:eshop_multivendor/ServiceApp/screens/service/shimmer/service_detail_shimmer.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/Helper/Color.dart';
 
 class ServiceDetailScreen extends StatefulWidget {
   final int serviceId;
@@ -35,6 +39,7 @@ class ServiceDetailScreen extends StatefulWidget {
 class _ServiceDetailScreenState extends State<ServiceDetailScreen>
     with TickerProviderStateMixin {
   PageController pageController = PageController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<ServiceDetailResponse>? future;
 
@@ -356,9 +361,21 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       future: future,
       builder: (context, snap) {
         return Scaffold(
+          bottomNavigationBar: allAppBottomSheet(context),
+          endDrawer: const MyDrawer(),
+          key: _scaffoldKey,
+          backgroundColor: colors.backgroundColor,
+          appBar: getAppBar(_scaffoldKey,
+              title: snap.data?.serviceDetail?.name,
+              context: context,
+              setState: setStateNow),
           body: buildBodyWidget(snap),
         );
       },
     );
+  }
+
+  setStateNow() {
+    setState(() {});
   }
 }
