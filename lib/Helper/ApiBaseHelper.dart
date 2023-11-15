@@ -20,25 +20,44 @@ class ApiBaseHelper {
   Future<dynamic> postAPICall(Uri url, Map param) async {
     var responseJson;
     print(responseJson);
+    print(param);
+
     try {
-      final response =
-          await post(url, body: param.isNotEmpty ? param : [], headers: headers)
-              .timeout(const Duration(seconds: timeOut));
+      print("testing kasdghjka");
+
+      final response = await post(url,
+          body: param.isNotEmpty ? param : [], headers: headers);
+      print("testing 1");
       print(
           'response api****$url********$param*********${response.statusCode}');
 
       responseJson = _response(response);
     } on SocketException {
+      print("testing 2");
+
       throw ApiException('No Internet connection');
     } on TimeoutException {
+      print("testing 2");
+
       throw ApiException('Something went wrong, Server not Responding');
     } on Exception catch (e) {
+      print("testing 4");
+
       throw ApiException('Something Went wrong with ${e.toString()}');
     }
+    error(e) {
+      print("saad bhati");
+
+      print(e.toString());
+    }
+
+    print("saad bhati");
     return responseJson;
   }
 
   dynamic _response(Response response) {
+    print("testing tets");
+
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.body.toString());

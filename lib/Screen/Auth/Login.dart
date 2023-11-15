@@ -1118,19 +1118,13 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
               btnAnim: buttonSqueezeanimation,
               btnCntrl: buttonController,
               onBtnSelected: () async {
-                Navigator.pushReplacement(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => const HomeScreenNew(),
-                  ),
-                );
-                //   if (passFocus != null) {
-                //     passFocus!.unfocus();
-                //   }
-                //   if (monoFocus != null) {
-                //     monoFocus!.unfocus();
-                //   }
-                //   validateAndSubmit();
+                if (passFocus != null) {
+                  passFocus!.unfocus();
+                }
+                if (monoFocus != null) {
+                  monoFocus!.unfocus();
+                }
+                validateAndSubmit();
               },
             );
           },
