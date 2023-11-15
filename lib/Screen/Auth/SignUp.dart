@@ -65,6 +65,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
       lastNameFocus,
       emailFocus,
       passFocus = FocusNode(),
+      confirmPasswordFoucus = FocusNode(),
       referFocus = FocusNode();
   Animation? buttonSqueezeanimation;
   AnimationController? buttonController;
@@ -107,9 +108,10 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
       ..userType = service.USER_TYPE_USER
       ..username = fisrtNameController.text.toString().trim() +
           lastNameController.text.toString().trim()
-      ..email = widget.mobileNumber! + '@gmail.com'
+      ..email = widget.mobileNumber! + "alhergi" + '@gmail.com'
       ..password = passwordController.text.toString().trim();
-
+    print(tempRegisterData);
+    print("saad bhati");
     await createUser(tempRegisterData.toJson()).then((registerResponse) async {
       registerResponse.userData!.password =
           passwordController.text.toString().trim();
@@ -576,7 +578,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           keyboardType: TextInputType.text,
           obscureText: _showPasswordConfirm!,
           controller: confirmPasswordController,
-          focusNode: passFocus,
+          focusNode: confirmPasswordFoucus,
           textInputAction: TextInputAction.next,
           inputFormatters: [
             FilteringTextInputFormatter.deny(RegExp('[ ]')),

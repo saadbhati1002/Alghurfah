@@ -1,7 +1,7 @@
 import 'package:eshop_multivendor/Helper/ApiBaseHelper.dart';
 
 //Your application name
-const String appName = 'eShop Multi';
+const String appName = 'Alghurfah';
 const String countryCode = '+91';
 
 //Your package name
@@ -70,7 +70,7 @@ const String errorMesaage = 'Something went wrong, Error : ';
 
 //Bank detail hint text
 const String bankDetail =
-    'Bank Details:\nAccount No :123XXXXX\nIFSC Code: 123XXX \nName: Abc Bank';
+    'Bank Details:\nAccount No  :123XXXXX\nIFSC Code: 123XXX \nName: Abc Bank';
 
 //Api class instance
 ApiBaseHelper apiBaseHelper = ApiBaseHelper();

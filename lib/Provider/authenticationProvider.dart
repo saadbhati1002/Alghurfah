@@ -280,6 +280,11 @@ class AuthenticationProvider extends ChangeNotifier {
 
   //for singUp
   Future<Map<String, dynamic>> getSingUPData({String? mobileNumber}) async {
+    print(mobileNumber);
+    print(name);
+    print(singUPemail);
+    print(sinUpPassword);
+    print("+91");
     try {
       var parameter = {
         MOBILE: mobileNumber,
@@ -287,7 +292,7 @@ class AuthenticationProvider extends ChangeNotifier {
         EMAIL: singUPemail,
         PASSWORD: sinUpPassword,
         COUNTRY_CODE: countryCode,
-        REFERCODE: referCode,
+        REFERCODE: null,
         FRNDCODE: friendCode
       };
       var result = await AuthRepository.fetchSingUpData(parameter: parameter);
