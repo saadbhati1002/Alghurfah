@@ -107,50 +107,50 @@ class _SubCategoryComponentState extends State<SubCategoryComponent> {
                                         child: Text(data.name.validate(),
                                             style: boldTextStyle(size: 14)),
                                       ),
-                                    if (index != 0)
-                                      data.categoryImage
-                                              .validate()
-                                              .endsWith('.svg')
-                                          ? Container(
-                                              width: CATEGORY_ICON_SIZE,
-                                              height: CATEGORY_ICON_SIZE,
-                                              padding: EdgeInsets.all(8),
-                                              decoration: BoxDecoration(
-                                                  color: context.cardColor,
-                                                  shape: BoxShape.circle),
-                                              child: SvgPicture.network(
-                                                data.categoryImage.validate(),
-                                                height: CATEGORY_ICON_SIZE,
-                                                width: CATEGORY_ICON_SIZE,
-                                                color: appStore.isDarkMode
-                                                    ? Colors.white
-                                                    : data.color
-                                                        .validate(value: '000')
-                                                        .toColor(),
-                                                placeholderBuilder: (context) =>
-                                                    PlaceHolderWidget(
-                                                        height:
-                                                            CATEGORY_ICON_SIZE,
-                                                        width:
-                                                            CATEGORY_ICON_SIZE,
-                                                        color:
-                                                            transparentColor),
-                                              ),
-                                            )
-                                          : Container(
-                                              padding: EdgeInsets.all(12),
-                                              decoration: BoxDecoration(
-                                                  color: context.cardColor,
-                                                  shape: BoxShape.circle),
-                                              child: CachedImageWidget(
-                                                url: data.categoryImage
-                                                    .validate(),
-                                                fit: BoxFit.fitWidth,
-                                                width: SUBCATEGORY_ICON_SIZE,
-                                                height: SUBCATEGORY_ICON_SIZE,
-                                                circle: true,
-                                              ),
-                                            ),
+                                    // if (index != 0)
+                                    //   data.categoryImage
+                                    //           .validate()
+                                    //           .endsWith('.svg')
+                                    //       ? Container(
+                                    //           width: CATEGORY_ICON_SIZE,
+                                    //           height: CATEGORY_ICON_SIZE,
+                                    //           padding: EdgeInsets.all(8),
+                                    //           decoration: BoxDecoration(
+                                    //               color: context.cardColor,
+                                    //               shape: BoxShape.circle),
+                                    //           child: SvgPicture.network(
+                                    //             data.categoryImage.validate(),
+                                    //             height: CATEGORY_ICON_SIZE,
+                                    //             width: CATEGORY_ICON_SIZE,
+                                    //             color: appStore.isDarkMode
+                                    //                 ? Colors.white
+                                    //                 : data.color
+                                    //                     .validate(value: '000')
+                                    //                     .toColor(),
+                                    //             placeholderBuilder: (context) =>
+                                    //                 PlaceHolderWidget(
+                                    //                     height:
+                                    //                         CATEGORY_ICON_SIZE,
+                                    //                     width:
+                                    //                         CATEGORY_ICON_SIZE,
+                                    //                     color:
+                                    //                         transparentColor),
+                                    //           ),
+                                    //         )
+                                    //       : Container(
+                                    //           padding: EdgeInsets.all(12),
+                                    //           decoration: BoxDecoration(
+                                    //               color: context.cardColor,
+                                    //               shape: BoxShape.circle),
+                                    //           child: CachedImageWidget(
+                                    //             url: data.categoryImage
+                                    //                 .validate(),
+                                    //             fit: BoxFit.fitWidth,
+                                    //             width: SUBCATEGORY_ICON_SIZE,
+                                    //             height: SUBCATEGORY_ICON_SIZE,
+                                    //             circle: true,
+                                    //           ),
+                                    //         ),
                                     4.height,
                                     if (index == 0)
                                       Text(language.lblViewAll,
@@ -195,7 +195,7 @@ class _SubCategoryComponentState extends State<SubCategoryComponent> {
           errorBuilder: (error) {
             return NoDataWidget(
               title: error,
-              imageWidget:const ErrorStateWidget(),
+              imageWidget: const ErrorStateWidget(),
               retryText: language.reload,
               onRetry: () {
                 page = 1;

@@ -21,6 +21,7 @@ import 'package:eshop_multivendor/ServiceApp/model/service_detail_response.dart'
 import 'package:eshop_multivendor/ServiceApp/model/service_response.dart';
 import 'package:eshop_multivendor/ServiceApp/model/service_review_response.dart';
 import 'package:eshop_multivendor/ServiceApp/model/state_list_model.dart';
+import 'package:eshop_multivendor/ServiceApp/model/all_selllers/all_sellers_model.dart';
 import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/model/verify_transaction_response.dart';
 import 'package:eshop_multivendor/ServiceApp/network/network_utils.dart';
@@ -542,6 +543,14 @@ Future<List<ServiceData>> searchServiceAPI({
 Future<CategoryResponse> getCategoryList(String page) async {
   return CategoryResponse.fromJson(await handleResponse(await buildHttpResponse(
       'category-list?page=$page&per_page=50',
+      method: HttpMethodType.GET)));
+}
+
+//all Sellers
+Future<AllSellersRes> getAllSellers() async {
+  print("puser-list?user_type=provider&per_page=all");
+  return AllSellersRes.fromJson(await handleResponse(await buildHttpResponse(
+      'puser-list?user_type=provider&per_page=all',
       method: HttpMethodType.GET)));
 }
 

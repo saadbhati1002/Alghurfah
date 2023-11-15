@@ -1,5 +1,6 @@
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/all_sellers/all_sellers.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/category_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
@@ -61,7 +62,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        endDrawer:const MyDrawer(),
+      endDrawer: const MyDrawer(),
       key: _key,
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_key,
@@ -100,7 +101,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           const EdgeInsets.only(top: 15, left: 25, right: 25),
                       child: GestureDetector(
                         onTap: () {
-                          ViewAllServiceScreen(
+                          AllSellersScreen(
                                   categoryId: snap[index].id.validate(),
                                   categoryName: snap[index].name,
                                   isFromCategory: true)
@@ -119,7 +120,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                       topRight: Radius.circular(30),
                                       bottomLeft: Radius.circular(30)),
                                   child: Image.asset(
-                                    'assets/images/png/service_cat.png',
+                                    'assets/images/png/ecom_cat.png',
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -138,6 +139,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                             width: 2,
                                             color: colors.serviceColor)),
                                     child: Container(
+                                      alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.only(
                                               topRight: Radius.circular(30),
@@ -146,51 +148,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                               width: 1,
                                               color: colors.serviceColor)),
                                       margin: const EdgeInsets.all(3.0),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 15),
-                                            child: Container(
-                                              height: 65,
-                                              width: 65,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Colors.white,
-                                                image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      snap[index]
-                                                          .categoryImage!),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .52,
-                                            child: Text(
-                                              '${snap[index].name}',
-                                              textAlign: TextAlign.center,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .headlineSmall!
-                                                  .copyWith(
-                                                      fontFamily: 'ubuntu',
-                                                      color:
-                                                          colors.serviceColor,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                            ),
-                                          )
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Text(
+                                          '${snap[index].name}',
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineSmall!
+                                              .copyWith(
+                                                  fontFamily: 'ubuntu',
+                                                  color: colors.serviceColor,
+                                                  fontWeight: FontWeight.w600),
+                                        ),
                                       ),
                                     ),
                                   ),
