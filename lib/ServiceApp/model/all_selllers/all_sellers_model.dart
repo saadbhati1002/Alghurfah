@@ -102,8 +102,8 @@ class Data {
   dynamic loginType;
   dynamic serviceAddressId;
   String? lastNotificationSeen;
-  int? providersServiceRating;
-  int? handymanRating;
+  dynamic providersServiceRating;
+  dynamic handymanRating;
   int? isVerifyProvider;
   int? isHandymanAvailable;
   String? designation;

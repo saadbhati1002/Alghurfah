@@ -1,6 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -40,10 +41,7 @@ Widget allAppBottomSheet(BuildContext context) {
       onTap: (int index) {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => Dashboard(
-                    pageIndex: index,
-                  )),
+          MaterialPageRoute(builder: (context) => const HomeScreenNew()),
         );
       },
     ),

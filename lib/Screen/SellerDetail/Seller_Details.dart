@@ -255,6 +255,7 @@ class _SellerProfileState extends State<SellerProfile>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: allAppBottomSheet(context),
       endDrawer: const MyDrawer(),
       key: _scaffoldKey,
       backgroundColor: colors.backgroundColor,

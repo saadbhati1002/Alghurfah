@@ -8,6 +8,8 @@ import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
+import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../model/category_model.dart';
@@ -132,8 +134,10 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
           title: getTranslated(context, 'service')!,
           context: context,
           setState: setStateNow),
+      bottomNavigationBar: allAppBottomSheet(context),
       body: Stack(
         children: [
+          const BackgroundImage(),
           SizedBox(
             child: SingleChildScrollView(
               child: SizedBox(
@@ -166,6 +170,7 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
                                       color: context.cardColor,
                                     ),
                                     child: CachedImageWidget(
+                                      radius: 0,
                                       url: allSellersData[index]
                                           .profileImage
                                           .validate(),
@@ -224,8 +229,9 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
                         ),
                         onTap: () {
                           ProviderInfoScreen(
-                                  providerId: allSellersData[index].id)
-                              .launch(context);
+                            providerId: allSellersData[index].id,
+                            // sellerName: allSellersData[index].displayName,
+                          ).launch(context);
                           setStatusBarColor(Colors.transparent);
                         });
                   },

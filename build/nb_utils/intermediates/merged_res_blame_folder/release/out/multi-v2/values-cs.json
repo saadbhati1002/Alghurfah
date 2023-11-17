@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.nb.nb_utils-mergeReleaseResources-10:/values-cs/values-cs.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.nb.nb_utils-merged_res-12:/values-cs/values-cs.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\saadb\\.gradle\\caches\\transforms-3\\f8f925bb30479dd633df7e5095689bd7\\transformed\\core-1.6.0\\res\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_fade_exit.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_fade_exit.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_open_exit.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_open_exit.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_close_enter.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_close_enter.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_open_enter.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_open_enter.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_close_exit.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_close_exit.xml"
+    },
+    {
+        "merged": "in.appyflow.paytm-merged_res-25:/animator/fragment_fade_enter.xml",
+        "source": "in.appyflow.paytm-fragment-1.3.6-9:/animator/fragment_fade_enter.xml"
+    }
+]

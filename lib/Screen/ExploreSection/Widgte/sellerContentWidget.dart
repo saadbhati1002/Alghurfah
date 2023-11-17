@@ -26,7 +26,7 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
   List<Product> newList = [];
   @override
   void initState() {
-    if (widget.sellerCategory!.isNotEmpty) {
+    if (widget.sellerCategory != null) {
       checkData();
     } else {
       newList.addAll(widget.sellerList);

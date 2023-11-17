@@ -1,0 +1,15 @@
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-jetified-window-java-1.0.0-beta04-0 C:\Users\saadb\.gradle\caches\transforms-3\1c1c5e2d655db5beaf1cf2163493f5c0\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-jetified-window-1.0.0-beta04-1 C:\Users\saadb\.gradle\caches\transforms-3\592d14bff3fadf39dfdd38b5c4312e8b\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-jetified-play-services-basement-18.1.0-2 C:\Users\saadb\.gradle\caches\transforms-3\5c35a7a00190f00a2570293bebb3593b\transformed\jetified-play-services-basement-18.1.0\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-jetified-firebase-common-20.3.2-3 C:\Users\saadb\.gradle\caches\transforms-3\648dc9a3678c1dae279dbb5a305f5934\transformed\jetified-firebase-common-20.3.2\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-jetified-annotation-experimental-1.1.0-4 C:\Users\saadb\.gradle\caches\transforms-3\d963fce956e1390a266bf860d1b1193b\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-core-1.6.0-5 C:\Users\saadb\.gradle\caches\transforms-3\f8f925bb30479dd633df7e5095689bd7\transformed\core-1.6.0\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-main-6 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_remote_config-4.0.2\android\src\main\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-release-7 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_remote_config-4.0.2\android\src\release\res
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-packaged_res-8 D:\Detils\Alghurfah\build\firebase_core\intermediates\packaged_res\release
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-pngs-9 D:\Detils\Alghurfah\build\firebase_remote_config\generated\res\pngs\release
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-resValues-10 D:\Detils\Alghurfah\build\firebase_remote_config\generated\res\resValues\release
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-rs-11 D:\Detils\Alghurfah\build\firebase_remote_config\generated\res\rs\release
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-mergeReleaseResources-12 D:\Detils\Alghurfah\build\firebase_remote_config\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-mergeReleaseResources-13 D:\Detils\Alghurfah\build\firebase_remote_config\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.firebase.firebaseremoteconfig.firebase_remote_config-merged_res-14 D:\Detils\Alghurfah\build\firebase_remote_config\intermediates\merged_res\release

@@ -1,11 +1,13 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/MyOrder.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
 import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
 import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/all_sellers/all_sellers.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/view_all_service_screen.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -319,57 +321,77 @@ class _MyDrawerState extends State<MyDrawer> {
                                       itemBuilder: (context, index) {
                                         return GestureDetector(
                                           onTap: () async {
-                                            if (context
-                                                        .read<
-                                                            HomePageProvider>()
-                                                        .catList[index]
-                                                        .subList ==
-                                                    null ||
-                                                context
-                                                    .read<HomePageProvider>()
-                                                    .catList[index]
-                                                    .subList!
-                                                    .isEmpty) {
-                                              await Navigator.push(
-                                                context,
-                                                CupertinoPageRoute(
-                                                  builder: (context) =>
-                                                      ProductList(
-                                                    name: context
-                                                        .read<
-                                                            HomePageProvider>()
-                                                        .catList[index]
-                                                        .name,
-                                                    id: context
-                                                        .read<
-                                                            HomePageProvider>()
-                                                        .catList[index]
-                                                        .id,
-                                                    tag: false,
-                                                    fromSeller: false,
-                                                  ),
+                                            await Navigator.push(
+                                              context,
+                                              CupertinoPageRoute(
+                                                builder: (context) => Explore(
+                                                  title: context
+                                                      .read<HomePageProvider>()
+                                                      .catList[index]
+                                                      .name!,
+                                                  subList: context
+                                                      .read<HomePageProvider>()
+                                                      .catList[index]
+                                                      .subList,
+                                                  categoryID: context
+                                                      .read<HomePageProvider>()
+                                                      .catList[index]
+                                                      .id
+                                                      .toString(),
                                                 ),
-                                              );
-                                            } else {
-                                              await Navigator.push(
-                                                context,
-                                                CupertinoPageRoute(
-                                                  builder: (context) =>
-                                                      SubCategory(
-                                                    title: context
-                                                        .read<
-                                                            HomePageProvider>()
-                                                        .catList[index]
-                                                        .name!,
-                                                    subList: context
-                                                        .read<
-                                                            HomePageProvider>()
-                                                        .catList[index]
-                                                        .subList,
-                                                  ),
-                                                ),
-                                              );
-                                            }
+                                              ),
+                                            );
+                                            // if (context
+                                            //             .read<
+                                            //                 HomePageProvider>()
+                                            //             .catList[index]
+                                            //             .subList ==
+                                            //         null ||
+                                            //     context
+                                            //         .read<HomePageProvider>()
+                                            //         .catList[index]
+                                            //         .subList!
+                                            //         .isEmpty) {
+                                            //   await Navigator.push(
+                                            //     context,
+                                            //     CupertinoPageRoute(
+                                            //       builder: (context) =>
+                                            //           ProductList(
+                                            //         name: context
+                                            //             .read<
+                                            //                 HomePageProvider>()
+                                            //             .catList[index]
+                                            //             .name,
+                                            //         id: context
+                                            //             .read<
+                                            //                 HomePageProvider>()
+                                            //             .catList[index]
+                                            //             .id,
+                                            //         tag: false,
+                                            //         fromSeller: false,
+                                            //       ),
+                                            //     ),
+                                            //   );
+                                            // } else {
+                                            //   await Navigator.push(
+                                            //     context,
+                                            //     CupertinoPageRoute(
+                                            //       builder: (context) =>
+                                            //           SubCategory(
+                                            //         title: context
+                                            //             .read<
+                                            //                 HomePageProvider>()
+                                            //             .catList[index]
+                                            //             .name!,
+                                            //         subList: context
+                                            //             .read<
+                                            //                 HomePageProvider>()
+                                            //             .catList[index]
+                                            //             .subList,
+                                            //       ),
+                                            //     ),
+                                            //   );
+                                            // }
                                           },
                                           child: Padding(
                                             padding:
@@ -452,14 +474,13 @@ class _MyDrawerState extends State<MyDrawer> {
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
-                                     
                                       itemCount: snap.category!.length,
                                       padding:
                                           const EdgeInsets.only(bottom: 20),
                                       itemBuilder: (context, index) {
                                         return GestureDetector(
                                           onTap: () {
-                                            ViewAllServiceScreen(
+                                            AllSellersScreen(
                                                     categoryId: snap
                                                         .category![index].id
                                                         .validate(),
