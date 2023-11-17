@@ -873,331 +873,321 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         : context.read<CartProvider>().cartList.isEmpty &&
                 context.read<CartProvider>().saveLaterList.isEmpty
             ? const EmptyCart()
-            : Container(
-                color: Theme.of(context).colorScheme.lightWhite,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 10.0,
-                          left: 10.0,
-                          top: 10,
-                        ),
-                        child: RefreshIndicator(
-                          color: colors.primary,
-                          key: _refreshIndicatorKey,
-                          onRefresh: _refresh,
-                          child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            controller: _scrollControllerOnCartItems,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (context
-                                    .read<CartProvider>()
-                                    .cartList
-                                    .isNotEmpty)
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: context
-                                        .read<CartProvider>()
-                                        .cartList
-                                        .length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return CartListViewLayOut(
-                                        index: index,
-                                        setState: setStateNow,
-                                        saveForLatter: saveForLaterFun,
-                                      );
-                                    },
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 10.0,
+                        left: 10.0,
+                        top: 10,
+                      ),
+                      child: RefreshIndicator(
+                        color: colors.primary,
+                        key: _refreshIndicatorKey,
+                        onRefresh: _refresh,
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          controller: _scrollControllerOnCartItems,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (context
+                                  .read<CartProvider>()
+                                  .cartList
+                                  .isNotEmpty)
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: context
+                                      .read<CartProvider>()
+                                      .cartList
+                                      .length,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return CartListViewLayOut(
+                                      index: index,
+                                      setState: setStateNow,
+                                      saveForLatter: saveForLaterFun,
+                                    );
+                                  },
+                                ),
+                              if (context
+                                  .read<CartProvider>()
+                                  .saveLaterList
+                                  .isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    getTranslated(context, 'SAVEFORLATER_BTN')!,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .fontColor,
+                                          fontFamily: 'ubuntu',
+                                        ),
                                   ),
-                                if (context
-                                    .read<CartProvider>()
-                                    .saveLaterList
-                                    .isNotEmpty)
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      getTranslated(
-                                          context, 'SAVEFORLATER_BTN')!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .fontColor,
-                                            fontFamily: 'ubuntu',
-                                          ),
-                                    ),
-                                  ),
-                                if (context
-                                    .read<CartProvider>()
-                                    .saveLaterList
-                                    .isNotEmpty)
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: context
-                                        .read<CartProvider>()
-                                        .saveLaterList
-                                        .length,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemBuilder: (context, index) {
-                                      return SaveLatterIteam(
-                                        index: index,
-                                        setState: setStateNow,
-                                        cartFunc: cartFun,
-                                      );
-                                    },
-                                  ),
-                              ],
-                            ),
+                                ),
+                              if (context
+                                  .read<CartProvider>()
+                                  .saveLaterList
+                                  .isNotEmpty)
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: context
+                                      .read<CartProvider>()
+                                      .saveLaterList
+                                      .length,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return SaveLatterIteam(
+                                      index: index,
+                                      setState: setStateNow,
+                                      cartFunc: cartFun,
+                                    );
+                                  },
+                                ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (context.read<CartProvider>().promoList.isNotEmpty &&
-                            context.read<CartProvider>().oriPrice > 0)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                                top: 5.0, end: 10.0, start: 10.0),
-                            child: Stack(
-                              alignment: Alignment.centerRight,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsetsDirectional.only(
-                                    end: 20,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.white,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(
-                                      circularBorderRadius5,
-                                    ),
-                                  ),
-                                  child: TextField(
-                                    textDirection: Directionality.of(context),
-                                    controller:
-                                        context.read<CartProvider>().promoC,
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                      border: InputBorder.none,
-                                      hintText: getTranslated(
-                                              context, 'PROMOCODE_LBL') ??
-                                          '',
-                                    ),
-                                    onChanged: (val) {
-                                      setState(
-                                        () {
-                                          if (val.isEmpty) {
-                                            context
-                                                .read<CartProvider>()
-                                                .isPromoLen = false;
-                                            context
-                                                .read<CartProvider>()
-                                                .isPromoValid = false;
-                                            promoEmpty().then((value) {
-                                              context
-                                                  .read<CartProvider>()
-                                                  .promoAmt = 0;
-                                            });
-                                          } else {
-                                            /*context
-                                                .read<CartProvider>()
-                                                .promoAmt = 0;*/
-                                            context
-                                                .read<CartProvider>()
-                                                .isPromoLen = true;
-                                            context
-                                                .read<CartProvider>()
-                                                .isPromoValid = false;
-                                          }
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Positioned.directional(
-                                  textDirection: Directionality.of(context),
-                                  end: 0,
-                                  child: InkWell(
-                                    onTap: () {
-                                      Routes.navigateToPromoCodeScreen(
-                                        context,
-                                        'cart',
-                                        updatePromo,
-                                      );
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(11),
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            colors.grad1Color,
-                                            colors.grad2Color
-                                          ],
-                                          stops: [0, 1],
-                                        ),
-                                      ),
-                                      child: const Icon(
-                                        Icons.arrow_forward,
-                                        color: colors.whiteTemp,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      if (context.read<CartProvider>().promoList.isNotEmpty &&
+                          context.read<CartProvider>().oriPrice > 0)
                         Padding(
                           padding: const EdgeInsetsDirectional.only(
-                            top: 5.0,
-                            end: 10.0,
-                            start: 10.0,
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.white,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(circularBorderRadius5),
-                              ),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 5),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (context.read<CartProvider>().isPromoValid!)
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        getTranslated(
-                                            context, 'PROMO_CODE_DIS_LBL')!,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightBlack2,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                      Text(
-                                        '${DesignConfiguration.getPriceFormat(
-                                          context,
-                                          context.read<CartProvider>().promoAmt,
-                                        )!} ',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .lightBlack2,
-                                              fontFamily: 'ubuntu',
-                                            ),
-                                      ),
-                                    ],
+                              top: 5.0, end: 10.0, start: 10.0),
+                          child: Stack(
+                            alignment: Alignment.centerRight,
+                            children: [
+                              Container(
+                                margin: const EdgeInsetsDirectional.only(
+                                  end: 20,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.white,
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(
+                                    circularBorderRadius5,
                                   ),
+                                ),
+                                child: TextField(
+                                  textDirection: Directionality.of(context),
+                                  controller:
+                                      context.read<CartProvider>().promoC,
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                  decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    border: InputBorder.none,
+                                    hintText: getTranslated(
+                                            context, 'PROMOCODE_LBL') ??
+                                        '',
+                                  ),
+                                  onChanged: (val) {
+                                    setState(
+                                      () {
+                                        if (val.isEmpty) {
+                                          context
+                                              .read<CartProvider>()
+                                              .isPromoLen = false;
+                                          context
+                                              .read<CartProvider>()
+                                              .isPromoValid = false;
+                                          promoEmpty().then((value) {
+                                            context
+                                                .read<CartProvider>()
+                                                .promoAmt = 0;
+                                          });
+                                        } else {
+                                          /*context
+                                            .read<CartProvider>()
+                                            .promoAmt = 0;*/
+                                          context
+                                              .read<CartProvider>()
+                                              .isPromoLen = true;
+                                          context
+                                              .read<CartProvider>()
+                                              .isPromoValid = false;
+                                        }
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                              Positioned.directional(
+                                textDirection: Directionality.of(context),
+                                end: 0,
+                                child: InkWell(
+                                  onTap: () {
+                                    Routes.navigateToPromoCodeScreen(
+                                      context,
+                                      'cart',
+                                      updatePromo,
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(11),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          colors.grad1Color,
+                                          colors.grad2Color
+                                        ],
+                                        stops: [0, 1],
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.arrow_forward,
+                                      color: colors.whiteTemp,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                          top: 5.0,
+                          end: 10.0,
+                          start: 10.0,
+                        ),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: colors.primary,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(circularBorderRadius5),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 5),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (context.read<CartProvider>().isPromoValid!)
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                        getTranslated(context, 'TOTAL_PRICE')!),
-                                    Text(
-                                      '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().oriPrice)!} ',
+                                      getTranslated(
+                                          context, 'PROMO_CODE_DIS_LBL')!,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .titleMedium!
+                                          .bodySmall!
                                           .copyWith(
                                             color: Theme.of(context)
                                                 .colorScheme
-                                                .fontColor,
+                                                .lightBlack2,
+                                            fontFamily: 'ubuntu',
+                                          ),
+                                    ),
+                                    Text(
+                                      '${DesignConfiguration.getPriceFormat(
+                                        context,
+                                        context.read<CartProvider>().promoAmt,
+                                      )!} ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .lightBlack2,
                                             fontFamily: 'ubuntu',
                                           ),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(getTranslated(context, 'TOTAL_PRICE')!),
+                                  Text(
+                                    '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().oriPrice)!} ',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .fontColor,
+                                          fontFamily: 'ubuntu',
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    SimBtn(
-                      size: 0.9,
-                      height: 40,
-                      borderRadius: circularBorderRadius5,
-                      title: context.read<CartProvider>().isPromoLen
-                          ? getTranslated(context, 'VALI_PRO_CODE')
-                          : getTranslated(context, 'PROCEED_CHECKOUT'),
-                      onBtnSelected: () async {
-                        if (context.read<CartProvider>().isPromoLen == false) {
-                          if (context.read<CartProvider>().oriPrice > 0) {
-                            FocusScope.of(context).unfocus();
-                            if (isAvailable) {
-                              if (context.read<CartProvider>().totalPrice !=
-                                  0) {
-                                checkout();
-                              }
-                            } else {
-                              setSnackbar(
-                                  getTranslated(
-                                      context, 'CART_OUT_OF_STOCK_MSG')!,
-                                  context);
+                      ),
+                    ],
+                  ),
+                  SimBtn(
+                    size: 0.9,
+                    height: 40,
+                    borderRadius: circularBorderRadius5,
+                    title: context.read<CartProvider>().isPromoLen
+                        ? getTranslated(context, 'VALI_PRO_CODE')
+                        : getTranslated(context, 'PROCEED_CHECKOUT'),
+                    onBtnSelected: () async {
+                      if (context.read<CartProvider>().isPromoLen == false) {
+                        if (context.read<CartProvider>().oriPrice > 0) {
+                          FocusScope.of(context).unfocus();
+                          if (isAvailable) {
+                            if (context.read<CartProvider>().totalPrice != 0) {
+                              checkout();
                             }
-                            if (mounted) setState(() {});
                           } else {
                             setSnackbar(
-                                getTranslated(context, 'ADD_ITEM')!, context);
+                                getTranslated(
+                                    context, 'CART_OUT_OF_STOCK_MSG')!,
+                                context);
                           }
+                          if (mounted) setState(() {});
                         } else {
-                          await context
-                              .read<PromoCodeProvider>()
-                              .validatePromocode(
-                                  check: false,
-                                  context: context,
-                                  promocode:
-                                      context.read<CartProvider>().promoC.text,
-                                  update: setStateNow)
-                              .then(
-                            (value) {
-                              setState(
-                                () {
-                                  FocusScope.of(context).unfocus();
-                                },
-                              );
-                            },
-                          );
+                          setSnackbar(
+                              getTranslated(context, 'ADD_ITEM')!, context);
                         }
-                      },
-                    ),
-                  ],
-                ),
+                      } else {
+                        await context
+                            .read<PromoCodeProvider>()
+                            .validatePromocode(
+                                check: false,
+                                context: context,
+                                promocode:
+                                    context.read<CartProvider>().promoC.text,
+                                update: setStateNow)
+                            .then(
+                          (value) {
+                            setState(
+                              () {
+                                FocusScope.of(context).unfocus();
+                              },
+                            );
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ],
               );
   }
 
@@ -1220,6 +1210,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: colors.backgroundColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(circularBorderRadius10),
@@ -1232,7 +1223,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
             context.read<CartProvider>().checkoutState = setState;
             return Container(
               constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.8),
+                maxHeight: MediaQuery.of(context).size.height * 0.8,
+              ),
               child: Scaffold(
                 resizeToAvoidBottomInset: false,
                 // key: context,
@@ -1290,7 +1282,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   Container(
-                                    color: Theme.of(context).colorScheme.white,
+                                    color: colors.backgroundColor,
                                     child: Row(
                                       children: <Widget>[
                                         Padding(

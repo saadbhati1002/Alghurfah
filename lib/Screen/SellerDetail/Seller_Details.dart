@@ -499,7 +499,7 @@ class _SellerProfileState extends State<SellerProfile>
                                 ],
                               ),
                             ),
-                            widget.subList!.isEmpty
+                            widget.subList == null
                                 ? const SizedBox()
                                 : SizedBox(
                                     child: GridView.builder(
