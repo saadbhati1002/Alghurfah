@@ -13,6 +13,7 @@ class SelectPayment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: colors.primary,
       elevation: 1,
       child: InkWell(
         borderRadius: BorderRadius.circular(circularBorderRadius4),
@@ -31,7 +32,10 @@ class SelectPayment extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.payment),
+                  const Icon(
+                    Icons.payment,
+                    color: Colors.white,
+                  ),
                   Padding(
                     padding: const EdgeInsetsDirectional.only(start: 8.0),
                     child: Text(

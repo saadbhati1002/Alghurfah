@@ -36,6 +36,7 @@ class AttachPrescriptionImages extends StatelessWidget {
     }
     return ALLOW_ATT_MEDIA == '1' && isAttachReq
         ? Card(
+            color: colors.primary,
             elevation: 0,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -57,7 +58,7 @@ class AttachPrescriptionImages extends StatelessWidget {
                         child: IconButton(
                             icon: const Icon(
                               Icons.add_photo_alternate,
-                              color: colors.primary,
+                              color: Colors.white,
                               size: 20.0,
                             ),
                             onPressed: () {

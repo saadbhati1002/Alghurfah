@@ -111,6 +111,7 @@ class _CartIteamState extends State<CartIteam> {
     print('available*****$available*****$deliveryMsg');
 
     return Card(
+      color: colors.primary,
       elevation: 1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
