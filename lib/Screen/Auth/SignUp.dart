@@ -8,6 +8,7 @@ import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart' as service;
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -97,7 +98,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
     } on TickerCanceled {}
   }
 
-  serviceAppRegisteratin() async {
+  serviceAppRegistration() async {
     appStore.setLoading(true);
 
     /// Create a temporary request to send
@@ -108,7 +109,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
       ..userType = service.USER_TYPE_USER
       ..username = fisrtNameController.text.toString().trim() +
           lastNameController.text.toString().trim()
-      ..email = widget.mobileNumber! + "alhergi" + '@gmail.com'
+      ..email = widget.mobileNumber! + "Alghurfah" + '@gmail.com'
       ..password = passwordController.text.toString().trim();
     print(tempRegisterData);
     print("saad bhati");
@@ -117,7 +118,8 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           passwordController.text.toString().trim();
       await saveUserData(registerResponse.userData!);
 
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (r) => false);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const HomeScreenNew()));
     });
   }
 
@@ -146,7 +148,8 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
           if (!error!) {
             setSnackbar(
                 getTranslated(context, 'REGISTER_SUCCESS_MSG')!, context);
-            serviceAppRegisteratin();
+
+            serviceAppRegistration();
             var i = value['data'][0];
 
             id = i[ID];

@@ -292,8 +292,8 @@ class AuthenticationProvider extends ChangeNotifier {
         EMAIL: singUPemail,
         PASSWORD: sinUpPassword,
         COUNTRY_CODE: countryCode,
-        REFERCODE: null,
-        FRNDCODE: friendCode
+        // REFERCODE: null,
+        // FRNDCODE: friendCode
       };
       var result = await AuthRepository.fetchSingUpData(parameter: parameter);
 
