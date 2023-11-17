@@ -522,7 +522,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
           key: _scaffoldKey,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_scaffoldKey,
-              title: snap.data?.serviceDetail?.name,
+              title: widget.service!.name!,
               context: context,
               setState: setStateNow),
           body: buildBodyWidget(snap),

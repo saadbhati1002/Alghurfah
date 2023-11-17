@@ -11,6 +11,8 @@ import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../../Helper/Color.dart';
@@ -352,6 +354,7 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
       key: _scaffoldKey,
       endDrawer: const MyDrawer(),
       backgroundColor: colors.backgroundColor,
+      bottomNavigationBar: allAppBottomSheet(context),
       appBar: getAppBar(_scaffoldKey,
           title: getTranslated(context, 'ALL_SELLERS')!,
           context: context,

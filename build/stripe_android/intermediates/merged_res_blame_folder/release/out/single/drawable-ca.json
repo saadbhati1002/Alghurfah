@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/book_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/book_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/subscribe_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/subscribe_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/order_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/order_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/checkout_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/checkout_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/pay_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/pay_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/donate_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/donate_with_googlepay_button_content.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-ca/buy_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-main-78:/drawable-ca/buy_with_googlepay_button_content.xml"
+    }
+]

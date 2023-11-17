@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/menu/paymentsheet_payment_methods_list.xml",
+        "source": "com.flutter.stripe.stripe_android-jetified-paymentsheet-20.19.5-36:/menu/paymentsheet_payment_methods_list.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/menu/payment_auth_web_view_menu.xml",
+        "source": "com.flutter.stripe.stripe_android-jetified-payments-core-20.19.5-24:/menu/payment_auth_web_view_menu.xml"
+    },
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/menu/add_payment_method.xml",
+        "source": "com.flutter.stripe.stripe_android-jetified-payments-core-20.19.5-24:/menu/add_payment_method.xml"
+    }
+]

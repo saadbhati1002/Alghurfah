@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.flutter.stripe.stripe_android-merged_res-84:/drawable-en-rAU/pay_with_googlepay_button_content.xml",
+        "source": "com.flutter.stripe.stripe_android-jetified-paymentsheet-20.19.5-36:/drawable-en-rAU/pay_with_googlepay_button_content.xml"
+    }
+]

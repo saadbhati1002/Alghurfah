@@ -150,6 +150,7 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: allAppBottomSheet(context),
       endDrawer: const MyDrawer(),
       key: _key,
       backgroundColor: colors.backgroundColor,

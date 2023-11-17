@@ -75,7 +75,8 @@ final Uri createMidtransTransactionApi =
 final Uri clearCartApi = Uri.parse('${baseUrl}clear_cart');
 final Uri downloadLinkHashApi = Uri.parse('${baseUrl}download_link_hash');
 final Uri deleteProductFrmCartApi = Uri.parse('${baseUrl}remove_from_cart');
-final Uri checkShipRocketChargesOnProduct = Uri.parse('${baseUrl}check_shiprocket_serviceability');
+final Uri checkShipRocketChargesOnProduct =
+    Uri.parse('${baseUrl}check_shiprocket_serviceability');
 final Uri signUpUserApi = Uri.parse('${baseUrl}sign_up');
 final Uri deleteSocialAccApi = Uri.parse('${baseUrl}delete_social_account');
 

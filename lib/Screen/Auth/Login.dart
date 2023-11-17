@@ -215,7 +215,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   void login() async {
     var request = {
-      'email': mobileController.text.toString().trim() + "@gmail.com",
+      'email': mobileController.text.toString().trim() + "Alghurfah@gmail.com",
       'password': passwordController.text.toString().trim(),
       'player_id': nb_utils.getStringAsync(service_app.PLAYERID),
     };
@@ -238,8 +238,8 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
             offSaveAdd().then(
               (value) {
                 db.clearSaveForLater();
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/home', (r) => false);
+              Navigator.push(context,
+                    MaterialPageRoute(builder: (context) =>const HomeScreenNew()));
               },
             );
           },

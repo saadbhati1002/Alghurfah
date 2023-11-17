@@ -1,0 +1,14 @@
+dev.britannio.in_app_review-jetified-window-java-1.0.0-beta04-0 C:\Users\saadb\.gradle\caches\transforms-3\1c1c5e2d655db5beaf1cf2163493f5c0\transformed\jetified-window-java-1.0.0-beta04\res
+dev.britannio.in_app_review-jetified-window-1.0.0-beta04-1 C:\Users\saadb\.gradle\caches\transforms-3\592d14bff3fadf39dfdd38b5c4312e8b\transformed\jetified-window-1.0.0-beta04\res
+dev.britannio.in_app_review-jetified-play-services-basement-18.1.0-2 C:\Users\saadb\.gradle\caches\transforms-3\5c35a7a00190f00a2570293bebb3593b\transformed\jetified-play-services-basement-18.1.0\res
+dev.britannio.in_app_review-jetified-annotation-experimental-1.1.0-3 C:\Users\saadb\.gradle\caches\transforms-3\d963fce956e1390a266bf860d1b1193b\transformed\jetified-annotation-experimental-1.1.0\res
+dev.britannio.in_app_review-jetified-core-common-2.0.2-4 C:\Users\saadb\.gradle\caches\transforms-3\f7487730a2928c60d15b54c044b92403\transformed\jetified-core-common-2.0.2\res
+dev.britannio.in_app_review-core-1.6.0-5 C:\Users\saadb\.gradle\caches\transforms-3\f8f925bb30479dd633df7e5095689bd7\transformed\core-1.6.0\res
+dev.britannio.in_app_review-main-6 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\in_app_review-2.0.6\android\src\main\res
+dev.britannio.in_app_review-release-7 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\in_app_review-2.0.6\android\src\release\res
+dev.britannio.in_app_review-pngs-8 D:\Detils\Alghurfah\build\in_app_review\generated\res\pngs\release
+dev.britannio.in_app_review-resValues-9 D:\Detils\Alghurfah\build\in_app_review\generated\res\resValues\release
+dev.britannio.in_app_review-rs-10 D:\Detils\Alghurfah\build\in_app_review\generated\res\rs\release
+dev.britannio.in_app_review-mergeReleaseResources-11 D:\Detils\Alghurfah\build\in_app_review\intermediates\incremental\release\mergeReleaseResources\merged.dir
+dev.britannio.in_app_review-mergeReleaseResources-12 D:\Detils\Alghurfah\build\in_app_review\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+dev.britannio.in_app_review-merged_res-13 D:\Detils\Alghurfah\build\in_app_review\intermediates\merged_res\release

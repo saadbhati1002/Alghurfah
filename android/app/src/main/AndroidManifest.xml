@@ -52,7 +52,7 @@
         android:allowBackup="false"
         android:fullBackupOnly="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="eShop Multi"
+        android:label="Alghurfah"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
 

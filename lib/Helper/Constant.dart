@@ -75,5 +75,5 @@ const String bankDetail =
 //Api class instance
 ApiBaseHelper apiBaseHelper = ApiBaseHelper();
 
-const String baseUrl = 'https://vendor.eshopweb.store/app/v1/api/';
-const String jwtKey = '26c24b4b956fd695fbd5fd85a883a7a0abe36043';
+const String baseUrl = 'https://iconicfacts.com/eCommerce/app/v1/api/';
+const String jwtKey = '98ae71ab6073ab48b7a7e2bf6261ab7d0179e129';

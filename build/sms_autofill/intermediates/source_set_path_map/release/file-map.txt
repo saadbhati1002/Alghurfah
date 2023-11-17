@@ -1,0 +1,15 @@
+com.jaumard.smsautofill.sms_autofill-jetified-window-java-1.0.0-beta04-0 C:\Users\saadb\.gradle\caches\transforms-3\1c1c5e2d655db5beaf1cf2163493f5c0\transformed\jetified-window-java-1.0.0-beta04\res
+com.jaumard.smsautofill.sms_autofill-jetified-window-1.0.0-beta04-1 C:\Users\saadb\.gradle\caches\transforms-3\592d14bff3fadf39dfdd38b5c4312e8b\transformed\jetified-window-1.0.0-beta04\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-auth-19.2.0-2 C:\Users\saadb\.gradle\caches\transforms-3\8b5da6e00b1eb3bd5a115defe261d746\transformed\jetified-play-services-auth-19.2.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-basement-17.5.0-3 C:\Users\saadb\.gradle\caches\transforms-3\926685836d7458cf40155a11efcc8695\transformed\jetified-play-services-basement-17.5.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-play-services-base-17.5.0-4 C:\Users\saadb\.gradle\caches\transforms-3\c57d4bb30ee40ad766fc74508d37d569\transformed\jetified-play-services-base-17.5.0\res
+com.jaumard.smsautofill.sms_autofill-jetified-annotation-experimental-1.1.0-5 C:\Users\saadb\.gradle\caches\transforms-3\d963fce956e1390a266bf860d1b1193b\transformed\jetified-annotation-experimental-1.1.0\res
+com.jaumard.smsautofill.sms_autofill-core-1.6.0-6 C:\Users\saadb\.gradle\caches\transforms-3\f8f925bb30479dd633df7e5095689bd7\transformed\core-1.6.0\res
+com.jaumard.smsautofill.sms_autofill-main-7 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\sms_autofill-2.3.0\android\src\main\res
+com.jaumard.smsautofill.sms_autofill-release-8 C:\Users\saadb\AppData\Local\Pub\Cache\hosted\pub.dev\sms_autofill-2.3.0\android\src\release\res
+com.jaumard.smsautofill.sms_autofill-pngs-9 D:\Detils\Alghurfah\build\sms_autofill\generated\res\pngs\release
+com.jaumard.smsautofill.sms_autofill-resValues-10 D:\Detils\Alghurfah\build\sms_autofill\generated\res\resValues\release
+com.jaumard.smsautofill.sms_autofill-rs-11 D:\Detils\Alghurfah\build\sms_autofill\generated\res\rs\release
+com.jaumard.smsautofill.sms_autofill-mergeReleaseResources-12 D:\Detils\Alghurfah\build\sms_autofill\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.jaumard.smsautofill.sms_autofill-mergeReleaseResources-13 D:\Detils\Alghurfah\build\sms_autofill\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.jaumard.smsautofill.sms_autofill-merged_res-14 D:\Detils\Alghurfah\build\sms_autofill\intermediates\merged_res\release
