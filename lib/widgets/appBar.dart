@@ -25,11 +25,11 @@ getAppBar(
           child: InkWell(
             borderRadius: BorderRadius.circular(circularBorderRadius4),
             onTap: () => Navigator.of(context).pop(),
-            child: const Center(
-              child: Icon(
-                Icons.search,
-                size: 30,
-                color: colors.primary,
+            child: Center(
+              child: SizedBox(
+                height: 25,
+                width: 25,
+                child: Image.asset('assets/images/png/search.png'),
               ),
             ),
           ),
@@ -50,26 +50,24 @@ getAppBar(
     actions: <Widget>[
       title == getTranslated(context!, 'FAVORITE')
           ? Container()
-          : IconButton(
-              padding: const EdgeInsets.all(0),
-              icon: const Icon(
-                Icons.bookmark,
-                size: 30,
-                color: colors.primary,
+          : GestureDetector(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Image.asset('assets/images/png/bookMark.png'),
               ),
-              onPressed: () {
+              onTap: () {
                 Routes.navigateToFavoriteScreen(context);
               },
             ),
-      IconButton(
-          onPressed: () {
-            key.currentState!.openEndDrawer();
-          },
-          icon: const Icon(
-            Icons.menu,
-            size: 35,
-            color: colors.primary,
-          ))
+      GestureDetector(
+        onTap: () {
+          key.currentState!.openEndDrawer();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+          child: Image.asset('assets/images/png/drawer.png'),
+        ),
+      ),
     ],
   );
 }

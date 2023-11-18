@@ -425,7 +425,7 @@ class _MyDrawerState extends State<MyDrawer> {
                           height: 30,
                           width: 30,
                           child: Image.asset(
-                            'assets/images/png/3.png',
+                            'assets/images/png/serviceIcon.png',
                             color: Colors.white,
                           ),
                         ),
