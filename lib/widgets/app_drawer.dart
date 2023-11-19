@@ -2,7 +2,9 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
+import 'package:eshop_multivendor/Screen/Favourite/Favorite.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
+import 'package:eshop_multivendor/Screen/Manage%20Address/Manage_Address.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/MyOrder.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
 import 'package:eshop_multivendor/Screen/Profile/widgets/myProfileDialog.dart';
@@ -176,10 +178,10 @@ class _MyDrawerState extends State<MyDrawer> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const MyOrder()));
+                                                  const Favorite()));
                                     },
                                     child: Text(
-                                      getTranslated(context, 'WishList')!,
+                                      getTranslated(context, 'FAVORITE')!,
                                       style: const TextStyle(
                                           fontSize: 15, color: Colors.white),
                                     ),
@@ -193,7 +195,7 @@ class _MyDrawerState extends State<MyDrawer> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const MyOrder()));
+                                                  const ManageAddress()));
                                     },
                                     child: Text(
                                       getTranslated(context, 'addressBook')!,

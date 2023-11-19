@@ -1,6 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Cart/Cart.dart';
 import 'package:eshop_multivendor/Screen/ExploreSection/all_serach.dart';
+import 'package:eshop_multivendor/Screen/Favourite/Favorite.dart';
 
 import 'package:flutter/material.dart';
 import '../SQLiteData/SqliteData.dart';
@@ -28,6 +29,12 @@ class _DashboardPageState extends State<Dashboard> {
 
   @override
   void initState() {
+    if (widget.pageIndex != null) {
+      setState(() {
+        _currentIndex = widget.pageIndex!;
+        locationIndex = widget.pageIndex!;
+      });
+    }
     super.initState();
   }
 
@@ -59,22 +66,29 @@ class _DashboardPageState extends State<Dashboard> {
               items: const [
                 BottomNavigationBarItem(
                   label: '',
-                  icon: ImageIcon(AssetImage('assets/images/png/1.png')),
+                  icon: ImageIcon(
+                    AssetImage('assets/images/png/1.png'),
+                  ),
                   tooltip: '',
                 ),
                 BottomNavigationBarItem(
                   label: '',
                   tooltip: '',
-                  icon: ImageIcon(AssetImage('assets/images/png/2.png')),
+                  icon: ImageIcon(
+                    AssetImage('assets/images/png/2.png'),
+                  ),
                 ),
                 BottomNavigationBarItem(
                     label: '',
-                    tooltip: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/3.png'))),
+                    icon: ImageIcon(
+                      AssetImage('assets/images/png/4.png'),
+                    ),
+                    tooltip: ''),
                 BottomNavigationBarItem(
-                    label: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/4.png')),
-                    tooltip: '')
+                  label: '',
+                  tooltip: '',
+                  icon: Icon(Icons.favorite_outline_outlined),
+                ),
               ],
             ),
           ),
@@ -88,6 +102,6 @@ class _DashboardPageState extends State<Dashboard> {
         const AllCategory(),
         const AllSearchScreen(),
         const Cart(fromBottom: true),
-        const Cart(fromBottom: true),
+        const Favorite(),
       ];
 }

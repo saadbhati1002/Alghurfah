@@ -39,10 +39,21 @@ Widget allAppBottomSheet(BuildContext context) {
             tooltip: '')
       ],
       onTap: (int index) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreenNew()),
-        );
+        if (index == 0) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreenNew(),
+            ),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Dashboard(pageIndex: index),
+            ),
+          );
+        }
       },
     ),
   );

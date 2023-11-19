@@ -338,6 +338,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     return Scaffold(
       endDrawer: const MyDrawer(),
       key: _key,
+      bottomNavigationBar: widget.fromBottom == true
+          ? const SizedBox()
+          : allAppBottomSheet(context),
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_key,
           title: getTranslated(context, 'CART')!,
