@@ -508,7 +508,7 @@
   "password_confrimPassword": "Password and confirm password not match",
   "explore_more": "Explore More",
   "Ecom": "Ecom",
-  "service": "Service",
+  "service": "Services",
   "high_quality_emirate_brand": "High Quality Emirati Brand",
   "customized_order": "Customized Order",
   "fast_global_deliver": "Fast Global Delivery",
@@ -525,5 +525,9 @@
   "sale": "SALE",
   "best_seller": "BEST SELLER",
   "Book Now": "Book Now",
-  "click here for": "Click here for"
+  "click here for": "Click here for",
+  "Store": "Store",
+  "Become an E-Commerce Partner": "Become an E-Commerce Partner",
+  "Stores": "Stores",
+  "Become an Service Partner": "Become an Service Partner"
 }

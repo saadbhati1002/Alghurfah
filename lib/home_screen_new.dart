@@ -133,6 +133,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
               SingleChildScrollView(
                 child: Column(
                   children: [
+                    const CustomSlider(),
                     SizedBox(
                         height: MediaQuery.of(context).size.height * .75,
                         width: MediaQuery.of(context).size.width * 1,
@@ -189,7 +190,8 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                                       vertical: 5,
                                                       horizontal: 12),
                                               child: Text(
-                                                getTranslated(context, 'Ecom')!,
+                                                getTranslated(
+                                                    context, 'Stores')!,
                                               ),
                                             )),
                                       ),

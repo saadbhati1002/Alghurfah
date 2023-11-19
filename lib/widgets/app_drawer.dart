@@ -123,11 +123,11 @@ class _MyDrawerState extends State<MyDrawer> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyOrder()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const MyOrder()));
                                     },
                                     child: Text(
                                       getTranslated(context, 'Order')!,
@@ -140,11 +140,11 @@ class _MyDrawerState extends State<MyDrawer> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyOrder()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const MyOrder()));
                                     },
                                     child: Text(
                                       getTranslated(context, 'serviceBooking')!,
@@ -155,23 +155,23 @@ class _MyDrawerState extends State<MyDrawer> {
                                   const SizedBox(
                                     height: 20,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyOrder()));
-                                    },
-                                    child: Text(
-                                      getTranslated(context, 'Return')!,
-                                      style: const TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (context) =>
+                                  //                 const MyOrder()));
+                                  //   },
+                                  //   child: Text(
+                                  //     getTranslated(context, 'Return')!,
+                                  //     style: const TextStyle(
+                                  //         fontSize: 15, color: Colors.white),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(
+                                  //   height: 20,
+                                  // ),
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(
@@ -682,6 +682,38 @@ class _MyDrawerState extends State<MyDrawer> {
                             fontWeight: FontWeight.w600),
                       ),
                     ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    getTranslated(context, 'Become an E-Commerce Partner')!,
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    getTranslated(context, 'Become an Service Partner')!,
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
