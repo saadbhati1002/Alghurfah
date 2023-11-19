@@ -125,30 +125,24 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Expanded(
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                clipBehavior: Clip.none,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                    ),
-                    child: Hero(
-                      tag: '$heroTagUniqueString$index${service.id}',
-                      child: DesignConfiguration.getCacheNotworkImage(
-                        boxFit: BoxFit.fill,
-                        context: context,
-                        heightvalue: double.maxFinite,
-                        widthvalue: double.maxFinite,
-                        placeHolderSize: width,
-                        imageurlString: service.attachments != null
-                            ? service.attachments!.first
-                            : '',
-                      ),
-                    ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+                child: Hero(
+                  tag: '$heroTagUniqueString$index${service.id}',
+                  child: DesignConfiguration.getCacheNotworkImage(
+                    boxFit: BoxFit.fill,
+                    context: context,
+                    heightvalue: double.maxFinite,
+                    widthvalue: double.maxFinite,
+                    placeHolderSize: width,
+                    imageurlString: service.attachments != null
+                        ? service.attachments!.first
+                        : '',
                   ),
-                ],
+                ),
               ),
             ),
             Padding(

@@ -79,9 +79,11 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
     } catch (e) {
       debugPrint(e.toString());
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
