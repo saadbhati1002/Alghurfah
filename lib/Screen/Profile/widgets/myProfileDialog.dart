@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class MyProfileDialog {
                   Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
-                      builder: (BuildContext context) => const Dashboard(),
+                      builder: (BuildContext context) => const HomeScreenNew(),
                     ),
                   );
                 },

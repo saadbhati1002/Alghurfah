@@ -120,7 +120,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
     return SafeArea(
         top: true,
         child: Scaffold(
-          bottomNavigationBar: allAppBottomSheet(context),
+          // bottomNavigationBar: allAppBottomSheet(context),
           endDrawer: const MyDrawer(),
           key: _key,
           appBar: getAppBar(_key,
@@ -130,77 +130,104 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
           backgroundColor: colors.backgroundColor,
           body: Stack(
             children: [
-              const BackgroundImage(),
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    const CustomSlider(),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      // height: MediaQuery.of(context).size.height,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Column(
+                        height: MediaQuery.of(context).size.height * .75,
+                        width: MediaQuery.of(context).size.width * 1,
+                        child: Stack(
                           children: [
-                            const SizedBox(
-                              height: 25,
+                            Image.asset(
+                              'assets/images/png/newHome.png',
+                              fit: BoxFit.fitHeight,
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width * .4,
-                                  height:
-                                      MediaQuery.of(context).size.height * .24,
-                                  child: Stack(
+                            Align(
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, right: 10),
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(20),
-                                                  bottomLeft:
-                                                      Radius.circular(20))),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .4,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .24,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child: Image.asset(
-                                              'assets/images/png/background.png',
-                                              color: Colors.black,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
+                                      Text(
+                                        getTranslated(
+                                            context, 'click here for')!,
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700),
                                       ),
-                                      Align(
-                                        alignment: Alignment.topRight,
-                                        child: GestureDetector(
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Dashboard(
+                                                        pageIndex: 0,
+                                                      )));
+                                        },
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .33,
+                                            decoration: const BoxDecoration(
+                                                color: colors.eCommerceColor,
+                                                borderRadius: BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(20),
+                                                    bottomLeft:
+                                                        Radius.circular(20))),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 12),
+                                              child: Text(
+                                                getTranslated(context, 'Ecom')!,
+                                              ),
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                .32),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          getTranslated(
+                                              context, 'click here for')!,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                        GestureDetector(
                                           onTap: () {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const Dashboard(
-                                                          pageIndex: 0,
-                                                        )));
+                                                        DashboardScreen()));
                                           },
                                           child: Container(
+                                              alignment: Alignment.center,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .33,
                                               decoration: const BoxDecoration(
-                                                  color: colors.eCommerceColor,
+                                                  color: colors.serviceColor,
                                                   borderRadius:
                                                       BorderRadius.only(
                                                           topRight:
@@ -212,265 +239,133 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                        vertical: 3,
+                                                        vertical: 5,
                                                         horizontal: 12),
                                                 child: Text(
                                                   getTranslated(
-                                                      context, 'explore_more')!,
+                                                      context, 'service')!,
                                                 ),
                                               )),
                                         ),
-                                      )
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .41,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Text(
-                                        getTranslated(context, 'Ecom')!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 18,
-                                            color: colors.eCommerceColor),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      const Text(
-                                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-                                        maxLines: 9,
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12,
-                                            color: colors.eCommerceColor),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .41,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Text(
-                                        getTranslated(context, 'service')!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 18,
-                                            color: colors.eCommerceColor),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      const Text(
-                                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-                                        maxLines: 9,
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12,
-                                            color: colors.eCommerceColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width * .4,
-                                  height:
-                                      MediaQuery.of(context).size.height * .24,
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, left: 10),
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  bottomRight:
-                                                      Radius.circular(20))),
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .4,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .24,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
-                                            child: Image.asset(
-                                              'assets/images/png/background.png',
-                                              color: Colors.black,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DashboardScreen()));
-                                          },
-                                          child: Container(
-                                              decoration: const BoxDecoration(
-                                                  color: colors.serviceColor,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  20),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  20))),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 3,
-                                                        horizontal: 12),
-                                                child: Text(
-                                                  getTranslated(
-                                                      context, 'explore_more')!,
-                                                ),
-                                              )),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .24,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          height: 60,
-                                          child: Image.asset(
-                                              'assets/images/png/home_brand.png',
-                                              color: colors.primary)),
-                                      const SizedBox(
-                                        height: 7,
-                                      ),
-                                      Text(
-                                        getTranslated(context,
-                                            'high_quality_emirate_brand')!,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 12, color: Colors.black),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  color: colors.primary,
-                                  width: 3,
-                                  height: 100,
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .24,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          height: 60,
-                                          child: Image.asset(
-                                              'assets/images/png/home_order.png',
-                                              color: colors.primary)),
-                                      const SizedBox(
-                                        height: 7,
-                                      ),
-                                      Text(
-                                        getTranslated(
-                                            context, 'customized_order')!,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 12, color: Colors.black),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  color: colors.primary,
-                                  width: 3,
-                                  height: 100,
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * .24,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          height: 60,
-                                          child: Image.asset(
-                                            'assets/images/png/home_world.png',
-                                            color: colors.primary,
-                                          )),
-                                      const SizedBox(
-                                        height: 7,
-                                      ),
-                                      Text(
-                                        getTranslated(
-                                            context, 'fast_global_deliver')!,
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 12, color: Colors.black),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 40,
+                                  const SizedBox(
+                                    height: 60,
+                                  )
+                                ],
+                              ),
                             )
+                          ],
+                        )),
+                    // const CustomSlider(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      // height: MediaQuery.of(context).size.height,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              color: colors.homeBackground,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 25),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          .24,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                              height: 60,
+                                              child: Image.asset(
+                                                  'assets/images/png/home_brand.png',
+                                                  color: colors.primary)),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          Text(
+                                            getTranslated(context,
+                                                'high_quality_emirate_brand')!,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                color: colors.primary),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      color: colors.primary,
+                                      width: 3,
+                                      height: 100,
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          .24,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                              height: 60,
+                                              child: Image.asset(
+                                                  'assets/images/png/home_order.png',
+                                                  color: colors.primary)),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          Text(
+                                            getTranslated(
+                                                context, 'customized_order')!,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                color: colors.primary),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      color: colors.primary,
+                                      width: 3,
+                                      height: 100,
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          .24,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                              height: 60,
+                                              child: Image.asset(
+                                                'assets/images/png/home_world.png',
+                                                color: colors.primary,
+                                              )),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          Text(
+                                            getTranslated(context,
+                                                'fast_global_deliver')!,
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w600,
+                                                color: colors.primary),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
