@@ -110,22 +110,18 @@ class AddressProvider extends ChangeNotifier {
         areaSearchList.addAll(areaList);
 
         if (update!) {
-
           for (User item in context.read<CartProvider>().addressList) {
             for (int i = 0; i < areaSearchList.length; i++) {
-
               if (context.read<CartProvider>().selAddress == item.id) {
                 if (areaSearchList[i].id == item.areaId) {
                   selArea = areaSearchList[i];
                   selAreaPos = i;
                   selectedArea = areaSearchList[selAreaPos!].name!;
+                } else {
+                  selArea = null;
+                  selAreaPos = -1;
+                  selectedArea = null;
                 }
-                else
-                  {
-                    selArea = null;
-                    selAreaPos = -1;
-                    selectedArea = null;
-                  }
               }
             }
           }
@@ -241,14 +237,14 @@ class AddressProvider extends ChangeNotifier {
         parameter[CITY_ID] = city;
         parameter['city_name'] = selectedCity;
       }
-      if (areaName != null) {
-        parameter[AREA_ID] = '0';
-        parameter['area_name'] = areaName;
-      } else {
-        parameter[AREA_ID] = area;
-        parameter['area_name'] = selectedArea;
-        //data[PINCODE]=pincodeC!.text;
-      }
+      // if (areaName != null) {
+      //   parameter[AREA_ID] = '0';
+      //   parameter['area_name'] = areaName;
+      // } else {
+      //   parameter[AREA_ID] = area;
+      //   parameter['area_name'] = selectedArea;
+      //   //data[PINCODE]=pincodeC!.text;
+      // }
       parameter['pincode_name'] = pincodeC!.text;
       dynamic result = await AddressRepository.addAndUpdateAddress(
         parameter: parameter,

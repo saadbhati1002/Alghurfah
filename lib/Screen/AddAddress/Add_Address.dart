@@ -286,23 +286,23 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
 
     form.save();
     if (form.validate()) {
-      if ((!context.read<AddressProvider>().cityEnable &&
-              IS_SHIPROCKET_ON != '1') ||
-          (context.read<AddressProvider>().city == null ||
-              context.read<AddressProvider>().city!.isEmpty)) {
-        setSnackbar(getTranslated(context, 'cityWarning')!, context);
-      } else if ((IS_SHIPROCKET_ON != '1') ||
-          (!context.read<AddressProvider>().areaEnable ||
-                  !context.read<AddressProvider>().cityEnable) &&
-              (context.read<AddressProvider>().area == null ||
-                  context.read<AddressProvider>().area!.isEmpty)) {
-        setSnackbar(getTranslated(context, 'areaWarning')!, context);
-      } else if (context.read<AddressProvider>().latitude == null ||
-          context.read<AddressProvider>().longitude == null) {
-        setSnackbar(getTranslated(context, 'locationWarning')!, context);
-      } else {
-        return true;
-      }
+      // if ((!context.read<AddressProvider>().cityEnable &&
+      //         IS_SHIPROCKET_ON != '1') ||
+      //     (context.read<AddressProvider>().city == null ||
+      //         context.read<AddressProvider>().city!.isEmpty)) {
+      //   setSnackbar(getTranslated(context, 'cityWarning')!, context);
+      // } else if ((IS_SHIPROCKET_ON != '1') ||
+      //     (!context.read<AddressProvider>().areaEnable ||
+      //             !context.read<AddressProvider>().cityEnable) &&
+      //         (context.read<AddressProvider>().area == null ||
+      //             context.read<AddressProvider>().area!.isEmpty)) {
+      //   setSnackbar(getTranslated(context, 'areaWarning')!, context);
+      // } else if (context.read<AddressProvider>().latitude == null ||
+      //     context.read<AddressProvider>().longitude == null) {
+      //   setSnackbar(getTranslated(context, 'locationWarning')!, context);
+      // } else {
+      return true;
+      // }
     }
     return false;
   }
