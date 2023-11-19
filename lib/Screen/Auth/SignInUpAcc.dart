@@ -45,24 +45,31 @@ class _SignInUpAccState extends State<SignInUpAcc> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          alignment: FractionalOffset.center,
-          decoration: const BoxDecoration(
-            color: colors.primary,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            child: Text(
-              getTranslated(context, 'sign_in_with_phoneNumber')!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: colors.whiteTemp,
-                    fontWeight: FontWeight.bold,
-                    fontSize: textFontSize16,
-                    fontFamily: 'ubuntu',
-                  ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Login()));
+          },
+          child: Container(
+            alignment: FractionalOffset.center,
+            decoration: const BoxDecoration(
+              color: colors.primary,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomLeft: Radius.circular(10)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Text(
+                getTranslated(context, 'sign_in_with_phoneNumber')!,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      color: colors.whiteTemp,
+                      fontWeight: FontWeight.bold,
+                      fontSize: textFontSize16,
+                      fontFamily: 'ubuntu',
+                    ),
+              ),
             ),
           ),
         ),
@@ -135,48 +142,48 @@ class _SignInUpAccState extends State<SignInUpAcc> {
           const SizedBox(
             height: 15,
           ),
-          createAccBtn(),
-          const SizedBox(
-            height: 15,
-          ),
+          // createAccBtn(),
+          // const SizedBox(
+          //   height: 15,
+          // ),
           signInBtn(),
           const SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                getTranslated(context, 'ALREADY_A_CUSTOMER')!,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: colors.primary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: textFontSize13,
-                      fontFamily: 'ubuntu',
-                    ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
-                },
-                child: Text(
-                  getTranslated(context, 'SIGNIN_LBL')!,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: colors.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: textFontSize13,
-                        fontFamily: 'ubuntu',
-                      ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       getTranslated(context, 'ALREADY_A_CUSTOMER')!,
+          //       textAlign: TextAlign.center,
+          //       style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          //             color: colors.primary,
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: textFontSize13,
+          //             fontFamily: 'ubuntu',
+          //           ),
+          //     ),
+          //     const SizedBox(
+          //       width: 5,
+          //     ),
+          //     GestureDetector(
+          //       onTap: () {
+          //         Navigator.push(context,
+          //             MaterialPageRoute(builder: (context) => const Login()));
+          //       },
+          //       child: Text(
+          //         getTranslated(context, 'SIGNIN_LBL')!,
+          //         textAlign: TextAlign.center,
+          //         style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          //               color: colors.primary,
+          //               fontWeight: FontWeight.bold,
+          //               fontSize: textFontSize13,
+          //               fontFamily: 'ubuntu',
+          //             ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
