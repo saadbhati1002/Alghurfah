@@ -1,4 +1,8 @@
 import 'package:eshop_multivendor/ServiceApp/screens/category/category_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/filter/filter_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/notification/notification_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/favourite_service_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/search_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 
@@ -63,13 +67,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   icon: ImageIcon(AssetImage('assets/images/png/2.png')),
                 ),
                 BottomNavigationBarItem(
-                    label: '',
-                    tooltip: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/3.png'))),
+                    label: '', tooltip: '', icon: Icon(Icons.notifications)),
                 BottomNavigationBarItem(
-                    label: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/4.png')),
-                    tooltip: '')
+                  label: '',
+                  tooltip: '',
+                  icon: Icon(Icons.favorite_outline_outlined),
+                ),
               ],
             ),
           ),
@@ -81,8 +84,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<Widget> screens() => [
         CategoryScreen(),
-        CategoryScreen(),
-        CategoryScreen(),
-        CategoryScreen(),
+        SearchListScreen(),
+        NotificationScreen(),
+        const FavouriteServiceScreen(),
       ];
 }

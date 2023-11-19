@@ -8,6 +8,9 @@ import 'package:eshop_multivendor/ServiceApp/screens/service/shimmer/favourite_s
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 import '../../component/empty_error_state_widget.dart';
 
@@ -20,6 +23,7 @@ class FavouriteServiceScreen extends StatefulWidget {
 
 class _FavouriteServiceScreenState extends State<FavouriteServiceScreen> {
   Future<List<ServiceData>>? future;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   List<ServiceData> services = [];
 
@@ -39,14 +43,18 @@ class _FavouriteServiceScreenState extends State<FavouriteServiceScreen> {
     });
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(
-        language.lblFavorite,
-        color: context.primaryColor,
-        textColor: white,
-        backWidget: BackWidget(),
-      ),
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: language.lblFavorite, context: context, setState: setStateNow),
       body: Stack(
         children: [
           FutureBuilder<List<ServiceData>>(

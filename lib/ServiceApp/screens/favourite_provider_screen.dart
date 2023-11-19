@@ -5,6 +5,9 @@ import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 import '../component/empty_error_state_widget.dart';
 import '../component/favourite_provider_component.dart';
@@ -21,6 +24,7 @@ class FavouriteProviderScreen extends StatefulWidget {
 
 class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
   Future<List<UserData>>? future;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   List<UserData> providers = [];
 
@@ -41,15 +45,20 @@ class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
     });
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.cardColor,
-      appBar: appBarWidget(
-        language.favouriteProvider,
-        color: context.primaryColor,
-        textColor: white,
-        backWidget: BackWidget(),
-      ),
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: language.favouriteProvider,
+          context: context,
+          setState: setStateNow),
       body: Stack(
         children: [
           FutureBuilder<List<UserData>>(

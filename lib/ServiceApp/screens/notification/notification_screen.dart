@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/base_scaffold_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -7,9 +8,11 @@ import 'package:eshop_multivendor/ServiceApp/screens/booking/booking_detail_scre
 import 'package:eshop_multivendor/ServiceApp/screens/notification/components/notification_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/model_keys.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
 
 import '../../component/empty_error_state_widget.dart';
 
@@ -37,28 +40,27 @@ class _NotificationScreenState extends State<NotificationScreen> {
     getBookingDetail(request).then((value) {}).catchError(onError);
   }
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   void setState(fn) {
     if (mounted) super.setState(fn);
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      appBarTitle: language.lblNotification,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.clear_all_rounded, color: context.cardColor),
-          onPressed: () async {
-            appStore.setLoading(true);
-
-            init(req: {NotificationKey.type: MARK_AS_READ});
-
-            setState(() {});
-          },
-        ),
-      ],
-      child: Stack(
+    return Scaffold(
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: language.lblNotification,
+          context: context,
+          setState: setStateNow),
+      body: Stack(
         alignment: Alignment.center,
         children: [
           SnapHelperWidget<List<NotificationData>>(
