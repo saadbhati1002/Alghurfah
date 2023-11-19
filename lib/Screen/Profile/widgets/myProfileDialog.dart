@@ -70,6 +70,7 @@ class MyProfileDialog {
                       firebaseAuth.signOut();
                     }
                   }
+
                   settingProvider.clearUserSession(context);
 
                   context.read<FavoriteProvider>().setFavlist([]);

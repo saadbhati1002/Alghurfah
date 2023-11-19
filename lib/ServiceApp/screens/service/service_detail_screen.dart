@@ -40,9 +40,11 @@ import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 
 class ServiceDetailScreen extends StatefulWidget {
   final int serviceId;
+  final String? serviceName;
   final ServiceData? service;
 
-  ServiceDetailScreen({required this.serviceId, this.service});
+  ServiceDetailScreen(
+      {required this.serviceId, this.service, this.serviceName});
 
   @override
   _ServiceDetailScreenState createState() => _ServiceDetailScreenState();
@@ -522,7 +524,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
           key: _scaffoldKey,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_scaffoldKey,
-              title: widget.service!.name!,
+              title: widget.serviceName ?? '',
               context: context,
               setState: setStateNow),
           body: buildBodyWidget(snap),

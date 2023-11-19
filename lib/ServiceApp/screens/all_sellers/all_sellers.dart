@@ -230,7 +230,7 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
                         onTap: () {
                           ProviderInfoScreen(
                             providerId: allSellersData[index].id,
-                            // sellerName: allSellersData[index].displayName,
+                            sellerName: allSellersData[index].displayName,
                           ).launch(context);
                           setStatusBarColor(Colors.transparent);
                         });

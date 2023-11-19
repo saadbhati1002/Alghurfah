@@ -1,15 +1,26 @@
+import 'dart:io';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Helper/String.dart';
+import 'package:eshop_multivendor/Provider/CartProvider.dart';
+import 'package:eshop_multivendor/Provider/Search/SearchProvider.dart';
+import 'package:eshop_multivendor/Provider/SettingProvider.dart';
+import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/Provider/systemProvider.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
+import 'package:eshop_multivendor/Screen/homePage/widgets/homePageDialog.dart';
 import 'package:eshop_multivendor/Screen/homePage/widgets/slider.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/dashboard/dashboard_screen.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:version/version.dart';
 
 class HomeScreenNew extends StatefulWidget {
   const HomeScreenNew({Key? key}) : super(key: key);
@@ -24,6 +35,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
   @override
   void initState() {
     callApi();
+    getSetting();
     super.initState();
   }
 
@@ -34,6 +46,73 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
 
   setStateNow() {
     setState(() {});
+  }
+
+  void getSetting() {
+    CUR_USERID = context.read<SettingProvider>().userId;
+    context.read<SystemProvider>().getSystemSettings(userID: CUR_USERID).then(
+      (systemConfigData) async {
+        if (!systemConfigData['error']) {
+          //
+          //Tag list from system API
+          if (systemConfigData['tagList'] != null) {
+            context.read<SearchProvider>().tagList =
+                systemConfigData['tagList'];
+          }
+          //check whether app is under maintenance
+          if (systemConfigData['isAppUnderMaintenance'] == '1') {
+            HomePageDialog.showUnderMaintenanceDialog(context);
+          }
+
+          if (CUR_USERID != null) {
+            context
+                .read<UserProvider>()
+                .setCartCount(systemConfigData['cartCount']);
+            context
+                .read<UserProvider>()
+                .setBalance(systemConfigData['userBalance']);
+            context
+                .read<UserProvider>()
+                .setPincode(systemConfigData['pinCode']);
+
+            if (systemConfigData['referCode'] == null ||
+                systemConfigData['referCode'] == '' ||
+                systemConfigData['referCode']!.isEmpty) {
+              // generateReferral();
+            }
+
+            context.read<HomePageProvider>().getFav(context, setStateNow);
+            context.read<CartProvider>().getUserCart(save: '0');
+            // _getOffFav();
+            context.read<CartProvider>().getUserOfflineCart();
+          }
+          if (systemConfigData['isVersionSystemOn'] == '1') {
+            String? androidVersion = systemConfigData['androidVersion'];
+            String? iOSVersion = systemConfigData['iOSVersion'];
+
+            PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+            String version = packageInfo.version;
+
+            final Version currentVersion = Version.parse(version);
+            final Version latestVersionAnd = Version.parse(androidVersion!);
+            final Version latestVersionIos = Version.parse(iOSVersion!);
+
+            if ((Platform.isAndroid && latestVersionAnd > currentVersion) ||
+                (Platform.isIOS && latestVersionIos > currentVersion)) {
+              HomePageDialog.showAppUpdateDialog(context);
+            }
+          }
+          setState(() {});
+        } else {
+          setSnackbar(systemConfigData['message']!, context);
+        }
+      },
+    ).onError(
+      (error, stackTrace) {
+        setSnackbar(error.toString(), context);
+      },
+    );
   }
 
   @override
