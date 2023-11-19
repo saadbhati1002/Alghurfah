@@ -582,7 +582,7 @@ class _CartIteamState extends State<CartIteam> {
             ),
             if (cartList[index].productList![0].productType !=
                 'digital_product')
-              !available! &&
+              available != null &&
                       context.read<CartProvider>().deliverableList.isNotEmpty
                   ? Text(
                       deliveryMsg != ''

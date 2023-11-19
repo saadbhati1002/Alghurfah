@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:eshop_multivendor/Provider/ManageAddressProvider.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -138,9 +139,13 @@ class StateAddress extends State<ManageAddress> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
+      endDrawer: const MyDrawer(),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: getTranslated(context, 'SHIPP_ADDRESS')!,
+          context: context,
+          setState: setStateNow),
       key: _scaffoldKey,
-      appBar:
-          getSimpleAppBar(getTranslated(context, 'SHIPP_ADDRESS')!, context),
       floatingActionButton: FloatingActionButton(
         backgroundColor: colors.primary,
         onPressed: () async {
@@ -199,7 +204,6 @@ class StateAddress extends State<ManageAddress> with TickerProviderStateMixin {
           ),
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.lightWhite,
       body: isNetworkAvail
           ? Column(
               children: [
@@ -213,8 +217,8 @@ class StateAddress extends State<ManageAddress> with TickerProviderStateMixin {
                                 child: Text(
                                   getTranslated(context, 'NOADDRESS')!,
                                   style: const TextStyle(
-                                    fontFamily: 'ubuntu',
-                                  ),
+                                      fontFamily: 'ubuntu',
+                                      color: Colors.black),
                                 ),
                               )
                             : Stack(
