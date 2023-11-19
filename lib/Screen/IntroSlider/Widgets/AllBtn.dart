@@ -21,7 +21,7 @@ class SliderBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,8 +29,7 @@ class SliderBtn extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: getList(sliderList, context, currentPage)),
-          Center(
-              child: Padding(
+          Padding(
             padding: const EdgeInsetsDirectional.only(bottom: 18.0),
             child: Padding(
               padding: const EdgeInsets.only(top: 25),
@@ -80,7 +79,7 @@ class SliderBtn extends StatelessWidget {
                 },
               ),
             ),
-          )),
+          ),
         ],
       ),
     );
