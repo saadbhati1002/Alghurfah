@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../Helper/String.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -691,7 +692,11 @@ class _MyDrawerState extends State<MyDrawer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    launchUrl(Uri.parse(
+                        'https://iconicfacts.com/eCommerce/seller/auth/sign_up'));
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     getTranslated(context, 'Become an E-Commerce Partner')!,
                     style: const TextStyle(
@@ -707,7 +712,11 @@ class _MyDrawerState extends State<MyDrawer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    launchUrl(Uri.parse(
+                        'https://iconicfacts.com/service/auth/register'));
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     getTranslated(context, 'Become an Service Partner')!,
                     style: const TextStyle(

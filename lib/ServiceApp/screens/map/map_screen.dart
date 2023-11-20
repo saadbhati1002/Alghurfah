@@ -1,14 +1,18 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/services/location_service.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 
 class MapScreen extends StatefulWidget {
   final double? latLong;
@@ -120,15 +124,19 @@ class MapScreenState extends State<MapScreen> {
     setState(() {});
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: appBarWidget(language.getLocation,
-          backWidget: BackWidget(),
-          color: primaryColor,
-          elevation: 0,
-          textColor: white),
+      bottomNavigationBar: serviceAppBottomNavigation(context),
+      endDrawer: const MyDrawer(),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: language.getLocation, context: context, setState: setStateNow),
       body: Stack(
         children: <Widget>[
           GoogleMap(

@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/custom_stepper.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -6,8 +7,11 @@ import 'package:eshop_multivendor/ServiceApp/model/service_detail_response.dart'
 import 'package:eshop_multivendor/ServiceApp/screens/booking/component/booking_service_step1.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/component/booking_service_step2.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/component/booking_service_step3.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 
 class CustomStep {
   final String title;
@@ -30,6 +34,7 @@ class BookServiceScreen extends StatefulWidget {
 
 class _BookServiceScreenState extends State<BookServiceScreen> {
   List<CustomStep>? stepsList;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -73,14 +78,22 @@ class _BookServiceScreenState extends State<BookServiceScreen> {
     if (mounted) super.setState(fn);
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(language.bookTheService,
-          textColor: Colors.white,
-          color: context.primaryColor,
-          backWidget: BackWidget()),
-      body: Container(
+      bottomNavigationBar: serviceAppBottomNavigation(context),
+      endDrawer: const MyDrawer(),
+      key: _scaffoldKey,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: language.bookTheService,
+          context: context,
+          setState: setStateNow),
+      body: SizedBox(
         child: Column(
           children: [
             CustomStepper(stepsList: stepsList.validate()).expand(),

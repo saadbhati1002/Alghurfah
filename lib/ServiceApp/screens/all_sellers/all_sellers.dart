@@ -9,7 +9,8 @@ import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
-import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../model/category_model.dart';
@@ -136,7 +137,7 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
           title: getTranslated(context, 'service')!,
           context: context,
           setState: setStateNow),
-      bottomNavigationBar: allAppBottomSheet(context),
+      bottomNavigationBar: serviceAppBottomNavigation(context),
       body: Stack(
         children: [
           const BackgroundImage(),

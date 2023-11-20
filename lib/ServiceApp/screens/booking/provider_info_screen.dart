@@ -19,6 +19,7 @@ import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 
 import '../../component/empty_error_state_widget.dart';
 import '../../utils/colors.dart';
@@ -284,6 +285,7 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
         endDrawer: const MyDrawer(),
         key: _scaffoldKey,
         backgroundColor: colors.backgroundColor,
+        bottomNavigationBar: serviceAppBottomNavigation(context),
         appBar: getAppBar(_scaffoldKey,
             title: widget.sellerName, context: context, setState: setStateNow),
         body: SnapHelperWidget<ProviderInfoResponse>(

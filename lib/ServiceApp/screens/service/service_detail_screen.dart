@@ -26,7 +26,7 @@ import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:eshop_multivendor/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Product Detail/Widget/ProductHighLight.dart';
@@ -519,7 +519,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       future: future,
       builder: (context, snap) {
         return Scaffold(
-          bottomNavigationBar: allAppBottomSheet(context),
+          bottomNavigationBar: serviceAppBottomNavigation(context),
           endDrawer: const MyDrawer(),
           key: _scaffoldKey,
           backgroundColor: colors.backgroundColor,
