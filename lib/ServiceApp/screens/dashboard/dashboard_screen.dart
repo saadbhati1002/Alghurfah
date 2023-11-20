@@ -8,8 +8,9 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 
 class DashboardScreen extends StatefulWidget {
   final bool? redirectToBooking;
-
-  DashboardScreen({this.redirectToBooking});
+  final int? pageIndex;
+  const DashboardScreen({Key? key, this.redirectToBooking, this.pageIndex})
+      : super(key: key);
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -27,6 +28,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void initState() {
+    if (widget.pageIndex != null) {
+      setState(() {
+        _currentIndex = widget.pageIndex!;
+        locationIndex = widget.pageIndex!;
+      });
+    }
     super.initState();
   }
 
