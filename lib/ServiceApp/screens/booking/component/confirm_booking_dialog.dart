@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/package_data_model.dart';
@@ -175,7 +176,8 @@ class _ConfirmBookingDialogState extends State<ConfirmBookingDialog> {
     return Observer(
       builder: (context) {
         return Container(
-          width: context.width(),
+          color: colors.backgroundColor,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -204,6 +206,13 @@ class _ConfirmBookingDialogState extends State<ConfirmBookingDialog> {
               Row(
                 children: [
                   AppButton(
+                    color: Colors.white,
+                    shapeBorder: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     onTap: () {
                       finish(context);
                     },
@@ -212,9 +221,15 @@ class _ConfirmBookingDialogState extends State<ConfirmBookingDialog> {
                   ).expand(),
                   16.width,
                   AppButton(
+                    shapeBorder: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     text: language.confirm,
                     textColor: Colors.white,
-                    color: context.primaryColor,
+                    color: colors.primary,
                     onTap: () {
                       if (isSelected) {
                         bookServices();

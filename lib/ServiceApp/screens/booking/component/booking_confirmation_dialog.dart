@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/model/package_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/booking_detail_screen.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -99,11 +100,11 @@ class _BookingConfirmationDialogState extends State<BookingConfirmationDialog> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: context.cardColor,
+              color: colors.backgroundColor,
               borderRadius: radius(),
             ),
-            padding: EdgeInsets.all(16),
-            margin: EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.only(top: 30),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -176,10 +177,16 @@ class _BookingConfirmationDialogState extends State<BookingConfirmationDialog> {
                 Row(
                   children: [
                     AppButton(
+                      shapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
                       padding: EdgeInsets.zero,
-                      text: language.goToHome,
+                      text: language.goToReview,
                       textStyle: boldTextStyle(size: 14, color: Colors.white),
-                      color: context.primaryColor,
+                      color: colors.primary,
                       onTap: () {
                         DashboardScreen().launch(context,
                             isNewTask: true,
@@ -188,15 +195,19 @@ class _BookingConfirmationDialogState extends State<BookingConfirmationDialog> {
                     ).expand(),
                     16.width,
                     AppButton(
+                      shapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
                       padding: EdgeInsets.zero,
                       text: language.goToReview,
-                      textStyle: boldTextStyle(size: 14),
-                      shapeBorder: RoundedRectangleBorder(
-                          borderRadius: radius(),
-                          side: BorderSide(color: primaryColor)),
-                      color: context.scaffoldBackgroundColor,
+                      textStyle: boldTextStyle(size: 14, color: Colors.white),
+                      color: colors.primary,
                       onTap: () {
-                        DashboardScreen(redirectToBooking: true).launch(context,
+                        const DashboardScreen(redirectToBooking: true).launch(
+                            context,
                             isNewTask: true,
                             pageRouteAnimation: PageRouteAnimation.Fade);
                         BookingDetailScreen(
@@ -215,7 +226,7 @@ class _BookingConfirmationDialogState extends State<BookingConfirmationDialog> {
             width: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: context.primaryColor,
+              color: colors.primary,
               border: Border.all(
                   width: 5,
                   color: context.cardColor,

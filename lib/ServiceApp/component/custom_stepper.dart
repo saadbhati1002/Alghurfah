@@ -52,7 +52,7 @@ class _CustomStepperState extends State<CustomStepper> {
                         ? Colors.transparent
                         : context.dividerColor),
               ),
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Text("${(index + 1)}",
                   style: boldTextStyle(
                       color: index <= currentPage
@@ -79,7 +79,7 @@ class _CustomStepperState extends State<CustomStepper> {
   }
 
   Widget _buildStepper(int currentStep) {
-    return Container(
+    return SizedBox(
       height: 100,
       width: context.width() * 0.8,
       child: Row(
@@ -116,7 +116,7 @@ class _CustomStepperState extends State<CustomStepper> {
         Expanded(
           child: PageView.builder(
             controller: customStepperController,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(
                 () {

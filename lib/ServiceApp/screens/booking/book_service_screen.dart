@@ -25,8 +25,12 @@ class BookServiceScreen extends StatefulWidget {
   final int bookingAddressId;
   final BookingPackage? selectedPackage;
 
-  BookServiceScreen(
-      {required this.data, this.bookingAddressId = 0, this.selectedPackage});
+  const BookServiceScreen(
+      {Key? key,
+      required this.data,
+      this.bookingAddressId = 0,
+      this.selectedPackage})
+      : super(key: key);
 
   @override
   _BookServiceScreenState createState() => _BookServiceScreenState();
