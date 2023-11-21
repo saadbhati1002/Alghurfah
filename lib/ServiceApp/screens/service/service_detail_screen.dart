@@ -79,7 +79,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
     if (data.serviceAddressMapping.validate().isEmpty) return Offstage();
 
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -94,7 +94,8 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
               (index) {
                 ServiceAddressMapping value =
                     data.serviceAddressMapping![index];
-                if (value.providerAddressMapping == null) return Offstage();
+                if (value.providerAddressMapping == null)
+                  return const Offstage();
 
                 bool isSelected = selectedAddressId == index;
                 if (selectedBookingAddressId == -1) {
@@ -110,7 +111,8 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                     setState(() {});
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: boxDecorationDefault(
                         color: isSelected
                             ? colors.serviceColor
@@ -149,7 +151,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
     if (data.isEmpty) return Offstage();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -158,9 +160,9 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
           8.height,
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: data.length,
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             itemBuilder: (_, index) =>
                 ServiceFaqWidget(serviceFaq: data[index]),
           ),
@@ -174,7 +176,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       {required List<SlotData> data, required bool isSlotAvailable}) {
     if (!isSlotAvailable ||
         data.where((element) => element.slot.validate().isNotEmpty).isEmpty)
-      return Offstage();
+      return const Offstage();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +194,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 .where((element) => element.slot.validate().isNotEmpty)
                 .toList()[index];
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: boxDecorationDefault(color: context.cardColor),
               child: Text('${value.day.capitalizeFirstLetter()}',
                   style: secondaryTextStyle(size: 18, color: primaryColor)),
@@ -232,7 +234,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
 
   Widget relatedServiceWidget(
       {required List<ServiceData> serviceList, required int serviceId}) {
-    if (serviceList.isEmpty) return Offstage();
+    if (serviceList.isEmpty) return const Offstage();
 
     serviceList.removeWhere((element) => element.id == serviceId);
 
@@ -245,7 +247,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
             .paddingSymmetric(horizontal: 16),
         HorizontalList(
           itemCount: serviceList.length,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           spacing: 8,
           runSpacing: 16,
           itemBuilder: (_, index) => ServiceComponent(

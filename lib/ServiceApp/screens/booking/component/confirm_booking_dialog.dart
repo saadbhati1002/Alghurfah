@@ -73,7 +73,7 @@ class _ConfirmBookingDialogState extends State<ConfirmBookingDialog> {
       };
     }
 
-    log("selectedPackage: ${[selectedPackage]}");
+    log('selectedPackage: ${[selectedPackage]}');
 
     Map request = {
       CommonKeys.id: "",
@@ -123,7 +123,7 @@ class _ConfirmBookingDialogState extends State<ConfirmBookingDialog> {
           CommonKeys.status, () => BookingStatusKeys.waitingAdvancedPayment);
     }
 
-    log("Booking Request:- ${jsonEncode(request)}");
+    log('Booking Request:- ${jsonEncode(request)}');
 
     appStore.setLoading(true);
 

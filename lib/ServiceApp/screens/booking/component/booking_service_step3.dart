@@ -153,7 +153,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                           Text(language.lblDiscount,
                               style: secondaryTextStyle(size: 16)),
                           Text(
-                            " (${widget.data.serviceDetail!.discount.validate()}% ${language.lblOff.toLowerCase()})",
+                            ' (${widget.data.serviceDetail!.discount.validate()}% ${language.lblOff.toLowerCase()})',
                             style: boldTextStyle(color: Colors.green),
                           ).expand(),
                           16.width,
@@ -300,7 +300,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                               style: secondaryTextStyle(size: 16)),
                           TextSpan(
                             text:
-                                " (${widget.data.serviceDetail!.advancePaymentPercentage.validate().toString()}%)  ",
+                                ' (${widget.data.serviceDetail!.advancePaymentPercentage.validate().toString()}%)  ',
                             style: boldTextStyle(color: Colors.green),
                           ),
                         ],
