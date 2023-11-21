@@ -1584,6 +1584,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           ADD_ID: context.read<CartProvider>().selAddress,
         };
         apiBaseHelper.postAPICall(checkCartDelApi, parameter).then((getdata) {
+          print(getdata);
           bool error = getdata['error'];
           String? msg = getdata['message'];
           List data = getdata['data'];

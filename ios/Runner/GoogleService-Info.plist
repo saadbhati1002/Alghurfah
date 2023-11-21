@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDpv0b4DFADBX4uLVwJXBMiF8x4E-8X7pM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>895425809811</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alghurfah</string>
+	<key>PROJECT_ID</key>
+	<string>alghurfah-d7ea5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>alghurfah-d7ea5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:895425809811:ios:5ae88447cd5212c1d42c66</string>
+</dict>
+</plist>

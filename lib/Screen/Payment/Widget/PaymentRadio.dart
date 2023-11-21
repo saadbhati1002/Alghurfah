@@ -18,9 +18,7 @@ class RadioItem extends StatelessWidget {
             height: 20.0,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: _item.isSelected!
-                  ? colors.primary
-                  : Theme.of(context).colorScheme.white,
+              color: _item.isSelected! ? colors.primary : Colors.black,
               border: Border.all(
                 color: colors.grad2Color,
               ),
@@ -44,7 +42,10 @@ class RadioItem extends StatelessWidget {
             padding: const EdgeInsetsDirectional.only(start: 15.0),
             child: Text(
               _item.name!,
-              style: TextStyle(color: Theme.of(context).colorScheme.fontColor),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18),
             ),
           ),
           const Spacer(),
