@@ -64,6 +64,7 @@ class _StatusDropdownComponentState extends State<StatusDropdownComponent> {
             selectedData = snap.data!.first;
           }
           return DropdownButtonFormField<BookingStatusResponse>(
+            focusColor: Colors.white,
             onChanged: (value) {
               widget.onValueChanged.call(value!);
             },
@@ -75,8 +76,10 @@ class _StatusDropdownComponentState extends State<StatusDropdownComponent> {
                     return null;
                   }
                 : null,
-            decoration: inputDecoration(context),
-            dropdownColor: context.cardColor,
+            decoration: inputDecoration(
+              context,
+            ),
+            dropdownColor: Colors.white,
             alignment: Alignment.bottomCenter,
             items: List.generate(
               snap.data!.length,
@@ -85,7 +88,7 @@ class _StatusDropdownComponentState extends State<StatusDropdownComponent> {
                 return DropdownMenuItem(
                   value: data,
                   child: Text(data.value.validate().toBookingStatus(),
-                      style: primaryTextStyle()),
+                      style: primaryTextStyle(color: Colors.black)),
                 );
               },
             ),

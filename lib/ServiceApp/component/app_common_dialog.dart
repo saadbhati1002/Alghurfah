@@ -19,14 +19,14 @@ class AppCommonDialog extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
             width: context.width(),
             decoration: boxDecorationDefault(
-              color: context.primaryColor,
+              color: colors.backgroundColor,
               borderRadius:
                   radiusOnly(topRight: defaultRadius, topLeft: defaultRadius),
             ),
             child: Row(
               children: [
-                Text(title, style: boldTextStyle(color: Colors.white)).expand(),
-                const CloseButton(color: Colors.white),
+                Text(title, style: boldTextStyle(color: Colors.black)).expand(),
+                const CloseButton(color: Colors.black),
               ],
             ),
           ),

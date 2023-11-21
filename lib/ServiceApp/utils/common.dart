@@ -215,7 +215,7 @@ InputDecoration inputDecoration(BuildContext context,
       borderSide: BorderSide(color: primaryColor, width: 0.0),
     ),
     filled: true,
-    fillColor: context.cardColor,
+    fillColor: Colors.white,
   );
 }
 

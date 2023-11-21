@@ -129,7 +129,7 @@ class _EditBookingServiceDialogState extends State<EditBookingServiceDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Stack(
         children: [
           Column(
@@ -147,9 +147,8 @@ class _EditBookingServiceDialogState extends State<EditBookingServiceDialog> {
               ),
               16.height,
               Container(
-                decoration: boxDecorationDefault(
-                    color: context.scaffoldBackgroundColor),
-                padding: EdgeInsets.all(16),
+                decoration: boxDecorationDefault(color: Colors.white),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -160,6 +159,8 @@ class _EditBookingServiceDialogState extends State<EditBookingServiceDialog> {
                       textFieldType: TextFieldType.OTHER,
                       controller: dateTimeCont,
                       isValidationRequired: true,
+                      textStyle:
+                          const TextStyle(fontSize: 16, color: Colors.white),
                       validator: (value) {
                         if (value!.isEmpty) return language.requiredText;
                         return null;
@@ -170,13 +171,13 @@ class _EditBookingServiceDialogState extends State<EditBookingServiceDialog> {
                       },
                       decoration: inputDecoration(context,
                               prefixIcon: ic_calendar
-                                  .iconImage(size: 10)
+                                  .iconImage(size: 10, color: Colors.white)
                                   .paddingAll(14))
                           .copyWith(
                         fillColor: context.cardColor,
                         filled: true,
                         hintText: language.lblEnterDateAndTime,
-                        hintStyle: secondaryTextStyle(),
+                        hintStyle: secondaryTextStyle(color: Colors.white),
                       ),
                     ),
                   ],
@@ -186,19 +187,27 @@ class _EditBookingServiceDialogState extends State<EditBookingServiceDialog> {
               Row(
                 children: [
                   AppButton(
+                    shapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20))),
                     onTap: () {
                       finish(context);
                     },
-                    shapeBorder: RoundedRectangleBorder(borderRadius: radius()),
+                    textColor: Colors.white,
                     color: context.scaffoldBackgroundColor,
                     text: language.lblCancel,
-                    textColor: context.iconColor,
                   ).expand(),
                   16.width,
                   AppButton(
+                    shapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20))),
                     onTap: _handleSubmitClick,
                     color: primaryColor,
                     text: language.confirm,
+                    textColor: Colors.white,
                   ).expand(),
                 ],
               )

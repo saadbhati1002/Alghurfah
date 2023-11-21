@@ -13,6 +13,7 @@ import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/all_sellers/all_sellers.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/auth/sign_in_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/dashboard/fragment/booking_fragment.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/view_all_service_screen.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -141,11 +142,11 @@ class _MyDrawerState extends State<MyDrawer> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             const MyOrder()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BookingFragment()));
                                     },
                                     child: Text(
                                       getTranslated(context, 'serviceBooking')!,

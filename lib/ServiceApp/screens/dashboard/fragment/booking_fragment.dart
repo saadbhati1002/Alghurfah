@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/booking_data_model.dart';
@@ -8,6 +9,9 @@ import 'package:eshop_multivendor/ServiceApp/screens/booking/component/booking_i
 import 'package:eshop_multivendor/ServiceApp/screens/booking/component/status_dropdown_component.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/shimmer/booking_shimmer.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -21,7 +25,7 @@ class BookingFragment extends StatefulWidget {
 
 class _BookingFragmentState extends State<BookingFragment> {
   UniqueKey keyForStatus = UniqueKey();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   ScrollController scrollController = ScrollController();
 
   Future<List<BookingData>>? future;
@@ -69,16 +73,19 @@ class _BookingFragmentState extends State<BookingFragment> {
     super.dispose();
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(
-        language.booking,
-        textColor: white,
-        showBack: false,
-        elevation: 3.0,
-        color: context.primaryColor,
-      ),
+      bottomNavigationBar: serviceAppBottomNavigation(context),
+      endDrawer: const MyDrawer(),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: language.booking, context: context, setState: setStateNow),
+      key: _scaffoldKey,
       body: SizedBox(
         width: context.width(),
         height: context.height(),
@@ -106,9 +113,9 @@ class _BookingFragmentState extends State<BookingFragment> {
               onSuccess: (list) {
                 return AnimatedListView(
                   controller: scrollController,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding:
-                      EdgeInsets.only(bottom: 60, top: 8, right: 16, left: 16),
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(
+                      bottom: 60, top: 8, right: 16, left: 16),
                   itemCount: list.length,
                   shrinkWrap: true,
                   listAnimationType: ListAnimationType.FadeIn,
@@ -117,7 +124,7 @@ class _BookingFragmentState extends State<BookingFragment> {
                   emptyWidget: NoDataWidget(
                     title: language.lblNoBookingsFound,
                     subTitle: language.noBookingSubTitle,
-                    imageWidget: EmptyStateWidget(),
+                    imageWidget: const EmptyStateWidget(),
                   ),
                   itemBuilder: (_, index) {
                     BookingData? data = list[index];
