@@ -43,17 +43,19 @@ class PriceCommonWidget extends StatelessWidget {
         16.height,
         if (bookingPackage != null)
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: context.width(),
-            decoration: boxDecorationDefault(color: context.cardColor),
+            decoration: boxDecorationDefault(color: Colors.white),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
                     Text(language.totalAmount,
-                            style: secondaryTextStyle(size: 16))
-                        .expand(),
+                        style: secondaryTextStyle(
+                          size: 16,
+                          color: textPrimaryColorGlobal,
+                        )).expand(),
                     PriceWidget(
                         price: bookingDetail.amount.validate(),
                         color: primaryColor,
@@ -65,9 +67,9 @@ class PriceCommonWidget extends StatelessWidget {
           )
         else
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: context.width(),
-            decoration: boxDecorationDefault(color: context.cardColor),
+            decoration: boxDecorationDefault(color: Colors.white),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

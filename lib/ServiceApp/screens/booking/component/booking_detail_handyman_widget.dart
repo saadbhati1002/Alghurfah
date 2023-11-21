@@ -57,8 +57,8 @@ class BookingDetailHandymanWidgetState
   Widget build(BuildContext context) {
     return Container(
       decoration: boxDecorationWithRoundedCorners(
-          backgroundColor: context.cardColor, borderRadius: radius()),
-      padding: EdgeInsets.all(16),
+          backgroundColor: Colors.white, borderRadius: radius()),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -75,7 +75,7 @@ class BookingDetailHandymanWidgetState
                   Row(
                     children: [
                       Text(widget.handymanData.displayName.validate(),
-                              style: boldTextStyle())
+                              style: boldTextStyle(color: Colors.black))
                           .flexible(),
                       16.width,
                       ic_info.iconImage(size: 20),

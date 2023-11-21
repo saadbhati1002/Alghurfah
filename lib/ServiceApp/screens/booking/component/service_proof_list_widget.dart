@@ -18,7 +18,7 @@ class ServiceProofListWidget extends StatelessWidget {
         children: [
           if (data.title.validate().isNotEmpty)
             Text(data.title.validate(),
-                style: boldTextStyle(),
+                style: boldTextStyle(color: Colors.black),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis),
           if (data.description.validate().isNotEmpty)
@@ -26,7 +26,7 @@ class ServiceProofListWidget extends StatelessWidget {
               children: [
                 8.height,
                 Text(data.description.validate(),
-                    style: secondaryTextStyle(),
+                    style: secondaryTextStyle(color: Colors.black),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis),
               ],

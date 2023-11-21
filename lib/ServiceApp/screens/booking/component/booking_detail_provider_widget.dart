@@ -47,8 +47,8 @@ class BookingDetailProviderWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
-      decoration: boxDecorationDefault(color: context.cardColor),
+      padding: const EdgeInsets.all(16),
+      decoration: boxDecorationDefault(color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -63,7 +63,7 @@ class BookingDetailProviderWidgetState
                   Row(
                     children: [
                       Text(widget.providerData.displayName.validate(),
-                              style: boldTextStyle(color: Colors.white))
+                              style: boldTextStyle(color: Colors.black))
                           .flexible(),
                       16.width,
                       ic_info.iconImage(size: 20),
