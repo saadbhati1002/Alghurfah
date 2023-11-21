@@ -125,11 +125,11 @@ class _MyDrawerState extends State<MyDrawer> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             const MyOrder()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MyOrder()));
                                     },
                                     child: Text(
                                       getTranslated(context, 'Order')!,

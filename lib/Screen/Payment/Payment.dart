@@ -133,7 +133,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
     List<SectionModel> tempCartListForTestCondtion =
         context.read<CartProvider>().cartList;
     return Scaffold(
-      bottomNavigationBar: serviceAppBottomNavigation(context),
+      bottomNavigationBar: allAppBottomSheet(context),
       endDrawer: const MyDrawer(),
       key: _scaffoldKey,
       backgroundColor: colors.backgroundColor,
@@ -501,7 +501,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                         ),
                       ),
                       SimBtn(
-                        borderRadius: circularBorderRadius5,
+                        borderRadius: 20,
                         size: 0.8,
                         title: getTranslated(context, 'DONE'),
                         onBtnSelected: () {

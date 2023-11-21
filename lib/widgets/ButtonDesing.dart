@@ -43,11 +43,8 @@ class SimBtn extends StatelessWidget {
               colors: [colors.grad1Color, colors.grad2Color],
               stops: [0, 1]),
           color: backgroundColor ?? colors.primary,
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              borderRadius ?? 0.0,
-            ),
-          ),
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
           border: Border.all(
             width: borderWidth ?? 0,
             color: borderColor ?? Colors.transparent,
