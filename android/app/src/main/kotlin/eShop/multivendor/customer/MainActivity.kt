@@ -1,4 +1,4 @@
-package com.thecol.customer
+package com.alghurfah
 
 /*
 import io.flutter.embedding.android.FlutterActivity

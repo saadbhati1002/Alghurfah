@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.thecol.customer">
+    package="com.alghurfah">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -121,7 +121,7 @@
         <!--After Adding Key, Uncomment below lines-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="PLACE_HERE_ANDROID_GOOGLE_MAP_API_KEY" />
+            android:value="AIzaSyBMDGDLJchDsg4yQVI2ygeNihgdu9aqj08" />
 
         <meta-data
             android:name="vn.hunghd.flutterdownloader.NOTIFICATION_ICON"
