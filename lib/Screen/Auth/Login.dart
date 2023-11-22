@@ -238,8 +238,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
             offSaveAdd().then(
               (value) {
                 db.clearSaveForLater();
-              Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>const HomeScreenNew()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreenNew()));
               },
             );
           },
@@ -1037,9 +1039,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                                       .textTheme
                                       .titleMedium!
                                       .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .fontColor,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.normal)),
                             )
                           ],

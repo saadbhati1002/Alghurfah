@@ -286,7 +286,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                           SizedBox(
                                               height: 60,
                                               child: Image.asset(
-                                                  'assets/images/png/home_brand.png',
+                                                  'assets/images/png/uae.png',
                                                   color: colors.primary)),
                                           const SizedBox(
                                             height: 7,

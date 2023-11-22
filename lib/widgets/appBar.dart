@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:flutter/material.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
@@ -24,12 +25,22 @@ getAppBar(
           margin: const EdgeInsets.all(10),
           child: InkWell(
             borderRadius: BorderRadius.circular(circularBorderRadius4),
-            onTap: () => Navigator.of(context).pop(),
-            child: Center(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreenNew(),
+                ),
+              );
+            },
+            child: const Center(
               child: SizedBox(
                 height: 25,
                 width: 25,
-                child: Image.asset('assets/images/png/search.png'),
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: colors.primary,
+                ),
               ),
             ),
           ),
