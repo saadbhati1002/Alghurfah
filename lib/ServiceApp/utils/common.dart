@@ -21,8 +21,8 @@ import 'package:eshop_multivendor/main.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom_tabs;
-import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
+// import 'package:flutter_custom_tabs/flutter_custom_tabs.dart' as custom_tabs;
+// import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -132,25 +132,25 @@ void checkIfLink(BuildContext context, String value, {String? title}) {
 }
 
 void launchUrlCustomTab(String? url) {
-  if (url.validate().isNotEmpty) {
-    custom_tabs.launch(
-      url!,
-      customTabsOption: custom_tabs.CustomTabsOption(
-        enableDefaultShare: true,
-        enableInstantApps: true,
-        enableUrlBarHiding: true,
-        showPageTitle: true,
-        toolbarColor: primaryColor,
-      ),
-      safariVCOption: custom_tabs.SafariViewControllerOption(
-        preferredBarTintColor: primaryColor,
-        preferredControlTintColor: Colors.white,
-        barCollapsingEnabled: true,
-        entersReaderIfAvailable: true,
-        dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
-      ),
-    );
-  }
+  // if (url.validate().isNotEmpty) {
+  //   custom_tabs.launch(
+  //     url!,
+  //     customTabsOption: custom_tabs.CustomTabsOption(
+  //       enableDefaultShare: true,
+  //       enableInstantApps: true,
+  //       enableUrlBarHiding: true,
+  //       showPageTitle: true,
+  //       toolbarColor: primaryColor,
+  //     ),
+  //     safariVCOption: custom_tabs.SafariViewControllerOption(
+  //       preferredBarTintColor: primaryColor,
+  //       preferredControlTintColor: Colors.white,
+  //       barCollapsingEnabled: true,
+  //       entersReaderIfAvailable: true,
+  //       dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+  //     ),
+  //   );
+  // }
 }
 
 List<LanguageDataModel> languageList() {

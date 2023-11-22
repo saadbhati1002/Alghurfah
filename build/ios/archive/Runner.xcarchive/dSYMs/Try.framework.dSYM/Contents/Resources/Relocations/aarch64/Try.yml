@@ -1,0 +1,32 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/saadbhati/Library/Developer/Xcode/DerivedData/Runner-guydlmrdmzlwhoahfxlssqneaxss/Build/Intermediates.noindex/ArchiveIntermediates/Runner/IntermediateBuildFilesPath/UninstalledProducts/iphoneos/Try.framework/Try'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x538A1, size: 0x8, addend: 0x0, symName: _TryVersionString, symObjAddr: 0x0, symBinAddr: 0xAD50, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x538D6, size: 0x8, addend: 0x0, symName: _TryVersionNumber, symObjAddr: 0x28, symBinAddr: 0xAD78, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x53913, size: 0x8, addend: 0x0, symName: '+[WBTry tryBlock:catchAndRethrowBlock:finallyBlock:]', symObjAddr: 0x0, symBinAddr: 0x8000, symSize: 0x114 }
+  - { offsetInCU: 0x43, offset: 0x5392F, size: 0x8, addend: 0x0, symName: '+[WBTry tryBlock:catchAndRethrowBlock:finallyBlock:]', symObjAddr: 0x0, symBinAddr: 0x8000, symSize: 0x114 }
+  - { offsetInCU: 0x4B, offset: 0x53B3B, size: 0x8, addend: 0x0, symName: '_$s3Try14tryErrorDomainSSvp', symObjAddr: 0x3968, symBinAddr: 0x10878, symSize: 0x0 }
+  - { offsetInCU: 0x65, offset: 0x53B55, size: 0x8, addend: 0x0, symName: '_$s3Try21tryExceptionErrorCodeSivp', symObjAddr: 0x910, symBinAddr: 0x10400, symSize: 0x0 }
+  - { offsetInCU: 0x7F, offset: 0x53B6F, size: 0x8, addend: 0x0, symName: '_$s3Try20tryExceptionErrorKeySSvp', symObjAddr: 0x3978, symBinAddr: 0x10888, symSize: 0x0 }
+  - { offsetInCU: 0x8D, offset: 0x53B7D, size: 0x8, addend: 0x0, symName: '_$s3Try14tryErrorDomain_WZ', symObjAddr: 0x0, symBinAddr: 0x8114, symSize: 0x1C }
+  - { offsetInCU: 0xA7, offset: 0x53B97, size: 0x8, addend: 0x0, symName: '_$s3Try14tryErrorDomainSSvau', symObjAddr: 0x1C, symBinAddr: 0x8130, symSize: 0x40 }
+  - { offsetInCU: 0xBB, offset: 0x53BAB, size: 0x8, addend: 0x0, symName: '_$s3Try21tryExceptionErrorCodeSivau', symObjAddr: 0x5C, symBinAddr: 0x8170, symSize: 0xC }
+  - { offsetInCU: 0xD9, offset: 0x53BC9, size: 0x8, addend: 0x0, symName: '_$s3Try20tryExceptionErrorKey_WZ', symObjAddr: 0x68, symBinAddr: 0x817C, symSize: 0x28 }
+  - { offsetInCU: 0xF3, offset: 0x53BE3, size: 0x8, addend: 0x0, symName: '_$s3Try20tryExceptionErrorKeySSvau', symObjAddr: 0x90, symBinAddr: 0x81A4, symSize: 0x40 }
+  - { offsetInCU: 0x176, offset: 0x53C66, size: 0x8, addend: 0x0, symName: '_$s3Try4trapyyyycKF', symObjAddr: 0xD0, symBinAddr: 0x81E4, symSize: 0x31C }
+  - { offsetInCU: 0x2EF, offset: 0x53DDF, size: 0x8, addend: 0x0, symName: ___swift_destroy_boxed_opaque_existential_0, symObjAddr: 0x418, symBinAddr: 0x852C, symSize: 0x20 }
+  - { offsetInCU: 0x303, offset: 0x53DF3, size: 0x8, addend: 0x0, symName: '_$sIeg_IeyB_TR', symObjAddr: 0x438, symBinAddr: 0x854C, symSize: 0x2C }
+  - { offsetInCU: 0x31B, offset: 0x53E0B, size: 0x8, addend: 0x0, symName: _block_copy_helper, symObjAddr: 0x464, symBinAddr: 0x8578, symSize: 0x10 }
+  - { offsetInCU: 0x32F, offset: 0x53E1F, size: 0x8, addend: 0x0, symName: _block_destroy_helper, symObjAddr: 0x474, symBinAddr: 0x8588, symSize: 0x8 }
+  - { offsetInCU: 0x343, offset: 0x53E33, size: 0x8, addend: 0x0, symName: '_$s3Try4trapyyyycKFSbypcfU_TA', symObjAddr: 0x47C, symBinAddr: 0x8590, symSize: 0x50 }
+  - { offsetInCU: 0x381, offset: 0x53E71, size: 0x8, addend: 0x0, symName: '_$sypSbIegnd_yXlSbIeyByd_TR', symObjAddr: 0x4CC, symBinAddr: 0x85E0, symSize: 0x70 }
+  - { offsetInCU: 0x399, offset: 0x53E89, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledName, symObjAddr: 0x53C, symBinAddr: 0x8650, symSize: 0x40 }
+  - { offsetInCU: 0x3AD, offset: 0x53E9D, size: 0x8, addend: 0x0, symName: '_$sypSgWOh', symObjAddr: 0x57C, symBinAddr: 0x8690, symSize: 0x40 }
+  - { offsetInCU: 0x3C1, offset: 0x53EB1, size: 0x8, addend: 0x0, symName: '_$sypWOb', symObjAddr: 0x5BC, symBinAddr: 0x86D0, symSize: 0x10 }
+  - { offsetInCU: 0x3D5, offset: 0x53EC5, size: 0x8, addend: 0x0, symName: '_$sypWOc', symObjAddr: 0x5CC, symBinAddr: 0x86E0, symSize: 0x3C }
+  - { offsetInCU: 0x3FF, offset: 0x53EEF, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4findys10_HashTableV6BucketV6bucket_Sb5foundtxSHRzlFSS_Tg5', symObjAddr: 0x608, symBinAddr: 0x871C, symSize: 0x64 }
+  - { offsetInCU: 0x462, offset: 0x53F52, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4find_9hashValues10_HashTableV6BucketV6bucket_Sb5foundtx_SitSHRzlFSS_Tg5', symObjAddr: 0x66C, symBinAddr: 0x8780, symSize: 0xE0 }
+  - { offsetInCU: 0x51A, offset: 0x5400A, size: 0x8, addend: 0x0, symName: '_$sypSgWOd', symObjAddr: 0x8A0, symBinAddr: 0x89B4, symSize: 0x48 }
+  - { offsetInCU: 0x5C1, offset: 0x540B1, size: 0x8, addend: 0x0, symName: '_$sSD17dictionaryLiteralSDyxq_Gx_q_td_tcfCSS_ypTg5Tf4gd_n', symObjAddr: 0x74C, symBinAddr: 0x8860, symSize: 0x110 }
+...
