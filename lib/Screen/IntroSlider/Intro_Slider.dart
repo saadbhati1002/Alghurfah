@@ -107,10 +107,6 @@ class _GettingStartedScreenState extends State<IntroSlider>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // skipBtn(
-                  //   context,
-                  //   _currentPage,
-                  // ),
                   slider(
                     slideList,
                     _pageController,
@@ -118,6 +114,10 @@ class _GettingStartedScreenState extends State<IntroSlider>
                     _onPageChanged,
                   ),
                 ],
+              ),
+              skipBtn(
+                context,
+                _currentPage,
               ),
               SizedBox(
                 child: Align(

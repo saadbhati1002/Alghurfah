@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Screen/Auth/SignInUpAcc.dart';
+import 'package:eshop_multivendor/home_screen_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Helper/Color.dart';
@@ -99,7 +100,7 @@ skipBtn(BuildContext context, int currentPage) {
                   Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => const SignInUpAcc()),
+                        builder: (context) => const HomeScreenNew()),
                   );
                 },
                 child: Row(

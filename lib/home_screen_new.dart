@@ -139,9 +139,13 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                         width: MediaQuery.of(context).size.width * 1,
                         child: Stack(
                           children: [
-                            Image.asset(
-                              'assets/images/png/newHome.png',
-                              fit: BoxFit.fitHeight,
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .75,
+                              width: MediaQuery.of(context).size.width * 1,
+                              child: Image.asset(
+                                'assets/images/png/newHome.png',
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             Align(
                               alignment: Alignment.center,
