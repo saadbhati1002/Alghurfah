@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/systemProvider.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
@@ -59,11 +62,18 @@ class StatePrivacy extends State<PrivacyPolicy> with TickerProviderStateMixin {
     } on TickerCanceled {}
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const MyDrawer(),
       key: _scaffoldKey,
-      appBar: getSimpleAppBar(widget.title!, context),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: widget.title!, context: context, setState: setStateNow),
       body: Consumer<SystemProvider>(builder: (context, value, child) {
         if (value.getCurrentStatus == SystemProviderPolicyStatus.isSuccsess) {
           if (value.policy.isNotEmpty) {
@@ -72,6 +82,10 @@ class StatePrivacy extends State<PrivacyPolicy> with TickerProviderStateMixin {
                 padding: const EdgeInsets.all(8.0),
                 child: HtmlWidget(
                   value.policy,
+                  textStyle: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400),
                   onErrorBuilder: (context, element, error) =>
                       Text('$element error: $error'),
                   onLoadingBuilder: (context, element, loadingProgress) =>
@@ -87,6 +101,7 @@ class StatePrivacy extends State<PrivacyPolicy> with TickerProviderStateMixin {
             Center(
               child: Text(
                 getTranslated(context, 'No Data Found')!,
+                style: const TextStyle(fontSize: 16, color: Colors.black),
               ),
             );
           }

@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Helper/routes.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
@@ -7,15 +8,19 @@ import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/Screen/Manage%20Address/Manage_Address.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/MyOrder.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
+import 'package:eshop_multivendor/Screen/Profile/MyProfile.dart';
+import 'package:eshop_multivendor/Screen/Profile/widgets/languageBottomSheet.dart';
 import 'package:eshop_multivendor/Screen/Profile/widgets/myProfileDialog.dart';
 import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
 import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/all_sellers/all_sellers.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/auth/edit_profile_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/auth/sign_in_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/dashboard/fragment/booking_fragment.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/view_all_service_screen.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/bottomSheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -572,7 +577,10 @@ class _MyDrawerState extends State<MyDrawer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Routes.navigateToPrivacyPolicyScreen(
+                        context: context, title: 'ABOUT_LBL');
+                  },
                   child: Row(
                     children: [
                       const Icon(
@@ -600,7 +608,10 @@ class _MyDrawerState extends State<MyDrawer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Routes.navigateToPrivacyPolicyScreen(
+                        context: context, title: 'CONTACT_LBL');
+                  },
                   child: Row(
                     children: [
                       SizedBox(
@@ -628,41 +639,54 @@ class _MyDrawerState extends State<MyDrawer> {
               const SizedBox(
                 height: 20,
               ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => EditProfileScreen(),
+              //         ),
+              //       );
+              //     },
+              //     child: Row(
+              //       children: [
+              //         SizedBox(
+              //           height: 30,
+              //           width: 30,
+              //           child: Image.asset(
+              //             'assets/images/png/setting.png',
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         const SizedBox(
+              //           width: 15,
+              //         ),
+              //         Text(
+              //           getTranslated(context, 'SETTING')!,
+              //           style: const TextStyle(
+              //               fontSize: 18,
+              //               color: Colors.white,
+              //               fontWeight: FontWeight.w600),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 30,
-                        width: 30,
-                        child: Image.asset(
-                          'assets/images/png/setting.png',
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        getTranslated(context, 'SETTING')!,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    CustomBottomSheet.showBottomSheet(
+                      child: LanguageBottomSheet(),
+                      context: context,
+                      enableDrag: true,
+                    );
+                  },
                   child: Row(
                     children: [
                       SizedBox(

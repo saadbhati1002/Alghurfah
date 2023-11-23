@@ -12,7 +12,7 @@
 			<key>bitcode</key>
 			<false/>
 			<key>buildNumber</key>
-			<string>1</string>
+			<string>2</string>
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
@@ -2847,7 +2847,7 @@
 				<string>Mohammed Salem</string>
 			</dict>
 			<key>versionNumber</key>
-			<string>1.0.1</string>
+			<string>1.0.2</string>
 		</dict>
 	</array>
 </dict>
