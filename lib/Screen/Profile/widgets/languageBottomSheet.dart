@@ -84,8 +84,7 @@ class LanguageBottomSheet extends StatelessWidget {
                                 .textTheme
                                 .titleMedium!
                                 .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.lightBlack,
+                                  color: Colors.black,
                                 ),
                           ),
                         )
@@ -104,44 +103,49 @@ class LanguageBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     languageList = [
-     'English',
-     'Chinese',
-      'Spanish',
-      'French',
-      'Hindi',
+      'English',
+      //  'Chinese',
+      //   'Spanish',
+      //   'French',
+      //   'Hindi',
       'Arabic',
-      'Russian',
-     'Japanese',
-     'German'
+      //   'Russian',
+      //  'Japanese',
+      //  'German'
     ];
-    return Wrap(
-      children: [
-        Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CustomBottomSheet.bottomSheetHandle(context),
-              CustomBottomSheet.bottomSheetLabel(
-                  context, 'CHOOSE_LANGUAGE_LBL'),
-              StatefulBuilder(
-                builder: (BuildContext context, StateSetter setModalState) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: getLngList(
-                        context,
-                        setModalState,
+    return Container(
+      color: colors.backgroundColor,
+      child: Wrap(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CustomBottomSheet.bottomSheetHandle(
+                  context,
+                ),
+                CustomBottomSheet.bottomSheetLabel(
+                    context, 'CHOOSE_LANGUAGE_LBL'),
+                StatefulBuilder(
+                  builder: (BuildContext context, StateSetter setModalState) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: getLngList(
+                          context,
+                          setModalState,
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ],
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

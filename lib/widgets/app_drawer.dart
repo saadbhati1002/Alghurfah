@@ -9,6 +9,7 @@ import 'package:eshop_multivendor/Screen/Manage%20Address/Manage_Address.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/MyOrder.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
 import 'package:eshop_multivendor/Screen/Profile/MyProfile.dart';
+import 'package:eshop_multivendor/Screen/Profile/widgets/languageBottomSheet.dart';
 import 'package:eshop_multivendor/Screen/Profile/widgets/myProfileDialog.dart';
 import 'package:eshop_multivendor/Screen/SubCategory/SubCategory.dart';
 import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
@@ -19,6 +20,7 @@ import 'package:eshop_multivendor/ServiceApp/screens/auth/sign_in_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/dashboard/fragment/booking_fragment.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/view_all_service_screen.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/bottomSheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -678,7 +680,13 @@ class _MyDrawerState extends State<MyDrawer> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    CustomBottomSheet.showBottomSheet(
+                      child: LanguageBottomSheet(),
+                      context: context,
+                      enableDrag: true,
+                    );
+                  },
                   child: Row(
                     children: [
                       SizedBox(
