@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:http/http.dart';
 import 'package:my_fatoorah/my_fatoorah.dart';
-import 'package:paytm/paytm.dart';
+// import 'package:paytm/paytm.dart';
 import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../Helper/Color.dart';
@@ -2087,80 +2087,80 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
       ORDER_ID: orderId
     };
 
-    try {
-      apiBaseHelper.postAPICall(getPytmChecsumkApi, parameter).then(
-        (getdata) {
-          bool error = getdata['error'];
+    // try {
+    //   apiBaseHelper.postAPICall(getPytmChecsumkApi, parameter).then(
+    //     (getdata) {
+    //       bool error = getdata['error'];
 
-          if (!error) {
-            String txnToken = getdata['txn_token'];
-            setState(
-              () {
-                paymentResponse = txnToken;
-              },
-            );
+    //       if (!error) {
+    //         String txnToken = getdata['txn_token'];
+    //         setState(
+    //           () {
+    //             paymentResponse = txnToken;
+    //           },
+    //         );
 
-            var paytmResponse = Paytm.payWithPaytm(
-              callBackUrl: callBackUrl,
-              mId: context.read<CartProvider>().paytmMerId!,
-              orderId: orderId,
-              txnToken: txnToken,
-              txnAmount: context.read<CartProvider>().totalPrice.toString(),
-              staging: context.read<CartProvider>().payTesting,
-            );
-            paytmResponse.then(
-              (value) {
-                context.read<CartProvider>().setProgress(false);
+    //         var paytmResponse = Paytm.payWithPaytm(
+    //           callBackUrl: callBackUrl,
+    //           mId: context.read<CartProvider>().paytmMerId!,
+    //           orderId: orderId,
+    //           txnToken: txnToken,
+    //           txnAmount: context.read<CartProvider>().totalPrice.toString(),
+    //           staging: context.read<CartProvider>().payTesting,
+    //         );
+    //         paytmResponse.then(
+    //           (value) {
+    //             context.read<CartProvider>().setProgress(false);
 
-                context.read<CartProvider>().placeOrder = true;
-                setState(() {});
-                context.read<CartProvider>().checkoutState!(
-                  () async {
-                    if (value['error']) {
-                      paymentResponse = value['errorMessage'];
+    //             context.read<CartProvider>().placeOrder = true;
+    //             setState(() {});
+    //             context.read<CartProvider>().checkoutState!(
+    //               () async {
+    //                 if (value['error']) {
+    //                   paymentResponse = value['errorMessage'];
 
-                      if (value['response'] != '') {
-                        addTransaction(
-                            value['response']['TXNID'],
-                            orderId,
-                            value['response']['STATUS'] ?? '',
-                            paymentResponse,
-                            false);
-                      }
-                    } else {
-                      if (value['response'] != '') {
-                        paymentResponse = value['response']['STATUS'];
-                        if (paymentResponse == 'TXN_SUCCESS') {
-                          await updateOrderStatus(
-                              orderID: orderID, status: PLACED);
-                          addTransaction(value['response']['TXNID'], orderID,
-                              SUCCESS, msg, true);
-                        } else {
-                          deleteOrder(orderID);
-                        }
-                      }
-                    }
+    //                   if (value['response'] != '') {
+    //                     addTransaction(
+    //                         value['response']['TXNID'],
+    //                         orderId,
+    //                         value['response']['STATUS'] ?? '',
+    //                         paymentResponse,
+    //                         false);
+    //                   }
+    //                 } else {
+    //                   if (value['response'] != '') {
+    //                     paymentResponse = value['response']['STATUS'];
+    //                     if (paymentResponse == 'TXN_SUCCESS') {
+    //                       await updateOrderStatus(
+    //                           orderID: orderID, status: PLACED);
+    //                       addTransaction(value['response']['TXNID'], orderID,
+    //                           SUCCESS, msg, true);
+    //                     } else {
+    //                       deleteOrder(orderID);
+    //                     }
+    //                   }
+    //                 }
 
-                    setSnackbar(paymentResponse!, context);
-                  },
-                );
-              },
-            );
-          } else {
-            context.read<CartProvider>().checkoutState!(
-              () {
-                context.read<CartProvider>().placeOrder = true;
-              },
-            );
-            context.read<CartProvider>().setProgress(false);
-            setSnackbar(getdata['message'], context);
-          }
-        },
-        onError: (error) {
-          setSnackbar(error.toString(), context);
-        },
-      );
-    } catch (e) {}
+    //                 setSnackbar(paymentResponse!, context);
+    //               },
+    //             );
+    //           },
+    //         );
+    //       } else {
+    //         context.read<CartProvider>().checkoutState!(
+    //           () {
+    //             context.read<CartProvider>().placeOrder = true;
+    //           },
+    //         );
+    //         context.read<CartProvider>().setProgress(false);
+    //         setSnackbar(getdata['message'], context);
+    //       }
+    //     },
+    //     onError: (error) {
+    //       setSnackbar(error.toString(), context);
+    //     },
+    //   );
+    // } catch (e) {}
   }
 
   Future<void> placeOrder(String? tranId) async {

@@ -1213,14 +1213,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
-  paytm:
-    dependency: "direct main"
-    description:
-      name: paytm
-      sha256: "196ef69fa56f9c4635af6d78d96a6d444b7ec4d7ed57b8c0079a4c9ed2504015"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
   pedantic:
     dependency: transitive
     description:

@@ -107,38 +107,6 @@
 						<string>Cloud Managed Apple Distribution</string>
 					</dict>
 					<key>name</key>
-					<string>AppInvokeSDK.framework</string>
-					<key>symbols</key>
-					<true/>
-					<key>team</key>
-					<dict>
-						<key>id</key>
-						<string>C5A9PB3Y8X</string>
-						<key>name</key>
-						<string>Mohammed Salem</string>
-					</dict>
-					<key>versionNumber</key>
-					<string>1.3</string>
-				</dict>
-				<dict>
-					<key>architectures</key>
-					<array>
-						<string>arm64</string>
-					</array>
-					<key>bitcode</key>
-					<false/>
-					<key>buildNumber</key>
-					<string>1</string>
-					<key>certificate</key>
-					<dict>
-						<key>SHA1</key>
-						<string>2E061BFDD0BB387E44FC75AADF66B885AEBDEF0B</string>
-						<key>dateExpires</key>
-						<string>21/11/24</string>
-						<key>type</key>
-						<string>Cloud Managed Apple Distribution</string>
-					</dict>
-					<key>name</key>
 					<string>DKImagePickerController.framework</string>
 					<key>symbols</key>
 					<true/>
@@ -2847,7 +2815,7 @@
 				<string>Mohammed Salem</string>
 			</dict>
 			<key>versionNumber</key>
-			<string>1.0.2</string>
+			<string>1.0.3</string>
 		</dict>
 	</array>
 </dict>
