@@ -1196,15 +1196,37 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15, left: 15),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: colors.primary,
-                      ),
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: colors.primary,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => const HomeScreenNew()),
+                            );
+                          },
+                          child: Text(
+                            getTranslated(context, 'SKIP')!,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: colors.primary,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ],

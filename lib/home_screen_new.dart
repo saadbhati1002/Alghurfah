@@ -105,12 +105,12 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
           }
           setState(() {});
         } else {
-          setSnackbar(systemConfigData['message']!, context);
+          // setSnackbar(systemConfigData['message']!, context);
         }
       },
     ).onError(
       (error, stackTrace) {
-        setSnackbar(error.toString(), context);
+        // setSnackbar(error.toString(), context);
       },
     );
   }
