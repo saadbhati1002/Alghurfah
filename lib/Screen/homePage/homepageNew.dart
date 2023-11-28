@@ -441,15 +441,15 @@ class _HomePageState extends State<HomePage>
 
   Future<void> _refresh() {
     context.read<HomePageProvider>().catLoading = true;
-    context.read<HomePageProvider>().secLoading = true;
-    context.read<HomePageProvider>().sliderLoading = true;
-    context.read<HomePageProvider>().mostLikeLoading = true;
-    context.read<HomePageProvider>().offerLoading = true;
-    context.read<HomePageProvider>().proIds.clear();
-    context.read<HomePageProvider>().sliderList.clear();
-    context.read<HomePageProvider>().offerImagesList.clear();
-    context.read<CategoryProvider>().setCurSelected(0);
-    context.read<HomePageProvider>().sectionList.clear();
+    // context.read<HomePageProvider>().secLoading = true;
+    // context.read<HomePageProvider>().sliderLoading = true;
+    // context.read<HomePageProvider>().mostLikeLoading = true;
+    // context.read<HomePageProvider>().offerLoading = true;
+    // context.read<HomePageProvider>().proIds.clear();
+    // context.read<HomePageProvider>().sliderList.clear();
+    // context.read<HomePageProvider>().offerImagesList.clear();
+    // context.read<CategoryProvider>().setCurSelected(0);
+    // context.read<HomePageProvider>().sectionList.clear();
     return callApi();
   }
 
@@ -458,15 +458,15 @@ class _HomePageState extends State<HomePage>
     SettingProvider setting =
         Provider.of<SettingProvider>(context, listen: false);
 
-    user.setUserId(setting.userId);
+    // user.setUserId(setting.userId);
 
-    getSetting();
-    context.read<HomePageProvider>().getSliderImages();
+    // // getSetting();
+    // context.read<HomePageProvider>().getSliderImages();
     context.read<HomePageProvider>().getCategories(context);
-    context.read<HomePageProvider>().getOfferImages();
-    context.read<HomePageProvider>().getSections();
-    context.read<HomePageProvider>().getMostLikeProducts();
-    context.read<HomePageProvider>().getMostFavouriteProducts();
+    // context.read<HomePageProvider>().getOfferImages();
+    // context.read<HomePageProvider>().getSections();
+    // context.read<HomePageProvider>().getMostLikeProducts();
+    // context.read<HomePageProvider>().getMostFavouriteProducts();
 
     return;
   }
@@ -528,12 +528,12 @@ class _HomePageState extends State<HomePage>
           }
           setState(() {});
         } else {
-          setSnackbar(systemConfigData['message']!, context);
+          // setSnackbar(systemConfigData['message']!, context);
         }
       },
     ).onError(
       (error, stackTrace) {
-        setSnackbar(error.toString(), context);
+        // setSnackbar(error.toString(), context);
       },
     );
   }

@@ -248,68 +248,68 @@ class PaymentProvider extends ChangeNotifier {
     }
   }
 
-  Future<Map<String, dynamic>> payWithPaytm({
-    required String userID,
-    required String orderID,
-    required String paymentAmount,
-    required String paytmCallBackURL,
-    required String paytmMerchantID,
-    required bool isTestingModeEnable,
-  }) async {
-    try {
-      var parameter = {
-        AMOUNT: paymentAmount,
-        USER_ID: userID,
-        ORDER_ID: orderID
-      };
-      Map<dynamic, dynamic> paytmResponse =
-          await PaymentRepository.payWithPaytm(
-                  apiParameter: parameter,
-                  paytmCallbackURL: paytmCallBackURL,
-                  paytmMerchantID: paytmMerchantID,
-                  paytmOrderID: orderID,
-                  paytmTransactionAmount: paymentAmount,
-                  isTestingModeEnable: isTestingModeEnable)
-              .then(
-        (value) {
-          return value;
-        },
-      ).onError(
-        (error, stackTrace) {
-          return {};
-        },
-      );
+  // Future<Map<String, dynamic>> payWithPaytm({
+  //   required String userID,
+  //   required String orderID,
+  //   required String paymentAmount,
+  //   required String paytmCallBackURL,
+  //   required String paytmMerchantID,
+  //   required bool isTestingModeEnable,
+  // }) async {
+  //   // try {
+  //   //   var parameter = {
+  //   //     AMOUNT: paymentAmount,
+  //   //     USER_ID: userID,
+  //   //     ORDER_ID: orderID
+  //   //   };
+  //   //   Map<dynamic, dynamic> paytmResponse =
+  //   //       await PaymentRepository.payWithPaytm(
+  //   //               apiParameter: parameter,
+  //   //               paytmCallbackURL: paytmCallBackURL,
+  //   //               paytmMerchantID: paytmMerchantID,
+  //   //               paytmOrderID: orderID,
+  //   //               paytmTransactionAmount: paymentAmount,
+  //   //               isTestingModeEnable: isTestingModeEnable)
+  //   //           .then(
+  //   //     (value) {
+  //   //       return value;
+  //   //     },
+  //   //   ).onError(
+  //   //     (error, stackTrace) {
+  //   //       return {};
+  //   //     },
+  //   //   );
 
-      Map<String, dynamic> response = {
-        'error': true,
-        'status': false,
-        'message': 'Something went Wrong'
-      };
-      if (paytmResponse['error']) {
-        response['error'] = paytmResponse['error'];
-        response['message'] = paytmResponse['errorMessage'];
-      } else {
-        if (paytmResponse['response'] != null) {
-          if (paytmResponse['response']['STATUS'] == 'TXN_SUCCESS') {
-            response['error'] = false;
-            response['status'] = true;
-            response['message'] = 'Transaction Successful';
-          } else if (paytmResponse['response']['STATUS'] == 'TXN_FAILURE') {
-            response['error'] = true;
-            response['status'] = false;
-            response['message'] = 'Transaction Failed';
-          }
-        }
-      }
-      return response;
-    } catch (e) {
-      return {
-        'error': true,
-        'status': false,
-        'message': 'Something went Wrong'
-      };
-    }
-  }
+  //   //   Map<String, dynamic> response = {
+  //   //     'error': true,
+  //   //     'status': false,
+  //   //     'message': 'Something went Wrong'
+  //   //   };
+  //   //   if (paytmResponse['error']) {
+  //   //     response['error'] = paytmResponse['error'];
+  //   //     response['message'] = paytmResponse['errorMessage'];
+  //   //   } else {
+  //   //     if (paytmResponse['response'] != null) {
+  //   //       if (paytmResponse['response']['STATUS'] == 'TXN_SUCCESS') {
+  //   //         response['error'] = false;
+  //   //         response['status'] = true;
+  //   //         response['message'] = 'Transaction Successful';
+  //   //       } else if (paytmResponse['response']['STATUS'] == 'TXN_FAILURE') {
+  //   //         response['error'] = true;
+  //   //         response['status'] = false;
+  //   //         response['message'] = 'Transaction Failed';
+  //   //       }
+  //   //     }
+  //   //   }
+  //   //   return response;
+  //   // } catch (e) {
+  //   //   return {
+  //   //     'error': true,
+  //   //     'status': false,
+  //   //     'message': 'Something went Wrong'
+  //   //   };
+  //   // }
+  // }
 
   Future<Map<String, dynamic>> payWithStripe({
     required String paymentAmount,

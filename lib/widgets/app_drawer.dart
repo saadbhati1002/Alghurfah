@@ -571,6 +571,37 @@ class _MyDrawerState extends State<MyDrawer> {
                       ),
                     )
                   : const SizedBox(),
+              CUR_USERID != null
+                  ? Padding(
+                      padding:
+                          const EdgeInsets.only(left: 20, right: 20, top: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          MyProfileDialog.showDeleteWarningAccountDialog(
+                              context);
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              getTranslated(context, 'DeleteAcoountNow')!,
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
               const SizedBox(
                 height: 20,
               ),

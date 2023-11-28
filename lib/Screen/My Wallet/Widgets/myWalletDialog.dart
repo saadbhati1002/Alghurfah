@@ -72,8 +72,12 @@ class MyWalletDialog {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
                       child: TextFormField(
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
-                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d+\.?\d{0,2}')),
+                        ],
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
                         validator: (val) => StringValidation.validateField(
                             val!, getTranslated(context, 'FIELD_REQUIRED')),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -372,8 +376,12 @@ class _AddMoneyDialogState extends State<AddMoneyDialog> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
                       child: TextFormField(
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
-                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d+\.?\d{0,2}')),
+                        ],
+                        keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true),
                         validator: (val) => StringValidation.validateField(
                             val!, getTranslated(context, 'FIELD_REQUIRED')),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -509,9 +517,9 @@ class _AddMoneyDialogState extends State<AddMoneyDialog> {
                   await updateUserWalletAmount();
                 } else if (systemProvider!.selectedPaymentMethodName ==
                     getTranslated(context, 'PAYTM_LBL')) {
-                  var response = await doPaymentWithPaytm(
-                      price: double.parse(amountTextController!.text));
-                  Navigator.pop(context, response);
+                  // var response = await doPaymentWithPaytm(
+                  //     price: double.parse(amountTextController!.text));
+                  // Navigator.pop(context, response);
                   await updateUserWalletAmount();
                 } else if (systemProvider!.selectedPaymentMethodName ==
                     getTranslated(context, 'PAYPAL_LBL')) {
@@ -590,38 +598,38 @@ class _AddMoneyDialogState extends State<AddMoneyDialog> {
     }
   }
 
-  Future<Map<String, dynamic>> doPaymentWithPaytm(
-      {required double price}) async {
-    context.read<MyWalletProvider>().isLoading = true;
-    try {
-      String orderID = DateTime.now().millisecondsSinceEpoch.toString();
+  // Future<Map<String, dynamic>> doPaymentWithPaytm(
+  //     {required double price}) async {
+  //   context.read<MyWalletProvider>().isLoading = true;
+  //   try {
+  //     String orderID = DateTime.now().millisecondsSinceEpoch.toString();
 
-      String paytmCallBackURL = context
-                  .read<SystemProvider>()
-                  .isPaytmOnTestMode ??
-              true
-          ? 'https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=$orderID'
-          : 'https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=$orderID';
+  //     String paytmCallBackURL = context
+  //                 .read<SystemProvider>()
+  //                 .isPaytmOnTestMode ??
+  //             true
+  //         ? 'https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=$orderID'
+  //         : 'https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=$orderID';
 
-      var response = await context.read<PaymentProvider>().payWithPaytm(
-            userID: USER_ID,
-            orderID: orderID,
-            paymentAmount: price.toString(),
-            paytmCallBackURL: paytmCallBackURL,
-            paytmMerchantID: context.read<SystemProvider>().paytmMerchantID!,
-            isTestingModeEnable:
-                context.read<SystemProvider>().isPaytmOnTestMode ?? true,
-          );
+  //     var response = await context.read<PaymentProvider>().payWithPaytm(
+  //           userID: USER_ID,
+  //           orderID: orderID,
+  //           paymentAmount: price.toString(),
+  //           paytmCallBackURL: paytmCallBackURL,
+  //           paytmMerchantID: context.read<SystemProvider>().paytmMerchantID!,
+  //           isTestingModeEnable:
+  //               context.read<SystemProvider>().isPaytmOnTestMode ?? true,
+  //         );
 
-      return response;
-    } catch (e) {
-      return {
-        'error': true,
-        'message': e.toString(),
-        'status': false,
-      };
-    }
-  }
+  //     return response;
+  //   } catch (e) {
+  //     return {
+  //       'error': true,
+  //       'message': e.toString(),
+  //       'status': false,
+  //     };
+  //   }
+  // }
 
   Future<Map<String, dynamic>> doPaymentWithStripe({
     required String price,
