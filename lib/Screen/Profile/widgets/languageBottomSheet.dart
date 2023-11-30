@@ -27,6 +27,7 @@ class LanguageBottomSheet extends StatelessWidget {
                     .then(
                   (value) {
                     MyApp.setLocale(context, value);
+                    // appStore.setLanguage('ar');
                     context
                         .read<SystemProvider>()
                         .getCurrentLanguage(context: context);
@@ -104,14 +105,14 @@ class LanguageBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     languageList = [
       'English',
-      //  'Chinese',
-      //   'Spanish',
-      //   'French',
-      //   'Hindi',
+      'Chinese',
+      'Spanish',
+      'French',
+      'Hindi',
       'Arabic',
-      //   'Russian',
-      //  'Japanese',
-      //  'German'
+      'Russian',
+      'Japanese',
+      'German'
     ];
     return Container(
       color: colors.backgroundColor,

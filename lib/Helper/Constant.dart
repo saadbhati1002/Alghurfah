@@ -2,7 +2,7 @@ import 'package:eshop_multivendor/Helper/ApiBaseHelper.dart';
 
 //Your application name
 const String appName = 'Alghurfah';
-const String countryCode = '+91';
+const String countryCode = '+971';
 
 //Your package name
 const String packageName = 'eShop.multivendor.customer';
@@ -25,7 +25,7 @@ const String deepLinkName = 'eshop.com';
 String defaultLanguage = 'en';
 
 //Set country code
-String defaultCountryCode = 'IN';
+String defaultCountryCode = 'AE';
 
 //Time settings
 const int timeOut = 50;

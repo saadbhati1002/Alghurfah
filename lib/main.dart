@@ -326,7 +326,7 @@ class _MyAppState extends State<MyApp> {
               create: (context) => ChatProvider()),
         ],
         child: MaterialApp(
-          locale: Locale(appStore.selectedLanguageCode),
+          locale: _locale,
           supportedLocales: const [
             Locale('en', 'US'),
             Locale('zh', 'CN'),
