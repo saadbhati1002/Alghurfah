@@ -43,9 +43,10 @@ class _MyDrawerState extends State<MyDrawer> {
   bool serviceVisibility = false;
   void init() async {
     future = userDashboard(
-        isCurrentLocation: appStore.isCurrentLocation,
-        lat: getDoubleAsync(LATITUDE),
-        long: getDoubleAsync(LONGITUDE));
+      isCurrentLocation: appStore.isCurrentLocation,
+      // lat: getDoubleAsync(LATITUDE),
+      // long: getDoubleAsync(LONGITUDE)
+    );
   }
 
   @override

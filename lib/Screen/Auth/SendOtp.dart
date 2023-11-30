@@ -73,7 +73,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
                 Provider.of<SettingProvider>(context, listen: false);
             if (widget.title == getTranslated(context, 'SEND_OTP_TITLE')) {
               if (!error!) {
-                setSnackbar(msg!, context);
+                // setSnackbar(msg!, context);
                 Future.delayed(const Duration(seconds: 1)).then(
                   (_) {
                     Navigator.pushReplacement(
