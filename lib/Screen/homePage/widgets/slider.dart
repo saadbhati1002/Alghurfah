@@ -51,7 +51,7 @@ class _CustomSliderState extends State<CustomSlider> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 180,
+                          height: 200,
                           width: double.infinity,
                           child: Swiper(
                             itemBuilder: (context, index) {
@@ -61,7 +61,7 @@ class _CustomSliderState extends State<CustomSlider> {
                                     imageurlString: slider.image!,
                                     boxFit: BoxFit.fill,
                                     context: context,
-                                    heightvalue: 180,
+                                    heightvalue: 200,
                                     placeHolderSize: 50,
                                     widthvalue: double.maxFinite),
                                 onTap: () async {

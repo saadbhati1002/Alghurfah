@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:card_swiper/card_swiper.dart';
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/cached_image_widget.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
@@ -64,32 +66,53 @@ class _SliderLocationComponentState extends State<SliderLocationComponent> {
 
   Widget getSliderWidget() {
     return SizedBox(
-      height: 220,
+      height: 200,
       width: context.width(),
       child: widget.sliderList.isNotEmpty
-          ? PageView(
-              controller: sliderPageController,
-              children: List.generate(
-                widget.sliderList.length,
-                (index) {
-                  SliderModel data = widget.sliderList[index];
-                  return CachedImageWidget(
-                          url: data.sliderImage.validate(),
-                          height: 250,
-                          width: context.width(),
-                          fit: BoxFit.cover)
-                      .onTap(() {
-                    if (data.type == SERVICE) {
-                      ServiceDetailScreen(
-                              serviceId: data.typeId.validate().toInt())
-                          .launch(context,
-                              pageRouteAnimation: PageRouteAnimation.Fade);
-                    }
-                  });
-                },
-              ),
-            )
+          ? Swiper(
+              itemCount: widget.sliderList.length,
+              indicatorLayout: PageIndicatorLayout.COLOR,
+              autoplay: false,
+              pagination: const SwiperPagination(),
+              control: const SwiperControl(color: colors.primary, size: 30),
+              onTap: (v) {
+                SliderModel data = widget.sliderList[v];
+                ServiceDetailScreen(serviceId: data.typeId.validate().toInt())
+                    .launch(context,
+                        pageRouteAnimation: PageRouteAnimation.Fade);
+              },
+              itemBuilder: (context, index) {
+                SliderModel data = widget.sliderList[index];
+                return CachedImageWidget(
+                    url: data.sliderImage.validate(),
+                    height: 250,
+                    width: context.width(),
+                    fit: BoxFit.cover);
+              })
           : CachedImageWidget(url: '', height: 250, width: context.width()),
+      //  PageView(
+      //     controller: sliderPageController,
+      //     children: List.generate(
+      //       widget.sliderList.length,
+      //       (index) {
+      //         SliderModel data = widget.sliderList[index];
+      //         return CachedImageWidget(
+      //                 url: data.sliderImage.validate(),
+      //                 height: 250,
+      //                 width: context.width(),
+      //                 fit: BoxFit.cover)
+      //             .onTap(() {
+      //           if (data.type == SERVICE) {
+      //             ServiceDetailScreen(
+      //                     serviceId: data.typeId.validate().toInt())
+      //                 .launch(context,
+      //                     pageRouteAnimation: PageRouteAnimation.Fade);
+      //           }
+      //         });
+      //       },
+      //     ),
+      //   )
+      // : CachedImageWidget(url: '', height: 250, width: context.width()),
     );
   }
 

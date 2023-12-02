@@ -99,10 +99,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   },
                   loadingWidget: DashboardShimmer(),
                   onSuccess: (snap) {
-                    print("saad");
-                    print(snap.slider);
-                    print(snap.slider![0].sliderImage);
-                    print("bhati");
                     return SliderLocationComponent(
                       sliderList: snap.slider.validate(),
                       callback: () async {
