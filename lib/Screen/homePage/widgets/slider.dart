@@ -42,6 +42,12 @@ class _CustomSliderState extends State<CustomSlider> {
   Widget build(BuildContext context) {
     return Consumer<HomePageProvider>(
       builder: (context, homeProvider, _) {
+        for (int i = 0; i < homeProvider.homeSliderList.length; i++) {
+          if (context.read<HomePageProvider>().homeSliderList[i].type ==
+              'default') {
+            homeProvider.homeSliderList.removeAt(i);
+          }
+        }
         return homeProvider.sliderLoading
             ? sliderLoading(context)
             : homeProvider.homeSliderList.isEmpty
@@ -69,15 +75,8 @@ class _CustomSliderState extends State<CustomSlider> {
                                       .read<HomePageProvider>()
                                       .curSlider;
 
-                                  if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'products') {
-                                    Product? item = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .list;
+                                  if (slider.type == 'products') {
+                                    Product? item = slider.list;
 
                                     Navigator.push(
                                       context,
@@ -91,15 +90,8 @@ class _CustomSliderState extends State<CustomSlider> {
                                         ),
                                       ),
                                     );
-                                  } else if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'categories') {
-                                    Product item = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .list as Product;
+                                  } else if (slider.type == 'categories') {
+                                    Product item = slider.list as Product;
                                     if (item.subList == null ||
                                         item.subList!.isEmpty) {
                                       Navigator.push(
@@ -124,16 +116,8 @@ class _CustomSliderState extends State<CustomSlider> {
                                         ),
                                       );
                                     }
-                                  } else if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'slider_url') {
-                                    String url = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .urlLink
-                                        .toString();
+                                  } else if (slider.type == 'slider_url') {
+                                    String url = slider.urlLink.toString();
                                     try {
                                       if (await canLaunchUrl(Uri.parse(url))) {
                                         await launchUrl(Uri.parse(url),

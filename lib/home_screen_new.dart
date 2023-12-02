@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:eshop_multivendor/Screen/homePage/widgets/slider_dashboard.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/String.dart';
@@ -133,7 +134,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    const CustomSlider(),
+                    const CustomSliderDashBoard(),
                     SizedBox(
                         height: MediaQuery.of(context).size.height * .75,
                         width: MediaQuery.of(context).size.width * 1,
