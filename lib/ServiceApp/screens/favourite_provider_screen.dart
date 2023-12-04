@@ -72,10 +72,10 @@ class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
                     imageWidget: EmptyStateWidget(),
                   );
                 return AnimatedScrollView(
-                  padding: EdgeInsets.fromLTRB(16, 16, 16, 60),
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
                   listAnimationType: ListAnimationType.FadeIn,
                   fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   onNextPage: () {
                     if (!isLastPage) {
                       page++;
@@ -125,7 +125,7 @@ class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
                 errorBuilder: (error) {
                   return NoDataWidget(
                     title: error,
-                    imageWidget: ErrorStateWidget(),
+                    imageWidget: const ErrorStateWidget(),
                     retryText: language.reload,
                     onRetry: () {
                       page = 1;

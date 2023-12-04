@@ -22,10 +22,6 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 
 import '../../component/empty_error_state_widget.dart';
-import '../../utils/colors.dart';
-import '../../utils/common.dart';
-import '../../utils/images.dart';
-import '../service/view_all_service_screen.dart';
 
 class ProviderInfoScreen extends StatefulWidget {
   final int? providerId;
@@ -66,15 +62,6 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
   Widget servicesWidget({required List<ServiceData> list, int? providerId}) {
     return Column(
       children: [
-        // ViewAllLabel(
-        //   label: language.service,
-        //   list: list,
-        //   onTap: () {
-        //     ViewAllServiceScreen(providerId: providerId)
-        //         .launch(context, pageRouteAnimation: PageRouteAnimation.Fade);
-        //   },
-        // ),
-        // 8.height,
         if (list.isEmpty)
           NoDataWidget(
               title: language.lblNoServicesFound,
@@ -101,17 +88,6 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
               ),
             ),
           ),
-        // AnimatedWrap(
-        //   spacing: 16,
-        //   runSpacing: 16,
-        //   itemCount: list.length,
-        //   listAnimationType: ListAnimationType.FadeIn,
-        //   fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
-        //   scaleConfiguration: ScaleConfiguration(
-        //       duration: 300.milliseconds, delay: 50.milliseconds),
-        //   itemBuilder: (_, index) => ServiceComponent(
-        //       serviceData: list[index], width: context.width()),
-        // )
       ],
     );
   }
@@ -596,8 +572,132 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                   },
                 ),
                 Observer(
-                    builder: (context) =>
-                        LoaderWidget().visible(appStore.isLoading))
+                  builder: (context) =>
+                      LoaderWidget().visible(appStore.isLoading),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15, right: 15),
+                    child: SizedBox(
+                      height: 140,
+                      width: 100,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25),
+                                  ),
+                                  child: Container(
+                                    color: Colors.white,
+                                    child: DesignConfiguration
+                                        .getCacheNotworkImage(
+                                      boxFit: BoxFit.fill,
+                                      context: context,
+                                      heightvalue: 100,
+                                      widthvalue: 100,
+                                      placeHolderSize: 100,
+                                      imageurlString:
+                                          data.userData!.profileImage!,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              if (data.userData!.isFavourite == 1) {
+                                data.userData!.isFavourite == 0;
+                                setState(() {});
+                                await removeProviderToWishList(
+                                        providerId: data.userData!.providerId!
+                                            .validate())
+                                    .then((value) {
+                                  if (!value) {
+                                    data.userData!.isFavourite = 1;
+                                    setState(() {});
+                                  }
+                                });
+                              } else {
+                                data.userData!.isFavourite == 1;
+                                setState(() {});
+                                await addProviderToWishList(
+                                        providerId: data.userData!.providerId!
+                                            .validate())
+                                    .then((value) {
+                                  if (!value) {
+                                    data.userData!.isFavourite = 0;
+                                    setState(() {});
+                                  }
+                                });
+                              }
+                            },
+                            child: Container(
+                              height: 25,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: const BoxDecoration(
+                                color: colors.serviceColor,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                data.userData!.isFavourite == 1
+                                    ? getTranslated(context, 'Unfollow')!
+                                    : getTranslated(context, 'Follow')!,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 10),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: 25,
+                      width: 25,
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(179, 127, 70, 1),
+                          shape: BoxShape.circle),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(width: 1, color: Colors.white),
+                          ),
+                          child: const Icon(
+                            Icons.star_border_outlined,
+                            color: Colors.white,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             );
           },
@@ -605,7 +705,7 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
           errorBuilder: (error) {
             return NoDataWidget(
               title: error,
-              imageWidget: ErrorStateWidget(),
+              imageWidget: const ErrorStateWidget(),
               retryText: language.reload,
               onRetry: () {
                 page = 1;
@@ -619,6 +719,31 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
         ),
       ),
     );
+  }
+
+  Future<bool> addProviderToWishList({required int providerId}) async {
+    Map req = {"id": "", "provider_id": providerId, "user_id": appStore.userId};
+    return await addProviderWishList(req).then((res) {
+      toast(res.message!);
+      //toast('Added favourite Provider');
+      return true;
+    }).catchError((error) {
+      toast(error.toString());
+      return false;
+    });
+  }
+
+  Future<bool> removeProviderToWishList({required int providerId}) async {
+    Map req = {"user_id": appStore.userId, 'provider_id': providerId};
+
+    return await removeProviderWishList(req).then((res) {
+      toast(res.message!);
+      //toast('Remove favourite Provider');
+      return true;
+    }).catchError((error) {
+      toast(error.toString());
+      return false;
+    });
   }
 
   Widget textWidget(String text) {
