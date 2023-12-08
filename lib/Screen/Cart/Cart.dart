@@ -1584,7 +1584,6 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           ADD_ID: context.read<CartProvider>().selAddress,
         };
         apiBaseHelper.postAPICall(checkCartDelApi, parameter).then((getdata) {
-          print(getdata);
           bool error = getdata['error'];
           String? msg = getdata['message'];
           List data = getdata['data'];
@@ -1602,10 +1601,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
             setSnackbar(msg!, context);
             context.read<CartProvider>().setProgress(false);
           } else {
-            print('data****$data');
             if (data.isEmpty) {
-              print('data inner');
-
               context.read<CartProvider>().deliverable = true;
 
               setState(() {});
@@ -1617,7 +1613,6 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                 confirmDialog();
               }*/
             } else {
-              print('deliverable data*******$data');
               bool isDeliverible = false;
               bool? isShipRocket;
               context.read<CartProvider>().deliverableList =

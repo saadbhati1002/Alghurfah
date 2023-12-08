@@ -91,7 +91,7 @@ class _AllCategoryState extends State<AllCategory>
           key: _key,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_key,
-              title: getTranslated(context, 'Ecom')!,
+              title: getTranslated(context, 'Stores')!,
               context: context,
               setState: setStateNow),
           body: Stack(children: [

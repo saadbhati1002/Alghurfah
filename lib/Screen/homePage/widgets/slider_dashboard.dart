@@ -61,7 +61,7 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
                       children: [
                         SizedBox(
                           height: 200,
-                          width: double.infinity,
+                          width: MediaQuery.of(context).size.width * 1,
                           child: Swiper(
                             itemBuilder: (context, index) {
                               final slider = sliderData[index];

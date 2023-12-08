@@ -11,9 +11,9 @@ class EmptyCart extends StatelessWidget {
   const EmptyCart({Key? key}) : super(key: key);
 
   noCartImage(BuildContext context) {
-    return SvgPicture.asset(
-      DesignConfiguration.setSvgPath('empty_cart'),
-      fit: BoxFit.contain,
+    return Image.asset(
+      'assets/images/png/4.png',
+      color: colors.primary,
     );
   }
 
@@ -36,7 +36,7 @@ class EmptyCart extends StatelessWidget {
         getTranslated(context, 'CART_DESC')!,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.lightBlack2,
+              color: Colors.black,
               fontWeight: FontWeight.normal,
               fontFamily: 'ubuntu',
             ),
@@ -60,17 +60,16 @@ class EmptyCart extends StatelessWidget {
               colors: [colors.primary, colors.primary],
               stops: [0, 1],
             ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                circularBorderRadius50,
-              ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
           ),
           child: Text(
             getTranslated(context, 'SHOP_NOW')!,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.white,
+                  color: Colors.white,
                   fontWeight: FontWeight.normal,
                   fontFamily: 'ubuntu',
                 ),
@@ -92,6 +91,9 @@ class EmptyCart extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             noCartImage(context),
+            const SizedBox(
+              height: 20,
+            ),
             noCartText(context),
             noCartDec(context),
             shopNow(context)

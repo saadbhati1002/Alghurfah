@@ -293,7 +293,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         width: 15,
                       ),
                       Text(
-                        getTranslated(context, 'Ecom')!,
+                        getTranslated(context, 'Stores')!,
                         style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
