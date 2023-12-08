@@ -22,8 +22,8 @@ class AllSellersScreen extends StatefulWidget {
   final int? categoryId;
   final String? categoryName;
   final String isFeatured;
-  final bool isFromProvider;
-  final bool isFromCategory;
+  final bool? isFromProvider;
+  final bool? isFromCategory;
   final int? providerId;
 
   const AllSellersScreen({
@@ -71,7 +71,7 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
         isLoading = true;
       });
       AllSellersRes response = await getAllSellers();
-      print(response.data!.length);
+
       if (response.data!.isNotEmpty) {
         setState(() {
           allSellersData = response.data!;
@@ -158,85 +158,84 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
                   itemCount: allSellersData.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      color: context.cardColor,
-                                    ),
-                                    child: CachedImageWidget(
-                                      radius: 0,
-                                      url: allSellersData[index]
-                                          .profileImage
-                                          .validate(),
-                                      fit: BoxFit.fitWidth,
-                                      width: SUBCATEGORY_ICON_SIZE,
-                                      height: SUBCATEGORY_ICON_SIZE,
-                                      circle: true,
-                                    ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25)),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: context.cardColor,
+                                  ),
+                                  child: CachedImageWidget(
+                                    radius: 0,
+                                    url: allSellersData[index]
+                                        .profileImage
+                                        .validate(),
+                                    fit: BoxFit.fitWidth,
+                                    width: SUBCATEGORY_ICON_SIZE,
+                                    height: SUBCATEGORY_ICON_SIZE,
+                                    circle: true,
                                   ),
                                 ),
                               ),
                             ),
-                            Text(
-                              allSellersData[index].displayName!,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'ubuntu',
-                                  ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: Container(
-                                height: 28,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: const BoxDecoration(
-                                  color: colors.serviceColor,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20)),
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  getTranslated(context, 'View')!,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
+                          ),
+                          Text(
+                            allSellersData[index].displayName!,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: 'ubuntu',
+                                    ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 15),
+                            child: Container(
+                              height: 28,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: const BoxDecoration(
+                                color: colors.serviceColor,
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20)),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                getTranslated(context, 'View')!,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          ProviderInfoScreen(
-                            providerId: allSellersData[index].id,
-                            sellerName: allSellersData[index].displayName,
-                          ).launch(context);
-                          setStatusBarColor(Colors.transparent);
-                        });
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        ProviderInfoScreen(
+                          providerId: allSellersData[index].id,
+                          sellerName: allSellersData[index].displayName,
+                        ).launch(context);
+                        setStatusBarColor(Colors.transparent);
+                      },
+                    );
                   },
                 ),
               ),

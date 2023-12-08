@@ -1,5 +1,5 @@
 import 'package:eshop_multivendor/Screen/Auth/SignInUpAcc.dart';
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Helper/Color.dart';

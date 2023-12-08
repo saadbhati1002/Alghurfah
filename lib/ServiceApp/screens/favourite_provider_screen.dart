@@ -14,15 +14,14 @@ import '../component/favourite_provider_component.dart';
 import '../network/rest_apis.dart';
 import 'shimmer/favourite_provider_shimmer.dart';
 
-class FavouriteProviderScreen extends StatefulWidget {
-  const FavouriteProviderScreen({Key? key}) : super(key: key);
+class FavoriteProviderScreen extends StatefulWidget {
+  const FavoriteProviderScreen({Key? key}) : super(key: key);
 
   @override
-  _FavouriteProviderScreenState createState() =>
-      _FavouriteProviderScreenState();
+  _FavoriteProviderScreenState createState() => _FavoriteProviderScreenState();
 }
 
-class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
+class _FavoriteProviderScreenState extends State<FavoriteProviderScreen> {
   Future<List<UserData>>? future;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -52,13 +51,7 @@ class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: const MyDrawer(),
-      key: _key,
       backgroundColor: colors.backgroundColor,
-      appBar: getAppBar(_key,
-          title: language.favouriteProvider,
-          context: context,
-          setState: setStateNow),
       body: Stack(
         children: [
           FutureBuilder<List<UserData>>(
@@ -71,57 +64,82 @@ class _FavouriteProviderScreenState extends State<FavouriteProviderScreen> {
                     subTitle: language.noProviderFoundMessage,
                     imageWidget: EmptyStateWidget(),
                   );
-                return AnimatedScrollView(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
-                  listAnimationType: ListAnimationType.FadeIn,
-                  fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  onNextPage: () {
-                    if (!isLastPage) {
-                      page++;
-                      appStore.setLoading(true);
+                return GridView.builder(
+                    padding: const EdgeInsets.all(20),
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 8,
+                            childAspectRatio: .68,
+                            crossAxisSpacing: 8),
+                    shrinkWrap: true,
+                    itemCount: snap.data!.length,
+                    itemBuilder: (context, index) {
+                      return FavoriteProviderComponent(
+                        data: snap.data![index],
+                        width: context.width() * 0.5 - 26,
+                        onUpdate: () {
+                          page = 1;
+                          init();
+                          setState(() {});
+                        },
+                      );
+                    });
+                //  SizedBox(
+                //   width: MediaQuery.of(context).size.width * 1,
+                //   height: MediaQuery.of(context).size.height * .8,
+                //   child: AnimatedScrollView(
+                //     padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
+                //     listAnimationType: ListAnimationType.FadeIn,
+                //     fadeInConfiguration:
+                //         FadeInConfiguration(duration: 2.seconds),
+                //     physics: const NeverScrollableScrollPhysics(),
+                //     onNextPage: () {
+                //       if (!isLastPage) {
+                //         page++;
+                //         appStore.setLoading(true);
 
-                      init();
-                      setState(() {});
-                    }
-                  },
-                  onSwipeRefresh: () async {
-                    page = 1;
-
-                    init();
-                    setState(() {});
-
-                    return await 2.seconds.delay;
-                  },
-                  children: [
-                    AnimatedWrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      listAnimationType: ListAnimationType.FadeIn,
-                      fadeInConfiguration:
-                          FadeInConfiguration(duration: 2.seconds),
-                      scaleConfiguration: ScaleConfiguration(
-                          duration: 300.milliseconds, delay: 50.milliseconds),
-                      itemCount: snap.data!.length,
-                      itemBuilder: (_, index) {
-                        return FavouriteProviderComponent(
-                          data: snap.data![index],
-                          width: context.width() * 0.5 - 26,
-                          onUpdate: () {
-                            page = 1;
-                            init();
-                            setState(() {});
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                );
+                //         init();
+                //         setState(() {});
+                //       }
+                //     },
+                //     onSwipeRefresh: () async {
+                //       page = 1;
+                //       init();
+                //       setState(() {});
+                //       return await 2.seconds.delay;
+                //     },
+                //     children: [
+                //       AnimatedWrap(
+                //         spacing: 16,
+                //         runSpacing: 16,
+                //         listAnimationType: ListAnimationType.FadeIn,
+                //         fadeInConfiguration:
+                //             FadeInConfiguration(duration: 2.seconds),
+                //         scaleConfiguration: ScaleConfiguration(
+                //             duration: 300.milliseconds, delay: 50.milliseconds),
+                //         itemCount: snap.data!.length,
+                //         itemBuilder: (_, index) {
+                //           return FavoriteProviderComponent(
+                //             data: snap.data![index],
+                //             width: context.width() * 0.5 - 26,
+                //             onUpdate: () {
+                //               page = 1;
+                //               init();
+                //               setState(() {});
+                //             },
+                //           );
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // );
               }
 
               return snapWidgetHelper(
                 snap,
-                loadingWidget: FavouriteProviderShimmer(),
+                loadingWidget: FavoriteProviderShimmer(),
                 errorBuilder: (error) {
                   return NoDataWidget(
                     title: error,

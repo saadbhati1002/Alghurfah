@@ -3,7 +3,7 @@ import 'package:eshop_multivendor/main.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class FavouriteProviderShimmer extends StatelessWidget {
+class FavoriteProviderShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

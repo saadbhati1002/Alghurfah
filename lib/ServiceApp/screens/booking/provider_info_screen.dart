@@ -50,6 +50,7 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
   }
 
   Future<void> init() async {
+    print(widget.providerId);
     future = getProviderDetail(widget.providerId.validate(),
         userId: appStore.userId.validate());
   }
@@ -617,11 +618,11 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                           GestureDetector(
                             onTap: () async {
                               if (data.userData!.isFavourite == 1) {
-                                data.userData!.isFavourite == 0;
+                                data.userData!.isFavourite = 0;
                                 setState(() {});
                                 await removeProviderToWishList(
-                                        providerId: data.userData!.providerId!
-                                            .validate())
+                                        providerId:
+                                            widget.providerId!.validate())
                                     .then((value) {
                                   if (!value) {
                                     data.userData!.isFavourite = 1;
@@ -629,11 +630,11 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                                   }
                                 });
                               } else {
-                                data.userData!.isFavourite == 1;
+                                data.userData!.isFavourite = 1;
                                 setState(() {});
                                 await addProviderToWishList(
-                                        providerId: data.userData!.providerId!
-                                            .validate())
+                                        providerId:
+                                            widget.providerId!.validate())
                                     .then((value) {
                                   if (!value) {
                                     data.userData!.isFavourite = 0;

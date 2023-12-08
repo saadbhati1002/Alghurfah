@@ -5,7 +5,7 @@ import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/Screen/IntroSlider/Intro_Slider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

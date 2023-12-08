@@ -8,7 +8,7 @@ import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart' as service;
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';

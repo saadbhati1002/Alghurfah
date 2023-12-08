@@ -2,7 +2,7 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/dashboard/dashboard_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

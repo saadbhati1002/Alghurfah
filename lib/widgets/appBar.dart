@@ -1,15 +1,15 @@
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/favourite_seller_screen.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/material.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
-import '../Helper/routes.dart';
-import '../Screen/Language/languageSettings.dart';
 
 getAppBar(
   key, {
   String? title,
   BuildContext? context,
   Function? setState,
+  bool? isHomePage,
 }) {
   return AppBar(
     shape: const RoundedRectangleBorder(
@@ -21,30 +21,33 @@ getAppBar(
     backgroundColor: Colors.white,
     leading: Builder(
       builder: (BuildContext context) {
-        return Container(
-          margin: const EdgeInsets.all(10),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(circularBorderRadius4),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreenNew(),
+        return isHomePage == true
+            ? const SizedBox()
+            : Container(
+                margin: const EdgeInsets.all(10),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(circularBorderRadius4),
+                  onTap: () {
+                    Navigator.pop(context);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const HomeScreenNew(),
+                    //   ),
+                    // );
+                  },
+                  child: const Center(
+                    child: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: colors.primary,
+                      ),
+                    ),
+                  ),
                 ),
               );
-            },
-            child: const Center(
-              child: SizedBox(
-                height: 25,
-                width: 25,
-                child: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: colors.primary,
-                ),
-              ),
-            ),
-          ),
-        );
       },
     ),
     title: Center(
@@ -65,7 +68,12 @@ getAppBar(
           child: Image.asset('assets/images/png/bookMark.png'),
         ),
         onTap: () {
-          Routes.navigateToFavoriteScreen(context!);
+          Navigator.push(
+            context!,
+            MaterialPageRoute(
+              builder: (context) => const FavoriteSellerScreen(),
+            ),
+          );
         },
       ),
       GestureDetector(
