@@ -59,17 +59,15 @@ getAppBar(
       ),
     ),
     actions: <Widget>[
-      title == getTranslated(context!, 'FAVORITE')
-          ? Container()
-          : GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Image.asset('assets/images/png/bookMark.png'),
-              ),
-              onTap: () {
-                Routes.navigateToFavoriteScreen(context);
-              },
-            ),
+      GestureDetector(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Image.asset('assets/images/png/bookMark.png'),
+        ),
+        onTap: () {
+          Routes.navigateToFavoriteScreen(context!);
+        },
+      ),
       GestureDetector(
         onTap: () {
           key.currentState!.openEndDrawer();

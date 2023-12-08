@@ -130,7 +130,7 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
     } on TickerCanceled {}
   }
 
-  setStateNoInternate() async {
+  setStateNoInternat() async {
     _playAnimation();
     Future.delayed(const Duration(seconds: 2)).then(
       (_) async {
@@ -150,7 +150,6 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: allAppBottomSheet(context),
       endDrawer: const MyDrawer(),
       key: _key,
       backgroundColor: colors.backgroundColor,
@@ -163,7 +162,7 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
           : NoInterNet(
               buttonController: buttonController,
               buttonSqueezeanimation: buttonSqueezeanimation,
-              setStateNoInternate: setStateNoInternate,
+              setStateNoInternate: setStateNoInternat,
             ),
     );
   }
@@ -191,8 +190,9 @@ class StateFav extends State<Favorite> with TickerProviderStateMixin {
                   child: Text(
                     getTranslated(context, 'noFav')!,
                     style: const TextStyle(
-                      fontFamily: 'ubuntu',
-                    ),
+                        fontSize: 16,
+                        fontFamily: 'ubuntu',
+                        color: Colors.black),
                   ),
                 )
               : RefreshIndicator(

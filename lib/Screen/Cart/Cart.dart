@@ -689,7 +689,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           }
           if (mounted) setState(() {});
         }, onError: (error) {
+          if(mounted){
           setSnackbar(error.toString(), context);
+          }
         });
       } on TimeoutException catch (_) {
         setSnackbar(getTranslated(context, 'somethingMSg')!, context);
