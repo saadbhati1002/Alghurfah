@@ -6,11 +6,13 @@ import 'package:eshop_multivendor/Provider/Favourite/FavoriteProvider.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Screen/Auth/SendOtp.dart';
+import 'package:eshop_multivendor/Screen/Profile/widgets/languageBottomSheet.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart'
     as service_app;
 import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/bottomSheet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -1229,6 +1231,38 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, right: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          CustomBottomSheet.showBottomSheet(
+                            child: LanguageBottomSheet(),
+                            context: context,
+                            enableDrag: true,
+                          );
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: colors.primary,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(getTranslated(context, 'Language')!,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600)),
+                          ), //Language
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               )
             : NoInterNet(
