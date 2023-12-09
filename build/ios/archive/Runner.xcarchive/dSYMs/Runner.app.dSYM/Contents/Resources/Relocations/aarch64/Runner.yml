@@ -2,8 +2,8 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/saadbhati/Library/Developer/Xcode/DerivedData/Runner-guydlmrdmzlwhoahfxlssqneaxss/Build/Intermediates.noindex/ArchiveIntermediates/Runner/InstallationBuildProductsLocation/Applications/Runner.app/Runner'
 relocations:
-  - { offsetInCU: 0x34, offset: 0x1CFA5C, size: 0x8, addend: 0x0, symName: _RunnerVersionString, symObjAddr: 0x0, symBinAddr: 0x100494720, symSize: 0x0 }
-  - { offsetInCU: 0x69, offset: 0x1CFA91, size: 0x8, addend: 0x0, symName: _RunnerVersionNumber, symObjAddr: 0x28, symBinAddr: 0x100494748, symSize: 0x0 }
+  - { offsetInCU: 0x34, offset: 0x1CFA5C, size: 0x8, addend: 0x0, symName: _RunnerVersionString, symObjAddr: 0x0, symBinAddr: 0x1004946D0, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x1CFA91, size: 0x8, addend: 0x0, symName: _RunnerVersionNumber, symObjAddr: 0x28, symBinAddr: 0x1004946F8, symSize: 0x0 }
   - { offsetInCU: 0x27, offset: 0x1CFACE, size: 0x8, addend: 0x0, symName: '+[GeneratedPluginRegistrant registerWithRegistry:]', symObjAddr: 0x0, symBinAddr: 0x100008000, symSize: 0x95C }
   - { offsetInCU: 0x163, offset: 0x1CFC0A, size: 0x8, addend: 0x0, symName: '+[GeneratedPluginRegistrant registerWithRegistry:]', symObjAddr: 0x0, symBinAddr: 0x100008000, symSize: 0x95C }
   - { offsetInCU: 0x4F, offset: 0x1CFCCA, size: 0x8, addend: 0x0, symName: '_$s6Runner11AppDelegateC11application_29didFinishLaunchingWithOptionsSbSo13UIApplicationC_SDySo0j6LaunchI3KeyaypGSgtF', symObjAddr: 0x0, symBinAddr: 0x10000895C, symSize: 0x2CC }

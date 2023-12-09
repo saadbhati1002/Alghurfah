@@ -402,15 +402,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		bxzRJOuxI9eAbxN9Egr/dGVSfdw=
+		Ao1P15rJN6GiplX0ae+HtdHN8u8=
 		</data>
 		<key>Modules/StripePayments.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		hgV8BByyOjWmFUr1NxcPpzf81WA=
+		jZZ7CsxYUR1akmfB5lIOYK0Qv4g=
 		</data>
 		<key>Modules/StripePayments.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		tcgNvjxwijw9smYQtWGtJWTnR6E=
+		6omPuwLMDCNuRQf9rd4m1hF30rg=
 		</data>
 		<key>Modules/StripePayments.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -446,7 +446,7 @@
 		</data>
 		<key>Stripe3DS2.bundle/Info.plist</key>
 		<data>
-		lf7D+IodQGVLGpc+iKbZtccZelI=
+		k4El2LNC3yrDYKSydu15jsjZImI=
 		</data>
 		<key>Stripe3DS2.bundle/amex-logo@3x.png</key>
 		<data>
@@ -847,7 +847,7 @@
 		</dict>
 		<key>StripePayments.bundle/Info.plist</key>
 		<data>
-		scK/geoM47MIO8NM+wbiWnuxPqE=
+		BojKKkJV9voukrTYwtUBcdImA4Q=
 		</data>
 		<key>StripePayments.bundle/bg-BG.lproj/Localizable.strings</key>
 		<dict>
@@ -1927,14 +1927,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			w9kojcYefyaC4VX5AhGHXNTuT8nhb9V77Mq2E40uNrc=
+			PrnVfxsHdxkDgjMIMsKmeMc5LLm1t/nZlJgm60L/28Q=
 			</data>
 		</dict>
 		<key>Modules/StripePayments.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6z+HFNGj7Gal8G2ie/X5Tm368fxSejx4kZ766Rcu0u8=
+			C6FoTOYKVZEvxf+AIBTcOeqC0Y7J6TClncjmArbCT74=
 			</data>
 		</dict>
 		<key>Modules/StripePayments.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -1997,7 +1997,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MWPqSO5R6ewKSARcjG1/1v3Hu03VpzmKlreDYJCHIt0=
+			pS+YUW1BstkQdUtb1/7kzxEjdakaEsJMZXpnAoOxNck=
 			</data>
 		</dict>
 		<key>Stripe3DS2.bundle/amex-logo@3x.png</key>
@@ -2422,7 +2422,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FM0uySmM8vQ4V4TrqHAXS3h8db2OiYqB1BmzJS6Wc7g=
+			VgXouYW88Uvaug73EHkV8qb+KJx2QvEpCKOOrPvbfOU=
 			</data>
 		</dict>
 		<key>StripePayments.bundle/bg-BG.lproj/Localizable.strings</key>

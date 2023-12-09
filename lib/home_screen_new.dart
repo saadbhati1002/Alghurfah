@@ -225,7 +225,7 @@ class _HomeScreenNewState extends State<HomeScreenNew> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        DashboardScreen()));
+                                                        const DashboardScreen()));
                                           },
                                           child: Container(
                                               alignment: Alignment.center,

@@ -87,14 +87,15 @@ class _AllCategoryState extends State<AllCategory>
       top: true,
       bottom: true,
       child: Scaffold(
-          endDrawer: const MyDrawer(),
-          key: _key,
-          backgroundColor: colors.backgroundColor,
-          appBar: getAppBar(_key,
-              title: getTranslated(context, 'Ecom')!,
-              context: context,
-              setState: setStateNow),
-          body: Stack(children: [
+        endDrawer: const MyDrawer(),
+        key: _key,
+        backgroundColor: colors.backgroundColor,
+        appBar: getAppBar(_key,
+            title: getTranslated(context, 'Stores')!,
+            context: context,
+            setState: setStateNow),
+        body: Stack(
+          children: [
             !isNetworkAvail
                 ? NoInterNet(
                     buttonController: buttonController,
@@ -266,27 +267,6 @@ class _AllCategoryState extends State<AllCategory>
                                                           MainAxisAlignment
                                                               .center,
                                                       children: <Widget>[
-                                                        // Padding(
-                                                        //   padding: const EdgeInsets
-                                                        //           .symmetric(
-                                                        //       horizontal: 15),
-                                                        //   child: Container(
-                                                        //     height: 65,
-                                                        //     width: 65,
-                                                        //     decoration: BoxDecoration(
-                                                        //         shape:
-                                                        //             BoxShape.circle,
-                                                        //         color: Colors.white,
-                                                        //         image: DecorationImage(
-                                                        //             image: NetworkImage(
-                                                        //                 context
-                                                        //                     .read<
-                                                        //                         HomePageProvider>()
-                                                        //                     .catList[
-                                                        //                         index]
-                                                        //                     .image!))),
-                                                        //   ),
-                                                        // ),
                                                         SizedBox(
                                                           width: MediaQuery.of(
                                                                       context)
@@ -332,7 +312,9 @@ class _AllCategoryState extends State<AllCategory>
                       ],
                     ),
                   ),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }
