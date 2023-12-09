@@ -2,6 +2,7 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Cart/Cart.dart';
 import 'package:eshop_multivendor/Screen/ExploreSection/all_serach.dart';
 import 'package:eshop_multivendor/Screen/Favourite/Favorite.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 
 import 'package:flutter/material.dart';
 import '../SQLiteData/SqliteData.dart';
@@ -59,9 +60,18 @@ class _DashboardPageState extends State<Dashboard> {
               selectedFontSize: 0,
               iconSize: 25,
               onTap: (index) {
-                _currentIndex = index;
-                locationIndex = 0;
-                setState(() {});
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreenNew(),
+                    ),
+                  );
+                } else {
+                  _currentIndex = index;
+                  locationIndex = 0;
+                  setState(() {});
+                }
               },
               items: const [
                 BottomNavigationBarItem(

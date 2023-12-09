@@ -3,6 +3,7 @@ import 'package:eshop_multivendor/ServiceApp/screens/filter/filter_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/notification/notification_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/favourite_service_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/search_list_screen.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 
@@ -58,9 +59,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
               selectedFontSize: 0,
               iconSize: 25,
               onTap: (index) {
-                _currentIndex = index;
-                locationIndex = 0;
-                setState(() {});
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreenNew(),
+                    ),
+                  );
+                } else {
+                  _currentIndex = index;
+                  locationIndex = 0;
+                  setState(() {});
+                }
               },
               items: const [
                 BottomNavigationBarItem(
