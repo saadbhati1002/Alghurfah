@@ -35,7 +35,7 @@ class SendOtp extends StatefulWidget {
 class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
   bool visible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final mobileController = TextEditingController();
+  final mobileController = TextEditingController(text: '50');
   final ccodeController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String? mobile, id, countrycode, countryName, mobileno;
@@ -203,7 +203,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
                 color: colors.black54,
                 fontWeight: FontWeight.w500,
                 fontSize: 16),
-            hintText: getTranslated(context, 'MOBILEHINT_LBL'),
+            hintText: '501234567',
             enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   color: colors.primary,

@@ -50,7 +50,7 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
             sliderData.add(homeProvider.homeSliderList[i]);
           }
         }
-        print(sliderData.length);
+
         return homeProvider.sliderLoading
             ? sliderLoading(context)
             : homeProvider.homeSliderList.isEmpty
@@ -63,6 +63,7 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
                           height: 200,
                           width: MediaQuery.of(context).size.width * 1,
                           child: Swiper(
+                            itemWidth: MediaQuery.of(context).size.width * 1,
                             itemBuilder: (context, index) {
                               final slider = sliderData[index];
                               return GestureDetector(
@@ -82,24 +83,7 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
                             control: const SwiperControl(
                                 color: colors.primary, size: 30),
                           ),
-                          // ) PageView.builder(
-                          //                         itemCount: homeProvider.homeSliderList.length,
-                          //                         scrollDirection: Axis.horizontal,
-                          //                         controller: _controller,
-                          //                         physics: const AlwaysScrollableScrollPhysics(),
-                          //                         onPageChanged: (index) {
-                          //                           context
-                          //                               .read<HomePageProvider>()
-                          //                               .setCurSlider(index);
-                          //                         },
-                          //                         itemBuilder: (BuildContext context, int index) {
-                          //                           return buildImagePageItem(
-                          //                             homeProvider.homeSliderList[index],
-                          //                           );
-                          //                         },
-                          //                       ),
                         ),
-                        // _showSliderPosition()
                       ],
                     ),
                   );
