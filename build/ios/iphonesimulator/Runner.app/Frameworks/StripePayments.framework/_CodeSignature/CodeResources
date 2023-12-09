@@ -6,7 +6,7 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		bxzRJOuxI9eAbxN9Egr/dGVSfdw=
+		Ao1P15rJN6GiplX0ae+HtdHN8u8=
 		</data>
 		<key>Stripe3DS2.bundle/Chevron@3x.png</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Stripe3DS2.bundle/Info.plist</key>
 		<data>
-		lf7D+IodQGVLGpc+iKbZtccZelI=
+		k4El2LNC3yrDYKSydu15jsjZImI=
 		</data>
 		<key>Stripe3DS2.bundle/amex-logo@3x.png</key>
 		<data>
@@ -415,7 +415,7 @@
 		</dict>
 		<key>StripePayments.bundle/Info.plist</key>
 		<data>
-		scK/geoM47MIO8NM+wbiWnuxPqE=
+		BojKKkJV9voukrTYwtUBcdImA4Q=
 		</data>
 		<key>StripePayments.bundle/bg-BG.lproj/Localizable.strings</key>
 		<dict>
@@ -809,7 +809,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MWPqSO5R6ewKSARcjG1/1v3Hu03VpzmKlreDYJCHIt0=
+			pS+YUW1BstkQdUtb1/7kzxEjdakaEsJMZXpnAoOxNck=
 			</data>
 		</dict>
 		<key>Stripe3DS2.bundle/amex-logo@3x.png</key>
@@ -1234,7 +1234,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FM0uySmM8vQ4V4TrqHAXS3h8db2OiYqB1BmzJS6Wc7g=
+			VgXouYW88Uvaug73EHkV8qb+KJx2QvEpCKOOrPvbfOU=
 			</data>
 		</dict>
 		<key>StripePayments.bundle/bg-BG.lproj/Localizable.strings</key>

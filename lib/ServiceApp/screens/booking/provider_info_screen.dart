@@ -1,11 +1,13 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Helper/String.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/user_info_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/auth/sign_in_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/service/service_detail_screen.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/provider_info_response.dart';
@@ -617,30 +619,38 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              if (data.userData!.isFavourite == 1) {
-                                data.userData!.isFavourite = 0;
-                                setState(() {});
-                                await removeProviderToWishList(
-                                        providerId:
-                                            widget.providerId!.validate())
-                                    .then((value) {
-                                  if (!value) {
-                                    data.userData!.isFavourite = 1;
-                                    setState(() {});
-                                  }
-                                });
+                              if (CUR_USERID != null) {
+                                if (data.userData!.isFavourite == 1) {
+                                  data.userData!.isFavourite == 0;
+                                  setState(() {});
+                                  await removeProviderToWishList(
+                                          providerId:
+                                              widget.providerId!.validate())
+                                      .then((value) {
+                                    if (!value) {
+                                      data.userData!.isFavourite = 1;
+                                      setState(() {});
+                                    }
+                                  });
+                                } else {
+                                  data.userData!.isFavourite == 1;
+                                  setState(() {});
+                                  await addProviderToWishList(
+                                          providerId: widget.providerId!)
+                                      .then((value) {
+                                    if (!value) {
+                                      data.userData!.isFavourite = 0;
+                                      setState(() {});
+                                    }
+                                  });
+                                }
                               } else {
-                                data.userData!.isFavourite = 1;
-                                setState(() {});
-                                await addProviderToWishList(
-                                        providerId:
-                                            widget.providerId!.validate())
-                                    .then((value) {
-                                  if (!value) {
-                                    data.userData!.isFavourite = 0;
-                                    setState(() {});
-                                  }
-                                });
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Login(),
+                                  ),
+                                );
                               }
                             },
                             child: Container(

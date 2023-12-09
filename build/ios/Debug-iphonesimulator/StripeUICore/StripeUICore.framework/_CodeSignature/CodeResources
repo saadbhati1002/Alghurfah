@@ -14,15 +14,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		mgD5U1CvOkSm+fZLJIbLLXrRu7w=
+		UeHKC3rTCJiXNsniu2FW8ZdLBuc=
 		</data>
 		<key>Modules/StripeUICore.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		hjKgqujad7UVtq3holc2kflGDfc=
+		ppbJFfakf+qyxZ7gXdm1hRs7AQc=
 		</data>
 		<key>Modules/StripeUICore.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		DPDtOixEm1CeLf53Kko6g2VPFYg=
+		oOMbjF6IAB6PQjOXkWapHcaiHlc=
 		</data>
 		<key>Modules/StripeUICore.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>StripeUICore.bundle/Info.plist</key>
 		<data>
-		ZOAUAjTWyK3C7e0Guul5N64dEN0=
+		jQ0kMJQ5e26pbc5f7qhEbUic4mc=
 		</data>
 		<key>StripeUICore.bundle/au_becs_bsb.json</key>
 		<data>
@@ -470,14 +470,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RLwHuwuAwtJ9HtDbDjVrob/dI4ZJFTKjK0E3Wnio7EY=
+			VpftXAN7LKt/Md/ycniMkt6hyrRbSJUBsffWhyT/Y+A=
 			</data>
 		</dict>
 		<key>Modules/StripeUICore.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8FQyZMG9s5keuWRMAM4xXTlN1oaQ/lw+9tvMnghZHfg=
+			2H86IsCCw3MsYi+RBaATJdFLJE5Q5YeNRb93Lkk3r9Y=
 			</data>
 		</dict>
 		<key>Modules/StripeUICore.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -533,7 +533,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			f82GHPDh+FzqufNGfL4/38YmVKBPrPk6mBQPMyXjdoM=
+			9xgVNEkwJ4z7F/BkSHil/f5uOcBLwaN0/Dsrpth767s=
 			</data>
 		</dict>
 		<key>StripeUICore.bundle/au_becs_bsb.json</key>
