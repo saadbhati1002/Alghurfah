@@ -16,4 +16,30 @@ class SellerDetailRepository {
       throw ApiException('$errorMesaage${e.toString()}');
     }
   }
+
+  static Future<Map<String, dynamic>> addSellerToFavorite({
+    required Map<String, dynamic> parameter,
+  }) async {
+    try {
+      var result =
+          await ApiBaseHelper().postAPICall(sellerAddToFavorite, parameter);
+
+      return result;
+    } on Exception catch (e) {
+      throw ApiException('$errorMesaage${e.toString()}');
+    }
+  }
+
+  static Future<Map<String, dynamic>> removeSellerToFavorite({
+    required Map<String, dynamic> parameter,
+  }) async {
+    try {
+      var result =
+          await ApiBaseHelper().postAPICall(sellerRemoveToFavorite, parameter);
+
+      return result;
+    } on Exception catch (e) {
+      throw ApiException('$errorMesaage${e.toString()}');
+    }
+  }
 }

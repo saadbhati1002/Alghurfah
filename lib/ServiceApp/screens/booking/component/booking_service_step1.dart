@@ -281,12 +281,23 @@ class _BookingServiceStep1State extends State<BookingServiceStep1> {
               child: AppButton(
                 onTap: _handleNextButtonClick,
                 width: context.width(),
+<<<<<<< HEAD
                 color: colors.primary,
                 textColor: Colors.white,
                 shapeBorder: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(25),
                         bottomLeft: Radius.circular(25))),
+=======
+                textColor: Colors.white,
+                shapeBorder: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25),
+                  ),
+                ),
+                color: colors.primary,
+>>>>>>> ca426de8401212d4a8621342f559cfbe2329916b
                 text: isUpdate ? language.lblUpdate : language.btnNext,
               ),
             ),

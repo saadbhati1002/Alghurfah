@@ -284,7 +284,7 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                     Container(
                       alignment: Alignment.topLeft,
                       color: colors.categoryDiscretion,
-                      width: MediaQuery.of(context).size.width * .87,
+                      width: MediaQuery.of(context).size.width * .72,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(

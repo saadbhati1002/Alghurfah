@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Constant.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -195,7 +196,13 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 .toList()[index];
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+<<<<<<< HEAD
               decoration: boxDecorationDefault(color: Colors.grey[300]),
+=======
+              decoration: boxDecorationDefault(
+                color: Colors.grey[300],
+              ),
+>>>>>>> ca426de8401212d4a8621342f559cfbe2329916b
               child: Text('${value.day.capitalizeFirstLetter()}',
                   style: secondaryTextStyle(size: 18, color: primaryColor)),
             );
@@ -273,18 +280,12 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
         setStatusBarColor(transparentColor);
       });
     } else {
-      SignInScreen(isFromServiceBooking: true).launch(context).then((value) {
-        if (appStore.isLoggedIn) {
-          serviceDetailResponse.serviceDetail!.bookingAddressId =
-              selectedBookingAddressId;
-          BookServiceScreen(
-                  data: serviceDetailResponse, selectedPackage: selectedPackage)
-              .launch(context)
-              .then((value) {
-            setStatusBarColor(transparentColor);
-          });
-        }
-      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Login(),
+        ),
+      );
     }
   }
 

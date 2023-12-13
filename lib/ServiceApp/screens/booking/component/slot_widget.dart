@@ -36,7 +36,7 @@ class SlotWidget extends StatelessWidget {
     } else if (isSelected) {
       return Colors.white;
     } else {
-      return textPrimaryColorGlobal;
+      return Colors.black;
     }
   }
 

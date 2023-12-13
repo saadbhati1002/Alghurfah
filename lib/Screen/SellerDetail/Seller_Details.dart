@@ -5,11 +5,15 @@ import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Model/Section_Model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
+import 'package:eshop_multivendor/repository/sellerDetailRepositry.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nb_utils/nb_utils.dart' as visibility;
 import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -68,7 +72,8 @@ class _SellerProfileState extends State<SellerProfile>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int pos = 0, total = 0;
   final bool _isProgress = false;
-
+  bool isSaveToFavorite = false;
+  bool isLoading = false;
   Animation? buttonSqueezeanimation;
   AnimationController? buttonController;
   String query = '';
@@ -566,24 +571,71 @@ class _SellerProfileState extends State<SellerProfile>
                         child: Padding(
                           padding: const EdgeInsets.only(top: 15, right: 15),
                           child: SizedBox(
-                            height: 100,
+                            height: 140,
                             width: 100,
-                            child: Stack(
+                            child: Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)),
+                                SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25)),
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: DesignConfiguration
+                                          .getCacheNotworkImage(
+                                        boxFit: BoxFit.fill,
+                                        context: context,
+                                        heightvalue: null,
+                                        widthvalue: null,
+                                        placeHolderSize: 100,
+                                        imageurlString: widget.sellerImage!,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    if (CUR_USERID != null) {
+                                      if (isSaveToFavorite == false) {
+                                        sellerAddToFavorite();
+                                      } else {
+                                        sellerRemoveToFavorite();
+                                      }
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const Login(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                   child: Container(
-                                    color: Colors.white,
-                                    child: DesignConfiguration
-                                        .getCacheNotworkImage(
-                                      boxFit: BoxFit.fill,
-                                      context: context,
-                                      heightvalue: null,
-                                      widthvalue: null,
-                                      placeHolderSize: 100,
-                                      imageurlString: widget.sellerImage!,
+                                    height: 25,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: const BoxDecoration(
+                                      color: colors.serviceColor,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      isSaveToFavorite == true
+                                          ? getTranslated(context, 'Unfollow')!
+                                          : getTranslated(context, 'Follow')!,
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                 ),
@@ -620,7 +672,16 @@ class _SellerProfileState extends State<SellerProfile>
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      isLoading == true
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.width * .85,
+                              width: MediaQuery.of(context).size.width * 1,
+                              child: Center(
+                                child: LoaderWidget().visible(isLoading),
+                              ),
+                            )
+                          : const SizedBox()
                     ],
                   );
                 } else if (value.getCurrentStatus ==
@@ -642,6 +703,56 @@ class _SellerProfileState extends State<SellerProfile>
               buttonSqueezeanimation: buttonSqueezeanimation,
               buttonController: buttonController),
     );
+  }
+
+  sellerAddToFavorite() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      var response = await SellerDetailRepository.addSellerToFavorite(
+          parameter: {"seller_id": widget.sellerID, "user_id": CUR_USERID});
+      if (response["error"] == false) {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      } else {
+        setState(() {
+          isSaveToFavorite = false;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  sellerRemoveToFavorite() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      var response = await SellerDetailRepository.removeSellerToFavorite(
+          parameter: {"seller_id": widget.sellerID, "user_id": CUR_USERID});
+      if (response["error"] == false) {
+        setState(() {
+          isSaveToFavorite = false;
+        });
+      } else {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   Widget textWidget(String text) {
