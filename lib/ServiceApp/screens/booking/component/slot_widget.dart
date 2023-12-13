@@ -26,7 +26,7 @@ class SlotWidget extends StatelessWidget {
     } else if (isSelected) {
       return activeColor;
     } else {
-      return context.cardColor;
+      return Colors.white;
     }
   }
 
@@ -36,7 +36,7 @@ class SlotWidget extends StatelessWidget {
     } else if (isSelected) {
       return Colors.white;
     } else {
-      return textPrimaryColorGlobal;
+      return Colors.black;
     }
   }
 

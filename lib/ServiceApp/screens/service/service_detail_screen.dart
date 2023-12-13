@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Constant.dart';
+import 'package:eshop_multivendor/Screen/Auth/Login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -195,7 +196,9 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 .toList()[index];
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: boxDecorationDefault(color: context.cardColor),
+              decoration: boxDecorationDefault(
+                color: Colors.grey[300],
+              ),
               child: Text('${value.day.capitalizeFirstLetter()}',
                   style: secondaryTextStyle(size: 18, color: primaryColor)),
             );
@@ -273,18 +276,12 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
         setStatusBarColor(transparentColor);
       });
     } else {
-      SignInScreen(isFromServiceBooking: true).launch(context).then((value) {
-        if (appStore.isLoggedIn) {
-          serviceDetailResponse.serviceDetail!.bookingAddressId =
-              selectedBookingAddressId;
-          BookServiceScreen(
-                  data: serviceDetailResponse, selectedPackage: selectedPackage)
-              .launch(context)
-              .then((value) {
-            setStatusBarColor(transparentColor);
-          });
-        }
-      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Login(),
+        ),
+      );
     }
   }
 
@@ -480,6 +477,11 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                             height: 10,
                           ),
                           availableWidget(data: snap.data!.serviceDetail!),
+                          slotsAvailable(
+                              data: snap.data!.serviceDetail!.bookingSlots
+                                  .validate(),
+                              isSlotAvailable:
+                                  snap.data!.serviceDetail!.isSlotAvailable),
                         ],
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/custom_stepper.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -172,12 +173,13 @@ class _BookingServiceStep1State extends State<BookingServiceStep1> {
               color: context.primaryColor, textColor: Colors.white)
           : null,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        color: colors.backgroundColor,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Stack(
           fit: StackFit.expand,
           children: [
             SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(0, 16, 0, 60),
+              padding: const EdgeInsets.fromLTRB(0, 16, 0, 60),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -213,12 +215,16 @@ class _BookingServiceStep1State extends State<BookingServiceStep1> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(language.use24HourFormat),
+                      Text(
+                        language.use24HourFormat,
+                        style: const TextStyle(color: Colors.black),
+                      ),
                       16.width,
                       Observer(builder: (context) {
                         return Transform.scale(
                           scale: 0.8,
                           child: Switch.adaptive(
+                            inactiveTrackColor: Colors.black,
                             value: appStore.is24HourFormat,
                             onChanged: (value) {
                               appStore.set24HourFormat(value);
@@ -275,7 +281,14 @@ class _BookingServiceStep1State extends State<BookingServiceStep1> {
               child: AppButton(
                 onTap: _handleNextButtonClick,
                 width: context.width(),
-                color: context.primaryColor,
+                textColor: Colors.white,
+                shapeBorder: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25),
+                  ),
+                ),
+                color: colors.primary,
                 text: isUpdate ? language.lblUpdate : language.btnNext,
               ),
             ),
