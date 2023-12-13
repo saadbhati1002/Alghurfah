@@ -260,7 +260,9 @@ class _SellerProfileState extends State<SellerProfile>
       key: _scaffoldKey,
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_scaffoldKey,
-          title: widget.sellerName, context: context, setState: setStateNow),
+          title: widget.sellerStoreName,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? Consumer<SellerDetailProvider>(
               builder: (context, value, child) {
@@ -280,7 +282,7 @@ class _SellerProfileState extends State<SellerProfile>
                             Container(
                               alignment: Alignment.topLeft,
                               color: colors.categoryDiscretion,
-                              width: MediaQuery.of(context).size.width * .87,
+                              width: MediaQuery.of(context).size.width * .72,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
@@ -580,7 +582,7 @@ class _SellerProfileState extends State<SellerProfile>
                                       context: context,
                                       heightvalue: null,
                                       widthvalue: null,
-                                      placeHolderSize: 50,
+                                      placeHolderSize: 100,
                                       imageurlString: widget.sellerImage!,
                                     ),
                                   ),
