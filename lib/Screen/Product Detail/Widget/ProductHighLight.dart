@@ -12,7 +12,7 @@ class ProductHighLightsDetail extends StatelessWidget {
       : super(key: key);
 
   _desc(Product? model) {
-    return model!.desc != '' && model.desc != null
+    return model!.shortDescription != '' && model.shortDescription != null
         ? Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
             child: HtmlWidget(

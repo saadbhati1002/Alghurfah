@@ -231,8 +231,8 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           maxLines: 2,
                           textStyle: const TextStyle(
                               fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
                           onFieldSubmitted: (s) {
                             widget.data.serviceDetail!.address = s;
                           },
@@ -249,10 +249,10 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                               ],
                             ),
                           ).copyWith(
-                            fillColor: context.scaffoldBackgroundColor,
+                            fillColor: Colors.grey[300],
                             filled: true,
-                            hintText: language.lblEnterYourAddress,
-                            hintStyle: secondaryTextStyle(),
+                            hintText: language.lblEnterDescription,
+                            hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
                         8.height,
@@ -286,17 +286,17 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           minLines: 4,
                           textStyle: const TextStyle(
                               fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
                           isValidationRequired: false,
                           onFieldSubmitted: (s) {
                             widget.data.serviceDetail!.bookingDescription = s;
                           },
                           decoration: inputDecoration(context).copyWith(
-                            fillColor: context.scaffoldBackgroundColor,
+                            fillColor: Colors.grey[300],
                             filled: true,
                             hintText: language.lblEnterDescription,
-                            hintStyle: secondaryTextStyle(),
+                            hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
                       ],
@@ -315,13 +315,16 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
               children: [
                 if (!widget.isSlotAvailable.validate())
                   AppButton(
-                    shapeBorder: RoundedRectangleBorder(
-                        borderRadius: radius(),
-                        side: BorderSide(color: context.primaryColor)),
                     onTap: () {
                       customStepperController.previousPage(
                           duration: 200.milliseconds, curve: Curves.easeInOut);
                     },
+                    shapeBorder: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     text: language.lblPrevious,
                     textColor: textPrimaryColorGlobal,
                   ).expand(),
