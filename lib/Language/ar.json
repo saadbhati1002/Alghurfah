@@ -531,5 +531,12 @@
   "Stores": "المتاجر",
   "Become an Service Pattern": "كن شريكًا للخدمة",
   "Follow": "يتبع",
-  "Unfollow": "الغاء المتابعة"
+  "Unfollow": "الغاء المتابعة",
+  "Product Indicator": "مؤشر المنتج ",
+  "None": "لا شيء ",
+  "Organic": "عضوي ",
+  "Non-Organic": "غير عضوي ",
+  "Vegan": "نباتي ",
+  "Non-Vegan": "غير نباتي ",
+  "Environment Friendly": "صديق للبيئة "
 }
