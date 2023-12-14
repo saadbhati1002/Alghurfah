@@ -8,6 +8,7 @@ final Uri getSellerApi = Uri.parse('${baseUrl}get_sellers');
 final Uri sellerAddToFavorite = Uri.parse('${baseUrl}add_to_favorites_seller');
 final Uri sellerRemoveToFavorite =
     Uri.parse('${baseUrl}remove_from_favorites_seller');
+final Uri getFavoriteSeller = Uri.parse('${baseUrl}get_favorites_seller');
 final Uri getSliderApi = Uri.parse('${baseUrl}get_slider_images');
 final Uri getCatApi = Uri.parse('${baseUrl}get_categories');
 final Uri getSectionApi = Uri.parse('${baseUrl}get_sections');

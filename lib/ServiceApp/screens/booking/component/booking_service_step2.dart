@@ -252,11 +252,7 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           ).copyWith(
                             fillColor: Colors.grey[300],
                             filled: true,
-<<<<<<< HEAD
-                            hintText: language.lblEnterDescription,
-=======
                             hintText: language.lblEnterDateAndTime,
->>>>>>> ca426de8401212d4a8621342f559cfbe2329916b
                             hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
@@ -300,11 +296,7 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           decoration: inputDecoration(context).copyWith(
                             fillColor: Colors.grey[300],
                             filled: true,
-<<<<<<< HEAD
                             hintText: language.lblEnterDescription,
-=======
-                            hintText: language.lblEnterDateAndTime,
->>>>>>> ca426de8401212d4a8621342f559cfbe2329916b
                             hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
@@ -324,25 +316,16 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
               children: [
                 if (!widget.isSlotAvailable.validate())
                   AppButton(
-<<<<<<< HEAD
-=======
                     shapeBorder: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
                       ),
                     ),
->>>>>>> ca426de8401212d4a8621342f559cfbe2329916b
                     onTap: () {
                       customStepperController.previousPage(
                           duration: 200.milliseconds, curve: Curves.easeInOut);
                     },
-                    shapeBorder: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
-                    ),
                     text: language.lblPrevious,
                     textColor: textPrimaryColorGlobal,
                   ).expand(),

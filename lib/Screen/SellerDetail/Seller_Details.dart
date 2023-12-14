@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Model/Section_Model.dart';
+import 'package:eshop_multivendor/Model/favorite_seller_model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Screen/Auth/Login.dart';
@@ -126,6 +127,10 @@ class _SellerProfileState extends State<SellerProfile>
 
   @override
   void initState() {
+    if (CUR_USERID != null) {
+      checkSellerFollowing();
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SellerDetailProvider>().setOffsetvalue(0);
 
@@ -196,6 +201,23 @@ class _SellerProfileState extends State<SellerProfile>
     );
 
     super.initState();
+  }
+
+  checkSellerFollowing() async {
+    try {
+      Favorite response = await SellerDetailRepository.getFollowedSellers(
+          parameter: {'user_id': CUR_USERID});
+      print(response.data!.length);
+      var idChecker =
+          response.data!.where((element) => element.userId == widget.sellerID);
+      if (idChecker.isNotEmpty) {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      } else {}
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {}
   }
 
   _productsListScrollListener() {
@@ -287,7 +309,7 @@ class _SellerProfileState extends State<SellerProfile>
                             Container(
                               alignment: Alignment.topLeft,
                               color: colors.categoryDiscretion,
-                              width: MediaQuery.of(context).size.width * .72,
+                              width: MediaQuery.of(context).size.width * .69,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
