@@ -1,5 +1,6 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
+import 'package:eshop_multivendor/Screen/favourite_sellers/favourite_sellers_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/favourite_provider_screen.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
@@ -51,7 +52,7 @@ class _FavoriteSellerScreenState extends State<FavoriteSellerScreen> {
                 const Expanded(
                   child: TabBarView(
                     children: [
-                      SizedBox(),
+                      FavoriteSellersScreen(),
                       FavoriteProviderScreen(),
                     ],
                   ),

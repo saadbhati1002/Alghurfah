@@ -207,7 +207,7 @@ class _SellerProfileState extends State<SellerProfile>
     try {
       Favorite response = await SellerDetailRepository.getFollowedSellers(
           parameter: {'user_id': CUR_USERID});
-      print(response.data!.length);
+
       var idChecker =
           response.data!.where((element) => element.userId == widget.sellerID);
       if (idChecker.isNotEmpty) {
