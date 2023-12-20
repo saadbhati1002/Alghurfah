@@ -130,6 +130,7 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                     ],
                   ),
                   onTap: () async {
+                    print(newList[index].sellerRatingType);
                     Routes.navigateToSellerProfileScreen(
                         context,
                         newList[index].seller_id!,
@@ -139,6 +140,7 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                         newList[index].store_name!,
                         newList[index].store_description!,
                         newList[index].totalProductsOfSeller,
+                        newList[index].sellerRatingType,
                         widget.subList);
                   },
                 );

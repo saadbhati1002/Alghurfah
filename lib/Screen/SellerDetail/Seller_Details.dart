@@ -42,7 +42,8 @@ class SellerProfile extends StatefulWidget {
       sellerRating,
       totalProductsOfSeller,
       storeDesc,
-      sellerStoreName;
+      sellerStoreName,
+      ratingType;
   final List<Product>? subList;
   const SellerProfile(
       {Key? key,
@@ -53,6 +54,7 @@ class SellerProfile extends StatefulWidget {
       required this.totalProductsOfSeller,
       this.storeDesc,
       this.sellerStoreName,
+      this.ratingType,
       this.subList})
       : super(key: key);
 
@@ -673,8 +675,14 @@ class _SellerProfileState extends State<SellerProfile>
                           child: Container(
                             height: 25,
                             width: 25,
-                            decoration: const BoxDecoration(
-                                color: Color.fromRGBO(179, 127, 70, 1),
+                            decoration: BoxDecoration(
+                                color: widget.ratingType == null
+                                    ? const Color.fromRGBO(179, 127, 70, 1)
+                                    : widget.ratingType == 'Silver'
+                                        ? const Color.fromRGBO(192, 192, 192, 1)
+                                        : widget.ratingType == 'Gold'
+                                            ? Colors.yellow[700]
+                                            : colors.eCommerceColor,
                                 shape: BoxShape.circle),
                             child: Padding(
                               padding: const EdgeInsets.all(2),

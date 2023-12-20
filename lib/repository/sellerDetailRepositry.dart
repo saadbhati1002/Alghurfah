@@ -51,6 +51,7 @@ class SellerDetailRepository {
     try {
       var result =
           await ApiBaseHelper().postAPICall(getFavoriteSeller, parameter);
+      print(result);
       Favorite response = Favorite.fromJson(result);
       return response;
     } on Exception catch (e) {

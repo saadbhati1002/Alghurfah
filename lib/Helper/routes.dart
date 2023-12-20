@@ -236,6 +236,7 @@ class Routes {
     String? sellerStorename,
     String? storeDescription,
     String? totalProductsOfSeller,
+    String? ratingType,
     final List<Product>? subList,
   ) {
     Navigator.push(
@@ -250,6 +251,7 @@ class Routes {
           totalProductsOfSeller: totalProductsOfSeller,
           subList: subList,
           storeDesc: storeDescription,
+          ratingType: ratingType,
         ),
       ),
     );

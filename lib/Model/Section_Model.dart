@@ -164,7 +164,8 @@ class Product {
       seller_name,
       seller_id,
       store_name,
-      totalProductsOfSeller;
+      totalProductsOfSeller,
+      sellerRatingType;
 
   Product(
       {this.id,
@@ -226,7 +227,8 @@ class Product {
       this.store_name,
       this.is_attch_req,
       this.extraDesc,
-      this.productType});
+      this.productType,
+      this.sellerRatingType});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     List<Product_Varient> varientList = (json[PRODUCT_VARIENT] as List)
@@ -332,15 +334,15 @@ class Product {
 
   factory Product.fromSeller(Map<String, dynamic> json) {
     return Product(
-      seller_name: json[SELLER_NAME],
-      seller_profile: json[SELLER_PROFILE],
-      seller_rating: json[SELLER_RATING],
-      noOfRatingsOnSeller: json[NO_OF_RATE],
-      store_description: json[STORE_DESC],
-      store_name: json[STORE_NAME],
-      totalProductsOfSeller: json['total_products'],
-      seller_id: json[SELLER_ID],
-    );
+        seller_name: json[SELLER_NAME],
+        seller_profile: json[SELLER_PROFILE],
+        seller_rating: json[SELLER_RATING],
+        noOfRatingsOnSeller: json[NO_OF_RATE],
+        store_description: json[STORE_DESC],
+        store_name: json[STORE_NAME],
+        totalProductsOfSeller: json['total_products'],
+        seller_id: json[SELLER_ID],
+        sellerRatingType: json['seller_rating1']);
   }
 
   factory Product.fromCat(Map<String, dynamic> parsedJson) {

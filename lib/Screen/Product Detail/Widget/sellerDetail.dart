@@ -29,7 +29,8 @@ class SellerDetail extends StatelessWidget {
               model!.seller_rating!,
               model!.store_name!,
               model!.store_description!,
-              model!.totalProductsOfSeller, []);
+              model!.totalProductsOfSeller,
+              model!.sellerRatingType!, []);
         },
         child: Padding(
           padding: const EdgeInsetsDirectional.only(

@@ -55,6 +55,7 @@ class Data {
   String? commission;
   String? status;
   String? dateAdded;
+  String? ratingType;
 
   Data(
       {this.id,
@@ -80,7 +81,8 @@ class Data {
       this.permissions,
       this.commission,
       this.status,
-      this.dateAdded});
+      this.dateAdded,
+      this.ratingType});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -107,6 +109,7 @@ class Data {
     commission = json['commission'];
     status = json['status'];
     dateAdded = json['date_added'];
+    ratingType = json['seller_rating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -135,6 +138,7 @@ class Data {
     data['commission'] = commission;
     data['status'] = status;
     data['date_added'] = dateAdded;
+    data['seller_rating'] = ratingType;
     return data;
   }
 }

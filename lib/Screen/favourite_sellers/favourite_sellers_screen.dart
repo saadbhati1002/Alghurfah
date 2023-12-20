@@ -158,7 +158,8 @@ class _FavoriteSellersScreenState extends State<FavoriteSellersScreen> {
                                     favoriteList[index].rating!,
                                     favoriteList[index].storeName!,
                                     favoriteList[index].storeDescription!,
-                                    '0', []);
+                                    '0',
+                                    favoriteList[index].ratingType!, []);
                               },
                             );
                           },
