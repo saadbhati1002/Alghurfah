@@ -688,8 +688,14 @@ class ProviderInfoScreenState extends State<ProviderInfoScreen> {
                     child: Container(
                       height: 25,
                       width: 25,
-                      decoration: const BoxDecoration(
-                          color: Color.fromRGBO(179, 127, 70, 1),
+                      decoration: BoxDecoration(
+                          color: data.userData!.ratingType == null
+                              ? const Color.fromRGBO(179, 127, 70, 1)
+                              : data.userData!.ratingType == 'Silver'
+                                  ? const Color.fromRGBO(192, 192, 192, 1)
+                                  : data.userData!.ratingType == 'Gold'
+                                      ? Colors.yellow[700]
+                                      : colors.serviceColor,
                           shape: BoxShape.circle),
                       child: Padding(
                         padding: const EdgeInsets.all(2),
