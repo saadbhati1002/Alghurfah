@@ -240,14 +240,15 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
           (value) => context.read<ProductListProvider>().getProductList().then((
                 value,
               ) async {
-                bool error = value['error'];
+                // bool error = value['error'];
                 String? search = value['search'];
-                print(value["data"]);
-                for (int i = 0; i < value["data"].length; i++) {
-                  if (value["data"][i]["category_id"].toString() ==
-                      widget.categoryID.toString()) {
-                    sellerCategory[sellerCount] = 1;
-                    break;
+                if (value['data'] != null) {
+                  for (int i = 0; i < value["data"].length; i++) {
+                    if (value["data"][i]["category_id"].toString() ==
+                        widget.categoryID.toString()) {
+                      sellerCategory[sellerCount] = 1;
+                      break;
+                    }
                   }
                 }
               }));

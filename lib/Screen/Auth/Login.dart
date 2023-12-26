@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:eshop_multivendor/AppScreen/app_tabbar_screen.dart';
 import 'package:eshop_multivendor/Provider/Favourite/FavoriteProvider.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';

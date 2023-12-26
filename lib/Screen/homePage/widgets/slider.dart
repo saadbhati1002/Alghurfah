@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Helper/Constant.dart';
 import '../../../Model/Model.dart';
@@ -71,65 +72,66 @@ class _CustomSliderState extends State<CustomSlider> {
                                     placeHolderSize: 50,
                                     widthvalue: double.maxFinite),
                                 onTap: () async {
-                                  int curSlider = context
-                                      .read<HomePageProvider>()
-                                      .curSlider;
+                                  print(slider.type);
+                                  // int curSlider = context
+                                  //     .read<HomePageProvider>()
+                                  //     .curSlider;
 
-                                  if (slider.type == 'products') {
-                                    Product? item = slider.list;
+                                  // if (slider.type == 'products') {
+                                  //   Product? item = slider.list;
 
-                                    Navigator.push(
-                                      context,
-                                      PageRouteBuilder(
-                                        pageBuilder: (_, __, ___) =>
-                                            ProductDetail(
-                                          model: item,
-                                          secPos: 0,
-                                          index: 0,
-                                          list: true,
-                                        ),
-                                      ),
-                                    );
-                                  } else if (slider.type == 'categories') {
-                                    Product item = slider.list as Product;
-                                    if (item.subList == null ||
-                                        item.subList!.isEmpty) {
-                                      Navigator.push(
-                                        context,
-                                        CupertinoPageRoute(
-                                          builder: (context) => ProductList(
-                                            name: item.name,
-                                            id: item.id,
-                                            tag: false,
-                                            fromSeller: false,
-                                          ),
-                                        ),
-                                      );
-                                    } else {
-                                      Navigator.push(
-                                        context,
-                                        CupertinoPageRoute(
-                                          builder: (context) => SubCategory(
-                                            title: item.name!,
-                                            subList: item.subList,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  } else if (slider.type == 'slider_url') {
-                                    String url = slider.urlLink.toString();
-                                    try {
-                                      if (await canLaunchUrl(Uri.parse(url))) {
-                                        await launchUrl(Uri.parse(url),
-                                            mode:
-                                                LaunchMode.externalApplication);
-                                      } else {
-                                        throw 'Could not launch $url';
-                                      }
-                                    } catch (e) {
-                                      throw 'Something went wrong';
-                                    }
-                                  }
+                                  //   Navigator.push(
+                                  //     context,
+                                  //     PageRouteBuilder(
+                                  //       pageBuilder: (_, __, ___) =>
+                                  //           ProductDetail(
+                                  //         model: item,
+                                  //         secPos: 0,
+                                  //         index: 0,
+                                  //         list: true,
+                                  //       ),
+                                  //     ),
+                                  //   );
+                                  // } else if (slider.type == 'categories') {
+                                  //   Product item = slider.list as Product;
+                                  //   if (item.subList == null ||
+                                  //       item.subList!.isEmpty) {
+                                  //     Navigator.push(
+                                  //       context,
+                                  //       CupertinoPageRoute(
+                                  //         builder: (context) => ProductList(
+                                  //           name: item.name,
+                                  //           id: item.id,
+                                  //           tag: false,
+                                  //           fromSeller: false,
+                                  //         ),
+                                  //       ),
+                                  //     );
+                                  //   } else {
+                                  //     Navigator.push(
+                                  //       context,
+                                  //       CupertinoPageRoute(
+                                  //         builder: (context) => SubCategory(
+                                  //           title: item.name!,
+                                  //           subList: item.subList,
+                                  //         ),
+                                  //       ),
+                                  //     );
+                                  //   }
+                                  // } else if (slider.type == 'slider_url') {
+                                  //   String url = slider.urlLink.toString();
+                                  //   try {
+                                  //     if (await canLaunchUrl(Uri.parse(url))) {
+                                  //       await launchUrl(Uri.parse(url),
+                                  //           mode:
+                                  //               LaunchMode.externalApplication);
+                                  //     } else {
+                                  //       throw 'Could not launch $url';
+                                  //     }
+                                  //   } catch (e) {
+                                  //     throw 'Something went wrong';
+                                  //   }
+                                  // }
                                 },
                               );
                             },

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -133,7 +134,7 @@ class _ListViewLayOutState extends State<ListViewLayOut> {
                 start: 10.0, end: 10.0, top: 5.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(circularBorderRadius10),
               ),
               child: InkWell(
@@ -182,12 +183,10 @@ class _ListViewLayOutState extends State<ListViewLayOut> {
                                       .titleSmall!
                                       .copyWith(
                                           fontFamily: 'ubuntu',
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .lightBlack,
-                                          fontWeight: FontWeight.w400,
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.w500,
                                           fontStyle: FontStyle.normal,
-                                          fontSize: textFontSize12),
+                                          fontSize: textFontSize14),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
