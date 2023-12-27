@@ -428,7 +428,7 @@ class StatePromoCode extends State<PromoCode> with TickerProviderStateMixin {
                                                                       error,
                                                                       stackTrace) =>
                                                                   DesignConfiguration
-                                                                      .erroWidget(
+                                                                      .errorWidget(
                                                                 80,
                                                               ),
                                                             ),

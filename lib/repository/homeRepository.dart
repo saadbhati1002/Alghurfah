@@ -18,7 +18,7 @@ class HomeRepository {
             .toList()
       };
     } catch (e) {
-      throw ApiException('$errorMesaage${e.toString()} saad bhati');
+      throw ApiException('$errorMesaage${e.toString()} ');
     }
   }
 

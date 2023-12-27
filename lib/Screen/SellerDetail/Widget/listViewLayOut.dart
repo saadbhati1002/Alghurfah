@@ -119,7 +119,7 @@ class ListViewLayOutWidget extends StatelessWidget {
                                 width: 80,
                                 height: 80,
                                 errorBuilder: (context, error, stackTrace) =>
-                                    DesignConfiguration.erroWidget(80)));
+                                    DesignConfiguration.errorWidget(80)));
                       } else {
                         itemLabel = Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),

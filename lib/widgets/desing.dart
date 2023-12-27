@@ -25,7 +25,7 @@ class DesignConfiguration {
     );
   }
 
-  static erroWidget(double size) {
+  static errorWidget(double size) {
     return Image.asset(
       DesignConfiguration.setPngPath('placeholder'),
       height: size,
@@ -85,9 +85,7 @@ class DesignConfiguration {
     return Center(
       child: Text(
         getTranslated(context, 'noItem')!,
-        style: TextStyle(
-            fontFamily: 'ubuntu',
-            color: Theme.of(context).colorScheme.fontColor),
+        style: const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
       ),
     );
   }
@@ -152,7 +150,7 @@ class DesignConfiguration {
       // fadeOutCurve: Curves.linear,
       imageErrorBuilder: (context, error, stackTrace) {
         return Container(
-          child: DesignConfiguration.erroWidget(placeHolderSize ?? 50),
+          child: DesignConfiguration.errorWidget(placeHolderSize ?? 50),
         );
       },
     );

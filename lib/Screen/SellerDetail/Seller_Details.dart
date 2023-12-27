@@ -132,7 +132,7 @@ class _SellerProfileState extends State<SellerProfile>
     if (CUR_USERID != null) {
       checkSellerFollowing();
     }
-
+    getSellerDetails();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SellerDetailProvider>().setOffsetvalue(0);
 
@@ -203,6 +203,13 @@ class _SellerProfileState extends State<SellerProfile>
     );
 
     super.initState();
+  }
+
+  getSellerDetails() async {
+    context.read<SellerDetailProvider>().getSeller(
+          widget.sellerID!,
+          '',
+        );
   }
 
   checkSellerFollowing() async {
@@ -295,6 +302,7 @@ class _SellerProfileState extends State<SellerProfile>
       body: isNetworkAvail
           ? Consumer<SellerDetailProvider>(
               builder: (context, value, child) {
+                print(value.getCurrentStatus);
                 if (value.getCurrentStatus ==
                     SellerDetailProviderStatus.isSuccsess) {
                   return Stack(

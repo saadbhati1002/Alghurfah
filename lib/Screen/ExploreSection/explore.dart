@@ -1269,7 +1269,7 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
                                       height: 80,
                                       errorBuilder:
                                           (context, error, stackTrace) =>
-                                              DesignConfiguration.erroWidget(
+                                              DesignConfiguration.errorWidget(
                                         80,
                                       ),
                                     ),

@@ -1462,7 +1462,7 @@ class _SearchState extends State<AllSearchScreen>
                                       height: 80,
                                       errorBuilder:
                                           (context, error, stackTrace) =>
-                                              DesignConfiguration.erroWidget(
+                                              DesignConfiguration.errorWidget(
                                         80,
                                       ),
                                     ),

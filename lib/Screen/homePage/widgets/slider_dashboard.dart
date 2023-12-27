@@ -28,8 +28,6 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _animateSlider());
-    // _animateSlider();
     super.initState();
   }
 
@@ -55,36 +53,30 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
             ? sliderLoading(context)
             : homeProvider.homeSliderList.isEmpty
                 ? Container()
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                          width: MediaQuery.of(context).size.width * 1,
-                          child: Swiper(
-                            itemWidth: MediaQuery.of(context).size.width * 1,
-                            itemBuilder: (context, index) {
-                              final slider = sliderData[index];
-                              return GestureDetector(
-                                child: DesignConfiguration.getCacheNotworkImage(
-                                    imageurlString: slider.image!,
-                                    boxFit: BoxFit.fill,
-                                    context: context,
-                                    heightvalue: 200,
-                                    placeHolderSize: 50,
-                                    widthvalue: double.maxFinite),
-                              );
-                            },
-                            indicatorLayout: PageIndicatorLayout.COLOR,
-                            autoplay: false,
-                            itemCount: sliderData.length,
-                            pagination: const SwiperPagination(),
-                            control: const SwiperControl(
-                                color: colors.primary, size: 30),
+                : SizedBox(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width * 1,
+                    child: Swiper(
+                      // itemWidth: MediaQuery.of(context).size.width * 1,
+                      itemBuilder: (context, index) {
+                        final slider = sliderData[index];
+                        return GestureDetector(
+                          child: DesignConfiguration.getCacheNotworkImage(
+                            imageurlString: slider.image!,
+                            boxFit: BoxFit.fill,
+                            context: context,
+                            heightvalue: 200,
+                            placeHolderSize: 50,
+                            widthvalue: MediaQuery.of(context).size.width * 1,
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      indicatorLayout: PageIndicatorLayout.COLOR,
+                      autoplay: false,
+                      itemCount: sliderData.length,
+
+                      control:
+                          const SwiperControl(color: colors.primary, size: 30),
                     ),
                   );
       },
@@ -92,45 +84,14 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
   }
 
   static Widget sliderLoading(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = width / 2;
     return Shimmer.fromColors(
       baseColor: Theme.of(context).colorScheme.simmerBase,
       highlightColor: Theme.of(context).colorScheme.simmerHigh,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 0),
-        width: double.infinity,
-        height: height,
+        width: MediaQuery.of(context).size.width * 1,
+        height: 200,
         color: Theme.of(context).colorScheme.white,
       ),
-    );
-  }
-
-  void _animateSlider() {
-    Future.delayed(const Duration(seconds: 10)).then(
-      (_) {
-        if (mounted) {
-          int nextPage = _controller.hasClients
-              ? _controller.page!.round() + 1
-              : _controller.initialPage;
-
-          if (nextPage ==
-              context.read<HomePageProvider>().homeSliderList.length) {
-            nextPage = 0;
-          }
-          if (_controller.hasClients) {
-            _controller
-                .animateToPage(
-                  nextPage,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.linear,
-                )
-                .then(
-                  (_) => _animateSlider(),
-                );
-          }
-        }
-      },
     );
   }
 
@@ -141,9 +102,9 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
           imageurlString: slider.image!,
           boxFit: BoxFit.fill,
           context: context,
-          heightvalue: height,
-          placeHolderSize: 50,
-          widthvalue: double.maxFinite),
+          heightvalue: 200,
+          placeHolderSize: 200,
+          widthvalue: MediaQuery.of(context).size.width * 1),
       onTap: () async {
         int curSlider = context.read<HomePageProvider>().curSlider;
 
@@ -217,39 +178,6 @@ class _CustomSliderDashBoardState extends State<CustomSliderDashBoard> {
           }
         }
       },
-    );
-  }
-
-  _showSliderPosition() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: map<Widget>(
-          context.read<HomePageProvider>().homeSliderList,
-          (index, url) {
-            return Selector<HomePageProvider, int>(
-              builder: (context, curSliderIndex, child) {
-                return AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  width: curSliderIndex == index ? 8.0 : 6.0,
-                  height: curSliderIndex == index ? 8.0 : 6.0,
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 2.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(circularBorderRadius5),
-                    color: curSliderIndex == index
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.white,
-                  ),
-                );
-              },
-              selector: (_, slider) => slider.curSlider,
-            );
-          },
-        ),
-      ),
     );
   }
 

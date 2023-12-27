@@ -73,22 +73,21 @@ class _CustomSliderState extends State<CustomSlider> {
                                     placeHolderSize: 50,
                                     widthvalue: double.maxFinite),
                                 onTap: () async {
-                                  print(slider.type);
                                   int curSlider = context
                                       .read<HomePageProvider>()
                                       .curSlider;
+                                  print(slider.type);
                                   if (slider.type == 'users') {
-                                    //                          Routes.navigateToSellerProfileScreen(
-                                    //   context,
-                                    //   slider.id,
-                                    //   slider.desc,
-                                    // slider.name,
-                                    //  '0.0',
-                                    //   // slider.,
-                                    //   // newList[index].store_description!,
-                                    //   // newList[index].totalProductsOfSeller,
-                                    //   // newList[index].sellerRatingType,
-                                    //  []);
+                                    Routes.navigateToSellerProfileScreen(
+                                        context,
+                                        slider.sellerDetails!.id.toString(),
+                                        slider.sellerDetails!.storeDescription,
+                                        slider.sellerDetails!.storeName,
+                                        slider.sellerDetails!.noOfRatings,
+                                        slider.sellerDetails!.storeName,
+                                        slider.sellerDetails!.storeDescription,
+                                        '0',
+                                        slider.sellerDetails!.sellerRating, []);
                                   } else if (slider.type == 'products') {
                                     Product? item = slider.list;
 
