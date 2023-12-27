@@ -5,15 +5,14 @@ import 'package:eshop_multivendor/Screen/Auth/set_password.dart';
 import 'package:eshop_multivendor/Screen/Auth/signup.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import '../../Helper/Constant.dart';
 import '../../Helper/String.dart';
 import '../../widgets/ButtonDesing.dart';
-import '../../widgets/desing.dart';
 import '../../widgets/snackbar.dart';
 import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
@@ -51,7 +50,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     getUserDetails();
-    getSingature();
+    getSignature();
     _onVerifyCode();
     Future.delayed(const Duration(seconds: 60)).then(
       (_) {
@@ -75,7 +74,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
     );
   }
 
-  Future<void> getSingature() async {
+  Future<void> getSignature() async {
     signature = await SmsAutoFill().getAppSignature;
     SmsAutoFill().listenForCode;
   }
@@ -137,6 +136,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
         },
       );
     }
+    FirebaseMessaging.instance.requestPermission();
     PhoneVerificationCompleted verificationCompleted() {
       return (AuthCredential phoneAuthCredential) {
         _firebaseAuth.signInWithCredential(phoneAuthCredential).then(
@@ -194,8 +194,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
 
     PhoneCodeSent codeSent() {
       return (String verificationId, [int? forceResendingToken]) async {
-        // _verificationId = verificationId;
-
+        print('we are here');
         setState(
           () {
             _verificationId = verificationId;

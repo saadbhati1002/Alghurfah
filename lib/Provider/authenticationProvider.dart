@@ -305,10 +305,10 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   // for reset password
-  Future<Map<String, dynamic>> getReset() async {
+  Future<Map<String, dynamic>> getReset({String? mobileNumber}) async {
     try {
       var parameter = {
-        MOBILENO: mobilennumberPara,
+        MOBILENO: mobileNumber,
         NEWPASS: newPassword,
       };
 
