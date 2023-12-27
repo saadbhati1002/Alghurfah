@@ -101,7 +101,7 @@ extension strEtx on String {
   }
 
   String toBookingStatus({String? method}) {
-    String temp = this.toLowerCase();
+    String temp = toLowerCase();
 
     if (temp == BOOKING_TYPE_ALL) {
       return language.lblAll;
@@ -133,7 +133,7 @@ extension strEtx on String {
   }
 
   String toPostJobStatus({String? method}) {
-    String temp = this.toLowerCase();
+    String temp = toLowerCase();
     if (temp == JOB_REQUEST_STATUS_REQUESTED) {
       return language.requested;
     } else if (temp == JOB_REQUEST_STATUS_ACCEPTED) {

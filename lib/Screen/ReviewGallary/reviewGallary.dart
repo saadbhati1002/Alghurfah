@@ -5,9 +5,7 @@ import '../../Model/Section_Model.dart';
 import '../../Provider/ReviewGallleryProvider.dart';
 import '../../Provider/ReviewPreviewProvider.dart';
 import '../../Provider/productDetailProvider.dart';
-import '../../widgets/appBar.dart';
 import '../../widgets/desing.dart';
-import '../Language/languageSettings.dart';
 
 class ReviewGallary extends StatefulWidget {
   final List<dynamic>? imageList;

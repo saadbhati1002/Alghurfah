@@ -134,7 +134,6 @@ class DesignConfiguration {
     return FadeInImage.assetNetwork(
       image: imageurlString,
       placeholder: DesignConfiguration.setPngPath('placeholder'),
-
       width: widthvalue,
       height: heightvalue,
       fit: boxFit,
@@ -144,39 +143,12 @@ class DesignConfiguration {
       fadeOutDuration: const Duration(
         milliseconds: 150,
       ),
-      // imageCacheHeight: 50,
-      //imageCacheWidth: 50,
-      // fadeInCurve: Curves.linear,
-      // fadeOutCurve: Curves.linear,
       imageErrorBuilder: (context, error, stackTrace) {
         return Container(
           child: DesignConfiguration.errorWidget(placeHolderSize ?? 50),
         );
       },
     );
-
-    /*CachedNetworkImage(
-      imageUrl: imageurlString,
-      placeholder: (context, url) {
-        return DesignConfiguration.erroWidget(placeHolderSize ?? 50);
-      },
-      errorWidget: (context, error, stackTrace) {
-        return Container(
-          child: DesignConfiguration.erroWidget(placeHolderSize ?? 50),
-        );
-      },
-      fadeInCurve: Curves.linear,
-      fadeOutCurve: Curves.linear,
-      fadeInDuration: const Duration(
-        milliseconds: 150,
-      ),
-      fadeOutDuration: const Duration(
-        milliseconds: 150,
-      ),
-      fit: boxFit,
-      height: heightvalue,
-      width: widthvalue,
-    );*/
   }
 }
 

@@ -12,7 +12,6 @@ import '../../../widgets/desing.dart';
 import '../../Language/languageSettings.dart';
 import '../../../widgets/networkAvailablity.dart';
 import '../../../widgets/snackbar.dart';
-import '../../../widgets/star_rating.dart';
 import '../../Dashboard/Dashboard.dart';
 import '../../Product Detail/productDetail.dart';
 import '../ProductList.dart';
