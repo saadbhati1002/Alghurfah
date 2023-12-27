@@ -23,7 +23,8 @@ class ListIteamListWidget extends StatefulWidget {
   final int? index;
   int? length;
   Function setState;
-  ListIteamListWidget({Key? key, 
+  ListIteamListWidget({
+    Key? key,
     this.productList,
     this.index,
     required this.setState,
@@ -456,497 +457,490 @@ class _ListIteamListWidgetState extends State<ListIteamListWidget> {
             double.parse(model.prVarientList![model.selVarient!].price!);
       }
       return Padding(
-        padding:
-            const EdgeInsetsDirectional.only(start: 10.0, end: 10.0, top: 5.0),
-        child: Selector<CartProvider,List<SectionModel>>(
-          builder: (context, data, child) {
+          padding: const EdgeInsetsDirectional.only(
+              start: 10.0, end: 10.0, top: 5.0),
+          child: Selector<CartProvider, List<SectionModel>>(
+              builder: (context, data, child) {
+                SectionModel? tempId = data.firstWhereOrNull((cp) =>
+                    cp.id == model.id &&
+                    cp.varientId ==
+                        model.prVarientList![model.selVarient!].id!);
+                if (tempId != null) {
+                  controllerText[widget.index!].text = tempId.qty!.toString();
+                } else {
+                  if (CUR_USERID != null) {
+                    controllerText[widget.index!].text =
+                        model.prVarientList![model.selVarient!].cartCount!;
+                  } else {
+                    controllerText[widget.index!].text = '0';
+                  }
+                }
 
-            SectionModel? tempId = data.firstWhereOrNull((cp) =>
-            cp.id == model.id &&
-                cp.varientId == model.prVarientList![model.selVarient!].id!);
-            if (tempId != null) {
-              controllerText[widget.index!].text = tempId.qty!.toString();
-            } else {
-              if (CUR_USERID != null) {
-                controllerText[widget.index!].text =
-                model.prVarientList![model.selVarient!].cartCount!;
-              } else {
-                controllerText[widget.index!].text = '0';
-              }
-            }
-
-
-            return Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Card(
-                  elevation: 0,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(circularBorderRadius10),
-                    child: Stack(
-                      children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                return Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Card(
+                      elevation: 0,
+                      child: InkWell(
+                        borderRadius:
+                            BorderRadius.circular(circularBorderRadius10),
+                        child: Stack(
                           children: <Widget>[
-                            Hero(
-                              tag:
-                                  '$heroTagUniqueString${widget.index}${model.id}',
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft:
-                                      Radius.circular(circularBorderRadius4),
-                                  bottomLeft:
-                                      Radius.circular(circularBorderRadius4),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    DesignConfiguration.getCacheNotworkImage(
-                                      boxFit: BoxFit.fitHeight,
-                                      context: context,
-                                      heightvalue: 125.0,
-                                      widthvalue: 110.0,
-                                      imageurlString: model.image!,
-                                      placeHolderSize: 125,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Hero(
+                                  tag:
+                                      '$heroTagUniqueString${widget.index}${model.id}',
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(25),
+                                      bottomLeft: Radius.circular(25),
                                     ),
-                                    Positioned.fill(
-                                      child: model.availability == '0'
-                                          ? Container(
-                                              height: 55,
-                                              color: colors.white70,
-                                              padding: const EdgeInsets.all(2),
-                                              child: Center(
-                                                child: Text(
-                                                  getTranslated(context,
-                                                      'OUT_OF_STOCK_LBL')!,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .copyWith(
-                                                        color: colors.red,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ),
-                                            )
-                                          : Container(),
-                                    ),
-                                    off != 0
-                                        ? Container(
-                                            decoration: const BoxDecoration(
-                                              color: colors.red,
-                                            ),
-                                            margin: const EdgeInsets.all(5),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(5.0),
-                                              child: Text(
-                                                '${off.round().toStringAsFixed(2)}%',
-                                                style: const TextStyle(
-                                                  color: colors.whiteTemp,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: textFontSize9,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : Container()
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        top: 2.0,
-                                        start: 15.0,
-                                      ),
-                                      child: Text(
-                                        widget
-                                            .productList![widget.index!].name!,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .lightBlack,
-                                                fontWeight: FontWeight.w400,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: textFontSize12),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                        start: 15.0,
-                                        top: 4.0,
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            ' ${DesignConfiguration.getPriceFormat(context, price)!}',
-                                            style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .blue,
-                                              fontSize: textFontSize14,
-                                              fontWeight: FontWeight.w700,
-                                              fontStyle: FontStyle.normal,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .only(
-                                                start: 10.0,
-                                                top: 5,
-                                              ),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Text(
-                                                    double.parse(widget
-                                                                .productList![
-                                                                    widget
-                                                                        .index!]
-                                                                .prVarientList![
-                                                                    0]
-                                                                .disPrice!) !=
-                                                            0
-                                                        ? '${DesignConfiguration.getPriceFormat(context, double.parse(widget.productList![widget.index!].prVarientList![0].price!))}'
-                                                        : '',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .labelSmall!
-                                                        .copyWith(
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .lineThrough,
-                                                          decorationColor:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .gray,
-                                                          decorationStyle:
-                                                              TextDecorationStyle
-                                                                  .solid,
-                                                          decorationThickness:
-                                                              2,
-                                                          letterSpacing: 0,
-                                                          fontSize:
-                                                              textFontSize10,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontStyle:
-                                                              FontStyle.normal,
-                                                        ),
+                                    child: Stack(
+                                      children: [
+                                        // DesignConfiguration
+                                        //     .getCacheNotworkImage(
+                                        //   boxFit: BoxFit.contain,
+                                        //   context: context,
+                                        //   heightvalue: 125.0,
+                                        //   widthvalue: 110.0,
+                                        //   imageurlString: model.image!,
+                                        //   placeHolderSize: 125,
+                                        // ),
+                                        Positioned.fill(
+                                          child: model.availability == '0'
+                                              ? Container(
+                                                  height: 55,
+                                                  color: colors.white70,
+                                                  padding:
+                                                      const EdgeInsets.all(2),
+                                                  child: Center(
+                                                    child: Text(
+                                                      getTranslated(context,
+                                                          'OUT_OF_STOCK_LBL')!,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodySmall!
+                                                          .copyWith(
+                                                            color: colors.red,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                                )
+                                              : Container(),
+                                        ),
+                                        off != 0
+                                            ? Container(
+                                                decoration: const BoxDecoration(
+                                                  color: colors.red,
+                                                ),
+                                                margin: const EdgeInsets.all(5),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(5.0),
+                                                  child: Text(
+                                                    '${off.round().toStringAsFixed(2)}%',
+                                                    style: const TextStyle(
+                                                      color: colors.whiteTemp,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: textFontSize9,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            : Container()
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                          top: 5.0, start: 15.0),
-                                      child: StarRating(
-                                        noOfRatings: widget
-                                            .productList![widget.index!]
-                                            .noOfRating!,
-                                        totalRating: widget
-                                            .productList![widget.index!]
-                                            .rating!,
-                                        needToShowNoOfRatings: true,
-                                      ),
-                                    ),
-                                    controllerText[widget.index!].text != '0'
-                                        ? Row(
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                            top: 2.0,
+                                            start: 15.0,
+                                          ),
+                                          child: Text(
+                                            widget.productList![widget.index!]
+                                                .name!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .lightBlack,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontSize: textFontSize12),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                            start: 15.0,
+                                            top: 4.0,
+                                          ),
+                                          child: Row(
                                             children: [
-                                              model.availability == '0'
-                                                  ? Container()
-                                                  : cartBtnList
-                                                      ? Row(
-                                                          children: <Widget>[
-                                                            Row(
+                                              Text(
+                                                ' ${DesignConfiguration.getPriceFormat(context, price)!}',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .blue,
+                                                  fontSize: textFontSize14,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontStyle: FontStyle.normal,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .only(
+                                                    start: 10.0,
+                                                    top: 5,
+                                                  ),
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Text(
+                                                        double.parse(widget
+                                                                    .productList![
+                                                                        widget
+                                                                            .index!]
+                                                                    .prVarientList![
+                                                                        0]
+                                                                    .disPrice!) !=
+                                                                0
+                                                            ? '${DesignConfiguration.getPriceFormat(context, double.parse(widget.productList![widget.index!].prVarientList![0].price!))}'
+                                                            : '',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .labelSmall!
+                                                            .copyWith(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .lineThrough,
+                                                              decorationColor:
+                                                                  Theme.of(
+                                                                          context)
+                                                                      .colorScheme
+                                                                      .gray,
+                                                              decorationStyle:
+                                                                  TextDecorationStyle
+                                                                      .solid,
+                                                              decorationThickness:
+                                                                  2,
+                                                              letterSpacing: 0,
+                                                              fontSize:
+                                                                  textFontSize10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .normal,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 5.0, start: 15.0),
+                                          child: StarRating(
+                                            noOfRatings: widget
+                                                .productList![widget.index!]
+                                                .noOfRating!,
+                                            totalRating: widget
+                                                .productList![widget.index!]
+                                                .rating!,
+                                            needToShowNoOfRatings: true,
+                                          ),
+                                        ),
+                                        controllerText[widget.index!].text !=
+                                                '0'
+                                            ? Row(
+                                                children: [
+                                                  model.availability == '0'
+                                                      ? Container()
+                                                      : cartBtnList
+                                                          ? Row(
                                                               children: <
                                                                   Widget>[
-                                                                InkWell(
-                                                                  child: Card(
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                        circularBorderRadius50,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .all(
-                                                                        8.0,
-                                                                      ),
+                                                                Row(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    InkWell(
                                                                       child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .remove,
-                                                                        size:
-                                                                            15,
+                                                                          Card(
+                                                                        shape:
+                                                                            RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                            circularBorderRadius50,
+                                                                          ),
+                                                                        ),
+                                                                        child:
+                                                                            const Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(
+                                                                            8.0,
+                                                                          ),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.remove,
+                                                                            size:
+                                                                                15,
+                                                                          ),
+                                                                        ),
                                                                       ),
+                                                                      onTap:
+                                                                          () {
+                                                                        if (isProgress ==
+                                                                                false &&
+                                                                            (int.parse(controllerText[widget.index!].text) >
+                                                                                0)) {
+                                                                          removeFromCart(
+                                                                              widget.index!);
+                                                                        }
+                                                                      },
                                                                     ),
-                                                                  ),
-                                                                  onTap: () {
-                                                                    if (isProgress ==
-                                                                            false &&
-                                                                        (int.parse(controllerText[widget.index!].text) >
-                                                                            0)) {
-                                                                      removeFromCart(
-                                                                          widget
-                                                                              .index!);
-                                                                    }
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  width: 37,
-                                                                  height: 20,
-                                                                  child: Stack(
-                                                                    children: [
-                                                                      TextField(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        readOnly:
-                                                                            true,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                textFontSize12,
-                                                                            color:
-                                                                                Theme.of(context).colorScheme.fontColor),
-                                                                        controller:
-                                                                            controllerText[widget.index!],
-                                                                        decoration:
-                                                                            const InputDecoration(
-                                                                          border:
-                                                                              InputBorder.none,
-                                                                        ),
-                                                                      ),
-                                                                      PopupMenuButton<
-                                                                          String>(
-                                                                        tooltip:
-                                                                            '',
-                                                                        icon:
-                                                                            const Icon(
-                                                                          Icons
-                                                                              .arrow_drop_down,
-                                                                          size:
-                                                                              1,
-                                                                        ),
-                                                                        onSelected:
-                                                                            (String
-                                                                                value) {
-                                                                          if (isProgress ==
-                                                                              false) {
-                                                                            addToCart(
-                                                                                widget.index!,
-                                                                                value,
-                                                                                2);
-                                                                          }
-                                                                        },
-                                                                        itemBuilder:
-                                                                            (BuildContext
-                                                                                context) {
-                                                                          return model
-                                                                              .itemsCounter!
-                                                                              .map<PopupMenuItem<String>>(
-                                                                            (String
-                                                                                value) {
-                                                                              return PopupMenuItem(value: value, child: Text(value, style: TextStyle(color: Theme.of(context).colorScheme.fontColor)));
+                                                                    SizedBox(
+                                                                      width: 37,
+                                                                      height:
+                                                                          20,
+                                                                      child:
+                                                                          Stack(
+                                                                        children: [
+                                                                          TextField(
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            readOnly:
+                                                                                true,
+                                                                            style:
+                                                                                TextStyle(fontSize: textFontSize12, color: Theme.of(context).colorScheme.fontColor),
+                                                                            controller:
+                                                                                controllerText[widget.index!],
+                                                                            decoration:
+                                                                                const InputDecoration(
+                                                                              border: InputBorder.none,
+                                                                            ),
+                                                                          ),
+                                                                          PopupMenuButton<
+                                                                              String>(
+                                                                            tooltip:
+                                                                                '',
+                                                                            icon:
+                                                                                const Icon(
+                                                                              Icons.arrow_drop_down,
+                                                                              size: 1,
+                                                                            ),
+                                                                            onSelected:
+                                                                                (String value) {
+                                                                              if (isProgress == false) {
+                                                                                addToCart(widget.index!, value, 2);
+                                                                              }
                                                                             },
-                                                                          ).toList();
-                                                                        },
+                                                                            itemBuilder:
+                                                                                (BuildContext context) {
+                                                                              return model.itemsCounter!.map<PopupMenuItem<String>>(
+                                                                                (String value) {
+                                                                                  return PopupMenuItem(value: value, child: Text(value, style: TextStyle(color: Theme.of(context).colorScheme.fontColor)));
+                                                                                },
+                                                                              ).toList();
+                                                                            },
+                                                                          ),
+                                                                        ],
                                                                       ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                InkWell(
-                                                                  child: Card(
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              circularBorderRadius50),
                                                                     ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
+                                                                    InkWell(
                                                                       child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .add,
-                                                                        size:
-                                                                            15,
+                                                                          Card(
+                                                                        shape:
+                                                                            RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(circularBorderRadius50),
+                                                                        ),
+                                                                        child:
+                                                                            const Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(8.0),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.add,
+                                                                            size:
+                                                                                15,
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ),
-                                                                  onTap: () {
-                                                                    if (isProgress ==
-                                                                        false) {
-                                                                      addToCart(
-                                                                        widget
-                                                                            .index!,
-                                                                        (int.parse(controllerText[widget.index!].text) +
-                                                                                int.parse(model.qtyStepSize!))
-                                                                            .toString(),
-                                                                        2,
-                                                                      );
-                                                                    }
-                                                                  },
-                                                                )
+                                                                      onTap:
+                                                                          () {
+                                                                        if (isProgress ==
+                                                                            false) {
+                                                                          addToCart(
+                                                                            widget.index!,
+                                                                            (int.parse(controllerText[widget.index!].text) + int.parse(model.qtyStepSize!)).toString(),
+                                                                            2,
+                                                                          );
+                                                                        }
+                                                                      },
+                                                                    )
+                                                                  ],
+                                                                ),
                                                               ],
-                                                            ),
-                                                          ],
-                                                        )
-                                                      : Container(),
-                                            ],
-                                          )
-                                        : Container(),
-                                  ],
+                                                            )
+                                                          : Container(),
+                                                ],
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                        onTap: () {
+                          Product model = widget.productList![widget.index!];
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => ProductDetail(
+                                model: model,
+                                index: widget.index,
+                                secPos: 0,
+                                list: true,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                    onTap: () {
-                      Product model = widget.productList![widget.index!];
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => ProductDetail(
-                            model: model,
-                            index: widget.index,
-                            secPos: 0,
-                            list: true,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                controllerText[widget.index!].text == '0'
-                    ? Positioned.directional(
-                        textDirection: Directionality.of(context),
-                        bottom: 4,
-                        end: 4,
-                        child: InkWell(
-                          onTap: () {
-                            if (isProgress == false) {
-                              addToCart(
-                                widget.index!,
-                                (int.parse(controllerText[widget.index!].text) +
-                                        int.parse(model.qtyStepSize!))
-                                    .toString(),
-                                1,
-                              );
-                            }
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.shopping_cart_outlined,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      )
-                    : Container(),
-                Positioned.directional(
-                  textDirection: Directionality.of(context),
-                  top: 4,
-                  end: 4,
-                  child: model.isFavLoading!
-                      ? const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              color: colors.primary,
-                              strokeWidth: 0.7,
-                            ),
-                          ),
-                        )
-                      : Selector<FavoriteProvider, List<String?>>(
-                          builder: (context, data, child) {
-                            return InkWell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                    controllerText[widget.index!].text == '0'
+                        ? Positioned.directional(
+                            textDirection: Directionality.of(context),
+                            bottom: 4,
+                            end: 4,
+                            child: InkWell(
+                              onTap: () {
+                                if (isProgress == false) {
+                                  addToCart(
+                                    widget.index!,
+                                    (int.parse(controllerText[widget.index!]
+                                                .text) +
+                                            int.parse(model.qtyStepSize!))
+                                        .toString(),
+                                    1,
+                                  );
+                                }
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: Icon(
-                                  !data.contains(model.id)
-                                      ? Icons.favorite_border
-                                      : Icons.favorite,
+                                  Icons.shopping_cart_outlined,
                                   size: 20,
                                 ),
                               ),
-                              onTap: () {
-                                if (CUR_USERID != null) {
-                                  !data.contains(model.id)
-                                      ? _setFav(-1, model)
-                                      : _removeFav(-1, model);
-                                } else {
-                                  if (!data.contains(model.id)) {
-                                    model.isFavLoading = true;
-                                    model.isFav = '1';
-                                    context
-                                        .read<FavoriteProvider>()
-                                        .addFavItem(model);
-                                    db.addAndRemoveFav(model.id!, true);
-                                    model.isFavLoading = false;
-                                    setSnackbar(
-                                        getTranslated(
-                                            context, 'Added to favorite')!,
-                                        context);
-                                  } else {
-                                    model.isFavLoading = true;
-                                    model.isFav = '0';
-                                    context
-                                        .read<FavoriteProvider>()
-                                        .removeFavItem(
-                                            model.prVarientList![0].id!);
-                                    db.addAndRemoveFav(model.id!, false);
-                                    model.isFavLoading = false;
-                                    setSnackbar(
-                                        getTranslated(
-                                            context, 'Removed from favorite')!,
-                                        context);
-                                  }
-                                  widget.setState();
-                                }
+                            ),
+                          )
+                        : Container(),
+                    Positioned.directional(
+                      textDirection: Directionality.of(context),
+                      top: 4,
+                      end: 4,
+                      child: model.isFavLoading!
+                          ? const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: colors.primary,
+                                  strokeWidth: 0.7,
+                                ),
+                              ),
+                            )
+                          : Selector<FavoriteProvider, List<String?>>(
+                              builder: (context, data, child) {
+                                return InkWell(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(
+                                      !data.contains(model.id)
+                                          ? Icons.favorite_border
+                                          : Icons.favorite,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    if (CUR_USERID != null) {
+                                      !data.contains(model.id)
+                                          ? _setFav(-1, model)
+                                          : _removeFav(-1, model);
+                                    } else {
+                                      if (!data.contains(model.id)) {
+                                        model.isFavLoading = true;
+                                        model.isFav = '1';
+                                        context
+                                            .read<FavoriteProvider>()
+                                            .addFavItem(model);
+                                        db.addAndRemoveFav(model.id!, true);
+                                        model.isFavLoading = false;
+                                        setSnackbar(
+                                            getTranslated(
+                                                context, 'Added to favorite')!,
+                                            context);
+                                      } else {
+                                        model.isFavLoading = true;
+                                        model.isFav = '0';
+                                        context
+                                            .read<FavoriteProvider>()
+                                            .removeFavItem(
+                                                model.prVarientList![0].id!);
+                                        db.addAndRemoveFav(model.id!, false);
+                                        model.isFavLoading = false;
+                                        setSnackbar(
+                                            getTranslated(context,
+                                                'Removed from favorite')!,
+                                            context);
+                                      }
+                                      widget.setState();
+                                    }
+                                  },
+                                );
                               },
-                            );
-                          },
-                          selector: (_, provider) => provider.favIdList,
-                        ),
-                ),
-              ],
-            );
-          },
-            selector: (_, provider) => provider.cartList)
-      );
+                              selector: (_, provider) => provider.favIdList,
+                            ),
+                    ),
+                  ],
+                );
+              },
+              selector: (_, provider) => provider.cartList));
     } else {
       return Container();
     }

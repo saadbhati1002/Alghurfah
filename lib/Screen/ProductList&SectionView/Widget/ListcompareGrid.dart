@@ -496,7 +496,7 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                               tag:
                                   '$heroTagUniqueString${widget.index}${model.id}',
                               child: DesignConfiguration.getCacheNotworkImage(
-                                boxFit: BoxFit.contain,
+                                boxFit: BoxFit.cover,
                                 context: context,
                                 heightvalue: double.maxFinite,
                                 widthvalue: double.maxFinite,
@@ -628,7 +628,7 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                         height: 25,
                         width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
-                          color: colors.serviceColor,
+                          color: colors.eCommerceColor,
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomLeft: Radius.circular(20)),

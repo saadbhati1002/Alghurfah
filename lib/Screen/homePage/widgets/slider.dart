@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Helper/routes.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,65 +74,76 @@ class _CustomSliderState extends State<CustomSlider> {
                                     widthvalue: double.maxFinite),
                                 onTap: () async {
                                   print(slider.type);
-                                  // int curSlider = context
-                                  //     .read<HomePageProvider>()
-                                  //     .curSlider;
+                                  int curSlider = context
+                                      .read<HomePageProvider>()
+                                      .curSlider;
+                                  if (slider.type == 'users') {
+                                    //                          Routes.navigateToSellerProfileScreen(
+                                    //   context,
+                                    //   slider.id,
+                                    //   slider.desc,
+                                    // slider.name,
+                                    //  '0.0',
+                                    //   // slider.,
+                                    //   // newList[index].store_description!,
+                                    //   // newList[index].totalProductsOfSeller,
+                                    //   // newList[index].sellerRatingType,
+                                    //  []);
+                                  } else if (slider.type == 'products') {
+                                    Product? item = slider.list;
 
-                                  // if (slider.type == 'products') {
-                                  //   Product? item = slider.list;
-
-                                  //   Navigator.push(
-                                  //     context,
-                                  //     PageRouteBuilder(
-                                  //       pageBuilder: (_, __, ___) =>
-                                  //           ProductDetail(
-                                  //         model: item,
-                                  //         secPos: 0,
-                                  //         index: 0,
-                                  //         list: true,
-                                  //       ),
-                                  //     ),
-                                  //   );
-                                  // } else if (slider.type == 'categories') {
-                                  //   Product item = slider.list as Product;
-                                  //   if (item.subList == null ||
-                                  //       item.subList!.isEmpty) {
-                                  //     Navigator.push(
-                                  //       context,
-                                  //       CupertinoPageRoute(
-                                  //         builder: (context) => ProductList(
-                                  //           name: item.name,
-                                  //           id: item.id,
-                                  //           tag: false,
-                                  //           fromSeller: false,
-                                  //         ),
-                                  //       ),
-                                  //     );
-                                  //   } else {
-                                  //     Navigator.push(
-                                  //       context,
-                                  //       CupertinoPageRoute(
-                                  //         builder: (context) => SubCategory(
-                                  //           title: item.name!,
-                                  //           subList: item.subList,
-                                  //         ),
-                                  //       ),
-                                  //     );
-                                  //   }
-                                  // } else if (slider.type == 'slider_url') {
-                                  //   String url = slider.urlLink.toString();
-                                  //   try {
-                                  //     if (await canLaunchUrl(Uri.parse(url))) {
-                                  //       await launchUrl(Uri.parse(url),
-                                  //           mode:
-                                  //               LaunchMode.externalApplication);
-                                  //     } else {
-                                  //       throw 'Could not launch $url';
-                                  //     }
-                                  //   } catch (e) {
-                                  //     throw 'Something went wrong';
-                                  //   }
-                                  // }
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (_, __, ___) =>
+                                            ProductDetail(
+                                          model: item,
+                                          secPos: 0,
+                                          index: 0,
+                                          list: true,
+                                        ),
+                                      ),
+                                    );
+                                  } else if (slider.type == 'categories') {
+                                    Product item = slider.list as Product;
+                                    if (item.subList == null ||
+                                        item.subList!.isEmpty) {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => ProductList(
+                                            name: item.name,
+                                            id: item.id,
+                                            tag: false,
+                                            fromSeller: false,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => SubCategory(
+                                            title: item.name!,
+                                            subList: item.subList,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  } else if (slider.type == 'slider_url') {
+                                    String url = slider.urlLink.toString();
+                                    try {
+                                      if (await canLaunchUrl(Uri.parse(url))) {
+                                        await launchUrl(Uri.parse(url),
+                                            mode:
+                                                LaunchMode.externalApplication);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    } catch (e) {
+                                      throw 'Something went wrong';
+                                    }
+                                  }
                                 },
                               );
                             },
