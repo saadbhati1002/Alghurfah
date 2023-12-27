@@ -12,7 +12,7 @@ import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Provider/authenticationProvider.dart';
 import 'package:eshop_multivendor/Provider/myWalletProvider.dart';
 import 'package:eshop_multivendor/Provider/paymentProvider.dart';
-import 'package:eshop_multivendor/Screen/SplashScreen/Splash.dart';
+import 'package:eshop_multivendor/Screen/SplashScreen/splash.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/model/booking_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/model/booking_status_model.dart';

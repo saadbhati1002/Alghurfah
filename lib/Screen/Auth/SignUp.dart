@@ -3,7 +3,7 @@ import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/authenticationProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/Screen/NoInterNetWidget/NoInterNet.dart';
 import 'package:eshop_multivendor/ServiceApp/model/user_data_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
@@ -39,7 +39,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
   bool? _showPasswordConfirm = true;
   bool visible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final fisrtNameController = TextEditingController();
+  final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final mobileController = TextEditingController();
@@ -104,16 +104,15 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
     /// Create a temporary request to send
     UserData tempRegisterData = UserData()
       ..contactNumber = widget.mobileNumber
-      ..firstName = fisrtNameController.text.toString().trim()
+      ..firstName = firstNameController.text.toString().trim()
       ..lastName = lastNameController.text.toString().trim()
       ..userType = service.USER_TYPE_USER
-      ..username = fisrtNameController.text.toString().trim() +
+      ..username = firstNameController.text.toString().trim() +
           lastNameController.text.toString().trim()
-      ..email = widget.mobileNumber! + "Alghurfah@gmail.com"
-      ..password = passwordController.text.toString().trim();
+      ..email = '${widget.mobileNumber!}Alghurfah@gmail.com'
+      ..password = '123456789';
     await createUser(tempRegisterData.toJson()).then((registerResponse) async {
-      registerResponse.userData!.password =
-          passwordController.text.toString().trim();
+      registerResponse.userData!.password = '123456789';
       await saveUserData(registerResponse.userData!);
 
       Navigator.push(context,
@@ -192,7 +191,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
 
     buttonController!.dispose();
@@ -278,7 +277,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
               fontSize: textFontSize16),
           keyboardType: TextInputType.text,
           textCapitalization: TextCapitalization.words,
-          controller: fisrtNameController,
+          controller: firstNameController,
           focusNode: nameFocus,
           textInputAction: TextInputAction.next,
           inputFormatters: [
@@ -359,7 +358,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
               StringValidation.validateUserName(val!, "Last Name is Required"),
           onSaved: (String? value) {
             context.read<AuthenticationProvider>().setUserName(
-                fisrtNameController.text.toString().trim() + " " + value!);
+                firstNameController.text.toString().trim() + " " + value!);
           },
           onFieldSubmitted: (v) {
             _fieldFocusChange(context, lastNameFocus!, emailFocus);
@@ -680,7 +679,7 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
 
     super.initState();

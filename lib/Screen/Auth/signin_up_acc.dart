@@ -1,5 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import '../../Helper/String.dart';
 import '../../Helper/routes.dart';
 import '../../widgets/desing.dart';
 import '../Language/languageSettings.dart';
-import 'SendOtp.dart';
+import 'send_otp.dart';
 
 class SignInUpAcc extends StatefulWidget {
   const SignInUpAcc({Key? key}) : super(key: key);
@@ -150,40 +150,6 @@ class _SignInUpAccState extends State<SignInUpAcc> {
           const SizedBox(
             height: 15,
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Text(
-          //       getTranslated(context, 'ALREADY_A_CUSTOMER')!,
-          //       textAlign: TextAlign.center,
-          //       style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          //             color: colors.primary,
-          //             fontWeight: FontWeight.bold,
-          //             fontSize: textFontSize13,
-          //             fontFamily: 'ubuntu',
-          //           ),
-          //     ),
-          //     const SizedBox(
-          //       width: 5,
-          //     ),
-          //     GestureDetector(
-          //       onTap: () {
-          //         Navigator.push(context,
-          //             MaterialPageRoute(builder: (context) => const Login()));
-          //       },
-          //       child: Text(
-          //         getTranslated(context, 'SIGNIN_LBL')!,
-          //         textAlign: TextAlign.center,
-          //         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          //               color: colors.primary,
-          //               fontWeight: FontWeight.bold,
-          //               fontSize: textFontSize13,
-          //               fontFamily: 'ubuntu',
-          //             ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
         ],
       ),
     );

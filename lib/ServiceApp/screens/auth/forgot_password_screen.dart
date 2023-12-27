@@ -94,16 +94,14 @@ class ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 Text(language.lblForgotPwdSubtitle,
                     style: secondaryTextStyle()),
                 24.height,
-                Observer(
-                  builder: (_) => AppTextField(
-                    textFieldType: TextFieldType.EMAIL,
-                    controller: emailCont,
-                    autoFocus: true,
-                    errorThisFieldRequired: language.requiredText,
-                    decoration: inputDecoration(context,
-                        labelText: language.hintEmailTxt),
-                  ).visible(!appStore.isLoading, defaultWidget: Loader()),
-                ),
+                AppTextField(
+                  textFieldType: TextFieldType.EMAIL,
+                  controller: emailCont,
+                  autoFocus: true,
+                  errorThisFieldRequired: language.requiredText,
+                  decoration: inputDecoration(context,
+                      labelText: language.hintEmailTxt),
+                ).visible(!appStore.isLoading, defaultWidget: Loader()),
                 16.height,
                 AppButton(
                   text: language.resetPassword,

@@ -25,7 +25,7 @@ class _GettingStartedScreenState extends State<IntroSlider>
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithDarkBrightNess();
 
     super.initState();

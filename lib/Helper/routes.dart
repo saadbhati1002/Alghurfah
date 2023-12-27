@@ -1,6 +1,6 @@
 import 'package:eshop_multivendor/Model/Section_Model.dart';
 import 'package:flutter/cupertino.dart';
-import '../Screen/Auth/Login.dart';
+import '../Screen/Auth/login.dart';
 import '../Screen/Cart/Cart.dart';
 import '../Screen/Chat/Chat.dart';
 import '../Screen/CompareList/CompareList.dart';

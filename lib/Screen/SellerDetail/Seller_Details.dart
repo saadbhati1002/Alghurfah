@@ -6,7 +6,7 @@ import 'package:eshop_multivendor/Model/Section_Model.dart';
 import 'package:eshop_multivendor/Model/favorite_seller_model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/repository/sellerDetailRepositry.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';

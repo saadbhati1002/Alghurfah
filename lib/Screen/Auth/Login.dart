@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:eshop_multivendor/Provider/Favourite/FavoriteProvider.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/SendOtp.dart';
+import 'package:eshop_multivendor/Screen/Auth/send_otp.dart';
 import 'package:eshop_multivendor/Screen/Profile/widgets/languageBottomSheet.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart'
@@ -67,7 +67,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
     getSystemSettings();
 
@@ -216,8 +216,8 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   void login() async {
     var request = {
-      'email': mobileController.text.toString().trim() + "Alghurfah@gmail.com",
-      'password': passwordController.text.toString().trim(),
+      'email':  '${mobileController.text.toString().trim()}Alghurfah@gmail.com',
+      'password': '123456789',
       'player_id': nb_utils.getStringAsync(service_app.PLAYERID),
     };
 
@@ -226,7 +226,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
     await loginUser(request).then((loginResponse) async {
       if (true) {
         nb_utils.setValue(service_app.USER_EMAIL,
-            mobileController.text.toString().trim() + "@gmail.com");
+            '${mobileController.text.toString().trim()}Alghurfah@gmail.com');
         nb_utils.setValue(service_app.USER_PASSWORD,
             passwordController.text.toString().trim());
         await nb_utils.setValue(service_app.IS_REMEMBERED, true);

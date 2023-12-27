@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
-import 'package:eshop_multivendor/Screen/Auth/SignUp.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
+import 'package:eshop_multivendor/Screen/Auth/signup.dart';
 import 'package:eshop_multivendor/Screen/PrivacyPolicy/Privacy_Policy.dart';
-import 'package:eshop_multivendor/Screen/Auth/Verify_Otp.dart';
+import 'package:eshop_multivendor/Screen/Auth/verify_otp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +14,6 @@ import '../../Helper/Constant.dart';
 import '../../Helper/String.dart';
 import '../../Provider/authenticationProvider.dart';
 import '../../widgets/ButtonDesing.dart';
-import '../../widgets/desing.dart';
 import '../../widgets/snackbar.dart';
 import '../../widgets/background_image.dart';
 import '../../widgets/systemChromeSettings.dart';
@@ -36,10 +34,10 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
   bool visible = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final mobileController = TextEditingController(text: '50');
-  final ccodeController = TextEditingController();
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  String? mobile, id, countrycode, countryName, mobileno;
-  Animation? buttonSqueezeanimation;
+  final codeController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? mobile, id, countryCode, countryName, mobileNo;
+  Animation? buttonSqueezeAnimation;
   AnimationController? buttonController;
 
   void validateAndSubmit() async {
@@ -92,7 +90,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
             if (widget.title == getTranslated(context, 'FORGOT_PASS_TITLE')) {
               if (error!) {
                 settingsProvider.setPrefrence(MOBILE, mobileController.text);
-                settingsProvider.setPrefrence(COUNTRY_CODE, countrycode!);
+                settingsProvider.setPrefrence(COUNTRY_CODE, countryCode!);
                 Future.delayed(const Duration(seconds: 1)).then(
                   (_) {
                     Navigator.pushReplacement(
@@ -100,7 +98,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
                       CupertinoPageRoute(
                         builder: (context) => VerifyOtp(
                           mobileNumber: mobileController.text,
-                          countryCode: countrycode,
+                          countryCode: countryCode,
                           title: getTranslated(context, 'FORGOT_PASS_TITLE'),
                         ),
                       ),
@@ -132,7 +130,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
   }
 
   bool validateAndSave() {
-    final form = _formkey.currentState!;
+    final form = formKey.currentState!;
     form.save();
     if (form.validate()) {
       return true;
@@ -142,7 +140,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
 
     buttonController!.dispose();
@@ -224,7 +222,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
           onTap: () {},
           onSaved: (phoneNumber) {
             setState(() {
-              countrycode =
+              countryCode =
                   phoneNumber!.countryCode.toString().replaceFirst('+', '');
 
               mobile = phoneNumber.number;
@@ -232,7 +230,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
           },
           onCountryChanged: (country) {
             setState(() {
-              countrycode = country.dialCode;
+              countryCode = country.dialCode;
             });
           },
           onChanged: (phone) {},
@@ -254,7 +252,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
           title: widget.title == getTranslated(context, 'SEND_OTP_TITLE')
               ? "Check"
               : getTranslated(context, 'GET_PASSWORD'),
-          btnAnim: buttonSqueezeanimation,
+          btnAnim: buttonSqueezeAnimation,
           btnCntrl: buttonController,
           onBtnSelected: () async {
             validateAndSubmit();
@@ -359,14 +357,14 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
 
     super.initState();
     buttonController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
 
-    buttonSqueezeanimation = Tween(
+    buttonSqueezeAnimation = Tween(
       begin: deviceWidth! * 0.7,
       end: 50.0,
     ).animate(
@@ -401,7 +399,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
                       bottom: MediaQuery.of(context).viewInsets.bottom,
                     ),
                     child: Form(
-                      key: _formkey,
+                      key: formKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -443,7 +441,7 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
               )
             : NoInterNet(
                 setStateNoInternate: setStateNoInternate,
-                buttonSqueezeanimation: buttonSqueezeanimation,
+                buttonSqueezeanimation: buttonSqueezeAnimation,
                 buttonController: buttonController,
               ),
       ),

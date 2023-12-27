@@ -16,7 +16,7 @@ import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
 import '../../widgets/validation.dart';
 import '../NoInterNetWidget/NoInterNet.dart';
-import 'Login.dart';
+import 'login.dart';
 
 class SetPass extends StatefulWidget {
   final String mobileNumber;

@@ -1,5 +1,5 @@
 import 'package:eshop_multivendor/Helper/Constant.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';

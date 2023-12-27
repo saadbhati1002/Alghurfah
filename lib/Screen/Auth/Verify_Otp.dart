@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Set_Password.dart';
-import 'package:eshop_multivendor/Screen/Auth/SignUp.dart';
+import 'package:eshop_multivendor/Screen/Auth/set_password.dart';
+import 'package:eshop_multivendor/Screen/Auth/signup.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';

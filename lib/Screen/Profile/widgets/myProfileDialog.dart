@@ -17,7 +17,7 @@ import '../../Language/languageSettings.dart';
 import '../../../widgets/snackbar.dart';
 import '../../../widgets/validation.dart';
 import '../../Dashboard/Dashboard.dart';
-import '../../Auth/SendOtp.dart';
+import '../../Auth/send_otp.dart';
 
 class MyProfileDialog {
   static showLogoutDialog(BuildContext context) async {

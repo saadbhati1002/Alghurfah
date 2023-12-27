@@ -1,7 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/routes.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Login.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/Screen/ExploreSection/explore.dart';
 import 'package:eshop_multivendor/Screen/Favourite/Favorite.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
