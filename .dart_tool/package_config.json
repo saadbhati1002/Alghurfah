@@ -321,7 +321,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/saadbhati/Documents/flutter/flutter/packages/flutter",
+      "rootUri": "file:///Users/saadbhati/Documents/flutter%202/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -387,7 +387,7 @@
     },
     {
       "name": "flutter_localizations",
-      "rootUri": "file:///Users/saadbhati/Documents/flutter/flutter/packages/flutter_localizations",
+      "rootUri": "file:///Users/saadbhati/Documents/flutter%202/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -435,7 +435,7 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///Users/saadbhati/Documents/flutter/flutter/packages/flutter_test",
+      "rootUri": "file:///Users/saadbhati/Documents/flutter%202/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -447,7 +447,7 @@
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///Users/saadbhati/Documents/flutter/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///Users/saadbhati/Documents/flutter%202/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -1101,7 +1101,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/saadbhati/Documents/flutter/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/saadbhati/Documents/flutter%202/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -1424,7 +1424,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2023-12-27T09:54:17.795014Z",
+  "generated": "2024-01-29T16:55:26.835617Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }

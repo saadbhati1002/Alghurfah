@@ -5,7 +5,7 @@ const APP_NAME = 'Handyman Service';
 const APP_NAME_TAG_LINE = 'On-Demand Home Services App';
 const defaultPrimaryColor = Color(0xFF4D5B3F);
 
-const DOMAIN_URL = 'https://iconicfacts.com/service';
+const DOMAIN_URL = 'https://alghurfah.net/Service';
 const BASE_URL = '$DOMAIN_URL/api/';
 
 const DEFAULT_LANGUAGE = 'en';

@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/saadbhati/Downloads/Alghurfah/build/ios/Release-iphoneos/sms_autofill/sms_autofill.framework/sms_autofill'
+relocations:
+  - { offsetInCU: 0x33, offset: 0x3C3A, size: 0x8, addend: 0x0, symName: _sms_autofillVersionString, symObjAddr: 0x0, symBinAddr: 0x4188, symSize: 0x0 }
+  - { offsetInCU: 0x67, offset: 0x3C6E, size: 0x8, addend: 0x0, symName: _sms_autofillVersionNumber, symObjAddr: 0x30, symBinAddr: 0x41B8, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x3CAA, size: 0x8, addend: 0x0, symName: '+[SmsAutoFillPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xA0 }
+  - { offsetInCU: 0x52, offset: 0x3CD5, size: 0x8, addend: 0x0, symName: '+[SmsAutoFillPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xA0 }
+  - { offsetInCU: 0xAB, offset: 0x3D2E, size: 0x8, addend: 0x0, symName: '-[SmsAutoFillPlugin handleMethodCall:result:]', symObjAddr: 0xA0, symBinAddr: 0x40A0, symSize: 0x10 }
+...

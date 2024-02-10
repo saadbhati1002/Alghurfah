@@ -166,6 +166,7 @@ class Product {
       store_name,
       totalProductsOfSeller,
       sellerRatingType;
+  List<SellerCategory>? sellerCategory;
 
   Product(
       {this.id,
@@ -228,7 +229,8 @@ class Product {
       this.is_attch_req,
       this.extraDesc,
       this.productType,
-      this.sellerRatingType});
+      this.sellerRatingType,
+      this.sellerCategory});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     List<Product_Varient> varientList = (json[PRODUCT_VARIENT] as List)
@@ -333,16 +335,21 @@ class Product {
   }
 
   factory Product.fromSeller(Map<String, dynamic> json) {
+    List<SellerCategory> sellerCategoryList = (json['category_Name'] as List)
+        .map((data) => SellerCategory.fromJson(data))
+        .toList();
     return Product(
-        seller_name: json[SELLER_NAME],
-        seller_profile: json[SELLER_PROFILE],
-        seller_rating: json[SELLER_RATING],
-        noOfRatingsOnSeller: json[NO_OF_RATE],
-        store_description: json[STORE_DESC],
-        store_name: json[STORE_NAME],
-        totalProductsOfSeller: json['total_products'],
-        seller_id: json[SELLER_ID],
-        sellerRatingType: json['seller_rating1']);
+      seller_name: json[SELLER_NAME],
+      seller_profile: json[SELLER_PROFILE],
+      seller_rating: json[SELLER_RATING],
+      noOfRatingsOnSeller: json[NO_OF_RATE],
+      store_description: json[STORE_DESC],
+      store_name: json[STORE_NAME],
+      totalProductsOfSeller: json['total_products'],
+      seller_id: json[SELLER_ID],
+      sellerRatingType: json['seller_rating1'],
+      sellerCategory: sellerCategoryList,
+    );
   }
 
   factory Product.fromCat(Map<String, dynamic> parsedJson) {
@@ -428,6 +435,17 @@ class Attribute {
       value: json[VALUE],
       sType: json[STYPE],
       sValue: json[SVALUE],
+    );
+  }
+}
+
+class SellerCategory {
+  String? categoryName, categoryID;
+  SellerCategory({this.categoryName, this.categoryID});
+  factory SellerCategory.fromJson(Map<String, dynamic> json) {
+    return SellerCategory(
+      categoryName: json['name'],
+      categoryID: json['id'],
     );
   }
 }

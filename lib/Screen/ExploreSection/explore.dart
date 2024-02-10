@@ -219,8 +219,9 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
   }
 
   bool isCategorySellerSearching = false;
-  List sellerCategory = [];
+  List<Product> sellerCategory = [];
   getSeller() async {
+    List<Product> tempSellerList = [];
     setState(() {
       isCategorySellerSearching = true;
     });
@@ -230,28 +231,42 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
     Map<String, dynamic> result =
         await SellerDetailRepository.fetchSeller(parameter: parameterSeller);
     var data = result['data'];
-    bool error = result['error'];
     print(data);
+    print(widget.categoryID);
+    tempSellerList =
+        (data as List).map((data) => Product.fromSeller(data)).toList();
     for (int sellerCount = 0; sellerCount < data.length; sellerCount++) {
-      sellerCategory.add(0);
-      var parameter = {SELLER_ID: data[sellerCount]["seller_id"].toString()};
-      context.read<ProductListProvider>().setProductListParameter(parameter);
-      await Future.delayed(Duration.zero).then(
-          (value) => context.read<ProductListProvider>().getProductList().then((
-                value,
-              ) async {
-                // bool error = value['error'];
-                String? search = value['search'];
-                if (value['data'] != null) {
-                  for (int i = 0; i < value["data"].length; i++) {
-                    if (value["data"][i]["category_id"].toString() ==
-                        widget.categoryID.toString()) {
-                      sellerCategory[sellerCount] = 1;
-                      break;
-                    }
-                  }
-                }
-              }));
+      for (int categoryCount = 0;
+          categoryCount < tempSellerList[sellerCount].sellerCategory!.length;
+          categoryCount++) {
+        if (tempSellerList[sellerCount]
+                .sellerCategory![categoryCount]
+                .categoryID
+                .toString() ==
+            widget.categoryID.toString()) {
+          sellerCategory.add(tempSellerList[sellerCount]);
+        }
+      }
+
+      //   sellerCategory.add(0);
+      //   var parameter = {SELLER_ID: data[sellerCount]["seller_id"].toString()};
+      //   context.read<ProductListProvider>().setProductListParameter(parameter);
+      //   await Future.delayed(Duration.zero).then(
+      //       (value) => context.read<ProductListProvider>().getProductList().then((
+      //             value,
+      //           ) async {
+      //             // bool error = value['error'];
+      //             String? search = value['search'];
+      //             if (value['data'] != null) {
+      //               for (int i = 0; i < value["data"].length; i++) {
+      //                 if (value["data"][i]["category_id"].toString() ==
+      //                     widget.categoryID.toString()) {
+      //                   sellerCategory[sellerCount] = 1;
+      //                   break;
+      //                 }
+      //               }
+      //             }
+      //           }));
     }
     setState(() {
       isCategorySellerSearching = false;
@@ -380,7 +395,7 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
                           Expanded(
                             flex: 4,
                             child: ShowContentOfSellers(
-                              sellerList: value.sellerList,
+                              sellerList: sellerCategory,
                               subList: widget.subList,
                               sellerCategory: sellerCategory,
                             ),

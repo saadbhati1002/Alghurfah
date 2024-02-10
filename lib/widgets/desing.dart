@@ -136,7 +136,7 @@ class DesignConfiguration {
       placeholder: DesignConfiguration.setPngPath('placeholder'),
       width: widthvalue,
       height: heightvalue,
-      fit: boxFit,
+      fit: BoxFit.cover,
       fadeInDuration: const Duration(
         milliseconds: 150,
       ),

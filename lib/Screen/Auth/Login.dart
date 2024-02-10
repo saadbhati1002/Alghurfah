@@ -216,7 +216,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   void login() async {
     var request = {
-      'email':  '${mobileController.text.toString().trim()}Alghurfah@gmail.com',
+      'email': '${mobileController.text.toString().trim()}Alghurfah@gmail.com',
       'password': '123456789',
       'player_id': nb_utils.getStringAsync(service_app.PLAYERID),
     };
@@ -665,10 +665,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
           inputFormatters: [
             FilteringTextInputFormatter.deny(RegExp('[ ]')),
           ],
-          validator: (val) => StringValidation.validatePass(
-              val!,
-              getTranslated(context, 'PWD_REQUIRED'),
-              getTranslated(context, 'PASSWORD_VALIDATION')),
+          // validator: (val) => StringValidation.validatePass(
+          //     val!,
+          //     getTranslated(context, 'PWD_REQUIRED'),
+          //     getTranslated(context, 'PASSWORD_VALIDATION')),
           onSaved: (String? value) {
             context.read<AuthenticationProvider>().setPassword(value);
           },

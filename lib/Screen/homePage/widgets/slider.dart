@@ -87,7 +87,9 @@ class _CustomSliderState extends State<CustomSlider> {
                                         slider.sellerDetails!.storeName,
                                         slider.sellerDetails!.storeDescription,
                                         '0',
-                                        slider.sellerDetails!.sellerRating, []);
+                                        slider.sellerDetails!.sellerRating,
+                                        [],
+                                        []);
                                   } else if (slider.type == 'products') {
                                     Product? item = slider.list;
 

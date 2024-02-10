@@ -7,6 +7,7 @@ import 'package:eshop_multivendor/Model/favorite_seller_model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Screen/Auth/login.dart';
+import 'package:eshop_multivendor/Screen/SellerDetail/product/seller_product_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/repository/sellerDetailRepositry.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
@@ -44,6 +45,7 @@ class SellerProfile extends StatefulWidget {
       storeDesc,
       sellerStoreName,
       ratingType;
+  final List<SellerCategory>? sellerCategory;
   final List<Product>? subList;
   const SellerProfile(
       {Key? key,
@@ -55,6 +57,7 @@ class SellerProfile extends StatefulWidget {
       this.storeDesc,
       this.sellerStoreName,
       this.ratingType,
+      this.sellerCategory,
       this.subList})
       : super(key: key);
 
@@ -538,50 +541,75 @@ class _SellerProfileState extends State<SellerProfile>
                                 ],
                               ),
                             ),
-                            widget.subList == null
+                            widget.sellerCategory == null
                                 ? const SizedBox()
-                                : SizedBox(
-                                    child: GridView.builder(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, left: 20, right: 10),
-                                        itemCount: widget.subList!.length,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 3,
-                                          crossAxisCount: 3,
-                                          mainAxisSpacing: 10,
-                                          crossAxisSpacing: 10,
-                                        ),
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            alignment: Alignment.center,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(15),
-                                                    bottomLeft:
-                                                        Radius.circular(15))),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 5),
-                                              child: Text(
-                                                widget.subList![index].name!,
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.black),
+                                : GridView.builder(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, left: 20, right: 10),
+                                    itemCount: widget.sellerCategory!.length,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 3,
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 10,
+                                      crossAxisSpacing: 10,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          List<Product> subProduct = [];
+                                          for (int productList = 0;
+                                              productList <
+                                                  sellerProduct.length;
+                                              productList++) {
+                                            if (widget.sellerCategory![index]
+                                                    .categoryID
+                                                    .toString() ==
+                                                sellerProduct[productList]
+                                                    .categoryId
+                                                    .toString()) {
+                                              subProduct.add(
+                                                  sellerProduct[productList]);
+                                            }
+                                          }
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SellerProductScreen(
+                                                subList: subProduct,
+                                                categoryTitle: widget
+                                                    .sellerCategory![index]
+                                                    .categoryName,
                                               ),
                                             ),
                                           );
-                                        }),
+                                        },
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: colors.eCommerceColor,
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(20),
+                                                bottomLeft:
+                                                    Radius.circular(20)),
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            widget.sellerCategory![index]
+                                                    .categoryName ??
+                                                '',
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                             Stack(
                               children: <Widget>[
@@ -1596,6 +1624,7 @@ class _SellerProfileState extends State<SellerProfile>
         children: List.generate(
           context.read<ExploreProvider>().productList.length,
           (index) {
+            sellerProduct = context.read<ExploreProvider>().productList;
             return GridViewLayOut(
               index: index,
               update: setStateNow,
@@ -1605,4 +1634,6 @@ class _SellerProfileState extends State<SellerProfile>
       ),
     );
   }
+
+  List<Product> sellerProduct = [];
 }

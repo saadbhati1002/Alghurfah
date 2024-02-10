@@ -36,11 +36,12 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
   }
 
   checkData() {
-    for (int i = 0; i < widget.sellerList.length; i++) {
-      if (widget.sellerCategory![i] == 1) {
-        newList.add(widget.sellerList[i]);
-      }
-    }
+    newList = widget.sellerList;
+    // for (int i = 0; i < widget.sellerList.length; i++) {
+    //   if (widget.sellerCategory![i] == 1) {
+    //     newList.add(widget.sellerList[i]);
+    //   }
+    // }
     setState(() {});
   }
 
@@ -66,10 +67,12 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 8, right: 15, left: 15),
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(25),
@@ -80,31 +83,36 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                                 boxFit: BoxFit.fill,
                                 context: context,
                                 heightvalue: null,
-                                widthvalue: null,
-                                placeHolderSize: 50,
+                                widthvalue: MediaQuery.of(context).size.width,
+                                placeHolderSize:
+                                    MediaQuery.of(context).size.height,
                                 imageurlString: newList[index].seller_profile!,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Text(
-                        newList[index].store_name!,
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'ubuntu',
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 0),
+                        child: Text(
+                          newList[index].store_name!,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'ubuntu',
+                                  ),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Container(
                           height: 25,
                           width: MediaQuery.of(context).size.width,
@@ -130,7 +138,7 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                     ],
                   ),
                   onTap: () async {
-                    print(newList[index].sellerRatingType);
+                    print(newList[index].sellerCategory!.length);
                     Routes.navigateToSellerProfileScreen(
                         context,
                         newList[index].seller_id!,
@@ -141,7 +149,8 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                         newList[index].store_description!,
                         newList[index].totalProductsOfSeller,
                         newList[index].sellerRatingType,
-                        widget.subList);
+                        widget.subList,
+                        newList[index].sellerCategory);
                   },
                 );
               },

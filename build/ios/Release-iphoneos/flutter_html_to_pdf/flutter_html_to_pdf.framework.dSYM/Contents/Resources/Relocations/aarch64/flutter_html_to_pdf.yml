@@ -1,0 +1,58 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/saadbhati/Downloads/Alghurfah/build/ios/Release-iphoneos/flutter_html_to_pdf/flutter_html_to_pdf.framework/flutter_html_to_pdf'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x5DDEF, size: 0x8, addend: 0x0, symName: _flutter_html_to_pdfVersionString, symObjAddr: 0x0, symBinAddr: 0xD7B0, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x5DE24, size: 0x8, addend: 0x0, symName: _flutter_html_to_pdfVersionNumber, symObjAddr: 0x38, symBinAddr: 0xD7E8, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x5DE61, size: 0x8, addend: 0x0, symName: '+[FlutterHtmlToPdfPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x8000, symSize: 0xC }
+  - { offsetInCU: 0x41, offset: 0x5DE7B, size: 0x8, addend: 0x0, symName: __viewController, symObjAddr: 0x24A8, symBinAddr: 0x16238, symSize: 0x0 }
+  - { offsetInCU: 0xAC, offset: 0x5DEE6, size: 0x8, addend: 0x0, symName: '+[FlutterHtmlToPdfPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x8000, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x5DF7A, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10FileHelperCfD', symObjAddr: 0x0, symBinAddr: 0x800C, symSize: 0x10 }
+  - { offsetInCU: 0x4B, offset: 0x5DF9E, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10FileHelperCfD', symObjAddr: 0x0, symBinAddr: 0x800C, symSize: 0x10 }
+  - { offsetInCU: 0x7B, offset: 0x5DFCE, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC9wkWebViewSo05WKWebM0CSgvpfi', symObjAddr: 0x10, symBinAddr: 0x801C, symSize: 0x8 }
+  - { offsetInCU: 0x93, offset: 0x5DFE6, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC14urlObservation10Foundation010NSKeyValueL0CSgvpfi', symObjAddr: 0x18, symBinAddr: 0x8024, symSize: 0x8 }
+  - { offsetInCU: 0xAB, offset: 0x5DFFE, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10FileHelperCMa', symObjAddr: 0x20, symBinAddr: 0x802C, symSize: 0x20 }
+  - { offsetInCU: 0x2B, offset: 0x5E103, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10PDFCreatorC6create14printFormatter10Foundation3URLVSo07UIPrintH0C_tFZ', symObjAddr: 0x0, symBinAddr: 0x804C, symSize: 0x324 }
+  - { offsetInCU: 0x65, offset: 0x5E13D, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10PDFCreatorC6create14printFormatter10Foundation3URLVSo07UIPrintH0C_tFZ', symObjAddr: 0x0, symBinAddr: 0x804C, symSize: 0x324 }
+  - { offsetInCU: 0x1A6, offset: 0x5E27E, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10PDFCreatorC14createdFileURL33_25A4EF10246D0C06DBF430320EE0474FLL10Foundation0H0VvgZ', symObjAddr: 0x324, symBinAddr: 0x8370, symSize: 0x2F0 }
+  - { offsetInCU: 0x1E8, offset: 0x5E2C0, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10PDFCreatorCfD', symObjAddr: 0x614, symBinAddr: 0x8660, symSize: 0x10 }
+  - { offsetInCU: 0x218, offset: 0x5E2F0, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf10PDFCreatorCMa', symObjAddr: 0x624, symBinAddr: 0x8670, symSize: 0x20 }
+  - { offsetInCU: 0x22C, offset: 0x5E304, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledName, symObjAddr: 0x644, symBinAddr: 0x8690, symSize: 0x40 }
+  - { offsetInCU: 0x240, offset: 0x5E318, size: 0x8, addend: 0x0, symName: '_$s10Foundation3URLVSgWOh', symObjAddr: 0x684, symBinAddr: 0x86D0, symSize: 0x40 }
+  - { offsetInCU: 0x4B, offset: 0x5E53F, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC8register4withySo0fJ9Registrar_p_tFZ', symObjAddr: 0x0, symBinAddr: 0x8710, symSize: 0x4 }
+  - { offsetInCU: 0x5F, offset: 0x5E553, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCACycfC', symObjAddr: 0x4, symBinAddr: 0x8714, symSize: 0x20 }
+  - { offsetInCU: 0x82, offset: 0x5E576, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC8register4withySo0fJ9Registrar_p_tFZTo', symObjAddr: 0x24, symBinAddr: 0x8734, symSize: 0x30 }
+  - { offsetInCU: 0x126, offset: 0x5E61A, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctF', symObjAddr: 0x54, symBinAddr: 0x8764, symSize: 0x720 }
+  - { offsetInCU: 0x3CF, offset: 0x5E8C3, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFySo9WKWebViewC_10Foundation24NSKeyValueObservedChangeVySbGtYbcfU_', symObjAddr: 0x774, symBinAddr: 0x8E84, symSize: 0x2C8 }
+  - { offsetInCU: 0x454, offset: 0x5E948, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFySo9WKWebViewC_10Foundation24NSKeyValueObservedChangeVySbGtYbcfU_yyScMYccfU_', symObjAddr: 0xA3C, symBinAddr: 0x914C, symSize: 0x348 }
+  - { offsetInCU: 0x593, offset: 0x5EA87, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFySo9WKWebViewC_10Foundation24NSKeyValueObservedChangeVySbGtYbcfU_yyScMYccfU_ySaySo19WKWebsiteDataRecordCGcfU_', symObjAddr: 0xD84, symBinAddr: 0x9494, symSize: 0x2A0 }
+  - { offsetInCU: 0x753, offset: 0x5EC47, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFySo9WKWebViewC_10Foundation24NSKeyValueObservedChangeVySbGtYbcfU_yyScMYccfU_ySaySo19WKWebsiteDataRecordCGcfU_yAPXEfU_yycfU_', symObjAddr: 0x1024, symBinAddr: 0x9734, symSize: 0x4 }
+  - { offsetInCU: 0x77D, offset: 0x5EC71, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFTo', symObjAddr: 0x10C0, symBinAddr: 0x97D0, symSize: 0x84 }
+  - { offsetInCU: 0x7AF, offset: 0x5ECA3, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCACycfc', symObjAddr: 0x1224, symBinAddr: 0x9934, symSize: 0x48 }
+  - { offsetInCU: 0x7EA, offset: 0x5ECDE, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCACycfcTo', symObjAddr: 0x126C, symBinAddr: 0x997C, symSize: 0x54 }
+  - { offsetInCU: 0x825, offset: 0x5ED19, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCfD', symObjAddr: 0x12C0, symBinAddr: 0x99D0, symSize: 0x30 }
+  - { offsetInCU: 0x863, offset: 0x5ED57, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC8register4withySo0fJ9Registrar_p_tFZTf4nd_n', symObjAddr: 0x167C, symBinAddr: 0x9D8C, symSize: 0xD4 }
+  - { offsetInCU: 0x8F6, offset: 0x5EDEA, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctF015$syXlSgIeyBy_ypQ7Iegn_TRyXlSgIeyBy_Tf1ncn_nTf4nng_n', symObjAddr: 0x18B8, symBinAddr: 0x9F88, symSize: 0x878 }
+  - { offsetInCU: 0xCBB, offset: 0x5F1AF, size: 0x8, addend: 0x0, symName: '_$sIeg_IeyB_TR', symObjAddr: 0x1028, symBinAddr: 0x9738, symSize: 0x2C }
+  - { offsetInCU: 0xCD3, offset: 0x5F1C7, size: 0x8, addend: 0x0, symName: '_$sSaySo19WKWebsiteDataRecordCGIegg_So7NSArrayCIeyBy_TR', symObjAddr: 0x1054, symBinAddr: 0x9764, symSize: 0x6C }
+  - { offsetInCU: 0xCEB, offset: 0x5F1DF, size: 0x8, addend: 0x0, symName: '_$syXlSgIeyBy_ypSgIegn_TR', symObjAddr: 0x1144, symBinAddr: 0x9854, symSize: 0xE0 }
+  - { offsetInCU: 0xCFF, offset: 0x5F1F3, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCfETo', symObjAddr: 0x12F0, symBinAddr: 0x9A00, symSize: 0x38 }
+  - { offsetInCU: 0xD44, offset: 0x5F238, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4findys10_HashTableV6BucketV6bucket_Sb5foundtxSHRzlFSS_Tg5', symObjAddr: 0x1328, symBinAddr: 0x9A38, symSize: 0x64 }
+  - { offsetInCU: 0xD91, offset: 0x5F285, size: 0x8, addend: 0x0, symName: '_$ss22__RawDictionaryStorageC4find_9hashValues10_HashTableV6BucketV6bucket_Sb5foundtx_SitSHRzlFSS_Tg5', symObjAddr: 0x138C, symBinAddr: 0x9A9C, symSize: 0xE0 }
+  - { offsetInCU: 0xDE6, offset: 0x5F2DA, size: 0x8, addend: 0x0, symName: '_$sypSgWOh', symObjAddr: 0x1750, symBinAddr: 0x9E60, symSize: 0x40 }
+  - { offsetInCU: 0xDFA, offset: 0x5F2EE, size: 0x8, addend: 0x0, symName: '_$sypSgWOb', symObjAddr: 0x17D0, symBinAddr: 0x9EA0, symSize: 0x48 }
+  - { offsetInCU: 0xE0E, offset: 0x5F302, size: 0x8, addend: 0x0, symName: _keypath_get_selector_isLoading, symObjAddr: 0x1818, symBinAddr: 0x9EE8, symSize: 0xC }
+  - { offsetInCU: 0xE22, offset: 0x5F316, size: 0x8, addend: 0x0, symName: '_$sypWOc', symObjAddr: 0x185C, symBinAddr: 0x9F2C, symSize: 0x3C }
+  - { offsetInCU: 0xE36, offset: 0x5F32A, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginCMa', symObjAddr: 0x1898, symBinAddr: 0x9F68, symSize: 0x20 }
+  - { offsetInCU: 0xE55, offset: 0x5F349, size: 0x8, addend: 0x0, symName: '_$syXlSgIeyBy_ypSgIegn_TRTA', symObjAddr: 0x2154, symBinAddr: 0xA824, symSize: 0x8 }
+  - { offsetInCU: 0xE69, offset: 0x5F35D, size: 0x8, addend: 0x0, symName: '_$sypSgWOc', symObjAddr: 0x215C, symBinAddr: 0xA82C, symSize: 0x48 }
+  - { offsetInCU: 0xE7D, offset: 0x5F371, size: 0x8, addend: 0x0, symName: ___swift_project_boxed_opaque_existential_0, symObjAddr: 0x21A4, symBinAddr: 0xA874, symSize: 0x24 }
+  - { offsetInCU: 0xE91, offset: 0x5F385, size: 0x8, addend: 0x0, symName: ___swift_destroy_boxed_opaque_existential_0, symObjAddr: 0x21C8, symBinAddr: 0xA898, symSize: 0x20 }
+  - { offsetInCU: 0xEA5, offset: 0x5F399, size: 0x8, addend: 0x0, symName: '_$s19flutter_html_to_pdf27SwiftFlutterHtmlToPdfPluginC6handle_6resultySo0F10MethodCallC_yypSgctFySo9WKWebViewC_10Foundation24NSKeyValueObservedChangeVySbGtYbcfU_yyScMYccfU_TA', symObjAddr: 0x2234, symBinAddr: 0xA904, symSize: 0xC }
+  - { offsetInCU: 0xEB9, offset: 0x5F3AD, size: 0x8, addend: 0x0, symName: _block_copy_helper, symObjAddr: 0x2240, symBinAddr: 0xA910, symSize: 0x10 }
+  - { offsetInCU: 0xECD, offset: 0x5F3C1, size: 0x8, addend: 0x0, symName: _block_destroy_helper, symObjAddr: 0x2250, symBinAddr: 0xA920, symSize: 0x8 }
+  - { offsetInCU: 0xEE1, offset: 0x5F3D5, size: 0x8, addend: 0x0, symName: '_$sSay8Dispatch0A13WorkItemFlagsVGMa', symObjAddr: 0x2298, symBinAddr: 0xA968, symSize: 0x54 }
+  - { offsetInCU: 0xEF5, offset: 0x5F3E9, size: 0x8, addend: 0x0, symName: '_$sS2SSysWl', symObjAddr: 0x22EC, symBinAddr: 0xA9BC, symSize: 0x44 }
+  - { offsetInCU: 0xF14, offset: 0x5F408, size: 0x8, addend: 0x0, symName: '_$ss29getContiguousArrayStorageType3fors01_bcD0CyxGmxm_tlFSo19WKWebsiteDataRecordC_Tg5Tf4d_n', symObjAddr: 0x2368, symBinAddr: 0xAA38, symSize: 0x64 }
+  - { offsetInCU: 0xFFF, offset: 0x5F4F3, size: 0x8, addend: 0x0, symName: '_$ss12_ArrayBufferV19_getElementSlowPathyyXlSiFSo19WKWebsiteDataRecordC_Tg5', symObjAddr: 0x146C, symBinAddr: 0x9B7C, symSize: 0x210 }
+...
