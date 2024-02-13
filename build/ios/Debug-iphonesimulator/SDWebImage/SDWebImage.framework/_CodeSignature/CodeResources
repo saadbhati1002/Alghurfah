@@ -58,7 +58,7 @@
 		</data>
 		<key>Headers/SDImageCache.h</key>
 		<data>
-		OgeD4IhJt0wcHrYHwl+rAOCZym0=
+		B5j7SZgEs+9aqolcz79aMmcsagU=
 		</data>
 		<key>Headers/SDImageCacheConfig.h</key>
 		<data>
@@ -246,7 +246,7 @@
 		</data>
 		<key>Headers/UIView+WebCacheOperation.h</key>
 		<data>
-		z/SzMOPyGv5l3tpRQbSZ0TPgqgY=
+		gWoTb4BsM6UfrNyXSanUM+AQLbU=
 		</data>
 		<key>Headers/UIView+WebCacheState.h</key>
 		<data>
@@ -254,7 +254,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Pha68TYCaZ6wf3m3E8vvYtGJfh8=
+		+c6S59EmmsFjTjqjEpJkxRNCros=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -302,7 +302,7 @@
 		</data>
 		<key>PrivateHeaders/SDInternalMacros.h</key>
 		<data>
-		kq5JJh47Ybyaaui758s55l7ryoc=
+		Lns/aWnsokOaPUSXXvUqGIetRr4=
 		</data>
 		<key>PrivateHeaders/SDWeakProxy.h</key>
 		<data>
@@ -319,6 +319,14 @@
 		<key>PrivateHeaders/UIColor+SDHexString.h</key>
 		<data>
 		bvb2vO3YtXbNaIvieoIZQFZg/Vs=
+		</data>
+		<key>SDWebImage.bundle/Info.plist</key>
+		<data>
+		ems4kxRY2CWL8DzCrG19Fh5Qovc=
+		</data>
+		<key>SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		PFHYbs0V3eUFDWQyYQcwEetuqEk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -418,7 +426,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ghSYHkdEDIrMbDfW8WO2RkdUBFDyqPI7kiO1kLgn4kc=
+			+2pdUFHHLLNQ/3oY3rJeZ1xYz422AHCX1k75DjoGLFQ=
 			</data>
 		</dict>
 		<key>Headers/SDImageCacheConfig.h</key>
@@ -747,7 +755,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oZlA15jDJYyNdXlOhL8jp8z2EB/aAodQOFoegLTYOYc=
+			meaO3k2BE7QmtJ0v6cEEmGv76UODAt0bbR3Irp23TxI=
 			</data>
 		</dict>
 		<key>Headers/UIView+WebCacheState.h</key>
@@ -838,7 +846,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UXoneUefWEfso5klg+8CZ8jKyJ6pUBnTzUNsyL+keF0=
+			CcLqNsDNmKb4N09owp1EFqkqzeMHeb8Q3v92YNX4hDA=
 			</data>
 		</dict>
 		<key>PrivateHeaders/SDWeakProxy.h</key>
@@ -867,6 +875,20 @@
 			<key>hash2</key>
 			<data>
 			+mdUXWt+Qmy2a2ZiqxrK4pGY+Abw0T8/u8uTluVAKpA=
+			</data>
+		</dict>
+		<key>SDWebImage.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vG/g8WYkSp2Kye+OzhoPMNeBx5SZQj3bcyP/rCaoedQ=
+			</data>
+		</dict>
+		<key>SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			A7LHCDOjMaKx79Ef8WjtAqjq39Xn0fvzDuzHUJpK6kc=
 			</data>
 		</dict>
 	</dict>

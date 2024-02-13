@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/GDTCOREvent.h</key>
 		<data>
-		74bI+hfvOqrVXOnOsXT2ZgNgoU8=
+		1kP78/AO1klhimTpfyTJlxnpkJ4=
 		</data>
 		<key>Headers/GDTCOREventDataObject.h</key>
 		<data>
@@ -28,25 +28,29 @@
 		<data>
 		tsQzP2WITwX2qWxqDS0Up4o9dsc=
 		</data>
+		<key>Headers/GDTCORProductData.h</key>
+		<data>
+		OUZAGmE499ozBGNS0n54PoujgA0=
+		</data>
 		<key>Headers/GDTCORTargets.h</key>
 		<data>
 		yWmpjb7JMf9899liL6TGu9aMrSU=
 		</data>
 		<key>Headers/GDTCORTransport.h</key>
 		<data>
-		cEY4cbmarwn5AOSM2b67qlrb41M=
+		3iIgaT+pJUNpl/dAe1KnmmcltkQ=
 		</data>
 		<key>Headers/GoogleDataTransport-umbrella.h</key>
 		<data>
-		movmiBOMTbW1TFBjwXYlw3PY/Z8=
+		NltCDrI+KBL8nKhX4tC+1mDKOgE=
 		</data>
 		<key>Headers/GoogleDataTransport.h</key>
 		<data>
-		wgGDbrVHTQaYcmGEc64GmasHDVA=
+		K4CNz6MJd4QLhemtWfECpdYIejg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		jnktjNHnz/ovO9n6SSw4ecuL6AQ=
+		3Ne8lDN2pXxjgzQmEZbsccfp/60=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -80,7 +84,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NiwpMxc5Vg7sggK6yDTzC5VafAKKQKOSlG6VJPCdfgA=
+			POtci9aa1asCWcF+T5ybo5/eZK7HezhShytNogHH1tE=
 			</data>
 		</dict>
 		<key>Headers/GDTCOREventDataObject.h</key>
@@ -97,6 +101,13 @@
 			FMek5nZ3soQdr7qoap5WuzUgzf5AQGrckQ2x3X3885g=
 			</data>
 		</dict>
+		<key>Headers/GDTCORProductData.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			juQ2uLJj6n07fMr6uBe4+oo3S8PCqEXe2gQ/g5U2jms=
+			</data>
+		</dict>
 		<key>Headers/GDTCORTargets.h</key>
 		<dict>
 			<key>hash2</key>
@@ -108,21 +119,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ouF//Qfe6Tr6y3eUp6hk+xlLk7fnepu7EvgaKBYe/sY=
+			CuJit8z9EQTpBOJBEZyQ3t4krpbeCDhwNvSYj5UQet4=
 			</data>
 		</dict>
 		<key>Headers/GoogleDataTransport-umbrella.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MQX8er9MTyzm2gDTSHdx3qfRTOHksp+mTsDkFen8woU=
+			mEkFeoMw9nr+MEtSgoIwSVsN4FDE/snLfBiPspGOxZQ=
 			</data>
 		</dict>
 		<key>Headers/GoogleDataTransport.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lgD/3COoklLvYyFcICqbzZRMzY9tI0ZzqVKcVvqMuOo=
+			NTfeW0hD2AxVJ9NTK3p6mEhSkJKhzdklCHkDZiNYoco=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

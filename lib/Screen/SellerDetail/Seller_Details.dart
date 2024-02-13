@@ -45,7 +45,7 @@ class SellerProfile extends StatefulWidget {
       storeDesc,
       sellerStoreName,
       ratingType;
-  final List<SellerCategory>? sellerCategory;
+  final List<SellerSubCategory>? sellerCategory;
   final List<Product>? subList;
   const SellerProfile(
       {Key? key,

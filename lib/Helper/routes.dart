@@ -238,7 +238,7 @@ class Routes {
     String? totalProductsOfSeller,
     String? ratingType,
     final List<Product>? subList,
-    final List<SellerCategory>? sellerCategory,
+    final List<SellerSubCategory>? sellerCategory,
   ) {
     Navigator.push(
       context,

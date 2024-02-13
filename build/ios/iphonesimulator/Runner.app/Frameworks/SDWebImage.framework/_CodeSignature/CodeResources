@@ -6,11 +6,34 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		Pha68TYCaZ6wf3m3E8vvYtGJfh8=
+		+c6S59EmmsFjTjqjEpJkxRNCros=
+		</data>
+		<key>SDWebImage.bundle/Info.plist</key>
+		<data>
+		ems4kxRY2CWL8DzCrG19Fh5Qovc=
+		</data>
+		<key>SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		PFHYbs0V3eUFDWQyYQcwEetuqEk=
 		</data>
 	</dict>
 	<key>files2</key>
-	<dict/>
+	<dict>
+		<key>SDWebImage.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			vG/g8WYkSp2Kye+OzhoPMNeBx5SZQj3bcyP/rCaoedQ=
+			</data>
+		</dict>
+		<key>SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			A7LHCDOjMaKx79Ef8WjtAqjq39Xn0fvzDuzHUJpK6kc=
+			</data>
+		</dict>
+	</dict>
 	<key>rules</key>
 	<dict>
 		<key>^.*</key>

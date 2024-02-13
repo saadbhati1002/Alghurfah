@@ -138,7 +138,33 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                     ],
                   ),
                   onTap: () async {
-                    print(newList[index].sellerCategory!.length);
+                    List<SellerSubCategory> subCatList = [];
+                    if (newList[index].sellerCategory != null &&
+                        newList[index].sellerCategory!.isNotEmpty) {
+                      for (int i = 0;
+                          i < newList[index].sellerCategory!.length;
+                          i++) {
+                        if (newList[index].sellerCategory![i].subCategory !=
+                                null &&
+                            newList[index]
+                                .sellerCategory![i]
+                                .subCategory!
+                                .isNotEmpty) {
+                          for (int j = 0;
+                              j <
+                                  newList[index]
+                                      .sellerCategory![i]
+                                      .subCategory!
+                                      .length;
+                              j++) {
+                            subCatList.add(newList[index]
+                                .sellerCategory![i]
+                                .subCategory![j]);
+                          }
+                        }
+                      }
+                    }
+                    print(subCatList.length);
                     Routes.navigateToSellerProfileScreen(
                         context,
                         newList[index].seller_id!,
@@ -150,7 +176,7 @@ class _ShowContentOfSellersState extends State<ShowContentOfSellers> {
                         newList[index].totalProductsOfSeller,
                         newList[index].sellerRatingType,
                         widget.subList,
-                        newList[index].sellerCategory);
+                        subCatList);
                   },
                 );
               },

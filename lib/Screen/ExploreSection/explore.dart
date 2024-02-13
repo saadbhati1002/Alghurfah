@@ -231,20 +231,21 @@ class _SearchState extends State<Explore> with TickerProviderStateMixin {
     Map<String, dynamic> result =
         await SellerDetailRepository.fetchSeller(parameter: parameterSeller);
     var data = result['data'];
-    print(data);
-    print(widget.categoryID);
+
     tempSellerList =
         (data as List).map((data) => Product.fromSeller(data)).toList();
     for (int sellerCount = 0; sellerCount < data.length; sellerCount++) {
-      for (int categoryCount = 0;
-          categoryCount < tempSellerList[sellerCount].sellerCategory!.length;
-          categoryCount++) {
-        if (tempSellerList[sellerCount]
-                .sellerCategory![categoryCount]
-                .categoryID
-                .toString() ==
-            widget.categoryID.toString()) {
-          sellerCategory.add(tempSellerList[sellerCount]);
+      if (tempSellerList[sellerCount].sellerCategory != null) {
+        for (int categoryCount = 0;
+            categoryCount < tempSellerList[sellerCount].sellerCategory!.length;
+            categoryCount++) {
+          if (tempSellerList[sellerCount]
+                  .sellerCategory![categoryCount]
+                  .categoryID
+                  .toString() ==
+              widget.categoryID.toString()) {
+            sellerCategory.add(tempSellerList[sellerCount]);
+          }
         }
       }
 

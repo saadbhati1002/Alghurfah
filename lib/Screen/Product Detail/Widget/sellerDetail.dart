@@ -18,6 +18,20 @@ class SellerDetail extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15.0),
       child: InkWell(
         onTap: () async {
+          List<SellerSubCategory> subCatList = [];
+          if (model!.sellerCategory != null &&
+              model!.sellerCategory!.isNotEmpty) {
+            for (int i = 0; i < model!.sellerCategory!.length; i++) {
+              if (model!.sellerCategory![i].subCategory != null &&
+                  model!.sellerCategory![i].subCategory!.isNotEmpty) {
+                for (int j = 0;
+                    j < model!.sellerCategory![i].subCategory!.length;
+                    j++) {
+                  subCatList.add(model!.sellerCategory![i].subCategory![j]);
+                }
+              }
+            }
+          }
           context
               .read<SellerDetailProvider>()
               .changeStatus(SellerDetailProviderStatus.isSuccsess);
@@ -32,7 +46,7 @@ class SellerDetail extends StatelessWidget {
             model!.totalProductsOfSeller,
             model!.sellerRatingType!,
             [],
-            model!.sellerCategory,
+            subCatList,
           );
         },
         child: Padding(
