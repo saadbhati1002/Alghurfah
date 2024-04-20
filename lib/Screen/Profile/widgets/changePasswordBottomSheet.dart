@@ -11,7 +11,7 @@ import '../../../Helper/routes.dart';
 import '../../Language/languageSettings.dart';
 import '../../../widgets/snackbar.dart';
 import '../../../widgets/validation.dart';
-import '../../Auth/SendOtp.dart';
+import '../../Auth/send_otp.dart';
 
 class ChangePasswordBottomSheet extends StatefulWidget {
   const ChangePasswordBottomSheet({Key? key}) : super(key: key);

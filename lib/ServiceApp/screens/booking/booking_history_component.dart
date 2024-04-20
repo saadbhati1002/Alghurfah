@@ -37,8 +37,8 @@ class BookingHistoryComponentState extends State<BookingHistoryComponent> {
   Widget build(BuildContext context) {
     return Container(
       decoration: boxDecorationWithRoundedCorners(
-          borderRadius: radius(20), backgroundColor: context.cardColor),
-      padding: EdgeInsets.all(16),
+          borderRadius: radius(20), backgroundColor: Colors.white),
+      padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
         controller: widget.scrollController,
         child: Column(
@@ -71,10 +71,10 @@ class BookingHistoryComponentState extends State<BookingHistoryComponent> {
             16.height,
             Divider(color: context.dividerColor),
             16.height,
-            widget.data!.length != 0
+            widget.data!.isNotEmpty
                 ? AnimatedListView(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: widget.data!.length,
                     listAnimationType: ListAnimationType.FadeIn,
                     fadeInConfiguration:

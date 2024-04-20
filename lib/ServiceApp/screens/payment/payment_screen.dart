@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -11,6 +12,9 @@ import 'package:eshop_multivendor/ServiceApp/services/stripe_services.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -24,7 +28,9 @@ class PaymentScreen extends StatefulWidget {
   final BookingDetailResponse bookings;
   final bool isForAdvancePayment;
 
-  PaymentScreen({required this.bookings, this.isForAdvancePayment = false});
+  const PaymentScreen(
+      {Key? key, required this.bookings, this.isForAdvancePayment = false})
+      : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -301,13 +307,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }*/
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(language.payment,
-          color: context.primaryColor,
-          textColor: Colors.white,
-          backWidget: BackWidget()),
+      bottomNavigationBar: serviceAppBottomNavigation(context),
+      endDrawer: const MyDrawer(),
+      key: _scaffoldKey,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: language.payment, context: context, setState: setStateNow),
       body: Stack(
         children: [
           AnimatedScrollView(
@@ -371,7 +384,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       imageWidget: EmptyStateWidget(),
                     ),
                   Observer(builder: (context) {
-                    return WalletBalanceComponent()
+                    return const WalletBalanceComponent()
                         .paddingSymmetric(vertical: 8, horizontal: 16)
                         .visible(appStore.isEnableUserWallet);
                   }),
@@ -408,7 +421,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               context,
                               dialogType: DialogType.CONFIRMATION,
                               title:
-                                  "${language.lblPayWith} ${currentPaymentMethod!.title.validate()}?",
+                                  '${language.lblPayWith} ${currentPaymentMethod!.title.validate()}?',
                               primaryColor: primaryColor,
                               positiveText: language.lblYes,
                               negativeText: language.lblCancel,
@@ -422,8 +435,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         }
                       },
                       text:
-                          "${language.payWith} ${currentPaymentMethod!.title.validate()}",
-                      color: context.primaryColor,
+                          '${language.payWith} ${currentPaymentMethod!.title.validate()}',
+                      color: colors.primary,
+                      textColor: Colors.white,
                       width: context.width(),
                     ).paddingAll(16),
                 ],

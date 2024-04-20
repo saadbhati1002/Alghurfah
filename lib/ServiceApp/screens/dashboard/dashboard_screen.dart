@@ -1,11 +1,17 @@
 import 'package:eshop_multivendor/ServiceApp/screens/category/category_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/filter/filter_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/notification/notification_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/favourite_service_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/service/search_list_screen.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/material.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 
 class DashboardScreen extends StatefulWidget {
   final bool? redirectToBooking;
-
-  DashboardScreen({this.redirectToBooking});
+  final int? pageIndex;
+  const DashboardScreen({Key? key, this.redirectToBooking, this.pageIndex})
+      : super(key: key);
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -23,6 +29,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   void initState() {
+    if (widget.pageIndex != null) {
+      setState(() {
+        _currentIndex = widget.pageIndex!;
+        locationIndex = widget.pageIndex!;
+      });
+    }
     super.initState();
   }
 
@@ -47,9 +59,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
               selectedFontSize: 0,
               iconSize: 25,
               onTap: (index) {
-                _currentIndex = index;
-                locationIndex = 0;
-                setState(() {});
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreenNew(),
+                    ),
+                  );
+                } else {
+                  _currentIndex = index;
+                  locationIndex = 0;
+                  setState(() {});
+                }
               },
               items: const [
                 BottomNavigationBarItem(
@@ -63,13 +84,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   icon: ImageIcon(AssetImage('assets/images/png/2.png')),
                 ),
                 BottomNavigationBarItem(
-                    label: '',
-                    tooltip: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/3.png'))),
+                    label: '', tooltip: '', icon: Icon(Icons.notifications)),
                 BottomNavigationBarItem(
-                    label: '',
-                    icon: ImageIcon(AssetImage('assets/images/png/4.png')),
-                    tooltip: '')
+                  label: '',
+                  tooltip: '',
+                  icon: Icon(Icons.favorite_outline_outlined),
+                ),
               ],
             ),
           ),
@@ -81,8 +101,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<Widget> screens() => [
         CategoryScreen(),
-        CategoryScreen(),
-        CategoryScreen(),
-        CategoryScreen(),
+        SearchListScreen(),
+        NotificationScreen(),
+        const FavouriteServiceScreen(),
       ];
 }

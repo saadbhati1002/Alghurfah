@@ -123,7 +123,7 @@ class OrderModel {
       otp: parsedJson[OTP],
       delDate: parsedJson[DEL_DATE] != ''
           ? DateFormat('dd-MM-yyyy')
-          .format(DateTime.parse(parsedJson[DEL_DATE]))
+              .format(DateTime.parse(parsedJson[DEL_DATE]))
           : '',
       delTime: parsedJson[DEL_TIME] != '' ? parsedJson[DEL_TIME] : '',
       deliveryBoyId: parsedJson[DELIVERY_BOY_ID],
@@ -172,42 +172,41 @@ class OrderItem {
   List<String>? listDate = [];
   bool isExpanded;
 
-  OrderItem({
-    this.qty,
-    this.id,
-    this.name,
-    this.price,
-    this.subTotal,
-    this.status,
-    this.image,
-    this.varientId,
-    this.listDate,
-    this.listStatus,
-    this.isCancle,
-    this.productType,
-    this.isReturn,
-    this.isAlrReturned,
-    this.isAlrCancelled,
-    this.rtnReqSubmitted,
-    this.attr_name,
-    this.productId,
-    this.item_otp,
-    this.varient_values,
-    this.store_description,
-    this.seller_rating,
-    this.seller_profile,
-    this.seller_name,
-    this.downloadAllowed,
-    this.downloadLink,
-    this.seller_id,
-    this.store_name,
-    this.courier_agency,
-    this.tracking_id,
-    this.tracking_url,
-    this.userReviewComment,
-    this.userReviewRating,
-    this.isExpanded = true
-  });
+  OrderItem(
+      {this.qty,
+      this.id,
+      this.name,
+      this.price,
+      this.subTotal,
+      this.status,
+      this.image,
+      this.varientId,
+      this.listDate,
+      this.listStatus,
+      this.isCancle,
+      this.productType,
+      this.isReturn,
+      this.isAlrReturned,
+      this.isAlrCancelled,
+      this.rtnReqSubmitted,
+      this.attr_name,
+      this.productId,
+      this.item_otp,
+      this.varient_values,
+      this.store_description,
+      this.seller_rating,
+      this.seller_profile,
+      this.seller_name,
+      this.downloadAllowed,
+      this.downloadLink,
+      this.seller_id,
+      this.store_name,
+      this.courier_agency,
+      this.tracking_id,
+      this.tracking_url,
+      this.userReviewComment,
+      this.userReviewRating,
+      this.isExpanded = true});
 
   factory OrderItem.fromJson(Map<String, dynamic> json) {
     List<String>? lStatus = [];

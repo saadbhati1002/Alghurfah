@@ -200,7 +200,7 @@ class ProfileFragmentState extends State<ProfileFragment> {
                           trailing: trailing,
                           onTap: () {
                             doIfLoggedIn(context, () {
-                              const FavouriteProviderScreen().launch(context);
+                              const FavoriteProviderScreen().launch(context);
                             });
                           },
                         ),

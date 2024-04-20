@@ -1,33 +1,32 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/provider_info_screen.dart';
-import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
+import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../model/user_data_model.dart';
 import '../network/rest_apis.dart';
-import '../utils/colors.dart';
-import '../utils/images.dart';
 import 'cached_image_widget.dart';
 
-class FavouriteProviderComponent extends StatefulWidget {
+class FavoriteProviderComponent extends StatefulWidget {
   final double width;
   final UserData? data;
   final Function? onUpdate;
-  final bool isFavouriteProvider;
+  final bool isFavoriteProvider;
 
-  FavouriteProviderComponent(
+  const FavoriteProviderComponent(
       {required this.width,
       this.data,
       this.onUpdate,
-      this.isFavouriteProvider = true});
+      this.isFavoriteProvider = true});
 
   @override
-  State<FavouriteProviderComponent> createState() =>
-      _FavouriteProviderComponentState();
+  State<FavoriteProviderComponent> createState() =>
+      _FavoriteProviderComponentState();
 }
 
-class _FavouriteProviderComponentState
-    extends State<FavouriteProviderComponent> {
+class _FavoriteProviderComponentState extends State<FavoriteProviderComponent> {
   //Favourite provider
   Future<bool> addProviderToWishList({required int providerId}) async {
     Map req = {"id": "", "provider_id": providerId, "user_id": appStore.userId};
@@ -60,9 +59,7 @@ class _FavouriteProviderComponentState
     init();
   }
 
-  void init() async {
-    //
-  }
+  void init() async {}
 
   @override
   void setState(fn) {
@@ -71,134 +68,85 @@ class _FavouriteProviderComponentState
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: widget.width,
-          decoration: boxDecorationWithRoundedCorners(
-              borderRadius: radius(),
-              backgroundColor: appStore.isDarkMode
-                  ? context.scaffoldBackgroundColor
-                  : white),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: radiusOnly(
-                      topLeft: defaultRadius, topRight: defaultRadius),
-                  color: primaryColor.withOpacity(0.2),
+    return GestureDetector(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * .35,
+        width: 100,
+        child: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(25),
+                      bottomLeft: Radius.circular(25)),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: context.cardColor,
+                    ),
+                    child: CachedImageWidget(
+                      radius: 0,
+                      url: widget.data!.profileImage.validate(),
+                      fit: BoxFit.fitWidth,
+                      width: SUBCATEGORY_ICON_SIZE,
+                      height: SUBCATEGORY_ICON_SIZE,
+                      circle: true,
+                    ),
+                  ),
                 ),
-                child: CachedImageWidget(
-                  url: widget.data!.profileImage.validate(),
-                  width: context.width(),
-                  height: 110,
-                  fit: BoxFit.cover,
-                  circle: false,
-                ).cornerRadiusWithClipRRectOnly(
-                    topRight: defaultRadius.toInt(),
-                    topLeft: defaultRadius.toInt()),
               ),
-              16.height,
-              Marquee(
-                directionMarguee: DirectionMarguee.oneDirection,
-                child: Text(widget.data!.displayName.validate(),
-                    style: boldTextStyle(size: 16), maxLines: 1),
-              ).center(),
-              16.height,
-
-              /// Hide email and calling function
-              /*8.height,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (widget.data!.contactNumber.validate().isNotEmpty)
-                        TextIcon(
-                          onTap: () {
-                            launchCall(widget.data!.contactNumber.validate());
-                          },
-                          prefix: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: boxDecorationWithRoundedCorners(
-                              boxShape: BoxShape.circle,
-                              backgroundColor: primaryColor.withOpacity(0.1),
-                            ),
-                            child: Image.asset(ic_calling, color: primaryColor, height: 14, width: 14),
-                          ),
-                        ),
-                      if (widget.data!.email.validate().isNotEmpty)
-                        TextIcon(
-                          onTap: () {
-                            launchMail(widget.data!.email.validate());
-                          },
-                          prefix: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: boxDecorationWithRoundedCorners(
-                              boxShape: BoxShape.circle,
-                              backgroundColor: primaryColor.withOpacity(0.1),
-                            ),
-                            child: ic_message.iconImage(size: 14, color: primaryColor),
-                          ),
-                        ),
-                    ],
-                  ),*/
-            ],
-          ),
+            ),
+            Text(
+              widget.data!.displayName ?? '',
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'ubuntu',
+                  ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Container(
+                height: 28,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  color: colors.serviceColor,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20)),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  getTranslated(context, 'View')!,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         ),
-        if (widget.isFavouriteProvider)
-          Positioned(
-            top: 8,
-            right: 0,
-            child: Container(
-              padding: EdgeInsets.all(8),
-              margin: EdgeInsets.only(right: 8),
-              decoration: boxDecorationWithShadow(
-                  boxShape: BoxShape.circle,
-                  backgroundColor: context.cardColor),
-              child: widget.data!.isFavourite == 1
-                  ? ic_fill_heart.iconImage(color: favouriteColor, size: 18)
-                  : ic_heart.iconImage(color: unFavouriteColor, size: 22),
-            ).onTap(() async {
-              if (widget.data!.isFavourite == 1) {
-                widget.data!.isFavourite = 0;
-                setState(() {});
-
-                await removeProviderToWishList(
-                        providerId: widget.data!.providerId.validate())
-                    .then((value) {
-                  if (!value) {
-                    widget.data!.isFavourite = 1;
-                    setState(() {});
-                  }
-                });
-
-                widget.onUpdate!.call();
-              } else {
-                widget.data!.isFavourite = 1;
-                setState(() {});
-
-                await addProviderToWishList(
-                        providerId: widget.data!.providerId.validate())
-                    .then((value) {
-                  if (!value) {
-                    widget.data!.isFavourite = 0;
-                    setState(() {});
-                  }
-                });
-
-                widget.onUpdate!.call();
-              }
-            }),
-          ),
-      ],
-    ).onTap(() {
-      ProviderInfoScreen(
-        providerId: widget.data!.providerId.validate(),
-        onUpdate: () {
-          widget.onUpdate!.call();
-        },
-      ).launch(context);
-    });
+      ),
+      onTap: () async {
+        await ProviderInfoScreen(
+          providerId: widget.data!.providerId,
+          sellerName: widget.data!.displayName,
+        ).launch(context);
+        setStatusBarColor(Colors.transparent);
+      },
+    );
   }
 }

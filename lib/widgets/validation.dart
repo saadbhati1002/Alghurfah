@@ -41,8 +41,7 @@ class StringValidation {
   static String? validatePass(String value, String? msg1, String? msg2) {
     if (value.isEmpty) {
       return msg1;
-    } else if (!RegExp(
-            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+    } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
         .hasMatch(value)) {
       return msg2;
     } else {

@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -10,20 +11,22 @@ class AppCommonDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: colors.backgroundColor,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(16, 12, 8, 12),
+            padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
             width: context.width(),
             decoration: boxDecorationDefault(
-              color: context.primaryColor,
-              borderRadius: radiusOnly(topRight: defaultRadius, topLeft: defaultRadius),
+              color: colors.backgroundColor,
+              borderRadius:
+                  radiusOnly(topRight: defaultRadius, topLeft: defaultRadius),
             ),
             child: Row(
               children: [
-                Text(title, style: boldTextStyle(color: Colors.white)).expand(),
-                CloseButton(color: Colors.white),
+                Text(title, style: boldTextStyle(color: Colors.black)).expand(),
+                const CloseButton(color: Colors.black),
               ],
             ),
           ),

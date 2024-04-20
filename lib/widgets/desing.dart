@@ -25,7 +25,7 @@ class DesignConfiguration {
     );
   }
 
-  static erroWidget(double size) {
+  static errorWidget(double size) {
     return Image.asset(
       DesignConfiguration.setPngPath('placeholder'),
       height: size,
@@ -85,9 +85,7 @@ class DesignConfiguration {
     return Center(
       child: Text(
         getTranslated(context, 'noItem')!,
-        style: TextStyle(
-            fontFamily: 'ubuntu',
-            color: Theme.of(context).colorScheme.fontColor),
+        style: const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
       ),
     );
   }
@@ -136,49 +134,21 @@ class DesignConfiguration {
     return FadeInImage.assetNetwork(
       image: imageurlString,
       placeholder: DesignConfiguration.setPngPath('placeholder'),
-
       width: widthvalue,
       height: heightvalue,
-      fit: boxFit,
+      fit: BoxFit.cover,
       fadeInDuration: const Duration(
         milliseconds: 150,
       ),
       fadeOutDuration: const Duration(
         milliseconds: 150,
       ),
-      // imageCacheHeight: 50,
-      //imageCacheWidth: 50,
-      // fadeInCurve: Curves.linear,
-      // fadeOutCurve: Curves.linear,
       imageErrorBuilder: (context, error, stackTrace) {
         return Container(
-          child: DesignConfiguration.erroWidget(placeHolderSize ?? 50),
+          child: DesignConfiguration.errorWidget(placeHolderSize ?? 50),
         );
       },
     );
-
-    /*CachedNetworkImage(
-      imageUrl: imageurlString,
-      placeholder: (context, url) {
-        return DesignConfiguration.erroWidget(placeHolderSize ?? 50);
-      },
-      errorWidget: (context, error, stackTrace) {
-        return Container(
-          child: DesignConfiguration.erroWidget(placeHolderSize ?? 50),
-        );
-      },
-      fadeInCurve: Curves.linear,
-      fadeOutCurve: Curves.linear,
-      fadeInDuration: const Duration(
-        milliseconds: 150,
-      ),
-      fadeOutDuration: const Duration(
-        milliseconds: 150,
-      ),
-      fit: boxFit,
-      height: heightvalue,
-      width: widthvalue,
-    );*/
   }
 }
 

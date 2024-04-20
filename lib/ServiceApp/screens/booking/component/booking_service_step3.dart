@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/app_common_dialog.dart';
 import 'package:eshop_multivendor/ServiceApp/component/cached_image_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/custom_stepper.dart';
@@ -62,7 +63,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
   }
 
   Widget priceWidget() {
-    return Container(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,9 +71,9 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
               style: boldTextStyle(size: LABEL_TEXT_SIZE)),
           16.height,
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: context.width(),
-            decoration: boxDecorationDefault(color: context.cardColor),
+            decoration: boxDecorationDefault(color: Colors.white),
             child: Column(
               children: [
                 if (widget.selectedPackage == null)
@@ -152,7 +153,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                           Text(language.lblDiscount,
                               style: secondaryTextStyle(size: 16)),
                           Text(
-                            " (${widget.data.serviceDetail!.discount.validate()}% ${language.lblOff.toLowerCase()})",
+                            ' (${widget.data.serviceDetail!.discount.validate()}% ${language.lblOff.toLowerCase()})',
                             style: boldTextStyle(color: Colors.green),
                           ).expand(),
                           16.width,
@@ -185,7 +186,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                         ).onTap(() {
                           showInDialog<CouponData>(
                             context,
-                            backgroundColor: context.cardColor,
+                            backgroundColor: colors.backgroundColor,
                             contentPadding: EdgeInsets.zero,
                             builder: (p0) {
                               return AppCommonDialog(
@@ -299,7 +300,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                               style: secondaryTextStyle(size: 16)),
                           TextSpan(
                             text:
-                                " (${widget.data.serviceDetail!.advancePaymentPercentage.validate().toString()}%)  ",
+                                ' (${widget.data.serviceDetail!.advancePaymentPercentage.validate().toString()}%)  ',
                             style: boldTextStyle(color: Colors.green),
                           ),
                         ],
@@ -378,8 +379,8 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
             style: boldTextStyle(size: LABEL_TEXT_SIZE)),
         16.height,
         Container(
-          padding: EdgeInsets.all(16),
-          decoration: boxDecorationDefault(color: context.cardColor),
+          padding: const EdgeInsets.all(16),
+          decoration: boxDecorationDefault(color: Colors.white),
           width: context.width(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -411,7 +412,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
         Text(language.package, style: boldTextStyle(size: LABEL_TEXT_SIZE)),
         16.height,
         Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: boxDecorationDefault(color: context.cardColor),
           width: context.width(),
           child: Column(
@@ -488,15 +489,16 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.selectedPackage == null)
               Container(
-                padding: EdgeInsets.all(16),
-                decoration: boxDecorationDefault(color: context.cardColor),
+                padding: const EdgeInsets.all(16),
+                decoration: boxDecorationDefault(color: Colors.white),
                 width: context.width(),
                 child: Row(
                   children: [
@@ -508,9 +510,9 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                         16.height,
                         Container(
                           height: 40,
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           decoration: boxDecorationWithRoundedCorners(
-                            backgroundColor: context.scaffoldBackgroundColor,
+                            backgroundColor: Colors.grey,
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -573,19 +575,28 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
             Row(
               children: [
                 AppButton(
+                  shapeBorder: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
                   onTap: () {
                     customStepperController.previousPage(
                         duration: 200.milliseconds, curve: Curves.easeInOut);
                   },
-                  shapeBorder: RoundedRectangleBorder(
-                      borderRadius: radius(),
-                      side: BorderSide(color: context.primaryColor)),
                   text: language.lblPrevious,
                   textColor: textPrimaryColorGlobal,
                 ).expand(flex: 1),
                 16.width,
                 AppButton(
-                  color: context.primaryColor,
+                  color: colors.primary,
+                  shapeBorder: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
                   text: widget.data.serviceDetail!.isAdvancePayment
                       ? language.advancePayment
                       : language.confirm,
@@ -593,6 +604,7 @@ class _BookingServiceStep3State extends State<BookingServiceStep3> {
                   onTap: () {
                     showInDialog(
                       context,
+                      backgroundColor: colors.backgroundColor,
                       builder: (p0) {
                         return ConfirmBookingDialog(
                           data: widget.data,

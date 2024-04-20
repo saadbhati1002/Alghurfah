@@ -132,7 +132,7 @@ class _AvailableSlotsComponentState extends State<AvailableSlotsComponent> {
 
           if (widget.selectedDate!.isToday &&
               finalDate.millisecondsSinceEpoch > now.millisecondsSinceEpoch) {
-            return Offstage();
+            return const Offstage();
           }
         }
 

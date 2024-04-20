@@ -97,7 +97,7 @@ Future<void> saveUserData(UserData data) async {
       log(e.toString());
 
       if (e.toString() == USER_NOT_FOUND) {
-        toast(language.userNotFound);
+        // toast(language.userNotFound);
       }
     });
   } else {

@@ -19,6 +19,7 @@ extension colors on ColorScheme {
 
   static const Color primary = Color(0xFF4D5B3F);
   static const Color backgroundColor = Color(0xFFF5DFD3);
+  static const Color homeBackground = Color(0xFFDFCDB9);
   static const Color drawerColor = Color(0xFFD4AE6A);
   static const Color drawerColorVisibility = Color.fromRGBO(196, 145, 64, 1);
   static const Color eCommerceColor = Color(0xFFBC8069);

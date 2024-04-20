@@ -26,7 +26,7 @@ class SlotWidget extends StatelessWidget {
     } else if (isSelected) {
       return activeColor;
     } else {
-      return context.cardColor;
+      return Colors.white;
     }
   }
 
@@ -36,7 +36,7 @@ class SlotWidget extends StatelessWidget {
     } else if (isSelected) {
       return Colors.white;
     } else {
-      return textPrimaryColorGlobal;
+      return Colors.black;
     }
   }
 
@@ -52,7 +52,7 @@ class SlotWidget extends StatelessWidget {
               Border.all(color: isAvailable ? activeColor : transparentColor),
           color: _getBackgroundColor(context),
         ),
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Observer(builder: (context) {
           return Text(
             appStore.is24HourFormat

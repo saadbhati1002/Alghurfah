@@ -84,10 +84,11 @@ class BookingItemComponent extends StatelessWidget {
     }
 
     return Container(
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(8),
+      margin: const EdgeInsets.only(bottom: 16),
       width: context.width(),
       decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(color: context.dividerColor),
           borderRadius: radius()),
       child: Column(
@@ -131,7 +132,7 @@ class BookingItemComponent extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
                               color: bookingData.status
@@ -153,9 +154,9 @@ class BookingItemComponent extends StatelessWidget {
                           ).flexible(),
                           if (bookingData.isPostJob)
                             Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 4),
-                              margin: EdgeInsets.only(left: 4),
+                              margin: const EdgeInsets.only(left: 4),
                               decoration: BoxDecoration(
                                 color: context.primaryColor.withOpacity(0.1),
                                 borderRadius: radius(8),
@@ -168,9 +169,9 @@ class BookingItemComponent extends StatelessWidget {
                             ),
                           if (bookingData.isPackageBooking)
                             Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 4),
-                              margin: EdgeInsets.only(left: 4),
+                              margin: const EdgeInsets.only(left: 4),
                               decoration: BoxDecoration(
                                 color: context.primaryColor.withOpacity(0.1),
                                 borderRadius: radius(8),
@@ -263,9 +264,9 @@ class BookingItemComponent extends StatelessWidget {
           Container(
             decoration: boxDecorationWithRoundedCorners(
               backgroundColor: context.cardColor,
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
             ),
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: Column(
               children: [
                 Row(
@@ -278,7 +279,10 @@ class BookingItemComponent extends StatelessWidget {
                     Text(
                       "${formatDate(bookingData.date.validate(), format: DATE_FORMAT_2)} At " +
                           buildTimeWidget(bookingDetail: bookingData),
-                      style: boldTextStyle(size: 14),
+                      style: boldTextStyle(
+                        size: 14,
+                        color: Colors.white,
+                      ),
                       maxLines: 2,
                       textAlign: TextAlign.right,
                     ).expand(),
@@ -296,7 +300,10 @@ class BookingItemComponent extends StatelessWidget {
                               style: secondaryTextStyle()),
                           8.width,
                           Text(bookingData.providerName.validate(),
-                                  style: boldTextStyle(size: 14),
+                                  style: boldTextStyle(
+                                    size: 14,
+                                    color: Colors.white,
+                                  ),
                                   textAlign: TextAlign.right)
                               .flexible(),
                         ],
@@ -314,14 +321,16 @@ class BookingItemComponent extends StatelessWidget {
                           Text(language.textHandyman,
                               style: secondaryTextStyle()),
                           Text(
-                                  bookingData.handyman!
-                                      .validate()
-                                      .first
-                                      .handyman!
-                                      .displayName
-                                      .validate(),
-                                  style: boldTextStyle(size: 14))
-                              .flexible(),
+                              bookingData.handyman!
+                                  .validate()
+                                  .first
+                                  .handyman!
+                                  .displayName
+                                  .validate(),
+                              style: boldTextStyle(
+                                size: 14,
+                                color: Colors.white,
+                              )).flexible(),
                         ],
                       ).paddingAll(8),
                     ],

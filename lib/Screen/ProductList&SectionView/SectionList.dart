@@ -679,7 +679,7 @@ class StateSection extends State<SectionList> with TickerProviderStateMixin {
                                         height: 80,
                                         errorBuilder:
                                             (context, error, stackTrace) =>
-                                                DesignConfiguration.erroWidget(
+                                                DesignConfiguration.errorWidget(
                                           80,
                                         ),
                                       ),

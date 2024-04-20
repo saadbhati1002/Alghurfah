@@ -1,6 +1,6 @@
 import 'package:eshop_multivendor/Model/Section_Model.dart';
 import 'package:flutter/cupertino.dart';
-import '../Screen/Auth/Login.dart';
+import '../Screen/Auth/login.dart';
 import '../Screen/Cart/Cart.dart';
 import '../Screen/Chat/Chat.dart';
 import '../Screen/CompareList/CompareList.dart';
@@ -236,7 +236,9 @@ class Routes {
     String? sellerStorename,
     String? storeDescription,
     String? totalProductsOfSeller,
+    String? ratingType,
     final List<Product>? subList,
+    final List<SellerSubCategory>? sellerCategory,
   ) {
     Navigator.push(
       context,
@@ -250,6 +252,8 @@ class Routes {
           totalProductsOfSeller: totalProductsOfSeller,
           subList: subList,
           storeDesc: storeDescription,
+          ratingType: ratingType,
+          sellerCategory: sellerCategory,
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/IntroSlider/Widgets/SliderClass.dart';
 import 'package:flutter/material.dart';
 import '../../Helper/String.dart';
@@ -24,7 +25,7 @@ class _GettingStartedScreenState extends State<IntroSlider>
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithDarkBrightNess();
 
     super.initState();
@@ -36,17 +37,17 @@ class _GettingStartedScreenState extends State<IntroSlider>
           () {
             slideList = [
               Slide(
-                imageUrl: 'introimage_a',
+                imageUrl: 'intro1',
                 title: getTranslated(context, 'TITLE1_LBL'),
                 description: getTranslated(context, 'DISCRIPTION1'),
               ),
               Slide(
-                imageUrl: 'introimage_b',
+                imageUrl: 'intro2',
                 title: getTranslated(context, 'TITLE2_LBL'),
                 description: getTranslated(context, 'DISCRIPTION2'),
               ),
               Slide(
-                imageUrl: 'introimage_c',
+                imageUrl: 'intro3',
                 title: getTranslated(context, 'TITLE3_LBL'),
                 description: getTranslated(context, 'DISCRIPTION3'),
               ),
@@ -98,30 +99,38 @@ class _GettingStartedScreenState extends State<IntroSlider>
     return SafeArea(
       top: true,
       child: Scaffold(
-        body: Stack(
-          children: [
-            const BackgroundImage(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                skipBtn(
-                  context,
-                  _currentPage,
+        backgroundColor: colors.eCommerceColor,
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height * 1,
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  slider(
+                    slideList,
+                    _pageController,
+                    context,
+                    _onPageChanged,
+                  ),
+                ],
+              ),
+              skipBtn(
+                context,
+                _currentPage,
+              ),
+              SizedBox(
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: SliderBtn(
+                    currentPage: _currentPage,
+                    pageController: _pageController,
+                    sliderList: slideList,
+                  ),
                 ),
-                slider(
-                  slideList,
-                  _pageController,
-                  context,
-                  _onPageChanged,
-                ),
-                SliderBtn(
-                  currentPage: _currentPage,
-                  pageController: _pageController,
-                  sliderList: slideList,
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

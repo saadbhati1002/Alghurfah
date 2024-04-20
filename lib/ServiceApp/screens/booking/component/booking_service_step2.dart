@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/app_theme.dart';
 import 'package:eshop_multivendor/ServiceApp/component/custom_stepper.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
@@ -160,11 +161,12 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: 24, right: 16, left: 16),
+            padding: const EdgeInsets.only(bottom: 24, right: 16, left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -176,8 +178,9 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                   key: formKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
-                    decoration: boxDecorationDefault(color: context.cardColor),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 26),
+                    decoration: boxDecorationDefault(color: Colors.white),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 26),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -192,6 +195,10 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                                 textFieldType: TextFieldType.OTHER,
                                 controller: dateTimeCont,
                                 isValidationRequired: true,
+                                textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
                                 validator: (value) {
                                   if (value!.isEmpty)
                                     return language.requiredText;
@@ -206,10 +213,11 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                                             .iconImage(size: 10)
                                             .paddingAll(14))
                                     .copyWith(
-                                  fillColor: context.scaffoldBackgroundColor,
+                                  fillColor: Colors.grey[300],
                                   filled: true,
                                   hintText: language.lblEnterDateAndTime,
-                                  hintStyle: secondaryTextStyle(),
+                                  hintStyle:
+                                      secondaryTextStyle(color: Colors.black),
                                 ),
                               ),
                               20.height,
@@ -222,6 +230,10 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           textFieldType: TextFieldType.MULTILINE,
                           controller: addressCont,
                           maxLines: 2,
+                          textStyle: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
                           onFieldSubmitted: (s) {
                             widget.data.serviceDetail!.address = s;
                           },
@@ -238,10 +250,10 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                               ],
                             ),
                           ).copyWith(
-                            fillColor: context.scaffoldBackgroundColor,
+                            fillColor: Colors.grey[300],
                             filled: true,
-                            hintText: language.lblEnterYourAddress,
-                            hintStyle: secondaryTextStyle(),
+                            hintText: language.lblEnterDateAndTime,
+                            hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
                         8.height,
@@ -251,7 +263,7 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                             TextButton(
                               child: Text(language.lblChooseFromMap,
                                   style: boldTextStyle(
-                                      color: primaryColor, size: 13)),
+                                      color: colors.primary, size: 13)),
                               onPressed: () {
                                 _handleSetLocationClick();
                               },
@@ -260,7 +272,7 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                               onPressed: _handleCurrentLocationClick,
                               child: Text(language.lblUseCurrentLocation,
                                   style: boldTextStyle(
-                                      color: primaryColor, size: 13)),
+                                      color: colors.primary, size: 13)),
                             ).flexible(),
                           ],
                         ),
@@ -273,22 +285,26 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                           controller: descriptionCont,
                           maxLines: 10,
                           minLines: 4,
+                          textStyle: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
                           isValidationRequired: false,
                           onFieldSubmitted: (s) {
                             widget.data.serviceDetail!.bookingDescription = s;
                           },
                           decoration: inputDecoration(context).copyWith(
-                            fillColor: context.scaffoldBackgroundColor,
+                            fillColor: Colors.grey[300],
                             filled: true,
                             hintText: language.lblEnterDescription,
-                            hintStyle: secondaryTextStyle(),
+                            hintStyle: secondaryTextStyle(color: Colors.black),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                16.height,
+                55.height,
               ],
             ),
           ),
@@ -300,9 +316,12 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
               children: [
                 if (!widget.isSlotAvailable.validate())
                   AppButton(
-                    shapeBorder: RoundedRectangleBorder(
-                        borderRadius: radius(),
-                        side: BorderSide(color: context.primaryColor)),
+                    shapeBorder: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     onTap: () {
                       customStepperController.previousPage(
                           duration: 200.milliseconds, curve: Curves.easeInOut);
@@ -326,7 +345,13 @@ class _BookingServiceStep2State extends State<BookingServiceStep2> {
                   text: language.btnNext,
                   textColor: Colors.white,
                   width: context.width(),
-                  color: context.primaryColor,
+                  shapeBorder: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
+                  color: colors.primary,
                 ).expand(),
               ],
             ),

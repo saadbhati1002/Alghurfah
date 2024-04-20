@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class SystemChromeSettings {
-  static setSystemButtomNavigationBarithTopAndButtom() {
+  static setSystemButtonNavigationBaritTopAndButton() {
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [

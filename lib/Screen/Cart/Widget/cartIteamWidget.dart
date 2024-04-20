@@ -111,6 +111,7 @@ class _CartIteamState extends State<CartIteam> {
     print('available*****$available*****$deliveryMsg');
 
     return Card(
+      color: colors.primary,
       elevation: 1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -581,7 +582,7 @@ class _CartIteamState extends State<CartIteam> {
             ),
             if (cartList[index].productList![0].productType !=
                 'digital_product')
-              !available! &&
+              available != null &&
                       context.read<CartProvider>().deliverableList.isNotEmpty
                   ? Text(
                       deliveryMsg != ''

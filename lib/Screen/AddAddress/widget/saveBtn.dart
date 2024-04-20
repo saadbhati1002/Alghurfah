@@ -22,14 +22,16 @@ class SaveButtonWidget extends StatelessWidget {
             child: InkWell(
               onTap: onBtnSelected,
               child: Container(
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [colors.grad1Color, colors.grad2Color],
                     stops: [0, 1],
                   ),
-                  borderRadius: BorderRadius.circular(circularBorderRadius10),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20)),
                 ),
                 height: 45.0,
                 child: Center(

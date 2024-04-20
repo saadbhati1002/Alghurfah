@@ -1,16 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:eshop_multivendor/AppScreen/app_tabbar_screen.dart';
 import 'package:eshop_multivendor/Provider/Favourite/FavoriteProvider.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/SendOtp.dart';
+import 'package:eshop_multivendor/Screen/Auth/send_otp.dart';
+import 'package:eshop_multivendor/Screen/Profile/widgets/languageBottomSheet.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart'
     as service_app;
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:eshop_multivendor/main.dart';
+import 'package:eshop_multivendor/widgets/bottomSheet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
     getSystemSettings();
 
@@ -215,8 +216,8 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   void login() async {
     var request = {
-      'email': mobileController.text.toString().trim() + "Alghurfah@gmail.com",
-      'password': passwordController.text.toString().trim(),
+      'email': '${mobileController.text.toString().trim()}Alghurfah@gmail.com',
+      'password': '123456789',
       'player_id': nb_utils.getStringAsync(service_app.PLAYERID),
     };
 
@@ -225,7 +226,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
     await loginUser(request).then((loginResponse) async {
       if (true) {
         nb_utils.setValue(service_app.USER_EMAIL,
-            mobileController.text.toString().trim() + "@gmail.com");
+            '${mobileController.text.toString().trim()}Alghurfah@gmail.com');
         nb_utils.setValue(service_app.USER_PASSWORD,
             passwordController.text.toString().trim());
         await nb_utils.setValue(service_app.IS_REMEMBERED, true);
@@ -238,8 +239,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
             offSaveAdd().then(
               (value) {
                 db.clearSaveForLater();
-              Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>const HomeScreenNew()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreenNew()));
               },
             );
           },
@@ -662,10 +665,10 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
           inputFormatters: [
             FilteringTextInputFormatter.deny(RegExp('[ ]')),
           ],
-          validator: (val) => StringValidation.validatePass(
-              val!,
-              getTranslated(context, 'PWD_REQUIRED'),
-              getTranslated(context, 'PASSWORD_VALIDATION')),
+          // validator: (val) => StringValidation.validatePass(
+          //     val!,
+          //     getTranslated(context, 'PWD_REQUIRED'),
+          //     getTranslated(context, 'PASSWORD_VALIDATION')),
           onSaved: (String? value) {
             context.read<AuthenticationProvider>().setPassword(value);
           },
@@ -1037,9 +1040,7 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                                       .textTheme
                                       .titleMedium!
                                       .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .fontColor,
+                                          color: Colors.black,
                                           fontWeight: FontWeight.normal)),
                             )
                           ],
@@ -1196,17 +1197,71 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15, left: 15),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back_ios_new_outlined,
-                        color: colors.primary,
-                      ),
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: colors.primary,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => const HomeScreenNew()),
+                            );
+                          },
+                          child: Text(
+                            getTranslated(context, 'SKIP')!,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: colors.primary,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )
+                      ],
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, right: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          CustomBottomSheet.showBottomSheet(
+                            child: LanguageBottomSheet(),
+                            context: context,
+                            enableDrag: true,
+                          );
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: colors.primary,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(getTranslated(context, 'Language')!,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600)),
+                          ), //Language
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               )
             : NoInterNet(

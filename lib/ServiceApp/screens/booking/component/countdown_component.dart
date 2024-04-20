@@ -106,14 +106,17 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   @override
   Widget build(BuildContext context) {
     return DottedBorderWidget(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       color: context.dividerColor,
       child: Row(
         children: [
           Text(widget.text ?? '${language.lblServiceTotalTime}: ',
-              style: primaryTextStyle(size: 14)),
+              style: primaryTextStyle(size: 14, color: Colors.black)),
           Text(calculateTime(value),
-              style: boldTextStyle(color: Colors.red, size: 14)),
+              style: boldTextStyle(
+                color: Colors.red,
+                size: 14,
+              )),
         ],
       ),
     ).withWidth(context.width());

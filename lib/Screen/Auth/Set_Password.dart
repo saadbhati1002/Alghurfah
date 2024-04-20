@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
 import '../../widgets/validation.dart';
 import '../NoInterNetWidget/NoInterNet.dart';
-import 'Login.dart';
+import 'login.dart';
 
 class SetPass extends StatefulWidget {
   final String mobileNumber;
@@ -50,7 +51,10 @@ class _LoginPageState extends State<SetPass> with TickerProviderStateMixin {
     isNetworkAvail = await isNetworkAvailable();
     if (isNetworkAvail) {
       Future.delayed(Duration.zero).then(
-        (value) => context.read<AuthenticationProvider>().getReset().then(
+        (value) => context
+            .read<AuthenticationProvider>()
+            .getReset(mobileNumber: widget.mobileNumber)
+            .then(
           (
             value,
           ) async {
@@ -325,27 +329,51 @@ class _LoginPageState extends State<SetPass> with TickerProviderStateMixin {
       backgroundColor: Theme.of(context).colorScheme.white,
       key: _scaffoldKey,
       body: isNetworkAvail
-          ? Center(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.only(
-                    top: 23,
-                    left: 23,
-                    right: 23,
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: Form(
-                  key: _formkey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      getLogo(),
-                      forgotpassTxt(),
-                      setPass(),
-                      setConfirmpss(),
-                      setPassBtn(),
-                    ],
+          ? Stack(
+              children: [
+                const BackgroundImage(),
+                Center(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                        top: 23,
+                        left: 23,
+                        right: 23,
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          getLogo(),
+                          Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                ),
+                                color: colors.whiteTemp),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Column(
+                                children: [
+                                  forgotpassTxt(),
+                                  setPass(),
+                                  setConfirmpss(),
+                                  const SizedBox(
+                                    height: 40,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          setPassBtn(),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             )
           : NoInterNet(
               setStateNoInternate: setStateNoInternate,
@@ -358,12 +386,11 @@ class _LoginPageState extends State<SetPass> with TickerProviderStateMixin {
   Widget getLogo() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 60),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
+      child: Image.asset(
+        'assets/images/png/logo1.png',
         alignment: Alignment.center,
-        height: 90,
-        width: 90,
+        height: 170,
+        width: MediaQuery.of(context).size.width * .5,
         fit: BoxFit.contain,
       ),
     );

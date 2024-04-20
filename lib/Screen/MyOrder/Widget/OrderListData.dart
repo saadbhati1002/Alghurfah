@@ -46,6 +46,7 @@ class OrderListData extends StatelessWidget {
       name = "$name ${len > 1 ? " and more items" : ""} ";
 
       return Card(
+        color: Colors.white,
         elevation: 0,
         child: InkWell(
           borderRadius: BorderRadius.circular(circularBorderRadius7),
@@ -86,8 +87,7 @@ class OrderListData extends StatelessWidget {
                                 .textTheme
                                 .titleSmall!
                                 .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.lightBlack,
+                                  color: Colors.black,
                                   fontFamily: 'ubuntu',
                                 ),
                           ),
@@ -100,9 +100,7 @@ class OrderListData extends StatelessWidget {
                                   .textTheme
                                   .titleSmall!
                                   .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .lightBlack2,
+                                    color: Colors.grey,
                                     fontFamily: 'ubuntu',
                                     fontWeight: FontWeight.normal,
                                   ),

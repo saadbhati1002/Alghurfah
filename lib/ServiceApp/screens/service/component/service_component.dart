@@ -1,3 +1,7 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Helper/Constant.dart';
+import 'package:eshop_multivendor/Helper/String.dart';
+import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/component/cached_image_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/disabled_rating_bar_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/image_border_component.dart';
@@ -12,6 +16,7 @@ import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/images.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
+import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -53,6 +58,7 @@ class ServiceComponentState extends State<ServiceComponent> {
 
   @override
   Widget build(BuildContext context) {
+    double width = deviceWidth! * 0.5;
     return GestureDetector(
       onTap: () {
         hideKeyboard(context);
@@ -63,9 +69,10 @@ class ServiceComponentState extends State<ServiceComponent> {
             .launch(context);
       },
       child: Container(
+        height: MediaQuery.of(context).size.height * .35,
         decoration: boxDecorationWithRoundedCorners(
+          backgroundColor: Colors.transparent,
           borderRadius: radius(),
-          backgroundColor: context.cardColor,
           border: widget.isBorderEnabled.validate(value: false)
               ? appStore.isDarkMode
                   ? Border.all(color: context.dividerColor)
@@ -74,184 +81,129 @@ class ServiceComponentState extends State<ServiceComponent> {
         ),
         width: widget.width,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: 205,
-              width: context.width(),
-              child: Stack(
-                clipBehavior: Clip.none,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+                child: Hero(
+                  tag: '$heroTagUniqueString',
+                  child: DesignConfiguration.getCacheNotworkImage(
+                    boxFit: BoxFit.fill,
+                    context: context,
+                    heightvalue: double.maxFinite,
+                    widthvalue: double.maxFinite,
+                    placeHolderSize: width,
+                    imageurlString: widget.serviceData!.attachments != null
+                        ? widget.serviceData!.attachments!.first
+                        : '',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 10.0,
+                top: 10,
+              ),
+              child: Text(
+                widget.serviceData!.name ?? '',
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: Colors.black,
+                      fontSize: textFontSize15,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.normal,
+                      // fontFamily: 'ubuntu',
+                    ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 8.0,
+                top: 5,
+              ),
+              child: Row(
                 children: [
-                  CachedImageWidget(
-                    url: widget.isFavouriteService
-                        ? widget.serviceData!.serviceAttachments
-                                .validate()
-                                .isNotEmpty
-                            ? widget.serviceData!.serviceAttachments!.first
-                                .validate()
-                            : ''
-                        : widget.serviceData!.attachments.validate().isNotEmpty
-                            ? widget.serviceData!.attachments!.first.validate()
-                            : '',
-                    fit: BoxFit.cover,
-                    height: 180,
-                    width: context.width(),
-                    circle: false,
-                  ).cornerRadiusWithClipRRectOnly(
-                      topRight: defaultRadius.toInt(),
-                      topLeft: defaultRadius.toInt()),
-                  Positioned(
-                    top: 12,
-                    left: 12,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 2),
-                      constraints:
-                          BoxConstraints(maxWidth: context.width() * 0.3),
-                      decoration: boxDecorationWithShadow(
-                        backgroundColor: context.cardColor.withOpacity(0.9),
-                        borderRadius: radius(24),
-                      ),
-                      child: Marquee(
-                        directionMarguee: DirectionMarguee.oneDirection,
-                        child: Text(
-                          "${widget.serviceData!.subCategoryName.validate().isNotEmpty ? widget.serviceData!.subCategoryName.validate() : widget.serviceData!.categoryName.validate()}"
-                              .toUpperCase(),
-                          style: boldTextStyle(
-                              color: appStore.isDarkMode
-                                  ? Colors.black
-                                  : primaryColor,
-                              size: 12),
-                        ).paddingSymmetric(horizontal: 8, vertical: 4),
-                      ),
+                  Text(
+                    ' ${DesignConfiguration.getPriceFormat(context, double.parse(widget.serviceData!.price.toString()))!} AED',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.blue,
+                      fontSize: textFontSize14,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                      fontFamily: 'ubuntu',
                     ),
                   ),
-                  if (widget.isFavouriteService)
-                    Positioned(
-                      top: 8,
-                      right: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(right: 8),
-                        decoration: boxDecorationWithShadow(
-                            boxShape: BoxShape.circle,
-                            backgroundColor: context.cardColor),
-                        child: widget.serviceData!.isFavourite == 0
-                            ? ic_fill_heart.iconImage(
-                                color: favouriteColor, size: 18)
-                            : ic_heart.iconImage(
-                                color: unFavouriteColor, size: 18),
-                      ).onTap(() async {
-                        if (widget.serviceData!.isFavourite == 0) {
-                          widget.serviceData!.isFavourite = 1;
-                          setState(() {});
-
-                          await removeToWishList(
-                                  serviceId: widget.serviceData!.serviceId
-                                      .validate()
-                                      .toInt())
-                              .then((value) {
-                            if (!value) {
-                              widget.serviceData!.isFavourite = 0;
-                              setState(() {});
-                            }
-                          });
-                        } else {
-                          widget.serviceData!.isFavourite = 0;
-                          setState(() {});
-
-                          await addToWishList(
-                                  serviceId: widget.serviceData!.serviceId
-                                      .validate()
-                                      .toInt())
-                              .then((value) {
-                            if (!value) {
-                              widget.serviceData!.isFavourite = 1;
-                              setState(() {});
-                            }
-                          });
-                        }
-                        widget.onUpdate?.call();
-                      }),
-                    ),
-                  Positioned(
-                    bottom: 12,
-                    right: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: boxDecorationWithShadow(
-                        backgroundColor: primaryColor,
-                        borderRadius: radius(24),
-                        border: Border.all(color: context.cardColor, width: 2),
-                      ),
-                      child: PriceWidget(
-                        price: widget.serviceData!.price.validate(),
-                        isHourlyService: widget.serviceData!.isHourlyService,
-                        color: Colors.white,
-                        hourlyTextColor: Colors.white,
-                        size: 14,
-                        isFreeService: widget.serviceData!.type.validate() ==
-                            SERVICE_TYPE_FREE,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 16,
-                    child: DisabledRatingBarWidget(
-                        rating: widget.serviceData!.totalRating.validate(),
-                        size: 14),
-                  ),
+                  // Expanded(
+                  //   child: Padding(
+                  //     padding: const EdgeInsetsDirectional.only(
+                  //       start: 10.0,
+                  //       top: 5,
+                  //     ),
+                  //     child: Row(
+                  //       children: <Widget>[
+                  //         Text(
+                  //           double.parse(service.price.toString()).toString(),
+                  //           style: Theme.of(context)
+                  //               .textTheme
+                  //               .labelSmall!
+                  //               .copyWith(
+                  //                 fontFamily: 'ubuntu',
+                  //                 color: Colors.black,
+                  //                 decoration: TextDecoration.lineThrough,
+                  //                 decorationColor: Colors.black,
+                  //                 decorationStyle: TextDecorationStyle.solid,
+                  //                 decorationThickness: 2,
+                  //                 letterSpacing: 0,
+                  //                 fontSize: textFontSize10,
+                  //                 fontWeight: FontWeight.w600,
+                  //                 fontStyle: FontStyle.normal,
+                  //               ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                8.height,
-                Marquee(
-                  directionMarguee: DirectionMarguee.oneDirection,
-                  child: Text(widget.serviceData!.name.validate(),
-                      style: boldTextStyle(
-                        color:
-                            appStore.isDarkMode ? Colors.black : primaryColor,
-                      )).paddingSymmetric(horizontal: 16),
+            const SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                hideKeyboard(context);
+                ServiceDetailScreen(
+                        serviceId: widget.isFavouriteService
+                            ? widget.serviceData!.serviceId.validate().toInt()
+                            : widget.serviceData!.id.validate())
+                    .launch(context);
+              },
+              child: Container(
+                height: 25,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  color: colors.serviceColor,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20)),
                 ),
-                8.height,
-                Row(
-                  children: [
-                    ImageBorder(
-                        src: widget.serviceData!.providerImage.validate(),
-                        height: 30),
-                    8.width,
-                    if (widget.serviceData!.providerName.validate().isNotEmpty)
-                      Text(
-                        widget.serviceData!.providerName.validate(),
-                        style: secondaryTextStyle(
-                            size: 12,
-                            color: appStore.isDarkMode
-                                ? Colors.white
-                                : appTextSecondaryColor),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ).expand()
-                  ],
-                ).onTap(() async {
-                  if (widget.serviceData!.providerId !=
-                      appStore.userId.validate()) {
-                    await ProviderInfoScreen(
-                            providerId:
-                                widget.serviceData!.providerId.validate())
-                        .launch(context);
-                    setStatusBarColor(Colors.transparent);
-                  } else {
-                    //
-                  }
-                }).paddingSymmetric(horizontal: 16),
-                16.height,
-              ],
+                alignment: Alignment.center,
+                child: Text(
+                  getTranslated(context, 'Book Now')!,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
           ],
         ),

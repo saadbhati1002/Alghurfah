@@ -15,6 +15,9 @@ import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/widgets/appBar.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 
 import '../../component/empty_error_state_widget.dart';
 
@@ -43,6 +46,7 @@ class SearchListScreen extends StatefulWidget {
 
 class SearchListScreenState extends State<SearchListScreen> {
   FocusNode myFocusNode = FocusNode();
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   TextEditingController searchCont = TextEditingController();
 
@@ -174,33 +178,18 @@ class SearchListScreenState extends State<SearchListScreen> {
     if (mounted) super.setState(fn);
   }
 
+  setStateNow() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(
-        setSearchString,
-        textColor: Colors.white,
-        color: context.primaryColor,
-        backWidget: BackWidget(),
-        actions: [
-          Observer(
-            builder: (_) => IconButton(
-              icon: ic_active_location.iconImage(
-                  size: 24,
-                  color: appStore.isCurrentLocation
-                      ? Colors.lightGreen
-                      : Colors.white),
-              visualDensity: VisualDensity.compact,
-              onPressed: () {
-                locationWiseService(context, () {
-                  page = 1;
-                  fetchAllServiceData();
-                });
-              },
-            ),
-          ).paddingRight(16),
-        ],
-      ),
+      endDrawer: const MyDrawer(),
+      key: _key,
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_key,
+          title: setSearchString, context: context, setState: setStateNow),
       body: RefreshIndicator(
         onRefresh: () async {
           page = 1;
@@ -301,37 +290,37 @@ class SearchListScreenState extends State<SearchListScreen> {
                           fetchAllServiceData();
                         },
                         decoration: inputDecoration(context).copyWith(
+                          fillColor: Colors.white,
                           hintText: "${language.lblSearchFor} $setSearchString",
                           prefixIcon:
                               ic_search.iconImage(size: 10).paddingAll(14),
                           hintStyle: secondaryTextStyle(),
                         ),
                       ).expand(),
-                      16.width,
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration:
-                            boxDecorationDefault(color: context.primaryColor),
-                        child: CachedImageWidget(
-                          url: ic_filter,
-                          height: 26,
-                          width: 26,
-                          color: Colors.white,
-                        ),
-                      ).onTap(() {
-                        hideKeyboard(context);
+                      // 16.width,
+                      // Container(
+                      //   padding: EdgeInsets.all(10),
+                      //   decoration: boxDecorationDefault(color: Colors.white),
+                      //   child: CachedImageWidget(
+                      //     url: ic_filter,
+                      //     height: 26,
+                      //     width: 26,
+                      //     color: colors.primary,
+                      //   ),
+                      // ).onTap(() {
+                      //   hideKeyboard(context);
 
-                        FilterScreen(
-                                isFromProvider: widget.isFromProvider,
-                                isFromCategory: widget.isFromCategory)
-                            .launch(context)
-                            .then((value) {
-                          if (value != null) {
-                            page = 1;
-                            fetchAllServiceData();
-                          }
-                        });
-                      }, borderRadius: radius())
+                      //   FilterScreen(
+                      //           isFromProvider: widget.isFromProvider,
+                      //           isFromCategory: widget.isFromCategory)
+                      //       .launch(context)
+                      //       .then((value) {
+                      //     if (value != null) {
+                      //       page = 1;
+                      //       fetchAllServiceData();
+                      //     }
+                      //   });
+                      // }, borderRadius: radius())
                     ],
                   ),
                 ),

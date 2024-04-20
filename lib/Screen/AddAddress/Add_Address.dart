@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'package:eshop_multivendor/Screen/AddAddress/widget/saveBtn.dart';
 import 'package:eshop_multivendor/Screen/Map/Map.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -234,7 +235,12 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
       key: _scaffoldKey,
-      appBar: getSimpleAppBar(getTranslated(context, 'ADDRESS_LBL')!, context),
+      endDrawer: const MyDrawer(),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: getTranslated(context, 'ADDRESS_LBL')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? _showContent()
           : NoInterNet(
@@ -280,23 +286,23 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
 
     form.save();
     if (form.validate()) {
-      if ((!context.read<AddressProvider>().cityEnable &&
-              IS_SHIPROCKET_ON != '1') ||
-          (context.read<AddressProvider>().city == null ||
-              context.read<AddressProvider>().city!.isEmpty)) {
-        setSnackbar(getTranslated(context, 'cityWarning')!, context);
-      } else if ((IS_SHIPROCKET_ON != '1') ||
-          (!context.read<AddressProvider>().areaEnable ||
-                  !context.read<AddressProvider>().cityEnable) &&
-              (context.read<AddressProvider>().area == null ||
-                  context.read<AddressProvider>().area!.isEmpty)) {
-        setSnackbar(getTranslated(context, 'areaWarning')!, context);
-      } else if (context.read<AddressProvider>().latitude == null ||
-          context.read<AddressProvider>().longitude == null) {
-        setSnackbar(getTranslated(context, 'locationWarning')!, context);
-      } else {
-        return true;
-      }
+      // if ((!context.read<AddressProvider>().cityEnable &&
+      //         IS_SHIPROCKET_ON != '1') ||
+      //     (context.read<AddressProvider>().city == null ||
+      //         context.read<AddressProvider>().city!.isEmpty)) {
+      //   setSnackbar(getTranslated(context, 'cityWarning')!, context);
+      // } else if ((IS_SHIPROCKET_ON != '1') ||
+      //     (!context.read<AddressProvider>().areaEnable ||
+      //             !context.read<AddressProvider>().cityEnable) &&
+      //         (context.read<AddressProvider>().area == null ||
+      //             context.read<AddressProvider>().area!.isEmpty)) {
+      //   setSnackbar(getTranslated(context, 'areaWarning')!, context);
+      // } else if (context.read<AddressProvider>().latitude == null ||
+      //     context.read<AddressProvider>().longitude == null) {
+      //   setSnackbar(getTranslated(context, 'locationWarning')!, context);
+      // } else {
+      return true;
+      // }
     }
     return false;
   }
@@ -333,7 +339,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -359,12 +365,13 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             style: Theme.of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
             decoration: InputDecoration(
               label: Text(
                 getTranslated(context, 'NAME_LBL')!,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontFamily: 'ubuntu',
+                      color: Colors.black,
                     ),
               ),
               fillColor: Theme.of(context).colorScheme.white,
@@ -383,7 +390,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -400,7 +407,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             style: Theme.of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                .copyWith(color: Colors.black),
             validator: (val) => StringValidation.validateMob(
                 val!,
                 getTranslated(context, 'MOB_REQUIRED'),
@@ -415,9 +422,8 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
               counter: const SizedBox(),
               label: Text(
                 getTranslated(context, 'MOBILEHINT_LBL')!,
-                style: const TextStyle(
-                  fontFamily: 'ubuntu',
-                ),
+                style:
+                    const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
               ),
               fillColor: Theme.of(context).colorScheme.white,
               isDense: true,
@@ -980,7 +986,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -1003,10 +1009,11 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                       children: [
                         Text(
                           getTranslated(context, 'CITYSELECT_LBL')!,
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    fontFamily: 'ubuntu',
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                  fontFamily: 'ubuntu', color: Colors.black),
                         ),
                         Text(
                           context.read<AddressProvider>().selCityPos != null &&
@@ -1020,7 +1027,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                           style: TextStyle(
                             color: context.read<AddressProvider>().selCityPos !=
                                     null
-                                ? Theme.of(context).colorScheme.fontColor
+                                ? Colors.black
                                 : Colors.grey,
                             fontFamily: 'ubuntu',
                           ),
@@ -1030,6 +1037,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   ),
                   const Icon(
                     Icons.keyboard_arrow_right,
+                    color: colors.primary,
                   )
                 ],
               ),
@@ -1049,7 +1057,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.white,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(circularBorderRadius5),
           ),
           child: Padding(
@@ -1071,7 +1079,10 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                         children: [
                           Text(
                             getTranslated(context, 'AREASELECT_LBL')!,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(color: Colors.black),
                           ),
                           Text(
                             context.read<AddressProvider>().selAreaPos !=
@@ -1089,7 +1100,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                               color:
                                   context.read<AddressProvider>().selAreaPos !=
                                           null
-                                      ? Theme.of(context).colorScheme.fontColor
+                                      ? Colors.black
                                       : Colors.grey,
                               fontFamily: 'ubuntu',
                             ),
@@ -1097,7 +1108,10 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                         ],
                       ),
                     ),
-                    const Icon(Icons.keyboard_arrow_right),
+                    const Icon(
+                      Icons.keyboard_arrow_right,
+                      color: colors.primary,
+                    ),
                   ],
                 ),
               ),
@@ -1125,7 +1139,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
               padding: const EdgeInsets.symmetric(vertical: 5.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Padding(
@@ -1136,8 +1150,10 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     textCapitalization: TextCapitalization.sentences,
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.fontColor),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: Colors.black),
                     focusNode: cityFocus,
                     controller: cityC,
                     validator: (val) => StringValidation.validateField(
@@ -1223,7 +1239,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.white,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(circularBorderRadius5),
               ),
               child: Padding(
@@ -1237,7 +1253,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!
-                      .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                      .copyWith(color: Colors.black),
                   focusNode: addFocus,
                   controller: addressC,
                   validator: (val) => StringValidation.validateField(
@@ -1254,8 +1270,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                     label: Text(
                       getTranslated(context, 'ADDRESS_LBL')!,
                       style: const TextStyle(
-                        fontFamily: 'ubuntu',
-                      ),
+                          fontFamily: 'ubuntu', color: Colors.black),
                     ),
                     fillColor: Theme.of(context).colorScheme.white,
                     isDense: true,
@@ -1361,7 +1376,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -1374,7 +1389,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             style: Theme.of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                .copyWith(color: Colors.black),
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onSaved: (String? value) {},
             validator: (val) => StringValidation.validateField(
@@ -1382,9 +1397,8 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             decoration: InputDecoration(
               label: Text(
                 getTranslated(context, 'PINCODEHINT_LBL')!,
-                style: const TextStyle(
-                  fontFamily: 'ubuntu',
-                ),
+                style:
+                    const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
               ),
               fillColor: Theme.of(context).colorScheme.white,
               isDense: true,
@@ -1460,7 +1474,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -1474,7 +1488,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             style: Theme.of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                .copyWith(color: Colors.black),
             readOnly: false,
             onChanged: (v) => setState(
               () {
@@ -1487,9 +1501,8 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             decoration: InputDecoration(
               label: Text(
                 getTranslated(context, 'STATE_LBL')!,
-                style: const TextStyle(
-                  fontFamily: 'ubuntu',
-                ),
+                style:
+                    const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
               ),
               fillColor: Theme.of(context).colorScheme.white,
               isDense: true,
@@ -1507,7 +1520,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.white,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(circularBorderRadius5),
         ),
         child: Padding(
@@ -1522,7 +1535,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             style: Theme.of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Theme.of(context).colorScheme.fontColor),
+                .copyWith(color: Colors.black),
             onSaved: (String? value) {
               context.read<AddressProvider>().country = value;
             },
@@ -1533,9 +1546,8 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
             decoration: InputDecoration(
               label: Text(
                 getTranslated(context, 'COUNTRY_LBL')!,
-                style: const TextStyle(
-                  fontFamily: 'ubuntu',
-                ),
+                style:
+                    const TextStyle(fontFamily: 'ubuntu', color: Colors.black),
               ),
               fillColor: Theme.of(context).colorScheme.white,
               isDense: true,
@@ -1589,7 +1601,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(circularBorderRadius5),
       ),
       child: Row(
@@ -1602,7 +1614,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   Radio(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: selectedType,
-                    activeColor: Theme.of(context).colorScheme.fontColor,
+                    activeColor: colors.primary,
                     value: 1,
                     onChanged: (dynamic val) {
                       if (mounted) {
@@ -1619,8 +1631,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                     child: Text(
                       getTranslated(context, 'HOME_LBL')!,
                       style: const TextStyle(
-                        fontFamily: 'ubuntu',
-                      ),
+                          fontFamily: 'ubuntu', color: Colors.black),
                     ),
                   )
                 ],
@@ -1645,7 +1656,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   Radio(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: selectedType,
-                    activeColor: Theme.of(context).colorScheme.fontColor,
+                    activeColor: colors.primary,
                     value: 2,
                     onChanged: (dynamic val) {
                       if (mounted) {
@@ -1662,8 +1673,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                     child: Text(
                       getTranslated(context, 'OFFICE_LBL')!,
                       style: const TextStyle(
-                        fontFamily: 'ubuntu',
-                      ),
+                          fontFamily: 'ubuntu', color: Colors.black),
                     ),
                   )
                 ],
@@ -1688,7 +1698,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   Radio(
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     groupValue: selectedType,
-                    activeColor: Theme.of(context).colorScheme.fontColor,
+                    activeColor: colors.primary,
                     value: 3,
                     onChanged: (dynamic val) {
                       if (mounted) {
@@ -1705,8 +1715,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                     child: Text(
                       getTranslated(context, 'OTHER_LBL')!,
                       style: const TextStyle(
-                        fontFamily: 'ubuntu',
-                      ),
+                          fontFamily: 'ubuntu', color: Colors.black),
                     ),
                   )
                 ],
@@ -1732,12 +1741,14 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(circularBorderRadius5),
       ),
       child: SwitchListTile(
         value: context.read<AddressProvider>().checkedDefault,
-        activeColor: Theme.of(context).colorScheme.secondary,
+        activeColor: colors.primary,
+        hoverColor: Colors.black,
+        inactiveTrackColor: Colors.grey[300],
         dense: true,
         onChanged: (newValue) {
           if (mounted) {
@@ -1751,7 +1762,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
         title: Text(
           getTranslated(context, 'DEFAULT_ADD')!,
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: Theme.of(context).colorScheme.lightBlack,
+                color: colors.primary,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'ubuntu',
               ),

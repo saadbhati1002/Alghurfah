@@ -164,7 +164,9 @@ class Product {
       seller_name,
       seller_id,
       store_name,
-      totalProductsOfSeller;
+      totalProductsOfSeller,
+      sellerRatingType;
+  List<SellerCategory>? sellerCategory = [];
 
   Product(
       {this.id,
@@ -226,7 +228,9 @@ class Product {
       this.store_name,
       this.is_attch_req,
       this.extraDesc,
-      this.productType});
+      this.productType,
+      this.sellerRatingType,
+      this.sellerCategory});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     List<Product_Varient> varientList = (json[PRODUCT_VARIENT] as List)
@@ -331,6 +335,19 @@ class Product {
   }
 
   factory Product.fromSeller(Map<String, dynamic> json) {
+    List<SellerCategory> sellerCategoryList = [];
+    // (
+    // json['category_Name'] as List)
+    //   .map((data) =>
+    //       SellerCategory.fromJson(data[0].length != 0 ? data[0] : null))
+    //   .toList();
+    for (int i = 0; i < json['category_Name'].length; i++) {
+      print("saad bhati");
+      if (json['category_Name'][i].length != 0) {
+        sellerCategoryList
+            .add(SellerCategory.fromJson(json['category_Name'][i][0]));
+      }
+    }
     return Product(
       seller_name: json[SELLER_NAME],
       seller_profile: json[SELLER_PROFILE],
@@ -340,6 +357,8 @@ class Product {
       store_name: json[STORE_NAME],
       totalProductsOfSeller: json['total_products'],
       seller_id: json[SELLER_ID],
+      sellerRatingType: json['seller_rating1'],
+      sellerCategory: sellerCategoryList,
     );
   }
 
@@ -426,6 +445,33 @@ class Attribute {
       value: json[VALUE],
       sType: json[STYPE],
       sValue: json[SVALUE],
+    );
+  }
+}
+
+class SellerCategory {
+  String? categoryName, categoryID;
+  List<SellerSubCategory>? subCategory = [];
+  SellerCategory({this.categoryName, this.categoryID, this.subCategory});
+
+  factory SellerCategory.fromJson(Map<String, dynamic> json) {
+    List<SellerSubCategory> sellerSubCategoryList = (json['children'] as List)
+        .map((data) => SellerSubCategory.fromJson(data))
+        .toList();
+    return SellerCategory(
+        categoryName: json['name'],
+        categoryID: json['id'],
+        subCategory: sellerSubCategoryList);
+  }
+}
+
+class SellerSubCategory {
+  String? categoryName, categoryID;
+  SellerSubCategory({this.categoryName, this.categoryID});
+  factory SellerSubCategory.fromJson(Map<String, dynamic> json) {
+    return SellerSubCategory(
+      categoryName: json['name'],
+      categoryID: json['id'],
     );
   }
 }

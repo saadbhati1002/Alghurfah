@@ -1,4 +1,5 @@
-import 'package:eshop_multivendor/Screen/Auth/SignInUpAcc.dart';
+import 'package:eshop_multivendor/Screen/Auth/signin_up_acc.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../Helper/Color.dart';
@@ -21,7 +22,7 @@ class SliderBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -29,8 +30,7 @@ class SliderBtn extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: getList(sliderList, context, currentPage)),
-          Center(
-              child: Padding(
+          Padding(
             padding: const EdgeInsetsDirectional.only(bottom: 18.0),
             child: Padding(
               padding: const EdgeInsets.only(top: 25),
@@ -80,7 +80,7 @@ class SliderBtn extends StatelessWidget {
                 },
               ),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -100,7 +100,7 @@ skipBtn(BuildContext context, int currentPage) {
                   Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => const SignInUpAcc()),
+                        builder: (context) => const HomeScreenNew()),
                   );
                 },
                 child: Row(

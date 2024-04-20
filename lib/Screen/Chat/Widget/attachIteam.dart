@@ -163,9 +163,9 @@ class _AttachIteamState extends State<AttachIteam> {
                                     width: 250,
                                     height: 150,
                                     fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            DesignConfiguration.erroWidget(150))
+                                    errorBuilder: (context, error,
+                                            stackTrace) =>
+                                        DesignConfiguration.errorWidget(150))
                                 : Image.asset(
                                     DesignConfiguration.setPngPath(icon),
                                     width: 100,

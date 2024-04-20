@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:http/http.dart';
 import 'package:my_fatoorah/my_fatoorah.dart';
-import 'package:paytm/paytm.dart';
+// import 'package:paytm/paytm.dart';
 import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../Helper/Color.dart';
@@ -338,6 +338,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     return Scaffold(
       endDrawer: const MyDrawer(),
       key: _key,
+      bottomNavigationBar: widget.fromBottom == true
+          ? const SizedBox()
+          : allAppBottomSheet(context),
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_key,
           title: getTranslated(context, 'CART')!,
@@ -468,6 +471,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         );
       }
     }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Future<void> _getOffCart() async {
@@ -683,7 +689,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           }
           if (mounted) setState(() {});
         }, onError: (error) {
+          if(mounted){
           setSnackbar(error.toString(), context);
+          }
         });
       } on TimeoutException catch (_) {
         setSnackbar(getTranslated(context, 'somethingMSg')!, context);
@@ -1196,7 +1204,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     deviceWidth = MediaQuery.of(context).size.width;
     List<SectionModel> tempCartListForTestCondtion =
         context.read<CartProvider>().cartList;
-
+    print(tempCartListForTestCondtion.length);
     if (context.read<CartProvider>().addressList.isNotEmpty &&
         !context.read<CartProvider>().deliverable &&
         context.read<CartProvider>().cartList[0].productList![0].productType !=
@@ -1222,145 +1230,142 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           builder: (BuildContext context, StateSetter setState) {
             context.read<CartProvider>().checkoutState = setState;
             return Container(
+              color: colors.backgroundColor,
               constraints: BoxConstraints(
                 maxHeight: MediaQuery.of(context).size.height * 0.8,
               ),
               child: Scaffold(
+                backgroundColor: colors.backgroundColor,
                 resizeToAvoidBottomInset: false,
                 // key: context,
                 body: isNetworkAvail
                     ? context.read<CartProvider>().cartList.isEmpty
                         ? const EmptyCart()
-                        : _isLoading
-                            ? const ShimmerEffect()
-                            : Column(
-                                children: [
-                                  Expanded(
-                                    child: Stack(
-                                      children: <Widget>[
-                                        SingleChildScrollView(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                tempCartListForTestCondtion[0]
-                                                            .productType ==
-                                                        'digital_product'
-                                                    ? Container()
-                                                    : SetAddress(
-                                                        update: setStateNow),
-                                                AttachPrescriptionImages(
-                                                    cartList: context
-                                                        .read<CartProvider>()
-                                                        .cartList),
-                                                SelectPayment(
-                                                    updateCheckout:
-                                                        updateCheckout),
-                                                cartItems(context
+                        :
+                        // _isLoading
+                        //     ? const ShimmerEffect()
+                        //     :
+                        Column(
+                            children: [
+                              Expanded(
+                                child: Stack(
+                                  children: <Widget>[
+                                    SingleChildScrollView(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            tempCartListForTestCondtion[0]
+                                                        .productType ==
+                                                    'digital_product'
+                                                ? Container()
+                                                : SetAddress(
+                                                    update: setStateNow),
+                                            AttachPrescriptionImages(
+                                                cartList: context
                                                     .read<CartProvider>()
                                                     .cartList),
-                                                OrderSummery(
-                                                  cartList: context
-                                                      .read<CartProvider>()
-                                                      .cartList,
-                                                ),
-                                              ],
+                                            SelectPayment(
+                                                updateCheckout: updateCheckout),
+                                            cartItems(context
+                                                .read<CartProvider>()
+                                                .cartList),
+                                            OrderSummery(
+                                              cartList: context
+                                                  .read<CartProvider>()
+                                                  .cartList,
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        Selector<CartProvider, bool>(
-                                          builder: (context, data, child) {
-                                            return DesignConfiguration
-                                                .showCircularProgress(
-                                                    data, colors.primary);
-                                          },
-                                          selector: (_, provider) =>
-                                              provider.isProgress,
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    color: colors.backgroundColor,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.only(
-                                                  start: 15.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().totalPrice)!} ',
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .fontColor,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'ubuntu',
-                                                ),
-                                              ),
-                                              Text(
-                                                '${context.read<CartProvider>().cartList.length} Items',
-                                                style: const TextStyle(
-                                                  fontFamily: 'ubuntu',
-                                                ),
-                                              ),
-                                            ],
+                                    Selector<CartProvider, bool>(
+                                      builder: (context, data, child) {
+                                        return DesignConfiguration
+                                            .showCircularProgress(
+                                                data, colors.primary);
+                                      },
+                                      selector: (_, provider) =>
+                                          provider.isProgress,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                color: colors.backgroundColor,
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.only(
+                                          start: 15.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().totalPrice)!} ',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'ubuntu',
+                                                color: Colors.black),
                                           ),
-                                        ),
-                                        const Spacer(),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 10.0,
+                                          Text(
+                                            '${context.read<CartProvider>().cartList.length} Items',
+                                            style: const TextStyle(
+                                                fontFamily: 'ubuntu',
+                                                color: Colors.black),
                                           ),
-                                          child: SimBtn(
-                                            borderRadius: circularBorderRadius5,
-                                            size: 0.4,
-                                            title: getTranslated(
-                                                context, 'PLACE_ORDER'),
-                                            onBtnSelected: context
+                                        ],
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        right: 10.0,
+                                      ),
+                                      child: SimBtn(
+                                        borderRadius: circularBorderRadius5,
+                                        size: 0.4,
+                                        title: getTranslated(
+                                            context, 'PLACE_ORDER'),
+                                        onBtnSelected: context
+                                                .read<CartProvider>()
+                                                .placeOrder
+                                            ? () {
+                                                context
                                                     .read<CartProvider>()
-                                                    .placeOrder
-                                                ? () {
+                                                    .checkoutState!(
+                                                  () {
                                                     context
                                                         .read<CartProvider>()
-                                                        .checkoutState!(
-                                                      () {
+                                                        .placeOrder = false;
+                                                  },
+                                                );
+
+                                                if (tempCartListForTestCondtion[0].productType != 'digital_product' &&
+                                                    (context.read<CartProvider>().selAddress == null ||
+                                                        context.read<CartProvider>().selAddress ==
+                                                            '' ||
                                                         context
                                                             .read<
                                                                 CartProvider>()
-                                                            .placeOrder = false;
-                                                      },
-                                                    );
+                                                            .selAddress!
+                                                            .isEmpty)) {
+                                                  msg = getTranslated(context,
+                                                      'addressWarning');
 
-                                                    if (tempCartListForTestCondtion[0].productType != 'digital_product' &&
-                                                        (context.read<CartProvider>().selAddress == null ||
-                                                            context.read<CartProvider>().selAddress ==
-                                                                '' ||
-                                                            context
-                                                                .read<
-                                                                    CartProvider>()
-                                                                .selAddress!
-                                                                .isEmpty)) {
-                                                      msg = getTranslated(
-                                                          context,
-                                                          'addressWarning');
-
-                                                      Navigator.push(
-                                                        context,
-                                                        CupertinoPageRoute(
-                                                          builder: (context) =>
-                                                              const ManageAddress(
-                                                            home: false,
-                                                          ),
-                                                        ),
-                                                      );
-                                                      setState(
-                                                          () {}); /*.then((value) {
+                                                  Navigator.push(
+                                                    context,
+                                                    CupertinoPageRoute(
+                                                      builder: (context) =>
+                                                          const ManageAddress(
+                                                        home: false,
+                                                      ),
+                                                    ),
+                                                  );
+                                                  setState(
+                                                      () {}); /*.then((value) {
 
                                       if (context
                                           .read<
@@ -1371,27 +1376,25 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                       }
                                       setState(() {});
                                     });*/
-                                                      /* Routes
+                                                  /* Routes
                                                             .navigateToManageAddressScreen(
                                                                 context, false);*/
 
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (tempCartListForTestCondtion[0].productList![0].productType != 'digital_product' &&
-                                                        !context
-                                                            .read<
-                                                                CartProvider>()
-                                                            .deliverable) {
-                                                      checkDeliverable(
-                                                              true) /*
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (tempCartListForTestCondtion[0].productList![0].productType != 'digital_product' &&
+                                                    !context
+                                                        .read<CartProvider>()
+                                                        .deliverable) {
+                                                  checkDeliverable(
+                                                          true) /*
                                       .then((value) {
                                     print(
                                         "value dialogue****$value");
@@ -1400,177 +1403,165 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                       confirmDialog();
                                     }
                                   })*/
-                                                          ;
-                                                      // checkDeliverable(1);
+                                                      ;
+                                                  // checkDeliverable(1);
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (tempCartListForTestCondtion[0].productType != 'digital_product' &&
-                                                        !context
-                                                            .read<
-                                                                CartProvider>()
-                                                            .deliverable) {
-                                                      msg = getTranslated(
-                                                          context, 'NOT_DEL')!;
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (tempCartListForTestCondtion[0].productType != 'digital_product' &&
+                                                    !context
+                                                        .read<CartProvider>()
+                                                        .deliverable) {
+                                                  msg = getTranslated(
+                                                      context, 'NOT_DEL')!;
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (context.read<CartProvider>().payMethod ==
-                                                        null) {
-                                                      print('test pay***');
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (context.read<CartProvider>().payMethod ==
+                                                    null) {
+                                                  print('test pay***');
 
-                                                      msg = getTranslated(
-                                                          context,
-                                                          'payWarning');
-                                                      Navigator.push(
-                                                        context,
-                                                        CupertinoPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              Payment(
-                                                                  updateCheckout,
-                                                                  msg),
-                                                        ),
-                                                      );
+                                                  msg = getTranslated(
+                                                      context, 'payWarning');
+                                                  Navigator.push(
+                                                    context,
+                                                    CupertinoPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          Payment(
+                                                              updateCheckout,
+                                                              msg),
+                                                    ),
+                                                  );
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (tempCartListForTestCondtion[0].productType !=
-                                                            'digital_product' &&
-                                                        (context.read<CartProvider>().isTimeSlot! &&
-                                                            (context.read<CartProvider>().isLocalDelCharge == null ||
-                                                                context
-                                                                    .read<
-                                                                        CartProvider>()
-                                                                    .isLocalDelCharge!) &&
-                                                            int.parse(context.read<PaymentProvider>().allowDay!) >
-                                                                0 &&
-                                                            (context.read<CartProvider>().selDate == null ||
-                                                                context
-                                                                    .read<
-                                                                        CartProvider>()
-                                                                    .selDate!
-                                                                    .isEmpty) &&
-                                                            IS_LOCAL_ON !=
-                                                                '0')) {
-                                                      msg = getTranslated(
-                                                          context,
-                                                          'dateWarning');
-                                                      Navigator.push(
-                                                        context,
-                                                        CupertinoPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              Payment(
-                                                            updateCheckout,
-                                                            msg,
-                                                          ),
-                                                        ),
-                                                      );
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (tempCartListForTestCondtion[0].productType != 'digital_product' &&
+                                                    (context.read<CartProvider>().isTimeSlot! &&
+                                                        (context.read<CartProvider>().isLocalDelCharge == null ||
+                                                            context
+                                                                .read<
+                                                                    CartProvider>()
+                                                                .isLocalDelCharge!) &&
+                                                        int.parse(context.read<PaymentProvider>().allowDay!) >
+                                                            0 &&
+                                                        (context.read<CartProvider>().selDate == null ||
+                                                            context
+                                                                .read<
+                                                                    CartProvider>()
+                                                                .selDate!
+                                                                .isEmpty) &&
+                                                        IS_LOCAL_ON != '0')) {
+                                                  msg = getTranslated(
+                                                      context, 'dateWarning');
+                                                  Navigator.push(
+                                                    context,
+                                                    CupertinoPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          Payment(
+                                                        updateCheckout,
+                                                        msg,
+                                                      ),
+                                                    ),
+                                                  );
 
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (tempCartListForTestCondtion[0].productType !=
-                                                            'digital_product' &&
-                                                        (context.read<CartProvider>().isTimeSlot! &&
-                                                            (context.read<CartProvider>().isLocalDelCharge == null || context.read<CartProvider>().isLocalDelCharge!) &&
-                                                            context.read<PaymentProvider>().timeSlotList.isNotEmpty &&
-                                                            (context.read<CartProvider>().selTime == null || context.read<CartProvider>().selTime!.isEmpty) &&
-                                                            IS_LOCAL_ON != '0')) {
-                                                      msg = getTranslated(
-                                                          context,
-                                                          'timeWarning');
-                                                      Navigator.push(
-                                                        context,
-                                                        CupertinoPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              Payment(
-                                                            updateCheckout,
-                                                            msg,
-                                                          ),
-                                                        ),
-                                                      );
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (tempCartListForTestCondtion[0].productType !=
+                                                        'digital_product' &&
+                                                    (context.read<CartProvider>().isTimeSlot! &&
+                                                        (context.read<CartProvider>().isLocalDelCharge == null ||
+                                                            context.read<CartProvider>().isLocalDelCharge!) &&
+                                                        context.read<PaymentProvider>().timeSlotList.isNotEmpty &&
+                                                        (context.read<CartProvider>().selTime == null || context.read<CartProvider>().selTime!.isEmpty) &&
+                                                        IS_LOCAL_ON != '0')) {
+                                                  msg = getTranslated(
+                                                      context, 'timeWarning');
+                                                  Navigator.push(
+                                                    context,
+                                                    CupertinoPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          Payment(
+                                                        updateCheckout,
+                                                        msg,
+                                                      ),
+                                                    ),
+                                                  );
 
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else if (double.parse(MIN_ALLOW_CART_AMT!) > context.read<CartProvider>().oriPrice) {
-                                                      setSnackbar(
-                                                          "${getTranslated(context, 'MIN_CART_AMT')!} ${DesignConfiguration.getPriceFormat(context, double.parse(MIN_ALLOW_CART_AMT!))!}",
-                                                          context);
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else if (double.parse(MIN_ALLOW_CART_AMT!) > context.read<CartProvider>().oriPrice) {
+                                                  setSnackbar(
+                                                      "${getTranslated(context, 'MIN_CART_AMT')!} ${DesignConfiguration.getPriceFormat(context, double.parse(MIN_ALLOW_CART_AMT!))!}",
+                                                      context);
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
                                                       context
                                                           .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    } else {
-                                                      if (!context
-                                                          .read<CartProvider>()
-                                                          .isProgress) {
-                                                        confirmDialog();
-                                                      }
-                                                      context
-                                                          .read<CartProvider>()
-                                                          .checkoutState!(
-                                                        () {
-                                                          context
-                                                              .read<
-                                                                  CartProvider>()
-                                                              .placeOrder = true;
-                                                        },
-                                                      );
-                                                    }
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                } else {
+                                                  if (!context
+                                                      .read<CartProvider>()
+                                                      .isProgress) {
+                                                    confirmDialog();
                                                   }
-                                                : null,
-                                          ),
-                                        ),
-                                      ],
+                                                  context
+                                                      .read<CartProvider>()
+                                                      .checkoutState!(
+                                                    () {
+                                                      context
+                                                          .read<CartProvider>()
+                                                          .placeOrder = true;
+                                                    },
+                                                  );
+                                                }
+                                              }
+                                            : null,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
                     : NoInterNet(
                         setStateNoInternate: setStateNoInternate,
                         buttonSqueezeanimation: buttonSqueezeanimation,
@@ -1612,10 +1603,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
             setSnackbar(msg!, context);
             context.read<CartProvider>().setProgress(false);
           } else {
-            print('data****$data');
             if (data.isEmpty) {
-              print('data inner');
-
               context.read<CartProvider>().deliverable = true;
 
               setState(() {});
@@ -1627,7 +1615,6 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                 confirmDialog();
               }*/
             } else {
-              print('deliverable data*******$data');
               bool isDeliverible = false;
               bool? isShipRocket;
               context.read<CartProvider>().deliverableList =
@@ -2097,80 +2084,80 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
       ORDER_ID: orderId
     };
 
-    try {
-      apiBaseHelper.postAPICall(getPytmChecsumkApi, parameter).then(
-        (getdata) {
-          bool error = getdata['error'];
+    // try {
+    //   apiBaseHelper.postAPICall(getPytmChecsumkApi, parameter).then(
+    //     (getdata) {
+    //       bool error = getdata['error'];
 
-          if (!error) {
-            String txnToken = getdata['txn_token'];
-            setState(
-              () {
-                paymentResponse = txnToken;
-              },
-            );
+    //       if (!error) {
+    //         String txnToken = getdata['txn_token'];
+    //         setState(
+    //           () {
+    //             paymentResponse = txnToken;
+    //           },
+    //         );
 
-            var paytmResponse = Paytm.payWithPaytm(
-              callBackUrl: callBackUrl,
-              mId: context.read<CartProvider>().paytmMerId!,
-              orderId: orderId,
-              txnToken: txnToken,
-              txnAmount: context.read<CartProvider>().totalPrice.toString(),
-              staging: context.read<CartProvider>().payTesting,
-            );
-            paytmResponse.then(
-              (value) {
-                context.read<CartProvider>().setProgress(false);
+    //         var paytmResponse = Paytm.payWithPaytm(
+    //           callBackUrl: callBackUrl,
+    //           mId: context.read<CartProvider>().paytmMerId!,
+    //           orderId: orderId,
+    //           txnToken: txnToken,
+    //           txnAmount: context.read<CartProvider>().totalPrice.toString(),
+    //           staging: context.read<CartProvider>().payTesting,
+    //         );
+    //         paytmResponse.then(
+    //           (value) {
+    //             context.read<CartProvider>().setProgress(false);
 
-                context.read<CartProvider>().placeOrder = true;
-                setState(() {});
-                context.read<CartProvider>().checkoutState!(
-                  () async {
-                    if (value['error']) {
-                      paymentResponse = value['errorMessage'];
+    //             context.read<CartProvider>().placeOrder = true;
+    //             setState(() {});
+    //             context.read<CartProvider>().checkoutState!(
+    //               () async {
+    //                 if (value['error']) {
+    //                   paymentResponse = value['errorMessage'];
 
-                      if (value['response'] != '') {
-                        addTransaction(
-                            value['response']['TXNID'],
-                            orderId,
-                            value['response']['STATUS'] ?? '',
-                            paymentResponse,
-                            false);
-                      }
-                    } else {
-                      if (value['response'] != '') {
-                        paymentResponse = value['response']['STATUS'];
-                        if (paymentResponse == 'TXN_SUCCESS') {
-                          await updateOrderStatus(
-                              orderID: orderID, status: PLACED);
-                          addTransaction(value['response']['TXNID'], orderID,
-                              SUCCESS, msg, true);
-                        } else {
-                          deleteOrder(orderID);
-                        }
-                      }
-                    }
+    //                   if (value['response'] != '') {
+    //                     addTransaction(
+    //                         value['response']['TXNID'],
+    //                         orderId,
+    //                         value['response']['STATUS'] ?? '',
+    //                         paymentResponse,
+    //                         false);
+    //                   }
+    //                 } else {
+    //                   if (value['response'] != '') {
+    //                     paymentResponse = value['response']['STATUS'];
+    //                     if (paymentResponse == 'TXN_SUCCESS') {
+    //                       await updateOrderStatus(
+    //                           orderID: orderID, status: PLACED);
+    //                       addTransaction(value['response']['TXNID'], orderID,
+    //                           SUCCESS, msg, true);
+    //                     } else {
+    //                       deleteOrder(orderID);
+    //                     }
+    //                   }
+    //                 }
 
-                    setSnackbar(paymentResponse!, context);
-                  },
-                );
-              },
-            );
-          } else {
-            context.read<CartProvider>().checkoutState!(
-              () {
-                context.read<CartProvider>().placeOrder = true;
-              },
-            );
-            context.read<CartProvider>().setProgress(false);
-            setSnackbar(getdata['message'], context);
-          }
-        },
-        onError: (error) {
-          setSnackbar(error.toString(), context);
-        },
-      );
-    } catch (e) {}
+    //                 setSnackbar(paymentResponse!, context);
+    //               },
+    //             );
+    //           },
+    //         );
+    //       } else {
+    //         context.read<CartProvider>().checkoutState!(
+    //           () {
+    //             context.read<CartProvider>().placeOrder = true;
+    //           },
+    //         );
+    //         context.read<CartProvider>().setProgress(false);
+    //         setSnackbar(getdata['message'], context);
+    //       }
+    //     },
+    //     onError: (error) {
+    //       setSnackbar(error.toString(), context);
+    //     },
+    //   );
+    // } catch (e) {}
   }
 
   Future<void> placeOrder(String? tranId) async {

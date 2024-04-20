@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -132,9 +134,13 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
         context.read<CartProvider>().cartList;
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
+      endDrawer: const MyDrawer(),
       key: _scaffoldKey,
-      appBar: getSimpleAppBar(
-          getTranslated(context, 'PAYMENT_METHOD_LBL')!, context),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: getTranslated(context, 'PAYMENT_METHOD_LBL')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? context.read<PaymentProvider>().isLoading
               ? DesignConfiguration.getProgress()
@@ -326,6 +332,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                                     .isLocalDelCharge!) &&
                                             IS_LOCAL_ON != '0')
                                     ? Card(
+                                        color: Colors.white,
                                         elevation: 0,
                                         child: Column(
                                           crossAxisAlignment:
@@ -338,16 +345,16 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                               child: Text(
                                                 getTranslated(
                                                     context, 'PREFERED_TIME')!,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .fontColor,
+                                                style: const TextStyle(
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: textFontSize16,
                                                 ),
                                               ),
                                             ),
-                                            const Divider(),
+                                            const Divider(
+                                              color: colors.backgroundColor,
+                                            ),
                                             Container(
                                               height: 90,
                                               padding:
@@ -388,6 +395,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                           .payModel
                                           .isNotEmpty
                                   ? Card(
+                                      color: Colors.white,
                                       elevation: 0,
                                       child: Column(
                                         crossAxisAlignment:
@@ -399,10 +407,8 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                             child: Text(
                                               getTranslated(
                                                   context, 'SELECT_PAYMENT')!,
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .fontColor,
+                                              style: const TextStyle(
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: textFontSize16,
                                               ),
@@ -495,7 +501,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                         ),
                       ),
                       SimBtn(
-                        borderRadius: circularBorderRadius5,
+                        borderRadius: 20,
                         size: 0.8,
                         title: getTranslated(context, 'DONE'),
                         onBtnSelected: () {
@@ -520,13 +526,8 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(circularBorderRadius10),
-          gradient: context.read<CartProvider>().selectedDate == index
-              ? const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [colors.grad1Color, colors.grad2Color],
-                  stops: [0, 1],
-                )
+          color: context.read<CartProvider>().selectedDate == index
+              ? colors.primary
               : null,
         ),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -543,8 +544,8 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
               ),
               style: TextStyle(
                 color: context.read<CartProvider>().selectedDate == index
-                    ? Theme.of(context).colorScheme.white
-                    : Theme.of(context).colorScheme.lightBlack2,
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             Padding(
@@ -558,8 +559,8 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: context.read<CartProvider>().selectedDate == index
-                      ? Theme.of(context).colorScheme.white
-                      : Theme.of(context).colorScheme.lightBlack2,
+                      ? Colors.white
+                      : Colors.black,
                 ),
               ),
             ),
@@ -573,8 +574,8 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
               ),
               style: TextStyle(
                 color: context.read<CartProvider>().selectedDate == index
-                    ? Theme.of(context).colorScheme.white
-                    : Theme.of(context).colorScheme.lightBlack2,
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
           ],

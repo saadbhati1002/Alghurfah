@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Constant.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
 import 'package:eshop_multivendor/ServiceApp/component/view_all_label_component.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/common.dart';
 import 'package:eshop_multivendor/main.dart';
@@ -26,7 +27,7 @@ import 'package:eshop_multivendor/widgets/desing.dart';
 import 'package:eshop_multivendor/widgets/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Product Detail/Widget/ProductHighLight.dart';
@@ -40,9 +41,11 @@ import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 
 class ServiceDetailScreen extends StatefulWidget {
   final int serviceId;
+  final String? serviceName;
   final ServiceData? service;
 
-  ServiceDetailScreen({required this.serviceId, this.service});
+  ServiceDetailScreen(
+      {required this.serviceId, this.service, this.serviceName});
 
   @override
   _ServiceDetailScreenState createState() => _ServiceDetailScreenState();
@@ -74,10 +77,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
 
   //region Widgets
   Widget availableWidget({required ServiceData data}) {
-    if (data.serviceAddressMapping.validate().isEmpty) return Offstage();
+    if (data.serviceAddressMapping.validate().isEmpty) return const Offstage();
 
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -92,7 +95,8 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
               (index) {
                 ServiceAddressMapping value =
                     data.serviceAddressMapping![index];
-                if (value.providerAddressMapping == null) return Offstage();
+                if (value.providerAddressMapping == null)
+                  return const Offstage();
 
                 bool isSelected = selectedAddressId == index;
                 if (selectedBookingAddressId == -1) {
@@ -108,7 +112,8 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                     setState(() {});
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     decoration: boxDecorationDefault(
                         color: isSelected
                             ? colors.serviceColor
@@ -147,7 +152,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
     if (data.isEmpty) return Offstage();
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -156,9 +161,9 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
           8.height,
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: data.length,
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             itemBuilder: (_, index) =>
                 ServiceFaqWidget(serviceFaq: data[index]),
           ),
@@ -172,7 +177,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       {required List<SlotData> data, required bool isSlotAvailable}) {
     if (!isSlotAvailable ||
         data.where((element) => element.slot.validate().isNotEmpty).isEmpty)
-      return Offstage();
+      return const Offstage();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,8 +195,10 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                 .where((element) => element.slot.validate().isNotEmpty)
                 .toList()[index];
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: boxDecorationDefault(color: context.cardColor),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: boxDecorationDefault(
+                color: Colors.grey[300],
+              ),
               child: Text('${value.day.capitalizeFirstLetter()}',
                   style: secondaryTextStyle(size: 18, color: primaryColor)),
             );
@@ -230,7 +237,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
 
   Widget relatedServiceWidget(
       {required List<ServiceData> serviceList, required int serviceId}) {
-    if (serviceList.isEmpty) return Offstage();
+    if (serviceList.isEmpty) return const Offstage();
 
     serviceList.removeWhere((element) => element.id == serviceId);
 
@@ -243,7 +250,7 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
             .paddingSymmetric(horizontal: 16),
         HorizontalList(
           itemCount: serviceList.length,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           spacing: 8,
           runSpacing: 16,
           itemBuilder: (_, index) => ServiceComponent(
@@ -269,18 +276,12 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
         setStatusBarColor(transparentColor);
       });
     } else {
-      SignInScreen(isFromServiceBooking: true).launch(context).then((value) {
-        if (appStore.isLoggedIn) {
-          serviceDetailResponse.serviceDetail!.bookingAddressId =
-              selectedBookingAddressId;
-          BookServiceScreen(
-                  data: serviceDetailResponse, selectedPackage: selectedPackage)
-              .launch(context)
-              .then((value) {
-            setStatusBarColor(transparentColor);
-          });
-        }
-      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Login(),
+        ),
+      );
     }
   }
 
@@ -476,6 +477,11 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
                             height: 10,
                           ),
                           availableWidget(data: snap.data!.serviceDetail!),
+                          slotsAvailable(
+                              data: snap.data!.serviceDetail!.bookingSlots
+                                  .validate(),
+                              isSlotAvailable:
+                                  snap.data!.serviceDetail!.isSlotAvailable),
                         ],
                       ),
                     ),
@@ -517,12 +523,12 @@ class _ServiceDetailScreenState extends State<ServiceDetailScreen>
       future: future,
       builder: (context, snap) {
         return Scaffold(
-          bottomNavigationBar: allAppBottomSheet(context),
+          bottomNavigationBar: serviceAppBottomNavigation(context),
           endDrawer: const MyDrawer(),
           key: _scaffoldKey,
           backgroundColor: colors.backgroundColor,
           appBar: getAppBar(_scaffoldKey,
-              title: widget.service!.name!,
+              title: widget.serviceName ?? '',
               context: context,
               setState: setStateNow),
           body: buildBodyWidget(snap),

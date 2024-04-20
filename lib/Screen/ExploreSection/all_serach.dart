@@ -3,6 +3,7 @@ import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/UserProvider.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
+import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -346,25 +347,23 @@ class _SearchState extends State<AllSearchScreen>
                       ),
                       height: 44,
                       child: TextField(
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.fontColor,
-                          fontWeight: FontWeight.normal,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
                         ),
                         controller: _controller,
                         autofocus: false,
                         enabled: true,
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color:
-                                    Theme.of(context).colorScheme.lightWhite),
-                            borderRadius: const BorderRadius.all(
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.all(
                               Radius.circular(circularBorderRadius10),
                             ),
                           ),
                           enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
+                            borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.all(
                               Radius.circular(circularBorderRadius10),
                             ),
@@ -372,24 +371,22 @@ class _SearchState extends State<AllSearchScreen>
                           contentPadding:
                               const EdgeInsets.fromLTRB(15.0, 5.0, 0, 5.0),
                           border: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
+                            borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.all(
                               Radius.circular(circularBorderRadius10),
                             ),
                           ),
-                          fillColor: Theme.of(context).colorScheme.lightWhite,
+                          fillColor: Colors.white,
                           filled: true,
                           isDense: true,
                           hintText: getTranslated(context, 'searchHint'),
-                          hintStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.fontColor,
-                                fontSize: textFontSize12,
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                              ),
+                          hintStyle:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.black,
+                                    fontSize: textFontSize12,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle: FontStyle.normal,
+                                  ),
                           prefixIcon: const Padding(
                               padding: EdgeInsets.all(15.0),
                               child: Icon(Icons.search)),
@@ -437,12 +434,14 @@ class _SearchState extends State<AllSearchScreen>
                                                     'voice_search'),
                                                 height: 15,
                                                 width: 15,
+                                                color: primaryColor,
                                               )
                                             : SvgPicture.asset(
                                                 DesignConfiguration.setSvgPath(
                                                     'voice_search_white'),
                                                 height: 15,
                                                 width: 15,
+                                                color: primaryColor,
                                               );
                                       },
                                     ),
@@ -920,7 +919,7 @@ class _SearchState extends State<AllSearchScreen>
 
   void sortDialog() {
     showModalBottomSheet(
-      backgroundColor: Theme.of(context).colorScheme.white,
+      backgroundColor: colors.backgroundColor,
       context: context,
       enableDrag: false,
       isScrollControlled: true,
@@ -944,8 +943,8 @@ class _SearchState extends State<AllSearchScreen>
                           top: 19.0, bottom: 16.0),
                       child: Text(
                         getTranslated(context, 'SORT_BY')!,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize18,
                           fontFamily: 'ubuntu',
                         ),
@@ -972,15 +971,13 @@ class _SearchState extends State<AllSearchScreen>
                       width: deviceWidth,
                       color: sortBy == ''
                           ? colors.primary
-                          : Theme.of(context).colorScheme.white,
+                          : colors.backgroundColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
                         getTranslated(context, 'TOP_RATED')!,
-                        style: TextStyle(
-                          color: sortBy == ''
-                              ? Theme.of(context).colorScheme.white
-                              : Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize16,
                           fontFamily: 'ubuntu',
                         ),
@@ -992,15 +989,13 @@ class _SearchState extends State<AllSearchScreen>
                       width: deviceWidth,
                       color: sortBy == 'p.date_added' && orderBy == 'DESC'
                           ? colors.primary
-                          : Theme.of(context).colorScheme.white,
+                          : colors.backgroundColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
                         getTranslated(context, 'F_NEWEST')!,
-                        style: TextStyle(
-                          color: sortBy == 'p.date_added' && orderBy == 'DESC'
-                              ? Theme.of(context).colorScheme.white
-                              : Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize16,
                           fontFamily: 'ubuntu',
                         ),
@@ -1027,15 +1022,13 @@ class _SearchState extends State<AllSearchScreen>
                       width: deviceWidth,
                       color: sortBy == 'p.date_added' && orderBy == 'ASC'
                           ? colors.primary
-                          : Theme.of(context).colorScheme.white,
+                          : colors.backgroundColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
                         getTranslated(context, 'F_OLDEST')!,
-                        style: TextStyle(
-                          color: sortBy == 'p.date_added' && orderBy == 'ASC'
-                              ? Theme.of(context).colorScheme.white
-                              : Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize16,
                           fontFamily: 'ubuntu',
                         ),
@@ -1062,15 +1055,13 @@ class _SearchState extends State<AllSearchScreen>
                       width: deviceWidth,
                       color: sortBy == 'pv.price' && orderBy == 'ASC'
                           ? colors.primary
-                          : Theme.of(context).colorScheme.white,
+                          : colors.backgroundColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
                         getTranslated(context, 'F_LOW')!,
-                        style: TextStyle(
-                          color: sortBy == 'pv.price' && orderBy == 'ASC'
-                              ? Theme.of(context).colorScheme.white
-                              : Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize16,
                           fontFamily: 'ubuntu',
                         ),
@@ -1097,15 +1088,13 @@ class _SearchState extends State<AllSearchScreen>
                       width: deviceWidth,
                       color: sortBy == 'pv.price' && orderBy == 'DESC'
                           ? colors.primary
-                          : Theme.of(context).colorScheme.white,
+                          : colors.backgroundColor,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
                       child: Text(
                         getTranslated(context, 'F_HIGH')!,
-                        style: TextStyle(
-                          color: sortBy == 'pv.price' && orderBy == 'DESC'
-                              ? Theme.of(context).colorScheme.white
-                              : Theme.of(context).colorScheme.fontColor,
+                        style: const TextStyle(
+                          color: Colors.black,
                           fontSize: textFontSize16,
                           fontFamily: 'ubuntu',
                         ),
@@ -1226,8 +1215,6 @@ class _SearchState extends State<AllSearchScreen>
                   ),
                   GestureDetector(
                     onTap: () {
-                      print(
-                          'currentRangeValue1122:$_currentRangeValues ******$selectedId*****$currentRangeValuesTest***$selectedIdTest******$disCardClick');
                       filterDialog();
                     },
                     child: Row(
@@ -1259,7 +1246,7 @@ class _SearchState extends State<AllSearchScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1.0),
       child: Container(
-        color: Theme.of(context).colorScheme.white,
+        color: Colors.white,
         height: 45,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -1271,7 +1258,7 @@ class _SearchState extends State<AllSearchScreen>
                 child: Text(
                   getTranslated(context, 'TITLE1_LBL')!,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.fontColor,
+                    color: primaryColor,
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.normal,
                     fontSize: textFontSize16,
@@ -1289,8 +1276,7 @@ class _SearchState extends State<AllSearchScreen>
                   return Text(
                     '${notificationisnodata ? '0' : data.getTotalProducts}: ${getTranslated(context, "Items_Found")}',
                     style: const TextStyle(
-                      fontFamily: 'ubuntu',
-                    ),
+                        fontFamily: 'ubuntu', color: Colors.black),
                   );
                 },
               ),
@@ -1302,10 +1288,8 @@ class _SearchState extends State<AllSearchScreen>
   }
 
   void filterDialog() {
-    print(
-        'currentRangeValue:$_currentRangeValues ******$selectedId*****$currentRangeValuesTest***$selectedIdTest******$disCardClick');
-
     showModalBottomSheet(
+      backgroundColor: colors.backgroundColor,
       context: context,
       enableDrag: false,
       isScrollControlled: true,
@@ -1334,14 +1318,14 @@ class _SearchState extends State<AllSearchScreen>
                   child: AppBar(
                     title: Text(
                       getTranslated(context, 'FILTER')!,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.fontColor,
+                      style: const TextStyle(
+                        color: Colors.black,
                         fontFamily: 'ubuntu',
                       ),
                     ),
                     centerTitle: true,
                     elevation: 5,
-                    backgroundColor: Theme.of(context).colorScheme.white,
+                    backgroundColor: Colors.white,
                     leading: Builder(
                       builder: (BuildContext context) {
                         return Container(
@@ -1365,7 +1349,7 @@ class _SearchState extends State<AllSearchScreen>
                 ),
                 Expanded(
                     child: Container(
-                  color: Theme.of(context).colorScheme.lightWhite,
+                  color: colors.backgroundColor,
                   padding: const EdgeInsetsDirectional.only(
                     start: 7.0,
                     end: 7.0,
@@ -1478,7 +1462,7 @@ class _SearchState extends State<AllSearchScreen>
                                       height: 80,
                                       errorBuilder:
                                           (context, error, stackTrace) =>
-                                              DesignConfiguration.erroWidget(
+                                              DesignConfiguration.errorWidget(
                                         80,
                                       ),
                                     ),
@@ -1601,7 +1585,7 @@ class _SearchState extends State<AllSearchScreen>
                       : const SizedBox(),
                 )),
                 Container(
-                  color: Theme.of(context).colorScheme.white,
+                  color: colors.backgroundColor,
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -1613,22 +1597,16 @@ class _SearchState extends State<AllSearchScreen>
                               setState(() {
                                 setStater(
                                   () {
-                                    print('clear discard****$selectedId');
-
                                     selectedIdTest!.addAll(selectedId!);
                                     currentRangeValuesTest =
                                         _currentRangeValues!;
 
-                                    print(
-                                        'selected test***$selectedIdTest****$currentRangeValuesTest****$minPrice***$maxPrice');
                                     disCardClick = true;
 
                                     selectedId!.clear();
                                     _currentRangeValues = RangeValues(
                                         double.parse(minPrice),
                                         double.parse(maxPrice));
-                                    print(
-                                        'selected test111***$selectedIdTest****$currentRangeValuesTest****$minPrice***$maxPrice');
                                   },
                                 );
                               });

@@ -2,10 +2,9 @@ import 'dart:async';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
-import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
 import 'package:eshop_multivendor/Screen/IntroSlider/Intro_Slider.dart';
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
-import 'package:eshop_multivendor/home_screen_new.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +31,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
   );
   @override
   void initState() {
-    SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+    SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     SystemChromeSettings.setSystemUIOverlayStyleWithNoSpecification();
     initializeAnimationController();
     startTime();
@@ -92,8 +91,6 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
   Future<void> navigationPage() async {
     SettingProvider settingsProvider =
         Provider.of<SettingProvider>(context, listen: false);
-    ThemeProvider theme = Provider.of<ThemeProvider>(context, listen: false);
-    theme.changeTheme(2, getTranslated(context, 'DARK_THEME')!, context);
     bool isFirstTime = await settingsProvider.getPrefrenceBool(ISFIRSTTIME);
     if (isFirstTime) {
       setState(
@@ -126,7 +123,7 @@ class _SplashScreen extends State<Splash> with TickerProviderStateMixin {
   @override
   void dispose() {
     if (from) {
-      SystemChromeSettings.setSystemButtomNavigationBarithTopAndButtom();
+      SystemChromeSettings.setSystemButtonNavigationBaritTopAndButton();
     }
     super.dispose();
   }

@@ -9,7 +9,7 @@ PageController customStepperController = PageController(initialPage: 0);
 class CustomStepper extends StatefulWidget {
   final List<CustomStep> stepsList;
 
-  CustomStepper({required this.stepsList});
+  const CustomStepper({Key? key, required this.stepsList}) : super(key: key);
 
   @override
   _CustomStepperState createState() => _CustomStepperState();
@@ -52,8 +52,8 @@ class _CustomStepperState extends State<CustomStepper> {
                         ? Colors.transparent
                         : context.dividerColor),
               ),
-              padding: EdgeInsets.all(20),
-              child: Text("${(index + 1)}",
+              padding: const EdgeInsets.all(20),
+              child: Text('${(index + 1)}',
                   style: boldTextStyle(
                       color: index <= currentPage
                           ? Colors.transparent
@@ -79,26 +79,27 @@ class _CustomStepperState extends State<CustomStepper> {
   }
 
   Widget _buildStepper(int currentStep) {
-    return Container(
+    return SizedBox(
       height: 100,
       width: context.width() * 0.8,
       child: Row(
         children: List.generate(
           widget.stepsList.length,
           (index) {
-            if (index < widget.stepsList.length - 1)
+            if (index < widget.stepsList.length - 1) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   buildStep(index),
-                  Offstage(),
+                  const Offstage(),
                   buildStepDivider(index).paddingBottom(16),
                 ],
               ).expand(flex: widget.stepsList.length);
-            else
+            } else {
               return buildStep(index).expand();
+            }
           },
         ),
       ),
@@ -116,7 +117,7 @@ class _CustomStepperState extends State<CustomStepper> {
         Expanded(
           child: PageView.builder(
             controller: customStepperController,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(
                 () {

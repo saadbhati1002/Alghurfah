@@ -20,6 +20,7 @@ class _SetAddressState extends State<SetAddress> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: colors.primary,
       elevation: 1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -29,7 +30,10 @@ class _SetAddressState extends State<SetAddress> {
           children: [
             Row(
               children: [
-                const Icon(Icons.location_on),
+                const Icon(
+                  Icons.location_on,
+                  color: Colors.white,
+                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 8.0),
                   child: Text(

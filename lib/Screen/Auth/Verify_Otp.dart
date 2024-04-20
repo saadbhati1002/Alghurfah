@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Provider/SettingProvider.dart';
-import 'package:eshop_multivendor/Screen/Auth/Set_Password.dart';
-import 'package:eshop_multivendor/Screen/Auth/SignUp.dart';
+import 'package:eshop_multivendor/Screen/Auth/set_password.dart';
+import 'package:eshop_multivendor/Screen/Auth/signup.dart';
+import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import '../../Helper/Constant.dart';
 import '../../Helper/String.dart';
 import '../../widgets/ButtonDesing.dart';
-import '../../widgets/desing.dart';
 import '../../widgets/snackbar.dart';
 import '../Language/languageSettings.dart';
 import '../../widgets/networkAvailablity.dart';
@@ -50,7 +50,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     getUserDetails();
-    getSingature();
+    getSignature();
     _onVerifyCode();
     Future.delayed(const Duration(seconds: 60)).then(
       (_) {
@@ -74,7 +74,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
     );
   }
 
-  Future<void> getSingature() async {
+  Future<void> getSignature() async {
     signature = await SmsAutoFill().getAppSignature;
     SmsAutoFill().listenForCode;
   }
@@ -136,6 +136,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
         },
       );
     }
+    FirebaseMessaging.instance.requestPermission();
     PhoneVerificationCompleted verificationCompleted() {
       return (AuthCredential phoneAuthCredential) {
         _firebaseAuth.signInWithCredential(phoneAuthCredential).then(
@@ -193,8 +194,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
 
     PhoneCodeSent codeSent() {
       return (String verificationId, [int? forceResendingToken]) async {
-        // _verificationId = verificationId;
-
+        print('we are here');
         setState(
           () {
             _verificationId = verificationId;
@@ -299,7 +299,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
       child: Text(
         getTranslated(context, 'MOBILE_NUMBER_VARIFICATION')!,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: textFontSize23,
               letterSpacing: 0.8,
@@ -317,7 +317,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
       child: Text(
         getTranslated(context, 'SENT_VERIFY_CODE_TO_NO_LBL')!,
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.5),
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontFamily: 'ubuntu',
             ),
@@ -331,7 +331,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
       child: Text(
         '+${widget.countryCode}-${widget.mobileNumber}',
         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Theme.of(context).colorScheme.fontColor.withOpacity(0.5),
+              color: colors.primary,
               fontWeight: FontWeight.bold,
               fontFamily: 'ubuntu',
             ),
@@ -373,9 +373,8 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
           Text(
             getTranslated(context, 'DIDNT_GET_THE_CODE')!,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color:
-                      Theme.of(context).colorScheme.fontColor.withOpacity(0.5),
-                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
                   fontFamily: 'ubuntu',
                 ),
           ),
@@ -387,7 +386,7 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
             child: Text(
               getTranslated(context, 'RESEND_OTP')!,
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: colors.primary,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'ubuntu',
                   ),
@@ -404,26 +403,49 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
       resizeToAvoidBottomInset: true,
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.white,
-      body: Center(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-              top: 23,
-              left: 23,
-              right: 23,
-              bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              getLogo(),
-              monoVarifyText(),
-              otpText(),
-              mobText(),
-              otpLayout(),
-              resendText(),
-              verifyBtn(),
-            ],
+      body: Stack(
+        children: [
+          const BackgroundImage(),
+          Center(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(
+                  top: 23,
+                  left: 23,
+                  right: 23,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  getLogo(),
+                  Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(25),
+                          bottomLeft: Radius.circular(25),
+                        ),
+                        color: colors.whiteTemp),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Column(
+                        children: [
+                          monoVarifyText(),
+                          otpText(),
+                          mobText(),
+                          otpLayout(),
+                          resendText(),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  verifyBtn(),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -431,12 +453,11 @@ class _MobileOTPState extends State<VerifyOtp> with TickerProviderStateMixin {
   Widget getLogo() {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.only(top: 60),
-      child: SvgPicture.asset(
-        DesignConfiguration.setSvgPath('homelogo'),
+      child: Image.asset(
+        'assets/images/png/logo1.png',
         alignment: Alignment.center,
-        height: 90,
-        width: 90,
+        height: 170,
+        width: MediaQuery.of(context).size.width * .5,
         fit: BoxFit.contain,
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/ServiceApp/component/add_review_dialog.dart';
 import 'package:eshop_multivendor/ServiceApp/component/app_common_dialog.dart';
 import 'package:eshop_multivendor/ServiceApp/component/back_widget.dart';
@@ -35,6 +36,8 @@ import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/images.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/model_keys.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/string_extensions.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
@@ -248,19 +251,20 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         (value.bookingDetail!.status == BookingStatusKeys.inProgress ||
             value.bookingDetail!.status == BookingStatusKeys.hold ||
             value.bookingDetail!.status == BookingStatusKeys.complete ||
-            value.bookingDetail!.status == BookingStatusKeys.onGoing))
+            value.bookingDetail!.status == BookingStatusKeys.onGoing)) {
       return Column(
         children: [
           16.height,
           CountdownWidget(bookingDetailResponse: value),
         ],
       );
-    else
-      return Offstage();
+    } else {
+      return const Offstage();
+    }
   }
 
   Widget serviceProofListWidget({required List<ServiceProof> list}) {
-    if (list.isEmpty) return Offstage();
+    if (list.isEmpty) return const Offstage();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,15 +275,15 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         16.height,
         Container(
           decoration: boxDecorationWithRoundedCorners(
-            backgroundColor: context.cardColor,
-            borderRadius: BorderRadius.all(Radius.circular(16)),
+            backgroundColor: Colors.white,
+            borderRadius: const BorderRadius.all(Radius.circular(16)),
           ),
           child: ListView.separated(
             itemBuilder: (context, index) =>
                 ServiceProofListWidget(data: list[index]),
             itemCount: list.length,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             separatorBuilder: (BuildContext context, int index) {
               return Divider(height: 0, color: context.dividerColor);
             },
@@ -346,6 +350,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
           () {
             ProviderInfoScreen(
                     providerId: res.providerData!.id.validate(),
+                    sellerName: res.providerData!.displayName,
                     canCustomerContact: canCustomerContact)
                 .launch(context);
           },
@@ -369,13 +374,13 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         16.height,
         Container(
           decoration: boxDecorationWithRoundedCorners(
-              backgroundColor: context.cardColor, borderRadius: radius()),
-          padding: EdgeInsets.all(16),
+              backgroundColor: Colors.white, borderRadius: radius()),
+          padding: const EdgeInsets.all(16),
           child: ListView.builder(
             itemCount: extraChargesList.length,
             shrinkWrap: true,
             padding: EdgeInsets.zero,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, i) {
               ExtraChargesModel data = extraChargesList[i];
 
@@ -385,20 +390,21 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   Row(
                     children: [
                       Text(data.title.validate(),
-                              style: secondaryTextStyle(size: 16))
+                              style: secondaryTextStyle(
+                                  size: 16, color: Colors.black))
                           .expand(),
                       16.width,
                       Row(
                         children: [
                           Text('${data.qty} * ${data.price.validate()} = ',
-                              style: secondaryTextStyle()),
+                              style: secondaryTextStyle(color: Colors.black)),
                           4.width,
                           PriceWidget(
                               price:
                                   '${data.price.validate() * data.qty.validate()}'
                                       .toDouble(),
                               size: 18,
-                              color: textPrimaryColorGlobal,
+                              color: colors.serviceColor,
                               isBoldText: true),
                         ],
                       ),
@@ -414,7 +420,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
   }
 
   Widget paymentDetailCard(BookingData bookingData) {
-    if (bookingData.paymentId != null && bookingData.paymentStatus != null)
+    if (bookingData.paymentId != null && bookingData.paymentStatus != null) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -423,19 +429,23 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
           8.height,
           Container(
             decoration: boxDecorationWithRoundedCorners(
-              backgroundColor: context.cardColor,
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+              backgroundColor: Colors.white,
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(language.lblId, style: secondaryTextStyle(size: 16)),
+                    Text(language.lblId,
+                        style: secondaryTextStyle(
+                          size: 16,
+                          color: textPrimaryColorGlobal,
+                        )),
                     Text("#" + bookingData.paymentId.toString(),
-                        style: boldTextStyle()),
+                        style: boldTextStyle(color: Colors.black)),
                   ],
                 ),
                 4.height,
@@ -446,13 +456,16 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(language.lblMethod,
-                          style: secondaryTextStyle(size: 16)),
+                          style: secondaryTextStyle(
+                            size: 16,
+                            color: textPrimaryColorGlobal,
+                          )),
                       Text(
                         (bookingData.paymentMethod != null
                                 ? bookingData.paymentMethod.toString()
                                 : language.notAvailable)
                             .capitalizeFirstLetter(),
-                        style: boldTextStyle(),
+                        style: boldTextStyle(color: Colors.black),
                       ),
                     ],
                   ),
@@ -464,11 +477,14 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(language.lblStatus,
-                        style: secondaryTextStyle(size: 16)),
+                        style: secondaryTextStyle(
+                          size: 16,
+                          color: textPrimaryColorGlobal,
+                        )),
                     Text(
                       getPaymentStatusText(
                           bookingData.paymentStatus, bookingData.paymentMethod),
-                      style: boldTextStyle(),
+                      style: boldTextStyle(color: Colors.black),
                     ),
                   ],
                 ),
@@ -477,8 +493,9 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
           ),
         ],
       );
+    }
 
-    return Offstage();
+    return const Offstage();
   }
 
   Widget customerReviewWidget(
@@ -594,7 +611,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         8.height,
         ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: ratingList.length,
           itemBuilder: (context, index) =>
               ReviewWidget(data: ratingList[index]),
@@ -723,10 +740,10 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
 
             return Container(
               width: context.width(),
-              margin: EdgeInsets.symmetric(vertical: 8),
-              padding: EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.all(8),
               decoration: boxDecorationWithRoundedCorners(
-                  backgroundColor: context.cardColor,
+                  backgroundColor: Colors.white,
                   borderRadius:
                       BorderRadius.all(Radius.circular(defaultRadius))),
               child: Row(
@@ -734,7 +751,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   CachedImageWidget(
                     url: data.attachments.validate().isNotEmpty
                         ? data.attachments!.first.validate()
-                        : "",
+                        : '',
                     fit: BoxFit.cover,
                     height: 50,
                     width: 50,
@@ -742,7 +759,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   ),
                   16.width,
                   Text(data.name.validate(),
-                          style: primaryTextStyle(),
+                          style: primaryTextStyle(color: Colors.black),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis)
                       .expand(),
@@ -848,7 +865,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         BookingStatusKeys.pendingApproval) {
       return Container(
         width: context.width(),
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: context.cardColor),
         child: Text(language.lblWaitingForResponse, style: boldTextStyle())
             .center(),
@@ -899,7 +916,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
         isSentInvoiceOnEmail) {
       return Container(
         width: context.width(),
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: context.cardColor),
         child: Text(language.sentInvoiceText,
                 style: boldTextStyle(), textAlign: TextAlign.center)
@@ -907,7 +924,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
       );
     }
 
-    return SizedBox();
+    return const SizedBox();
   }
 
   //endregion
@@ -1151,14 +1168,15 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
           Stack(
             children: [
               AnimatedScrollView(
-                padding: EdgeInsets.only(bottom: 60),
-                physics: AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: 60),
+                physics: const AlwaysScrollableScrollPhysics(),
                 listAnimationType: ListAnimationType.FadeIn,
                 children: [
                   _buildReasonWidget(snap: snap.data!),
                   _pendingMessage(snap: snap.data!),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -1210,7 +1228,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                                 .validate()),
                         8.height,
 
-                        /// Price Details
+                        // Price Details
                         PriceCommonWidget(
                           bookingDetail: snap.data!.bookingDetail!,
                           serviceDetail: snap.data!.service!,
@@ -1262,6 +1280,8 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
     super.dispose();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -1278,21 +1298,29 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   return await 2.seconds.delay;
                 },
                 child: Scaffold(
+                  bottomNavigationBar: serviceAppBottomNavigation(context),
+                  endDrawer: const MyDrawer(),
+                  backgroundColor: colors.backgroundColor,
+                  // appBar: getAppBar(_scaffoldKey,
+                  //     title: language.booking,
+                  //     context: context,
+                  //     setState: setStateNow),
+                  key: _scaffoldKey,
                   appBar: appBarWidget(
                     snap.hasData
                         ? snap.data!.bookingDetail!.status
                             .validate()
                             .toBookingStatus()
-                        : "",
-                    color: context.primaryColor,
-                    textColor: Colors.white,
+                        : '',
+                    color: Colors.white,
+                    textColor: Colors.black,
                     showBack: true,
                     backWidget: BackWidget(),
                     actions: [
                       if (snap.hasData)
                         TextButton(
                           child: Text(language.lblCheckStatus,
-                              style: primaryTextStyle(color: Colors.white)),
+                              style: primaryTextStyle(color: Colors.black)),
                           onPressed: () {
                             showModalBottomSheet(
                               backgroundColor: Colors.transparent,
@@ -1327,12 +1355,13 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
             }
 
             return Scaffold(
+              backgroundColor: colors.backgroundColor,
               body: snapWidgetHelper(
                 snap,
                 errorBuilder: (error) {
                   return NoDataWidget(
                     title: error,
-                    imageWidget: ErrorStateWidget(),
+                    imageWidget: const ErrorStateWidget(),
                     retryText: language.reload,
                     onRetry: () {
                       page = 1;

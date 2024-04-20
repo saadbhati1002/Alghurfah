@@ -11,9 +11,7 @@ class RadioItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: _item.addItem!.isDefault == '1'
-          ? Theme.of(context).colorScheme.white
-          : Theme.of(context).disabledColor.withOpacity(0.1),
+      color: _item.addItem!.isDefault == '1' ? Colors.white : Colors.grey[100],
       elevation: _item.addItem!.isDefault == '1' ? 5 : 0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,9 +25,8 @@ class RadioItem extends StatelessWidget {
                         height: 20.0,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: _item.isSelected!
-                              ? colors.primary
-                              : Theme.of(context).colorScheme.white,
+                          color:
+                              _item.isSelected! ? colors.primary : Colors.white,
                           border: Border.all(
                             color: colors.primary,
                           ),
@@ -70,9 +67,9 @@ class RadioItem extends StatelessWidget {
                                   Text(
                                     '${_item.name!},',
                                     style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'ubuntu',
-                                    ),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'ubuntu',
+                                        color: Colors.black),
                                     overflow: TextOverflow.ellipsis,
                                     softWrap: true,
                                     maxLines: 1,
@@ -83,9 +80,9 @@ class RadioItem extends StatelessWidget {
                                   Text(
                                     _item.mobile!,
                                     style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'ubuntu',
-                                    ),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'ubuntu',
+                                        color: Colors.black),
                                     overflow: TextOverflow.ellipsis,
                                     softWrap: true,
                                     maxLines: 1,
@@ -98,8 +95,8 @@ class RadioItem extends StatelessWidget {
                                 child: Text(
                                   _item.add!,
                                   style: const TextStyle(
-                                    fontFamily: 'ubuntu',
-                                  ),
+                                      fontFamily: 'ubuntu',
+                                      color: Colors.black),
                                 ),
                               ),
                             ],

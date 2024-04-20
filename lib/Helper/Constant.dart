@@ -2,7 +2,7 @@ import 'package:eshop_multivendor/Helper/ApiBaseHelper.dart';
 
 //Your application name
 const String appName = 'Alghurfah';
-const String countryCode = '+91';
+const String countryCode = '+971';
 
 //Your package name
 const String packageName = 'eShop.multivendor.customer';
@@ -25,7 +25,7 @@ const String deepLinkName = 'eshop.com';
 String defaultLanguage = 'en';
 
 //Set country code
-String defaultCountryCode = 'IN';
+String defaultCountryCode = 'AE';
 
 //Time settings
 const int timeOut = 50;
@@ -75,5 +75,5 @@ const String bankDetail =
 //Api class instance
 ApiBaseHelper apiBaseHelper = ApiBaseHelper();
 
-const String baseUrl = 'https://iconicfacts.com/eCommerce/app/v1/api/';
+const String baseUrl = 'https://alghurfah.net/E-Commerce/app/v1/api/';
 const String jwtKey = '98ae71ab6073ab48b7a7e2bf6261ab7d0179e129';

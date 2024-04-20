@@ -1,6 +1,9 @@
 import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
+import 'package:eshop_multivendor/ServiceApp/model/dashboard_model.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/all_sellers/all_sellers.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/dashboard/component/slider_and_location_component.dart';
+import 'package:eshop_multivendor/ServiceApp/screens/dashboard/shimmer/dashboard_shimmer.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/category_model.dart';
 import 'package:eshop_multivendor/ServiceApp/network/rest_apis.dart';
@@ -21,6 +24,7 @@ class CategoryScreen extends StatefulWidget {
 
 class _CategoryScreenState extends State<CategoryScreen> {
   late Future<List<CategoryData>> future;
+  Future<DashboardResponse>? dashBoardFuture;
   List<CategoryData> categoryList = [];
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -36,6 +40,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   }
 
   void init() async {
+    dashBoardFuture = userDashboard(
+      isCurrentLocation: appStore.isCurrentLocation,
+    );
     future = getCategoryListWithPagination(page, categoryList: categoryList,
         lastPageCallBack: (val) {
       isLastPage = val;
@@ -71,177 +78,224 @@ class _CategoryScreenState extends State<CategoryScreen> {
           setState: setStateNow),
       body: Stack(
         children: [
-          SnapHelperWidget<List<CategoryData>>(
-            initialData: cachedCategoryList,
-            future: future,
-            loadingWidget: CategoryShimmer(),
-            onSuccess: (snap) {
-              if (snap.isEmpty) {
-                return NoDataWidget(
-                  title: language.noCategoryFound,
-                  retryText: language.reload,
-                  onRetry: () {
-                    page = 1;
-                    appStore.setLoading(true);
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                SnapHelperWidget<DashboardResponse>(
+                  initialData: cachedDashboardResponse,
+                  future: dashBoardFuture,
+                  errorBuilder: (error) {
+                    return NoDataWidget(
+                      title: error,
+                      imageWidget: const ErrorStateWidget(),
+                      retryText: language.reload,
+                      onRetry: () {
+                        appStore.setLoading(true);
+                        init();
 
-                    init();
-                    setState(() {});
+                        setState(() {});
+                      },
+                    );
                   },
-                );
-              }
-              return ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  padding:
-                      const EdgeInsetsDirectional.only(top: 10.0, bottom: 15),
-                  itemCount: snap.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                          const EdgeInsets.only(top: 15, left: 25, right: 25),
-                      child: GestureDetector(
-                        onTap: () {
-                          AllSellersScreen(
-                                  categoryId: snap[index].id.validate(),
-                                  categoryName: snap[index].name,
-                                  isFromCategory: true)
-                              .launch(context);
+                  loadingWidget: DashboardShimmer(),
+                  onSuccess: (snap) {
+                    return SliderLocationComponent(
+                      sliderList: snap.slider.validate(),
+                      callback: () async {
+                        appStore.setLoading(true);
+                        init();
+
+                        await 300.milliseconds.delay;
+                        setState(() {});
+                      },
+                    );
+                  },
+                ),
+                SnapHelperWidget<List<CategoryData>>(
+                  initialData: cachedCategoryList,
+                  future: future,
+                  loadingWidget: CategoryShimmer(),
+                  onSuccess: (snap) {
+                    if (snap.isEmpty) {
+                      return NoDataWidget(
+                        title: language.noCategoryFound,
+                        retryText: language.reload,
+                        onRetry: () {
+                          page = 1;
+                          appStore.setLoading(true);
+
+                          init();
+                          setState(() {});
                         },
-                        child: SizedBox(
-                          height: 130,
-                          width: MediaQuery.of(context).size.width,
-                          child: Stack(
-                            children: [
-                              SizedBox(
+                      );
+                    }
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        padding: const EdgeInsetsDirectional.only(
+                            top: 5.0, bottom: 15),
+                        itemCount: snap.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 25, right: 25),
+                            child: GestureDetector(
+                              onTap: () {
+                                AllSellersScreen(
+                                        categoryId: snap[index].id.validate(),
+                                        categoryName: snap[index].name,
+                                        isFromCategory: true)
+                                    .launch(context);
+                              },
+                              child: SizedBox(
                                 height: 130,
                                 width: MediaQuery.of(context).size.width,
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(30),
-                                      bottomLeft: Radius.circular(30)),
-                                  child: Image.asset(
-                                    'assets/images/png/ecom_cat.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 130,
-                                width: MediaQuery.of(context).size.width,
-                                child: Container(
-                                  margin: const EdgeInsets.all(10.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 130,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ClipRRect(
                                         borderRadius: const BorderRadius.only(
                                             topRight: Radius.circular(30),
                                             bottomLeft: Radius.circular(30)),
-                                        border: Border.all(
-                                            width: 2,
-                                            color: colors.serviceColor)),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topRight: Radius.circular(30),
-                                              bottomLeft: Radius.circular(30)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: colors.serviceColor)),
-                                      margin: const EdgeInsets.all(3.0),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Text(
-                                          '${snap[index].name}',
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headlineSmall!
-                                              .copyWith(
-                                                  fontFamily: 'ubuntu',
-                                                  color: colors.serviceColor,
-                                                  fontWeight: FontWeight.w600),
+                                        child: Image.asset(
+                                          'assets/images/png/ecom_cat.png',
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
-                                  ),
+                                    SizedBox(
+                                      height: 130,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Container(
+                                        margin: const EdgeInsets.all(10.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(30),
+                                                      bottomLeft:
+                                                          Radius.circular(30)),
+                                              border: Border.all(
+                                                  width: 2,
+                                                  color: colors.serviceColor)),
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                        topRight:
+                                                            Radius.circular(30),
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                30)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color:
+                                                        colors.serviceColor)),
+                                            margin: const EdgeInsets.all(3.0),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: Text(
+                                                '${snap[index].name}',
+                                                textAlign: TextAlign.center,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headlineSmall!
+                                                    .copyWith(
+                                                        fontFamily: 'ubuntu',
+                                                        color:
+                                                            colors.serviceColor,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                              ),
+                            ),
+                          );
+                        });
+                    // return AnimatedScrollView(
+                    //   onSwipeRefresh: () async {
+                    //     page = 1;
+
+                    //     init();
+                    //     setState(() {});
+
+                    //     return await 2.seconds.delay;
+                    //   },
+                    //   physics: AlwaysScrollableScrollPhysics(),
+                    //   padding: EdgeInsets.all(16),
+                    //   listAnimationType: ListAnimationType.FadeIn,
+                    //   fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
+                    //   onNextPage: () {
+                    //     if (!isLastPage) {
+                    //       page++;
+                    //       appStore.setLoading(true);
+
+                    //       init();
+                    //       setState(() {});
+                    //     }
+                    //   },
+                    //   children: [
+                    //     AnimatedWrap(
+                    //       key: key,
+                    //       runSpacing: 16,
+                    //       spacing: 16,
+                    //       itemCount: snap.length,
+                    //       listAnimationType: ListAnimationType.FadeIn,
+                    //       fadeInConfiguration:
+                    //           FadeInConfiguration(duration: 2.seconds),
+                    //       scaleConfiguration: ScaleConfiguration(
+                    //           duration: 300.milliseconds, delay: 50.milliseconds),
+                    //       itemBuilder: (_, index) {
+                    //         CategoryData data = snap[index];
+
+                    //         return GestureDetector(
+                    //           onTap: () {
+                    //             ViewAllServiceScreen(
+                    //                     categoryId: data.id.validate(),
+                    //                     categoryName: data.name,
+                    //                     isFromCategory: true)
+                    //                 .launch(context);
+                    //           },
+                    //           child: CategoryWidget(
+                    //               categoryData: data,
+                    //               width: context.width() / 4 - 20),
+                    //         );
+                    //       },
+                    //     ),
+                    //   ],
+                    // );
+                  },
+                  errorBuilder: (error) {
+                    return NoDataWidget(
+                      title: error,
+                      imageWidget: const ErrorStateWidget(),
+                      retryText: language.reload,
+                      onRetry: () {
+                        page = 1;
+                        appStore.setLoading(true);
+
+                        init();
+                        setState(() {});
+                      },
                     );
-                  });
-              // return AnimatedScrollView(
-              //   onSwipeRefresh: () async {
-              //     page = 1;
-
-              //     init();
-              //     setState(() {});
-
-              //     return await 2.seconds.delay;
-              //   },
-              //   physics: AlwaysScrollableScrollPhysics(),
-              //   padding: EdgeInsets.all(16),
-              //   listAnimationType: ListAnimationType.FadeIn,
-              //   fadeInConfiguration: FadeInConfiguration(duration: 2.seconds),
-              //   onNextPage: () {
-              //     if (!isLastPage) {
-              //       page++;
-              //       appStore.setLoading(true);
-
-              //       init();
-              //       setState(() {});
-              //     }
-              //   },
-              //   children: [
-              //     AnimatedWrap(
-              //       key: key,
-              //       runSpacing: 16,
-              //       spacing: 16,
-              //       itemCount: snap.length,
-              //       listAnimationType: ListAnimationType.FadeIn,
-              //       fadeInConfiguration:
-              //           FadeInConfiguration(duration: 2.seconds),
-              //       scaleConfiguration: ScaleConfiguration(
-              //           duration: 300.milliseconds, delay: 50.milliseconds),
-              //       itemBuilder: (_, index) {
-              //         CategoryData data = snap[index];
-
-              //         return GestureDetector(
-              //           onTap: () {
-              //             ViewAllServiceScreen(
-              //                     categoryId: data.id.validate(),
-              //                     categoryName: data.name,
-              //                     isFromCategory: true)
-              //                 .launch(context);
-              //           },
-              //           child: CategoryWidget(
-              //               categoryData: data,
-              //               width: context.width() / 4 - 20),
-              //         );
-              //       },
-              //     ),
-              //   ],
-              // );
-            },
-            errorBuilder: (error) {
-              return NoDataWidget(
-                title: error,
-                imageWidget: const ErrorStateWidget(),
-                retryText: language.reload,
-                onRetry: () {
-                  page = 1;
-                  appStore.setLoading(true);
-
-                  init();
-                  setState(() {});
-                },
-              );
-            },
+                  },
+                ),
+              ],
+            ),
           ),
           Observer(
               builder: (BuildContext context) =>

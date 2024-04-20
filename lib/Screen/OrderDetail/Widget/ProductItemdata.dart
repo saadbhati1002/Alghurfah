@@ -441,7 +441,8 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                               widget.orderItem.seller_rating,
                               widget.orderItem.seller_name,
                               widget.orderItem.store_description,
-                              '0', []);
+                              '0',
+                              'Silver', [], []);
                         },
                       ),
                       Text(

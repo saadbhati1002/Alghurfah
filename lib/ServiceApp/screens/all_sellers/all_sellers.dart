@@ -3,13 +3,15 @@ import 'package:eshop_multivendor/Screen/Language/languageSettings.dart';
 import 'package:eshop_multivendor/ServiceApp/component/cached_image_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
 import 'package:eshop_multivendor/ServiceApp/model/all_selllers/all_sellers_model.dart';
+import 'package:eshop_multivendor/ServiceApp/model/provider_info_response.dart';
 import 'package:eshop_multivendor/ServiceApp/screens/booking/provider_info_screen.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/constant.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/widgets/appBar.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
-import 'package:eshop_multivendor/widgets/bottomNavigationSheet.dart';
+import 'package:eshop_multivendor/widgets/bottom_navigation_service_app.dart';
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../model/category_model.dart';
@@ -21,8 +23,8 @@ class AllSellersScreen extends StatefulWidget {
   final int? categoryId;
   final String? categoryName;
   final String isFeatured;
-  final bool isFromProvider;
-  final bool isFromCategory;
+  final bool? isFromProvider;
+  final bool? isFromCategory;
   final int? providerId;
 
   const AllSellersScreen({
@@ -58,6 +60,7 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
 
   @override
   void initState() {
+    print(widget.categoryId);
     init();
 
     _getSellers();
@@ -70,18 +73,40 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
         isLoading = true;
       });
       AllSellersRes response = await getAllSellers();
-      print(response.data!.length);
+
       if (response.data!.isNotEmpty) {
-        setState(() {
-          allSellersData = response.data!;
-        });
+        for (int sellerCount = 0;
+            sellerCount < response.data!.length;
+            sellerCount++) {
+          ProviderInfoResponse sellerDetail = await getProviderDetail(
+              response.data![sellerCount].id!,
+              userId: appStore.userId.validate());
+
+          if (sellerDetail.serviceList!.isNotEmpty) {
+            // for (int sellerService = 0;
+            //     sellerService < sellerDetail.serviceList!.length;
+            //     sellerService++) {
+            //   print("saad bhati");
+            //   print(sellerDetail.serviceList![sellerService].categoryId);
+            //   print(sellerDetail.serviceList![sellerService].subCategoryName);
+            //   print(sellerDetail.serviceList![sellerService].categoryName);
+            // }
+            var compare = sellerDetail.serviceList!.where((element) =>
+                element.categoryId.toString() == widget.categoryId.toString());
+            if (compare.isNotEmpty) {
+              allSellersData.add(response.data![sellerCount]);
+            }
+          }
+        }
       }
     } catch (e) {
       debugPrint(e.toString());
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -134,111 +159,126 @@ class _AllSellersScreenState extends State<AllSellersScreen> {
           title: getTranslated(context, 'service')!,
           context: context,
           setState: setStateNow),
-      bottomNavigationBar: allAppBottomSheet(context),
+      bottomNavigationBar: serviceAppBottomNavigation(context),
       body: Stack(
         children: [
           const BackgroundImage(),
-          SizedBox(
-            child: SingleChildScrollView(
-              child: SizedBox(
-                // height: 100,
-                width: MediaQuery.of(context).size.width,
-                child: GridView.builder(
-                  padding: const EdgeInsets.all(20),
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: .68,
-                      crossAxisSpacing: 8),
-                  shrinkWrap: true,
-                  itemCount: allSellersData.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)),
+          allSellersData.isEmpty
+              ? isLoading == false
+                  ? SizedBox(
+                      height: MediaQuery.of(context).size.height * .8,
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Center(
+                        child: Text(getTranslated(
+                            context, 'No seller found in this category')!),
+                      ),
+                    )
+                  : const SizedBox()
+              : SizedBox(
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      // height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      child: GridView.builder(
+                        padding: const EdgeInsets.all(20),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 8,
+                                childAspectRatio: .68,
+                                crossAxisSpacing: 8),
+                        shrinkWrap: true,
+                        itemCount: allSellersData.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 12),
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                          topRight: Radius.circular(25),
+                                          bottomLeft: Radius.circular(25)),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          color: context.cardColor,
+                                        ),
+                                        child: CachedImageWidget(
+                                          radius: 0,
+                                          url: allSellersData[index]
+                                              .profileImage
+                                              .validate(),
+                                          fit: BoxFit.fill,
+                                          width: SUBCATEGORY_ICON_SIZE,
+                                          height: SUBCATEGORY_ICON_SIZE,
+                                          circle: true,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  allSellersData[index].displayName!,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'ubuntu',
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 15),
                                   child: Container(
+                                    height: 28,
                                     width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                      color: context.cardColor,
+                                    decoration: const BoxDecoration(
+                                      color: colors.serviceColor,
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20)),
                                     ),
-                                    child: CachedImageWidget(
-                                      radius: 0,
-                                      url: allSellersData[index]
-                                          .profileImage
-                                          .validate(),
-                                      fit: BoxFit.fitWidth,
-                                      width: SUBCATEGORY_ICON_SIZE,
-                                      height: SUBCATEGORY_ICON_SIZE,
-                                      circle: true,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      getTranslated(context, 'View')!,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Text(
-                              allSellersData[index].displayName!,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'ubuntu',
-                                  ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: Container(
-                                height: 28,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: const BoxDecoration(
-                                  color: colors.serviceColor,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20)),
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  getTranslated(context, 'View')!,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
+                              ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          ProviderInfoScreen(
-                            providerId: allSellersData[index].id,
-                            // sellerName: allSellersData[index].displayName,
-                          ).launch(context);
-                          setStatusBarColor(Colors.transparent);
-                        });
-                  },
+                            onTap: () {
+                              ProviderInfoScreen(
+                                providerId: allSellersData[index].id,
+                                sellerName: allSellersData[index].firstName,
+                              ).launch(context);
+                              setStatusBarColor(Colors.transparent);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
           Observer(
               builder: (BuildContext context) =>
                   LoaderWidget().visible(isLoading)),

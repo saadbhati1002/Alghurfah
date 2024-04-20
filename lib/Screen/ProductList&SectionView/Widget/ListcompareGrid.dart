@@ -12,7 +12,6 @@ import '../../../widgets/desing.dart';
 import '../../Language/languageSettings.dart';
 import '../../../widgets/networkAvailablity.dart';
 import '../../../widgets/snackbar.dart';
-import '../../../widgets/star_rating.dart';
 import '../../Dashboard/Dashboard.dart';
 import '../../Product Detail/productDetail.dart';
 import '../ProductList.dart';
@@ -496,7 +495,7 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                               tag:
                                   '$heroTagUniqueString${widget.index}${model.id}',
                               child: DesignConfiguration.getCacheNotworkImage(
-                                boxFit: BoxFit.contain,
+                                boxFit: BoxFit.cover,
                                 context: context,
                                 heightvalue: double.maxFinite,
                                 widthvalue: double.maxFinite,
@@ -628,7 +627,7 @@ class _GridViewProductListWidgetState extends State<GridViewProductListWidget> {
                         height: 25,
                         width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
-                          color: colors.serviceColor,
+                          color: colors.eCommerceColor,
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomLeft: Radius.circular(20)),

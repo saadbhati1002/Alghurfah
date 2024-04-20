@@ -1,10 +1,7 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Screen/Dashboard/Dashboard.dart';
-import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
-import 'package:eshop_multivendor/home_screen_new.dart';
-import 'package:eshop_multivendor/widgets/desing.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 Widget allAppBottomSheet(BuildContext context) {
   return ClipRRect(
@@ -39,10 +36,21 @@ Widget allAppBottomSheet(BuildContext context) {
             tooltip: '')
       ],
       onTap: (int index) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreenNew()),
-        );
+        if (index == 0) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreenNew(),
+            ),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Dashboard(pageIndex: index),
+            ),
+          );
+        }
       },
     ),
   );

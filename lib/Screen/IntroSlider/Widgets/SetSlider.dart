@@ -12,24 +12,25 @@ Widget slider(List slideList, PageController pageController,
       controller: pageController,
       onPageChanged: onPageChanged,
       itemBuilder: (BuildContext context, int index) {
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                index == 0 || index == 2
-                    ? getImages(index, context, slideList)
-                    : getTitle(index, slideList, context),
-                index == 0 || index == 2
-                    ? getTitle(index, slideList, context)
-                    : getImages(index, context, slideList),
-              ],
-            ),
-          ),
-        );
+        return getImages(index, context, slideList);
+        //  SingleChildScrollView(
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(8.0),
+        //     child: Column(
+        //       mainAxisSize: MainAxisSize.max,
+        //       mainAxisAlignment: MainAxisAlignment.start,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: <Widget>[
+        //         index == 0 || index == 2
+        //             ? getImages(index, context, slideList)
+        //             : getTitle(index, slideList, context),
+        //         index == 0 || index == 2
+        //             ? getTitle(index, slideList, context)
+        //             : getImages(index, context, slideList),
+        //       ],
+        //     ),
+        //   ),
+        // );
       },
     ),
   );
@@ -70,11 +71,13 @@ Widget getTitle(int index, List slideList, BuildContext context) {
 
 Widget getImages(int index, BuildContext context, List slideList) {
   return SizedBox(
-    height: MediaQuery.of(context).size.height * 0.5,
+    height: MediaQuery.of(context).size.height * 1,
+    width: MediaQuery.of(context).size.width * 1,
     child: Image.asset(
       DesignConfiguration.setPngPath(
         slideList[index].imageUrl,
       ),
+      fit: BoxFit.fill,
     ),
   );
 }

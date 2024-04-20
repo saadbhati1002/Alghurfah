@@ -69,15 +69,14 @@ class SellerDetailProvider extends ChangeNotifier {
       List<Product> tempSellerList = [];
       tempSellerList.clear();
       if (!error) {
-         totalSellerCount = int.parse(result['total']);
-     
+        totalSellerCount = int.parse(result['total']);
+
         sellerListOffset += perPage;
-          tempSellerList =
-          (data as List).map((data) => Product.fromSeller(data)).toList();
-       sellerList.addAll(tempSellerList);
-  
+        tempSellerList =
+            (data as List).map((data) => Product.fromSeller(data)).toList();
+        sellerList.addAll(tempSellerList);
       }
-       changeStatus(SellerDetailProviderStatus.isSuccsess);
+      changeStatus(SellerDetailProviderStatus.isSuccsess);
     } catch (e) {
       errorMessage = e.toString();
       changeStatus(SellerDetailProviderStatus.isFailure);

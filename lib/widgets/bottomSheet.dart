@@ -29,7 +29,7 @@ class CustomBottomSheet {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(circularBorderRadius20),
-          color: Theme.of(context).colorScheme.lightBlack,
+          color: Colors.black,
         ),
         height: 5,
         width: MediaQuery.of(context).size.width * 0.3,
@@ -44,7 +44,7 @@ class CustomBottomSheet {
           getTranslated(context, labelName)!,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.fontColor,
+                color: Colors.black,
                 fontFamily: 'ubuntu',
               ),
         ),

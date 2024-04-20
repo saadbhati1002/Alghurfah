@@ -1,4 +1,5 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/common_screen/home_screen_new.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ import '../../Language/languageSettings.dart';
 import '../../../widgets/snackbar.dart';
 import '../../../widgets/validation.dart';
 import '../../Dashboard/Dashboard.dart';
-import '../../Auth/SendOtp.dart';
+import '../../Auth/send_otp.dart';
 
 class MyProfileDialog {
   static showLogoutDialog(BuildContext context) async {
@@ -70,6 +71,7 @@ class MyProfileDialog {
                       firebaseAuth.signOut();
                     }
                   }
+
                   settingProvider.clearUserSession(context);
 
                   context.read<FavoriteProvider>().setFavlist([]);
@@ -77,7 +79,7 @@ class MyProfileDialog {
                   Navigator.pushReplacement(
                     context,
                     CupertinoPageRoute(
-                      builder: (BuildContext context) => const Dashboard(),
+                      builder: (BuildContext context) => const HomeScreenNew(),
                     ),
                   );
                 },

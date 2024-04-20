@@ -2502,7 +2502,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                             height: 80,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) =>
-                                DesignConfiguration.erroWidget(80),
+                                DesignConfiguration.errorWidget(80),
                           ),
                         ),
                       );

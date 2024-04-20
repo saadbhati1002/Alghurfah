@@ -1,3 +1,4 @@
+import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/main.dart';
 import 'package:eshop_multivendor/ServiceApp/model/service_detail_response.dart';
 import 'package:eshop_multivendor/ServiceApp/utils/colors.dart';
@@ -43,7 +44,7 @@ class _CouponWidgetState extends State<CouponWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: context.width(),
-      decoration: boxDecorationDefault(color: context.cardColor),
+      decoration: boxDecorationDefault(color: colors.backgroundColor),
       child: Column(
         children: [
           if (widget.couponData.isNotEmpty)
@@ -52,9 +53,8 @@ class _CouponWidgetState extends State<CouponWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  decoration: boxDecorationDefault(
-                      color: context.scaffoldBackgroundColor),
-                  padding: EdgeInsets.all(16),
+                  decoration: boxDecorationDefault(color: Colors.white),
+                  padding: const EdgeInsets.all(16),
                   width: context.width(),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +77,7 @@ class _CouponWidgetState extends State<CouponWidget> {
                               padding: EdgeInsets.all(8),
                               color: selectedIndex == index
                                   ? context.primaryColor.withOpacity(0.15)
-                                  : context.cardColor,
+                                  : Colors.grey,
                               child: Text(
                                 data.code.validate(),
                                 style: primaryTextStyle(
@@ -157,6 +157,12 @@ class _CouponWidgetState extends State<CouponWidget> {
                 onTap: () {
                   finish(context);
                 },
+                shapeBorder: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                  ),
+                ),
                 text: language.lblCancel,
                 textColor: widget.couponData.isEmpty
                     ? Colors.white
@@ -165,7 +171,13 @@ class _CouponWidgetState extends State<CouponWidget> {
               if (widget.couponData.isNotEmpty) 16.width,
               if (widget.couponData.isNotEmpty)
                 AppButton(
-                  color: primaryColor,
+                  color: colors.primary,
+                  shapeBorder: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                  ),
                   onTap: () {
                     if (couponCont.text.isNotEmpty) {
                       if (widget.couponData

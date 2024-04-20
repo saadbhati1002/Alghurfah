@@ -13,6 +13,7 @@ class OrderSummery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: colors.primary,
       elevation: 1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -49,27 +50,26 @@ class OrderSummery extends StatelessWidget {
               ],
             ),
             if (cartList[0].productList![0].productType != 'digital_product')
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  getTranslated(context, 'DELIVERY_CHARGE')!,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.lightBlack2,
-                    fontFamily: 'ubuntu',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    getTranslated(context, 'DELIVERY_CHARGE')!,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.lightBlack2,
+                      fontFamily: 'ubuntu',
+                    ),
                   ),
-                ),
-                Text(
-                  '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().deliveryCharge)!} ',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.fontColor,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'ubuntu',
-                  ),
-                )
-              ],
-            ),
-
+                  Text(
+                    '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().deliveryCharge)!} ',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.fontColor,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'ubuntu',
+                    ),
+                  )
+                ],
+              ),
             if (IS_SHIPROCKET_ON == '1' &&
                 context.read<CartProvider>().shipRocketDeliverableDate != '' &&
                 !context.read<CartProvider>().isLocalDelCharge!)

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:eshop_multivendor/Model/Order_Model.dart';
 import 'package:eshop_multivendor/Provider/Order/OrderProvider.dart';
 import 'package:eshop_multivendor/Screen/MyOrder/Widget/OrderListData.dart';
+import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -152,29 +153,31 @@ class StateMyOrder extends State<MyOrder> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: allAppBottomSheet(context),
+      endDrawer: const MyDrawer(),
       key: _scaffoldKey,
-      backgroundColor: Theme.of(context).colorScheme.lightWhite,
-      // appBar: getAppBar(
-      //     title: getTranslated(context, 'MY_ORDERS_LBL')!,
-      //     context: context,
-      //     setState: setStateNow),
+      backgroundColor: colors.backgroundColor,
+      appBar: getAppBar(_scaffoldKey,
+          title: getTranslated(context, 'MY_ORDERS_LBL')!,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   Container(
+                    color: Colors.white,
                     padding:
                         const EdgeInsetsDirectional.only(start: 5.0, end: 5.0),
                     child: TextField(
                       controller: _controller,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.fontColor,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
                       decoration: InputDecoration(
                         filled: true,
                         isDense: true,
-                        fillColor: Theme.of(context).colorScheme.white,
+                        fillColor: Colors.white,
                         prefixIconConstraints: const BoxConstraints(
                           minWidth: 40,
                           maxHeight: 20,
@@ -190,11 +193,8 @@ class StateMyOrder extends State<MyOrder> with TickerProviderStateMixin {
                         ),
                         hintText:
                             getTranslated(context, 'FIND_ORDER_ITEMS_LBL'),
-                        hintStyle: TextStyle(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .fontColor
-                              .withOpacity(0.3),
+                        hintStyle: const TextStyle(
+                          color: Colors.black,
                           fontWeight: FontWeight.normal,
                         ),
                         border: const OutlineInputBorder(
@@ -215,6 +215,7 @@ class StateMyOrder extends State<MyOrder> with TickerProviderStateMixin {
                                   child: Text(
                                     getTranslated(context, 'noItem')!,
                                     style: const TextStyle(
+                                      color: Colors.black,
                                       fontFamily: 'ubuntu',
                                     ),
                                   ),

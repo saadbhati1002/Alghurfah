@@ -15,7 +15,7 @@ class ProductMoreDetail extends StatelessWidget {
       : super(key: key);
 
   _desc(Product? model) {
-    return model!.shortDescription != '' && model.shortDescription != null
+    return model!.desc != '' && model.desc != null
         ? Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
             child: HtmlWidget(
@@ -90,17 +90,46 @@ class ProductMoreDetail extends StatelessWidget {
 
     return madeIn != '' && madeIn!.isNotEmpty
         ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
             child: ListTile(
               trailing: Text(madeIn),
+              focusColor: Colors.black,
               dense: true,
               title: Text(
-                getTranslated(context, 'MADE_IN')!,
+                "${getTranslated(context, 'MADE_IN')!} $madeIn ",
                 style: const TextStyle(color: Colors.black),
               ),
             ),
           )
         : Container();
+  }
+
+  indicator(Product? model, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 17),
+      child: Text(
+        "${getTranslated(context, 'Product Indicator')!}: ${getIndicator(context)} ",
+        style: const TextStyle(color: Colors.black),
+      ),
+    );
+  }
+
+  getIndicator(BuildContext context) {
+    String title = "";
+    if (model!.indicator == '0') {
+      title = getTranslated(context, 'Organic')!;
+    } else if (model!.indicator == '1') {
+      title = getTranslated(context, 'Non-Organic')!;
+    } else if (model!.indicator == '2') {
+      title = getTranslated(context, 'Vegan')!;
+    } else if (model!.indicator == '3') {
+      title = getTranslated(context, 'Non-Vegan')!;
+    } else if (model!.indicator == '4') {
+      title = getTranslated(context, 'Environment Friendly')!;
+    } else if (model!.indicator == '5') {
+      title = getTranslated(context, 'None')!;
+    }
+    return title;
   }
 
   @override
@@ -162,6 +191,7 @@ class ProductMoreDetail extends StatelessWidget {
                                     ? const Divider()
                                     : Container(),
                                 _madeIn(model, context),
+                                indicator(model, context),
                               ],
                             ),
                           ),
@@ -183,6 +213,7 @@ class ProductMoreDetail extends StatelessWidget {
                                   ? const Divider()
                                   : Container(),
                               _madeIn(model, context),
+                              indicator(model, context),
                             ],
                           ),
                         ),

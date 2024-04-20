@@ -1,10 +1,12 @@
 import 'package:eshop_multivendor/Helper/Color.dart';
+import 'package:eshop_multivendor/Helper/routes.dart';
 import 'package:eshop_multivendor/Provider/homePageProvider.dart';
 import 'package:eshop_multivendor/Screen/ProductList&SectionView/ProductList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../Helper/Constant.dart';
 import '../../../Model/Model.dart';
@@ -42,6 +44,12 @@ class _CustomSliderState extends State<CustomSlider> {
   Widget build(BuildContext context) {
     return Consumer<HomePageProvider>(
       builder: (context, homeProvider, _) {
+        for (int i = 0; i < homeProvider.homeSliderList.length; i++) {
+          if (context.read<HomePageProvider>().homeSliderList[i].type ==
+              'default') {
+            homeProvider.homeSliderList.removeAt(i);
+          }
+        }
         return homeProvider.sliderLoading
             ? sliderLoading(context)
             : homeProvider.homeSliderList.isEmpty
@@ -51,7 +59,7 @@ class _CustomSliderState extends State<CustomSlider> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 180,
+                          height: 200,
                           width: double.infinity,
                           child: Swiper(
                             itemBuilder: (context, index) {
@@ -61,23 +69,29 @@ class _CustomSliderState extends State<CustomSlider> {
                                     imageurlString: slider.image!,
                                     boxFit: BoxFit.fill,
                                     context: context,
-                                    heightvalue: 180,
+                                    heightvalue: 200,
                                     placeHolderSize: 50,
                                     widthvalue: double.maxFinite),
                                 onTap: () async {
                                   int curSlider = context
                                       .read<HomePageProvider>()
                                       .curSlider;
-
-                                  if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'products') {
-                                    Product? item = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .list;
+                                  print(slider.type);
+                                  if (slider.type == 'users') {
+                                    Routes.navigateToSellerProfileScreen(
+                                        context,
+                                        slider.sellerDetails!.id.toString(),
+                                        slider.sellerDetails!.storeDescription,
+                                        slider.sellerDetails!.storeName,
+                                        slider.sellerDetails!.noOfRatings,
+                                        slider.sellerDetails!.storeName,
+                                        slider.sellerDetails!.storeDescription,
+                                        '0',
+                                        slider.sellerDetails!.sellerRating,
+                                        [],
+                                        []);
+                                  } else if (slider.type == 'products') {
+                                    Product? item = slider.list;
 
                                     Navigator.push(
                                       context,
@@ -91,15 +105,8 @@ class _CustomSliderState extends State<CustomSlider> {
                                         ),
                                       ),
                                     );
-                                  } else if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'categories') {
-                                    Product item = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .list as Product;
+                                  } else if (slider.type == 'categories') {
+                                    Product item = slider.list as Product;
                                     if (item.subList == null ||
                                         item.subList!.isEmpty) {
                                       Navigator.push(
@@ -124,16 +131,8 @@ class _CustomSliderState extends State<CustomSlider> {
                                         ),
                                       );
                                     }
-                                  } else if (context
-                                          .read<HomePageProvider>()
-                                          .homeSliderList[curSlider]
-                                          .type ==
-                                      'slider_url') {
-                                    String url = context
-                                        .read<HomePageProvider>()
-                                        .homeSliderList[curSlider]
-                                        .urlLink
-                                        .toString();
+                                  } else if (slider.type == 'slider_url') {
+                                    String url = slider.urlLink.toString();
                                     try {
                                       if (await canLaunchUrl(Uri.parse(url))) {
                                         await launchUrl(Uri.parse(url),

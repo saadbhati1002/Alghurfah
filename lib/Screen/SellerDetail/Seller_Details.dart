@@ -3,13 +3,19 @@ import 'dart:math';
 import 'package:eshop_multivendor/Helper/Color.dart';
 import 'package:eshop_multivendor/Helper/Constant.dart';
 import 'package:eshop_multivendor/Model/Section_Model.dart';
+import 'package:eshop_multivendor/Model/favorite_seller_model.dart';
 import 'package:eshop_multivendor/Provider/Theme.dart';
 import 'package:eshop_multivendor/Provider/explore_provider.dart';
+import 'package:eshop_multivendor/Screen/Auth/login.dart';
+import 'package:eshop_multivendor/Screen/SellerDetail/product/seller_product_screen.dart';
+import 'package:eshop_multivendor/ServiceApp/component/loader_widget.dart';
+import 'package:eshop_multivendor/repository/sellerDetailRepositry.dart';
 import 'package:eshop_multivendor/widgets/app_drawer.dart';
 import 'package:eshop_multivendor/widgets/background_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nb_utils/nb_utils.dart' as visibility;
 import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -37,7 +43,9 @@ class SellerProfile extends StatefulWidget {
       sellerRating,
       totalProductsOfSeller,
       storeDesc,
-      sellerStoreName;
+      sellerStoreName,
+      ratingType;
+  final List<SellerSubCategory>? sellerCategory;
   final List<Product>? subList;
   const SellerProfile(
       {Key? key,
@@ -48,6 +56,8 @@ class SellerProfile extends StatefulWidget {
       required this.totalProductsOfSeller,
       this.storeDesc,
       this.sellerStoreName,
+      this.ratingType,
+      this.sellerCategory,
       this.subList})
       : super(key: key);
 
@@ -68,7 +78,8 @@ class _SellerProfileState extends State<SellerProfile>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int pos = 0, total = 0;
   final bool _isProgress = false;
-
+  bool isSaveToFavorite = false;
+  bool isLoading = false;
   Animation? buttonSqueezeanimation;
   AnimationController? buttonController;
   String query = '';
@@ -121,6 +132,10 @@ class _SellerProfileState extends State<SellerProfile>
 
   @override
   void initState() {
+    if (CUR_USERID != null) {
+      checkSellerFollowing();
+    }
+    getSellerDetails();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SellerDetailProvider>().setOffsetvalue(0);
 
@@ -193,6 +208,30 @@ class _SellerProfileState extends State<SellerProfile>
     super.initState();
   }
 
+  getSellerDetails() async {
+    context.read<SellerDetailProvider>().getSeller(
+          widget.sellerID!,
+          '',
+        );
+  }
+
+  checkSellerFollowing() async {
+    try {
+      Favorite response = await SellerDetailRepository.getFollowedSellers(
+          parameter: {'user_id': CUR_USERID});
+
+      var idChecker =
+          response.data!.where((element) => element.userId == widget.sellerID);
+      if (idChecker.isNotEmpty) {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      } else {}
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {}
+  }
+
   _productsListScrollListener() {
     if (productsController!.offset >=
             productsController!.position.maxScrollExtent &&
@@ -260,10 +299,13 @@ class _SellerProfileState extends State<SellerProfile>
       key: _scaffoldKey,
       backgroundColor: colors.backgroundColor,
       appBar: getAppBar(_scaffoldKey,
-          title: widget.sellerName, context: context, setState: setStateNow),
+          title: widget.sellerStoreName,
+          context: context,
+          setState: setStateNow),
       body: isNetworkAvail
           ? Consumer<SellerDetailProvider>(
               builder: (context, value, child) {
+                print(value.getCurrentStatus);
                 if (value.getCurrentStatus ==
                     SellerDetailProviderStatus.isSuccsess) {
                   return Stack(
@@ -280,7 +322,7 @@ class _SellerProfileState extends State<SellerProfile>
                             Container(
                               alignment: Alignment.topLeft,
                               color: colors.categoryDiscretion,
-                              width: MediaQuery.of(context).size.width * .87,
+                              width: MediaQuery.of(context).size.width * .69,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
@@ -499,50 +541,75 @@ class _SellerProfileState extends State<SellerProfile>
                                 ],
                               ),
                             ),
-                            widget.subList == null
+                            widget.sellerCategory == null
                                 ? const SizedBox()
-                                : SizedBox(
-                                    child: GridView.builder(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, left: 20, right: 10),
-                                        itemCount: widget.subList!.length,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 3,
-                                          crossAxisCount: 3,
-                                          mainAxisSpacing: 10,
-                                          crossAxisSpacing: 10,
-                                        ),
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            alignment: Alignment.center,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(15),
-                                                    bottomLeft:
-                                                        Radius.circular(15))),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 5),
-                                              child: Text(
-                                                widget.subList![index].name!,
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.black),
+                                : GridView.builder(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, left: 20, right: 10),
+                                    itemCount: widget.sellerCategory!.length,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 3,
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 10,
+                                      crossAxisSpacing: 10,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          List<Product> subProduct = [];
+                                          for (int productList = 0;
+                                              productList <
+                                                  sellerProduct.length;
+                                              productList++) {
+                                            if (widget.sellerCategory![index]
+                                                    .categoryID
+                                                    .toString() ==
+                                                sellerProduct[productList]
+                                                    .categoryId
+                                                    .toString()) {
+                                              subProduct.add(
+                                                  sellerProduct[productList]);
+                                            }
+                                          }
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SellerProductScreen(
+                                                subList: subProduct,
+                                                categoryTitle: widget
+                                                    .sellerCategory![index]
+                                                    .categoryName,
                                               ),
                                             ),
                                           );
-                                        }),
+                                        },
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: colors.eCommerceColor,
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(20),
+                                                bottomLeft:
+                                                    Radius.circular(20)),
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            widget.sellerCategory![index]
+                                                    .categoryName ??
+                                                '',
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                             Stack(
                               children: <Widget>[
@@ -564,24 +631,71 @@ class _SellerProfileState extends State<SellerProfile>
                         child: Padding(
                           padding: const EdgeInsets.only(top: 15, right: 15),
                           child: SizedBox(
-                            height: 100,
+                            height: 140,
                             width: 100,
-                            child: Stack(
+                            child: Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)),
+                                SizedBox(
+                                  height: 100,
+                                  width: 100,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25)),
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: DesignConfiguration
+                                          .getCacheNotworkImage(
+                                        boxFit: BoxFit.fill,
+                                        context: context,
+                                        heightvalue: null,
+                                        widthvalue: null,
+                                        placeHolderSize: 100,
+                                        imageurlString: widget.sellerImage!,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    if (CUR_USERID != null) {
+                                      if (isSaveToFavorite == false) {
+                                        sellerAddToFavorite();
+                                      } else {
+                                        sellerRemoveToFavorite();
+                                      }
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const Login(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                   child: Container(
-                                    color: Colors.white,
-                                    child: DesignConfiguration
-                                        .getCacheNotworkImage(
-                                      boxFit: BoxFit.fill,
-                                      context: context,
-                                      heightvalue: null,
-                                      widthvalue: null,
-                                      placeHolderSize: 50,
-                                      imageurlString: widget.sellerImage!,
+                                    height: 25,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: const BoxDecoration(
+                                      color: colors.serviceColor,
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25),
+                                      ),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      isSaveToFavorite == true
+                                          ? getTranslated(context, 'Unfollow')!
+                                          : getTranslated(context, 'Follow')!,
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                 ),
@@ -597,8 +711,14 @@ class _SellerProfileState extends State<SellerProfile>
                           child: Container(
                             height: 25,
                             width: 25,
-                            decoration: const BoxDecoration(
-                                color: Color.fromRGBO(179, 127, 70, 1),
+                            decoration: BoxDecoration(
+                                color: widget.ratingType == null
+                                    ? const Color.fromRGBO(179, 127, 70, 1)
+                                    : widget.ratingType == 'Silver'
+                                        ? const Color.fromRGBO(192, 192, 192, 1)
+                                        : widget.ratingType == 'Gold'
+                                            ? Colors.yellow[700]
+                                            : colors.eCommerceColor,
                                 shape: BoxShape.circle),
                             child: Padding(
                               padding: const EdgeInsets.all(2),
@@ -618,7 +738,16 @@ class _SellerProfileState extends State<SellerProfile>
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      isLoading == true
+                          ? SizedBox(
+                              height: MediaQuery.of(context).size.width * .85,
+                              width: MediaQuery.of(context).size.width * 1,
+                              child: Center(
+                                child: LoaderWidget().visible(isLoading),
+                              ),
+                            )
+                          : const SizedBox()
                     ],
                   );
                 } else if (value.getCurrentStatus ==
@@ -640,6 +769,56 @@ class _SellerProfileState extends State<SellerProfile>
               buttonSqueezeanimation: buttonSqueezeanimation,
               buttonController: buttonController),
     );
+  }
+
+  sellerAddToFavorite() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      var response = await SellerDetailRepository.addSellerToFavorite(
+          parameter: {"seller_id": widget.sellerID, "user_id": CUR_USERID});
+      if (response["error"] == false) {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      } else {
+        setState(() {
+          isSaveToFavorite = false;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  sellerRemoveToFavorite() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      var response = await SellerDetailRepository.removeSellerToFavorite(
+          parameter: {"seller_id": widget.sellerID, "user_id": CUR_USERID});
+      if (response["error"] == false) {
+        setState(() {
+          isSaveToFavorite = false;
+        });
+      } else {
+        setState(() {
+          isSaveToFavorite = true;
+        });
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   Widget textWidget(String text) {
@@ -1445,6 +1624,7 @@ class _SellerProfileState extends State<SellerProfile>
         children: List.generate(
           context.read<ExploreProvider>().productList.length,
           (index) {
+            sellerProduct = context.read<ExploreProvider>().productList;
             return GridViewLayOut(
               index: index,
               update: setStateNow,
@@ -1454,4 +1634,6 @@ class _SellerProfileState extends State<SellerProfile>
       ),
     );
   }
+
+  List<Product> sellerProduct = [];
 }
