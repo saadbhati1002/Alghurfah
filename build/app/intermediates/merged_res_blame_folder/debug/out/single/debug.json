@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/drawable-v21_launch_background.xml.flat",
+        "source": "com.alghurfah.app-main-98:/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/drawable_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "com.alghurfah.app-merged_res-105:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.alghurfah.app-main-98:/mipmap-xhdpi/ic_launcher.png"
+    }
+]

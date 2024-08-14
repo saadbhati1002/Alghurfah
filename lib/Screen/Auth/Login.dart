@@ -216,8 +216,8 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
   void login() async {
     var request = {
-      'email': '${mobileController.text.toString().trim()}Alghurfah@gmail.com',
-      'password': '123456789',
+      'contact_number': mobileController.text.toString().trim(),
+      'password': passwordController.text.toString().trim(),
       'player_id': nb_utils.getStringAsync(service_app.PLAYERID),
     };
 
@@ -225,8 +225,8 @@ class _LoginPageState extends State<Login> with TickerProviderStateMixin {
 
     await loginUser(request).then((loginResponse) async {
       if (true) {
-        nb_utils.setValue(service_app.USER_EMAIL,
-            '${mobileController.text.toString().trim()}Alghurfah@gmail.com');
+        nb_utils.setValue(
+            service_app.USER_EMAIL, loginResponse.userData?.email ?? "");
         nb_utils.setValue(service_app.USER_PASSWORD,
             passwordController.text.toString().trim());
         await nb_utils.setValue(service_app.IS_REMEMBERED, true);

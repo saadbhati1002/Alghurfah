@@ -371,17 +371,17 @@ class _MyAppState extends State<MyApp> {
             primaryColor: Theme.of(context).colorScheme.lightWhite,
             fontFamily: 'ubuntu',
             brightness: Brightness.light,
-            textTheme: TextTheme(
+            textTheme: const TextTheme(
               titleLarge: TextStyle(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: Colors.white,
                 fontWeight: FontWeight.w600,
               ),
               titleMedium: TextStyle(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ).apply(
-              bodyColor: Theme.of(context).colorScheme.fontColor,
+              bodyColor: Colors.white,
             ),
           ),
           debugShowCheckedModeBanner: false,
@@ -406,17 +406,17 @@ class _MyAppState extends State<MyApp> {
             iconTheme: Theme.of(context).iconTheme.copyWith(
                   color: colors.secondary,
                 ),
-            textTheme: TextTheme(
+            textTheme: const TextTheme(
               titleLarge: TextStyle(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: Colors.white,
                 fontWeight: FontWeight.w600,
               ),
               titleMedium: TextStyle(
-                color: Theme.of(context).colorScheme.fontColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ).apply(
-              bodyColor: Theme.of(context).colorScheme.fontColor,
+              bodyColor: Colors.white,
             ),
             colorScheme: ColorScheme.fromSwatch(
               primarySwatch: colors.primary_app,

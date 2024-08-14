@@ -107,12 +107,12 @@ class _SignUpPageState extends State<SignUp> with TickerProviderStateMixin {
       ..firstName = firstNameController.text.toString().trim()
       ..lastName = lastNameController.text.toString().trim()
       ..userType = service.USER_TYPE_USER
-      ..username = firstNameController.text.toString().trim() +
-          lastNameController.text.toString().trim()
-      ..email = '${widget.mobileNumber!}Alghurfah@gmail.com'
-      ..password = '123456789';
+      ..username =
+          firstNameController.text.toString().trim() + widget.mobileNumber!
+      ..email = emailController.text.toString()
+      ..password = passwordController.text.trim();
     await createUser(tempRegisterData.toJson()).then((registerResponse) async {
-      registerResponse.userData!.password = '123456789';
+      registerResponse.userData!.password = passwordController.text.trim();
       await saveUserData(registerResponse.userData!);
 
       Navigator.push(context,

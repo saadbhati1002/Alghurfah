@@ -689,8 +689,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           }
           if (mounted) setState(() {});
         }, onError: (error) {
-          if(mounted){
-          setSnackbar(error.toString(), context);
+          if (mounted) {
+            setSnackbar(error.toString(), context);
           }
         });
       } on TimeoutException catch (_) {
@@ -826,6 +826,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                         Text(
                                           getTranslated(
                                               context, 'TOTAL_PRICE')!,
+                                          style: TextStyle(color: Colors.white),
                                         ),
                                         Text(
                                           '${DesignConfiguration.getPriceFormat(context, context.read<CartProvider>().oriPrice)!} ',
@@ -833,9 +834,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                               .textTheme
                                               .titleMedium!
                                               .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .fontColor,
+                                                color: Colors.white,
                                                 fontFamily: 'ubuntu',
                                               ),
                                         ),

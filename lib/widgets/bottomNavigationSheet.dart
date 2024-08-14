@@ -28,12 +28,13 @@ Widget allAppBottomSheet(BuildContext context) {
         ),
         BottomNavigationBarItem(
             label: '',
-            tooltip: '',
-            icon: ImageIcon(AssetImage('assets/images/png/3.png'))),
-        BottomNavigationBarItem(
-            label: '',
             icon: ImageIcon(AssetImage('assets/images/png/4.png')),
-            tooltip: '')
+            tooltip: ''),
+        BottomNavigationBarItem(
+          label: '',
+          tooltip: '',
+          icon: Icon(Icons.favorite_outline_outlined),
+        ),
       ],
       onTap: (int index) {
         if (index == 0) {
